@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript" src="/static/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#logo-wrap').floatScroll({positionTop:0});
+	$(".scroll-pane").jScrollPane();
+	/*-- --*/
+	$('.labs-video-sec .video-block').css({'display':'none'});
+	$('.labs-video-sec #video-block-1').css({'display':'block'});
+	$('.labs-video-thumb .video-thumbs:first').addClass('active');
+	$('.labs-video-thumb .video-thumbs').click(function(e) {
+		$('.labs-video-thumb .video-thumbs').removeClass('active');
+        $(this).addClass('active');
+    });
+	/*-- --*/
+	$('.labs-video-thumb .video-thumbs .video-overlay').fadeOut(0);
+	$('.labs-video-thumb .video-thumbs').hover(function(e) {
+        $(this).find('.video-overlay').fadeIn(300);
+    }, function(){$(this).find('.video-overlay').fadeOut(100);});
+	/*-- --*/
+	$('.labs-video-thumb .video-thumbs').click(function(event) {
+		event.preventDefault();
+		
+		var id_val = $(this).attr('id');
+		var id_no = id_val.substr(13);
+		
+		$('.labs-video-sec .video-block').css({'display':'none'});
+		$('.labs-video-sec #video-block-'+id_no).css({'display':'block'});
+		
+		var vid_name = $('.labs-video-sec #video-block-'+id_no+ ' Iframe').attr('name');
+		$('.labs-video-sec .lab-video-frame').attr('src','');
+		$('.labs-video-sec #video-block-'+id_no+' .lab-video-frame').attr('src','https://www.youtube.com/embed/'+vid_name+'?rel=0&autoplay=1');
+    });
+	/*-- --*/
+});
+</script>
+</head>
+
+<body>
+<header class="home-header" id="logo-wrap">
+  <div class="logo-wrap" >
+    <div class="container pos-rel">
+      <div class="pull-left"> <a href="/index.html" class="logo" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+      <div class="pull-right">
+        <div class="logo-wrap-top">
+          <div class="link-sec pull-right"> 
+          	<p class="pull-left sec-1">
+                <span class="cus-text">Customer Support</span> 
+                <span class="cus-no">+91 44 42148631</span> 
+            	<a href="/accounts/login/" class="link-button link-button-gray" title="Log In">Log In</a>
+            </p>
+            <p class="pull-left">
+                <a href="https://www.facebook.com/pages/SciSphere-India/1480618278894388" target="_blank" title="Facebook" class="sm" id="fb"></a> 
+                <a href="https://twitter.com/SciSphere_India" target="_blank" title="Twitter" class="sm" id="tw"></a> 
+                <a href="http://www.linkedin.com/company/scisphere" target="_blank" title="Linked In" class="sm" id="li"></a> 
+                <a href="https://plus.google.com/u/0/b/105169011525829533656/105169011525829533656/about" target="_blank" title="Google+" class="sm" id="gplus"></a> 
+                <a href="https://www.youtube.com/channel/UCpURPczEkAFpNzZCDFbjaOg" target="_blank" title="Youtube" class="sm" id="youtube"></a>
+            </p>
+            
+          </div>
+        </div>
+        <div class="logo-wrap-bottom">
+          <ul class="nav navbar-nav homemenu pull-right" role="tablist">
+            <li><a href="/index.html?tag=1" name="analytics" title="Products" >Products</a></li>
+            <li><a href="/pricing.html" title="Pricing">Pricing</a></li>
+            <li><a href="/demos.html" title="Demos">Demos</a></li>
+            <li class="active"><a href="/labs.html" title="Labs">Labs</a></li>
+            <li><a href="#" title="Blog">Blog</a></li>
+            <li><a href="/app/contact" title="Contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <a href="/app/signup/" class="link-button link-button-red signup-button" title="Free Sign Up">Free Sign Up</a>
+    </div>
+  </div>  
+</header>
+
+
+
+<div class="home-bodysec">
+  <div class="container">
+  	<div class="col-lg-12" >
+    	<!-- Main Left Panel -->
+  		<div class="col-md-9" >
+        	<h3 class="signup-heading">Research Labs</h3>
+            <div class="col-md-11 labs-container">
+            	<p class="title-content">Our research brings deep insight into the drivers of economic growth and progress at the microlevel.  Our research is motivated by the goal of enabling development of intelligently constructed  contextual variables and analytics that can enable efficient capital allocation and market speed for organizations of all scales. Our focus is particularly on emerging economies that are in rapid flux and undergoing transitions in products and markets in ways that are very different from the better studied developed economies.</p>
+                <div class="col-lg-12 labs-video-wrap">
+                	<div class="col-md-9 labs-video-sec">
+                    	<!-- video block 1 -->
+                    	<div class="col-md-12 video-block" id="video-block-1">
+                            <div class="video-layer">
+                                <iframe frameborder="0" src="https://www.youtube.com/embed/D1M8tEj-DzY" name="D1M8tEj-DzY" allowfullscreen class="lab-video-frame"></iframe>
+                            </div>
+                            <div class="video-details">
+                                <div class="video-title-wrap"><h3 class="video-title">Understanding the Complex Systems Approach</h3> <span class="video-date">March 09, 2015</span></div>
+                                <p class="video-desc"></p>
+                            </div>
+                        </div>
+                    	<!-- video block 1 -->
+                    	<div class="col-md-12 video-block" id="video-block-2">
+                            <div class="video-layer">
+                                <iframe frameborder="0" name="qN0o7KtKubM" allowfullscreen class="lab-video-frame"></iframe>
+                            </div>
+                            <div class="video-details">
+                                <div class="video-title-wrap"><h3 class="video-title">Understanding Growth and Decay of Settlements</h3> <span class="video-date">March 02, 2015</span></div>
+                                <p class="video-desc">Get a preview of elements of our approach to understanding drivers of growth and decay of Settlements. </p>
+                            </div>
+                        </div>
+                        <!-- video block 2 -->
+                    	<div class="col-md-12 video-block" id="video-block-3">
+                            <div class="video-layer">
+                                <iframe frameborder="0" name="sj2T6NfMih8" allowfullscreen class="lab-video-frame"></iframe>
+                            </div>
+                            <div class="video-details">
+                                <div class="video-title-wrap"><h3 class="video-title">A Simple Visual Rendering of Infrastructural Networks</h3> <span class="video-date">August 12, 2014</span></div>
+                                <p class="video-desc">A preview of an approach to understanding the spatial relationship of infrastructural features in rural Tamil Nadu.</p>
+                            </div>
+                        </div>
+                        <!-- video block 3 -->
+                    	<div class="col-md-12 video-block" id="video-block-4">
+                            <div class="video-layer">
+                                <iframe frameborder="0" name="Xa6U16KX3f0" allowfullscreen class="lab-video-frame"></iframe>
+                            </div>
+                            <div class="video-details">
+                                <div class="video-title-wrap"><h3 class="video-title">How Do Cities Scale in Size</h3> <span class="video-date">March 02, 2015</span></div>
+                                <p class="video-desc">A preview of the scaling principles of city size distributions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="labs-video-thumb scroll-pane">
+                            <div class="video-thumbs" id="video-thumbs-1">
+                            	<img src="/static/images/lab-video-small-4.png" alt="video-thumb" />
+                            	<span class="timer">07.01</span>
+                                <p class="video-overlay"><span>Understanding the Complex Systems Approach</span></p>
+                            </div>
+                            <div class="video-thumbs" id="video-thumbs-2">
+                            	<img src="/static/images/lab-video-small-1.png" alt="video-thumb" />
+                            	<span class="timer">06.47</span>
+                                <p class="video-overlay"><span>Understanding Growth and Decay of Settlements</span></p>
+                            </div>
+                            <div class="video-thumbs" id="video-thumbs-3" >
+                            	<img src="/static/images/lab-video-small-2.png" alt="video-thumb" />
+                            	<span class="timer">01.50</span>
+                                <p class="video-overlay"><span>A Simple Visual Rendering of Infrastructural Networks</span></p>
+                            </div>
+                            <div class="video-thumbs" id="video-thumbs-4" >
+                            	<img src="/static/images/lab-video-small-3.png" alt="video-thumb" />
+                            	<span class="timer">02.56</span>
+                                <p class="video-overlay"><span>How Do Cities Scale in Size</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-wrap">
+                	<h3 class="sec-title">Our areas of study are</h3>
+                    <ul class="labs-list">
+                    	<li>The underlying drivers of urbanization: why settlements grow or decay</li>
+                        <li>The evolution of product space: the development of product and service ecosystems within micro-economies, factors influencing transitions away from agriculture</li>
+                        <li>Mobility and communication networks and their relationship to economic growth.</li>
+                        <li>The relationship between an individual’s economic behavior and outcome and the economic context in which they are operating.</li>
+                    </ul>
+                    <p class="content">Our approach is rooted in the science of complex systems, focusing on the relationships that give rise to the collective behaviors of a system and their evolution in time. Complex systems science derives its approaches from statistical physics, nonlinear dynamics and information theory. Consequently our scientists come with backgrounds in areas such as Physics, Engineering and Computational Neuroscience. We collaborate actively with the academic community of scientists interested in emerging economic systems.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Main Right Panel -->
+        <div class="col-md-3 right-latest-panel">
+        	<div class="latest-content-wrap lab-latest-content1">
+            	<div class="book-wrap">
+                	<img src="/static/images/labs-book-icon.jpg" />
+                    <a href="http://link.springer.com/chapter/10.1007%2F978-3-319-08473-2_10" title="See Our Chapter" class="book-link" target="_blank">See Our Chapter</a>
+                </div>
+                <div class="book-deatil">
+                	<p class="desc">Spatio-Temporal Patterns of Development in India. Identifying Geographical Features of Growth and Urbanisation.</p>
+                </div>
+            </div>
+            <div class="latest-content-wrap lab-latest-content2" data-toggle="modal" data-target=".lab-video-pop">
+            	<img src="/static/images/minimal-span.jpg" alt="Minimal Spanning" />
+                <p class="desc">Minimal Spanning Tree of Infrastructure in Rural Tamil Nadu shows how Infrastructure tends to cluster.</p>
+            </div>
+            <!-- Popup -->
+            <div class="modal fade lab-video-pop" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                    <div class="clearfix">
+                    	<div class="popup-body">
+                    		<p class="pop-desc">Minimal Spanning Tree of Infrastructure in Rural Tamil Nadu shows how Infrastructure tends to cluster.</p>
+                    	</div>
+                    </div>  
+                  </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+  </div>
+</div>
+<div class="home-footersec">
+  <div class="container">
+    <div class="col-lg-12">
+    	<p class="footer-content pull-left">
+        	<a href="/dataset.html?tag=1" title="Datasets">Datasets</a>  &nbsp; | &nbsp;
+            <a href="/pricing.html" title="Pricing">Pricing</a>  &nbsp; | &nbsp;
+            <a href="/demos.html" title="Demos">Demos</a>  &nbsp; | &nbsp;
+            <a href="/labs.html" title="Labs">Labs</a>  &nbsp; | &nbsp;
+            <a href="#" title="Blog">Blog</a>  &nbsp; | &nbsp;
+            <a href="/app/contact" title="Contact">Contact</a>  &nbsp; | &nbsp;
+            <a href="/about.html" title="About">About</a>
+        </p>
+        <p class="footer-content pull-right">
+        	<span class="copyright-text">&copy; Copyright 2014 Scisphere, inc. All rights reserved.</span>
+        </p>
+      </div>
+  </div>
+</div>
+<!-- -->
+</body>
+</html>

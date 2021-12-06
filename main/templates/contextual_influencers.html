@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div class="container">
+<h2>Influencer Analysis</h2>
+<p>We explored <a href="/context_variables">17 contextual variables</a> and found 4 that significantly influence your <b>Productivity Score</b>.</p>
+<div>
+   <table width="100%" cellpadding="4">
+      <tr style="font-weight:bold;">
+         <td width="25%" style="padding-left:20px;">SciScore Economic Diversity</td>
+         <td width="25%" style="padding-left:30px;">Industrial Worker Ratio</td>
+         <td width="25%" style="padding-left:40px;">Literacy Ratio</td>
+         <td width="25%" style="padding-left:30px;">Decadal Migration</td>
+      </tr>
+      <tr>
+         <td><img src="/static/location_analyser/images/2PerfGrp_D_L_defaultCol.png" width="250px" height="150px"></td>
+         <td><img src="/static/location_analyser/images/2PerfGrp_expIWR_L_defaultCol.png" width="250px" height="150px"></td>
+         <td><img src="/static/location_analyser/images/2PerfGrp_LitRatio_L_defaultCol.png" width="250px" height="150px"></td>
+         <td><img src="/static/location_analyser/images/2PerfGrp_Migration_Dec_L_defaultCol.png" width="300px" height="150px"></td>
+      </tr>
+      <tr>
+         <td colspan="4">
+	    <table width="100%" style="border: 1px solid #ddd;" border="1">
+               <tr style="display: table-row">
+                  <td width="20%" style="padding: 8px;background-color: #f9f9f9;"><b>Best Range</b></td>
+                  <td width="20%" style="padding: 8px;">10-75</td>
+                  <td width="20%" style="padding: 8px;">25-70</td>
+                  <td width="20%" style="padding: 8px;">>0.7</td>
+                  <td width="20%" style="padding: 8px;">>0.3</td>
+               </tr>
+               <tr style="display: table-row">
+                  <td style="padding: 8px;background-color: #f9f9f9;"><b>% Improvement by filters</b></td>
+                  <td style="padding: 8px;">22%</td>
+                  <td style="padding: 8px;">11%</td>
+                  <td style="padding: 8px;">5%</td>
+                  <td style="padding: 8px;">3%</td>
+               </tr>
+	    </table>
+	 </td>
+      </tr>
+      <tr>
+         <td colspan="4" align="right">
+	    <div style="width:150px;height:35px;border-radius: 10px;background-color:#CCCCCC;margin-top:10px;">
+	     <!--  <a href="/location_analyser"><div style="padding-top: 8px;padding-right: 25px;color:#000000;">View Filtered Map</div></a>-->
+	       <a href="/filters_layers/#ac-1.1=true&ac-2.1=true&key_0=agricultural_worker&key_0checked=false&key_0val=0.0%3B100.0&key_1=decadal_industrialization&key_1checked=false&key_1val=-6.65%3B6.52&key_2=decadal_migration&key_2checked=true&key_2val=3%3B9.7&key_3=household&key_3checked=false&key_3val=1.0%3B8628.0&key_4=industrial_worker&key_4checked=true&key_4val=25%3B70&key_5=literacy_rate&key_5checked=true&key_5val=7%3B100&key_6=population&key_6checked=false&key_6val=1.0%3B37819.0&level=4.0&level0=356&level1=33&year=2011"><div style="padding-top: 8px;padding-right: 25px;color:#000000;">View Filtered Map</div></a>
+
+	    </div>
+         </td>
+      </tr>
+   </table>
+   <h2>Analytical Model</h2>
+   <table width="90%" cellpadding="4">
+      <tr>
+         <td width="30%" valign="top">Our best logistic model using these influencer variables suggests that by selecting locations on this criteria, 
+	 you can <b>improve</b> your branch Productivity Score <b>by up to 31 points or 47%</b></td>
+         <td width="30%" valign="top"><b>Overall performance vs Model</b><img src="/static/location_analyser/images/3ModelCompare_Default_L.png" width="250px" height="150px"></td>
+         <td width="30%" valign="top"><b>Current Mean:  68.27</b><br>
+	     <b>Model: 100.11</b><br>
+	     <b>Model:Current  1.47</b><br>
+	    <div style="width:180px;height:50px;border-radius: 10px;background-color:#CCCCCC;margin-top:10px;">
+	    <a href="#"><div style="padding-top: 8px;padding-left: 15px;color:#000000;">Find places that meet the model criteria</div></a>
+	    </div>
+	</td>
+      </tr>
+   </table>
+</div>
+
+
+</div>
+
+{% endblock %}

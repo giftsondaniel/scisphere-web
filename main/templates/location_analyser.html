@@ -1,0 +1,666 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <link rel="stylesheet" href="/static/location_analyser/vendor/leaflet/0.4.4/leaflet.css">
+  <link rel="stylesheet" href="/static/location_analyser/vendor/leaflet.markercluster/MarkerCluster.css">
+  <link rel="stylesheet" href="/static/location_analyser/vendor/leaflet.markercluster/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="/static/location_analyser/vendor/slickgrid/2.0.1/slick.grid.css">
+  <link rel="stylesheet" href="/static/location_analyser/vendor/timeline/css/timeline.css">
+
+  <!-- Recline CSS components -->
+  <link rel="stylesheet" href="/static/location_analyser/css/grid.css">
+  <link rel="stylesheet" href="/static/location_analyser/css/slickgrid.css">
+  <link rel="stylesheet" href="/static/location_analyser/css/flot.css">
+  <link rel="stylesheet" href="/static/location_analyser/css/map.css">
+  <link rel="stylesheet" href="/static/location_analyser/css/multiview.css">
+  <link rel="stylesheet" href="/static/location_analyser/css/timeline.css">
+  <!-- /Recline CSS components -->
+
+  <!-- 3rd party JS libraries -->
+  <!--<script type="text/javascript" src="/static/location_analyser/vendor/jquery/1.7.1/jquery.js"></script>-->
+  <script type="text/javascript" src="/static/location_analyser/vendor/underscore/1.4.4/underscore.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/backbone/1.0.0/backbone.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/mustache/0.5.0-dev/mustache.js"></script>
+  <!--<script type="text/javascript" src="/static/location_analyser/vendor/bootstrap/2.0.2/bootstrap.js"></script>-->
+  <!--[if lte IE 8]>
+  <script language="javascript" type="text/javascript" src="../../vendor/flot/excanvas.min.js"></script>
+  <![endif]-->
+  <script type="text/javascript" src="/static/location_analyser/vendor/flot/jquery.flot.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/flot/jquery.flot.time.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/leaflet/0.4.4/leaflet.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/slickgrid/2.0.1/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/slickgrid/2.0.1/jquery.event.drag-2.0.min.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/slickgrid/2.0.1/slick.grid.min.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/moment/2.0.0/moment.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/vendor/timeline/js/timeline.js"></script>
+
+  <!-- model and backends -->
+  <script type="text/javascript" src="/static/location_analyser/src/ecma-fixes.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/model.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/backend.memory.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/backend.dataproxy.js"></script>
+<!--  <script type="text/javascript" src="http://okfnlabs.org/recline.backend.gdocs/backend.gdocs.js"></script>-->
+  <script type="text/javascript" src="/static/location_analyser/src/backend.csv.js"></script>
+
+  <!-- views -->
+  <script type="text/javascript" src="/static/location_analyser/src/view.grid.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/view.slickgrid.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/view.flot.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/view.graph.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/view.map.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/view.timeline.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/widget.pager.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/widget.queryeditor.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/widget.filtereditor.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/widget.valuefilter.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/widget.facetviewer.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/widget.fields.js"></script>
+  <script type="text/javascript" src="/static/location_analyser/src/view.multiview.js"></script>
+
+<!-- select css -->
+<link rel="stylesheet" href="/static/region_explorer/selectcss/select-theme-default.css" />
+<link rel="stylesheet" href="/static/region_explorer/selectcss/select-theme-dark.css" />
+<link rel="stylesheet" href="/static/region_explorer/selectcss/select-theme-chosen.css" />
+<link rel="stylesheet" href="/static/region_explorer/selectcss/prism.css" />
+<link rel="stylesheet" href="/static/region_explorer/selectcss/welcome.css" />
+<script src="/static/region_explorer/selectcss/select.js"></script>
+<!-- select css -->
+
+<script src="/static/region_explorer/js/bootbox.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/dc/css/dc.css"/>
+<script type="text/javascript" src="/static/dc/js/d3.v3.min.js"></script>
+<script type="text/javascript" src="/static/dc/js/crossfilter.js"></script>
+<script type="text/javascript" src="/static/dc/js/dc.js"></script>
+
+<!-- google map -->
+<!--<script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>-->
+<script type="text/javascript" src="/static/filters_layers/js/maps-api.js"></script>
+<script type="text/javascript" src="/static/filters_layers/js/Google.js"></script>
+<!-- google map -->
+
+<!-- Hash params JS Added -->
+<script src="/static/region_explorer/js/jquery.ba-bbq.min.js"></script>
+<script src="/static/region_explorer/js/jquery.ba-bbq.js"></script>
+<!-- Hash params JS Added -->
+
+<script src="/static/region_explorer/js/jstat.min.js"></script>
+<script type="text/javascript" src="/static/location_analyser/js/column-chart.js"></script>
+<script src="/static/region_explorer/colorbrewer.js"></script>
+
+<style type="text/css">
+.recline-slickgrid {
+  height: 550px;
+}
+
+.recline-timeline .vmm-timeline {
+  height: 550px;
+}
+/*histogram steelblue*/
+.bar rect {
+  fill: #B6B6B4;
+  shape-rendering: crispEdges;
+}
+
+.bar text {
+  fill: #000000;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+#meanId{ margin-left: 30px; }
+#medianId{ margin-left: 30px; }
+#buttonId{ margin-left: 30px;margin-top: 5px; }
+
+/*tab*/
+ .tabs input[type=radio] {
+	          position: absolute;
+	          top: -9999px;
+	          left: -9999px;
+	      }
+	      .tabs {
+	        width: 500px;
+	        float: none;
+	        list-style: none;
+	        position: relative;
+	        /*padding: 0;
+	        margin: 75px auto;*/
+	      }
+	      .tabs li{
+	        float: left;
+	      }
+	      .tabs label {
+	          display: block;
+	          padding: 10px 20px;
+	          border-radius: 2px 2px 0 0;
+	          /*color: #08C;*/
+	          font-size: 15px;
+	          font-weight: normal;
+	          background: rgba(255,255,255,0.2);
+	          cursor: pointer;
+	          position: relative;
+	          /*top: 3px;*/
+	          -webkit-transition: all 0.2s ease-in-out;
+	          -moz-transition: all 0.2s ease-in-out;
+	          -o-transition: all 0.2s ease-in-out;
+	          transition: all 0.2s ease-in-out;
+	      }
+	      .tabs label:hover {
+	        background: rgba(255,255,255,0.5);
+	        top: 0;
+	      }
+	      
+	      [id^=tab]:checked + label {
+	        background: #CCCCCC;
+	        color: block;
+	        top: 0;
+	      }
+	      
+	      [id^=tab]:checked ~ [id^=tab-content] {
+	          display: block;
+	      }
+	      .tab-content{
+	        z-index: 0;
+	        display: none;
+	        text-align: left;
+	        /*width: 100%;*/
+	        line-height: 140%;
+	        padding-top: 10px;
+	        /*background: #08C;*/
+	        padding: 15px;
+	        /*color: white;*/
+	        position: absolute;
+	        top: 53px;
+	        left: 0;
+	        box-sizing: border-box;
+	        -webkit-animation-duration: 0.5s;
+	        -o-animation-duration: 0.5s;
+	        -moz-animation-duration: 0.5s;
+	        animation-duration: 0.5s;
+	      }
+/*tab*/
+
+</style>
+
+<script>
+Select.init({className: 'select-theme-chosen'})
+var dataset=[];  //for histogram values
+var masterData;  
+var jsonData=[];  //for map values
+var binsVal = 0;
+var q1,q2,q3,maxvall,minvall;
+var keyName;
+var keys=[];
+
+window.onload = function() {
+   //d3.csv("/static/data/TN.csv",function(d){
+   d3.csv("/static/location_analyser/data/MaduraBranchData.csv",function(d){
+	masterData = d;
+	var ndx = crossfilter(d);
+	var all = ndx.groupAll();
+
+	var country = ndx.dimension(function (d) {         
+		return d.Country;
+	});
+	var state = ndx.dimension(function (d) {         
+		return d.State;
+	});
+	var dist = ndx.dimension(function (d) {
+		return d.District;
+	});
+	//$("#idCountry option[value=India]").attr('selected', 'selected');
+
+//Country Load
+	var countryname = country.group(function(t) { return t; });
+	var countrylist = countryname.top(Infinity);
+	$("#idCountry").html("");
+	var ctsel = document.getElementById('idCountry');
+
+	for(var i = 0; i < countrylist.length; i++) {
+	    var optcountry = document.createElement('option');
+	    optcountry.innerHTML = countrylist[i].key;
+	    optcountry.value = countrylist[i].key;
+	    ctsel.appendChild(optcountry);
+	}
+	
+//State Load
+	var countryId = document.getElementById("idCountry").value;
+	var ct = country.filter(countryId).top(Infinity);
+	var statelist = new Array();
+	for(var i=0 ;i<ct.length;i++){
+		statelist.push(ct[i].State);
+	}
+	// array unique value 
+	function onlyUnique(value, index, self) { 
+	    return self.indexOf(value) === index;
+	}
+	var stlist = statelist;
+	var statelist = stlist.filter( onlyUnique );
+	statelist.sort();
+
+	$("#idState").html("");
+	var stsel = document.getElementById('idState');
+
+	for(var i = 0; i < statelist.length; i++) {
+	    var optstate = document.createElement('option');
+	    optstate.innerHTML = statelist[i];
+	    optstate.value = statelist[i];
+	    stsel.appendChild(optstate);
+	}
+	country.filterAll();
+
+//district load start
+	//document.getElementById("idState").onchange = function(){
+	d3.selectAll('.svgId').remove();
+	var districtname = dist.group(function(t) { return t; });
+	var dt = districtname.top(Infinity);
+	
+	var districtlist = new Array();
+	for(var i=0 ;i<dt.length;i++){
+	   districtlist.push(dt[i].key);
+	}
+	// array unique value 
+	function onlyUnique(value, index, self) { 
+	    return self.indexOf(value) === index;
+	}
+	var distlist = districtlist;
+	var districtlist = distlist.filter( onlyUnique );
+	districtlist.sort();
+	$("#idDistrict").html("");
+	var dtsel = document.getElementById('idDistrict');
+	var optdist = document.createElement('option');
+	    optdist.innerHTML = "All Districts";
+	    optdist.value = "All_Districts";
+	    dtsel.appendChild(optdist);
+
+	for(var i = 0; i < districtlist.length; i++) {
+	    var optdistrict = document.createElement('option');
+	    var value = districtlist[i].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	    optdistrict.innerHTML = value;
+	    optdistrict.value = districtlist[i];
+	    dtsel.appendChild(optdistrict);
+	}
+	//$("#idState option[value=TamilNadu]").attr('selected', 'selected');
+	dist.filterAll();
+//district load end
+
+// key load start
+	var keyId = document.getElementById('idKey');
+	//console.log(d);
+	$("#idKey").html("");
+	for(var i=0;i<d.length;i++){
+		for(var j=0;j<Object.keys(d[i]).length;j++){
+			keys = Object.keys(d[i]);
+			//keys = _.without(keys, 'level_0','level_1','level_2');
+			//keys.sort();
+			//keys = ['Productivity_Score_YTD_Mar_2013','PAR_30_Percent','Gross_Loan_Portfolio','Industrial_Worker_Ratio','Decadal_Migration'];
+			keys = ['SSscore_YTD','PARPerc','Gross_Loan_Portfolio','Industrial_Worker_Ratio','Decadal_Migration'];
+			keys1 = ['Productivity Score','Portfolio at Risk','Gross Loan Portfolio','Industrial Worker Ratio','Decadal Migration'];
+			for(var k=0;k<keys.length;k++){
+				var optkeys = document.createElement('option');
+				var valCh = keys1[k];
+				valCh = valCh.replace('_',' ');
+				var valCam = valCh.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+				optkeys.innerHTML = valCam;
+				optkeys.value = keys[k];
+				keyId.appendChild(optkeys);
+			}
+		break;
+		}	
+	break;
+	}
+// key load end
+   	
+//Hash Params
+	var prms = $.deparam.fragment();
+	if(Object.keys(prms).length > 0){
+	    hashParams();
+	}	
+//Hash Params	
+
+//HashChange
+	$(window).bind( "hashchange", function(e) {
+	    var prms = $.deparam.fragment();
+	    if(Object.keys(prms).length > 0){
+		hashParams();
+	    }
+	});
+//HashChange
+	//onViewData();
+	onChangeFun();
+   });
+}
+
+function hashParams(){
+	var prms = $.deparam.fragment();
+	if(Object.keys(prms).length > 0){
+		var countryval = prms.countryId;
+		var stateval = prms.stateId;
+		var districtval = prms.districtId;
+		var keyval = prms.keyId;
+		$("#idCountry option[value="+countryval+"]").attr('selected', 'selected');
+		$("#idState option[value="+stateval+"]").attr('selected', 'selected');
+		$("#idDistrict option[value="+districtval+"]").attr('selected', 'selected');
+		$("#idKey option[value="+keyval+"]").attr('selected', 'selected');
+		/*document.getElementById("idCountry").value=countryval;
+		document.getElementById("idState").value=stateval;
+		document.getElementById("idDistrict").value=districtval;
+		document.getElementById("idKey").value=keyval;*/
+		onViewData();
+	}
+}
+
+function onChangeFun(){
+	var countryval = document.getElementById("idCountry").value;
+	var stateval = document.getElementById("idState").value;
+	var districtval = document.getElementById("idDistrict").value;
+	var keyval = document.getElementById("idKey").value;
+
+	var pathname1 = window.location.pathname;
+	var prmsDt = $.deparam.fragment();
+	var prms ={countryId:countryval, stateId:stateval, districtId:districtval, keyId:keyval };//,selected: selectedid }
+	var r =$.param.fragment(pathname1 ,prms, 2 );
+	$.bbq.pushState(r);
+}
+
+function onViewData(){
+	d3.selectAll('#bar1').remove();
+	var ndx = crossfilter(masterData);
+	var all = ndx.groupAll();
+
+	var dist = ndx.dimension(function (d) {
+		return d.District;
+	});
+
+	var dataList;
+	dataset=[];
+	jsonData=[];
+	d3.selectAll('.svgId').remove();
+	keyName = document.getElementById("idKey").value;
+
+	var filterdist = document.getElementById("idDistrict").value;
+	if(filterdist == "All_Districts"){
+		dataList = masterData;
+	}else{
+		dataList = dist.filter(filterdist).top(Infinity);
+	}
+
+	var mn = [];
+	for (var j=0; j<dataList.length; j++){ 
+		if(dataList[j][keyName]){
+		mn.push(parseFloat(dataList[j][keyName])); 
+		}
+	}
+	var quartilesVal = jStat(mn).quartiles();
+	
+	q1 = quartilesVal[0];
+	q2 = quartilesVal[1];
+	q3 = quartilesVal[2];
+	minvall = d3.min(mn, function(d) {return +d;});
+	maxvall = d3.max(mn, function(d) {return +d;});
+	var meanVal = jStat(mn).mean();
+	var medianVal = jStat(mn).median();
+	jsonData = dataList;
+	
+	if(keyName == keys[1]){ // keys[1] = PAR 30% for bottom 25 green
+	   document.getElementById('markerIcon').innerHTML = "<img src='/static/location_analyser/images/office_green.png' width='22px' height='27px'> - Bottom 25% "+
+		"&nbsp;<img src='/static/location_analyser/images/office_red.png' width='22px' height='27px'> - Top 25%"; 
+	}else{
+	   document.getElementById('markerIcon').innerHTML = "<img src='/static/location_analyser/images/office_red.png' width='22px' height='27px'> - Bottom 25% "+
+		"&nbsp;<img src='/static/location_analyser/images/office_green.png' width='22px' height='27px'> - Top 25%"; 
+	}
+	
+	
+	for(var i=0;i<dataList.length;i++){
+	   if(dataList[i][keyName]){
+		dataset.push(dataList[i][keyName]);
+	   }
+	}
+		
+	if(dataset.length != 0){
+	   document.getElementById('svgId').innerHTML = "";
+	   document.getElementById('meanId').innerHTML = "<b>Mean:</b> "+meanVal.toFixed(2)+"<b style='padding-left: 58px;'>90<sup>th</sup> / 10<sup>th</sup> percentile:</b> 5.8 fold"; 
+	   document.getElementById('medianId').innerHTML = "<b>Median:</b> "+medianVal.toFixed(2)+"<b style='padding-left: 45px;'>75<sup>th</sup> / 25<sup>th</sup> percentile:</b> 2.0 fold"; 
+	   document.getElementById('button1Id').innerHTML ='<div style="width:170px;height:35px;border-radius: 10px;background-color:#CCCCCC;">'+
+		'<a href="#"><div style="padding-top: 8px;padding-left: 20px;color:#000000;">Explore time changes</div></a></div>';
+	   document.getElementById('button2Id').innerHTML ='<div style="width:170px;height:35px;border-radius: 10px;background-color:#CCCCCC;">'+
+		'<a href="/contextual_influencers"><div style="padding-top: 8px;padding-left: 20px;color:#000000;">Contextual Influencers</div></a></div>';
+           document.getElementById('button1IdTab2').innerHTML ='<div style="width:170px;height:35px;border-radius: 10px;background-color:#CCCCCC;">'+
+		'<a href="#"><div style="padding-top: 8px;padding-left: 20px;color:#000000;">Explore time changes</div></a></div>';
+	   document.getElementById('button2IdTab2').innerHTML ='<div style="width:170px;height:35px;border-radius: 10px;background-color:#CCCCCC;">'+
+		'<a href="/contextual_influencers"><div style="padding-top: 8px;padding-left: 20px;color:#000000;">Contextual Influencers</div></a></div>';
+	   load(5);
+	}else{
+	   document.getElementById('svgId').innerHTML = "<div style='margin-top:150px;margin-right:100px;font-size:20px;'>No data</div>";
+	   document.getElementById('meanId').innerHTML="";
+	   document.getElementById('medianId').innerHTML="";
+	   document.getElementById('button1Id').innerHTML="";
+	   document.getElementById('button2Id').innerHTML="";
+	   document.getElementById('button1IdTab2').innerHTML="";
+	   document.getElementById('button2IdTab2').innerHTML="";
+	}
+	dist.filterAll();
+	dataLoad();
+	onViewChart();
+
+}
+
+
+
+function onViewChart(){
+	//if(minvall < 0){
+		// push datas in [0,1] format of array to the chart
+		var barData= [];
+		 d = [];
+		 d["0"] = 1;
+		 d["1"] = 0;
+		 barData.push(d);
+		for( i = 0; i < jsonData.length; i++) {
+		    d = [];
+		    d["0"] = jsonData[i].Centre+"_"+i;
+		    d["1"] = +jsonData[i][keyName];
+		    barData.push(d);
+		}
+		barData = barData.sort(function(a,b) {  return a[1] - b[1]; });
+		//Chart is declared here
+		d3.select("#bar")
+			.datum(barData)
+			.call(columnChart()
+			.width(460)
+			.height(338)
+			.x(function(d, i) { return d[0]; })	//d.name_2; })  //d[0]; })
+			.y(function(d, i) { return d[1]; }));	//d.value; })); // d[1]; }));
+	//} 
+
+}
+
+function dataLoad(){
+
+	document.getElementById('tabId').style.visibility="";
+	var state = recline.View.parseQueryString(decodeURIComponent(window.location.search));
+	  if (state) {
+	    _.each(state, function(value, key) {
+	      try {
+		value = JSON.parse(value);
+	      } catch(e) {}
+	      state[key] = value;
+	    });
+	  } else {
+	    state.url = 'demo';
+	  }
+	  var dataset = null;
+	  if (state.dataset || state.url) {
+	    var datasetInfo = _.extend({
+		url: state.url,
+		backend: state.backend
+	      },
+	      state.dataset
+	    );
+	    dataset = new recline.Model.Dataset(datasetInfo);
+	  } else {
+	    dataset = new recline.Model.Dataset({
+		records: jsonData,
+	    });
+	  }
+	  createExplorer(dataset, state);
+
+}
+
+function load(binsVal){
+
+	// Generate a log-normal distribution with a median of 30 minutes.
+	//var values = d3.range(50).map(d3.random.logNormal(Math.log(30), .4));
+	var values = dataset;
+	//console.log("values");
+	console.log(values);
+	var minval = d3.min(values, function(d) {return +d;});
+	var maxval = d3.max(values, function(d) {return +d;});
+	var uniqValues = _.uniq(values);
+	if(uniqValues.length == 1){
+	   minval=0;
+	}
+	// A formatter for counts.
+	var formatCount = d3.format(",.0f");
+
+	var margin = {top: 12, right: 30, bottom: 30, left: 30},
+	    width = 360 - margin.left - margin.right,
+	    height = 290 - margin.top - margin.bottom ;
+
+	var x = d3.scale.linear()
+	    .domain([minval, maxval])
+	    .range([0, width]);
+
+	var bins = binsVal;
+	tempScale = d3.scale.linear().domain([0, parseInt(bins)]).range([minval, maxval]);
+	tickArray = d3.range(parseInt(bins) + 1).map(tempScale);
+
+	// Generate a histogram using twenty uniformly-spaced bins.
+	var data = d3.layout.histogram()
+	    .bins(tickArray)
+	    (values);
+
+	var y = d3.scale.linear()
+	    .domain([0, d3.max(data, function(d) { return d.y; })])
+	    .range([height, 0]);
+
+	var xAxis = d3.svg.axis()
+	    .scale(x)
+	    .orient("bottom").ticks(3, "%");
+
+	var svg = d3.select("#svgId").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom )
+	    .attr("class","svgId")
+	    .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	var bar = svg.selectAll(".bar")
+	    .data(data)
+	    .enter().append("g")
+	    .attr("class", "bar")
+	    .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+
+	bar.append("rect")
+	    .attr("x", 1)
+	    .attr("width", x(data[0].x  + data[0].dx) - 1)
+	    //.attr("width", function(d) { return x(data[0].x  + data[0].dx) - 1; })
+	    .attr("height", function(d) { return height - y(d.y); });
+
+	bar.append("text")
+	    .attr("dy", ".75em")
+	    .attr("y", -11)
+	    .attr("x", x(data[0].x  + data[0].dx) / 2)
+	    .attr("text-anchor", "middle")
+	    .text(function(d) { 
+		if(formatCount(d.y)!=0){
+		   return formatCount(d.y);
+		}
+	     });
+
+	svg.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(0," + height + ")")
+	    .call(xAxis);
+	    
+
+}
+</script>
+
+<table cellpadding="4">
+   <tr>
+      <td>
+         <select id="idCountry">
+	    <option value="0">Select Country</option>
+	 </select>
+	 <select id="idState">
+	    <option value="0">Select State</option>
+	 </select>
+	 <select id="idDistrict" onchange="onChangeFun()">
+	    <option value="0">Select District</option>
+	 </select>
+	 <select id="idKey" onchange="onChangeFun()"></select>
+      </td>
+   </tr>
+</table>
+<div class="data-explorer-here"></div>
+<div id="markerIcon" style="margin-top:10px;"></div>
+<div style="margin-top:-545px; height:545px;">
+   <table align="right" style="margin-right: 60px;visibility:hidden;" id="tabId" cellpadding="4">
+	<tr><td>
+      	<div id="main">
+        	<ul class="tabs">
+		        <li>
+		          <input type="radio" checked name="tabs" id="tab1">
+		          <label for="tab1">Histogram</label>
+		          <div id="tab-content1" class="tab-content animated fadeIn">
+		            <table cellpadding="4">
+			      <tr>
+				 <td colspan="2"><div id="svgId"></div></td>
+			      </tr>
+			      <tr>
+				    <td colspan="2"><font id="meanId"></font></td>
+			      </tr>
+			      <tr>
+				    <td colspan="2"><font id="medianId"></font></td>
+			      </tr>
+      			      <tr>
+				    <td colspan="1">&nbsp;</td>
+			      </tr>
+			      <tr>
+				    <td><div id="button1Id"></div></td>
+				    <td><div id="button2Id"></div></td>
+			      </tr>
+			    </table>
+		          </div>
+		        </li>
+		        <li>
+		          <input type="radio" name="tabs" id="tab2">
+		          <label for="tab2">Bar Chart</label>
+		          <div id="tab-content2" class="tab-content animated fadeIn">
+		            <table cellpadding="4">
+			      <tr>
+				 <td colspan="4"><div id="bar"><h2 id="spacialcontent" style="height:30px;padding-left:50px;"></h2></div></td>
+			      </tr>
+			      <tr>
+				    <td width="176px;" ><div id="button1IdTab2" ></div></td>
+				    <td><div id="button2IdTab2"></div></td>
+			      </tr>
+			    </table>
+		          </div>
+		        </li>
+		        
+		    </ul>
+	</div>
+	</td></tr>
+   </table>	
+</div>
+
+
+<div style="clear: both;"></div>
+<script type="text/javascript" src="/static/location_analyser/demos/multiview/app.js"></script>
+
+{% endblock %}

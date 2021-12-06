@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<link rel="shortcut icon" type="image/x-icon" href="/static/images/top_logo.png">
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom-new.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#slides').slidesjs({ width: 990, height: 140});
+	$('#logo-wrap').floatScroll({positionTop:0});
+	$('.slider-title-wrap').click(function(){
+		/*$('html, body').animate({scrollTop: $(this).offset().top-56}, 500);*/
+		var pos = $(this).position().top;
+		if(pos == 0){
+		}
+		else{
+			$('html, body').animate({scrollTop: $(this).offset().top-56}, 500);
+		}
+	});
+});
+$(document).scroll(function () {
+	var y = $(this).scrollTop();
+	var x = $("#home-slider").position();
+	if (y > (x.top - 140)) {
+		$('.slider-title-wrap').animate({top :'0px'},10);
+	}else {
+		$('.slider-title-wrap').animate({top :'-40px'},10);
+	}
+});
+</script>
+</head>
+
+<body>
+<!-- -->
+{% include "home-header.html" %}  
+<!-- -->
+<div class="banner-sec">
+</div>
+<div class="content-slider" id="home-slider">
+  <div class="container"> <a class="slider-title-wrap">How it works</a>
+    <div class="slider-sec">
+      <div id="slides">
+        <div class="slide">
+          <div class="col-lg-3"> <img src="/static/images/carosal-image-1.jpg" alt="Carousel1"/> </div>
+          <div class="col-lg-9">
+            <h3 class="slide-content-head">Just a few clicks for powerful views</h3>
+            <p class="slide-content">There are many aspects that impact the needs and behavior of a place, and therefore how your business or organization will perform there.  With just a few simple clicks, explore, compare and visualize location context with over 150 variables derived from the Census, the Economic Census and various other industry sources.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="col-lg-3"> <img src="/static/images/carosal-image-2.jpg" alt="Carousel1"/> </div>
+          <div class="col-lg-9">
+            <h3 class="slide-content-head">See how regions compare across numerous factors</h3>
+            <p class="slide-content">Trying to get a view of how an economic factor differs across regions?  Just select your region and relevant variables and go!</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="col-lg-3"> <img src="/static/images/carosal-image-3.jpg" alt="Carousel1"/> </div>
+          <div class="col-lg-9">
+            <h3 class="slide-content-head">Get a snapshot of a particular place</h3>
+            <p class="slide-content">How does your area stack up? See how it ranks compared to others on a host of dimensions</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="col-lg-3"> <img src="/static/images/carosal-image-4.jpg" alt="Carousel1"/> </div>
+          <div class="col-lg-9">
+            <h3 class="slide-content-head">Find places that meet your criteria</h3>
+            <p class="slide-content">Looking for places with a  particular profile?  Filter locations at the village level by numerous criteria and view them on a map or as downloadable lists.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="home-bodysec">
+  <div class="container">
+    <div class="col-md-4">
+      <h4 class="home-heading">Sample Variables</h4>
+      <img src="/static/images/sample-variable.jpg" class="body-sec-image" alt="Sample Variable"/>
+      <div class="home-content-box">
+        <ul class="home-content-list">
+          <li>Decadal Migration</li>
+          <li>5km Bank Branch Density</li>
+          <li>Economic Diversity Score</li>
+          <li>Gender Disparity Score</li>
+          <li>Agricultural Worker Ratio</li>
+          <li>Distance To National Highway</li>
+        </ul>
+      </div>
+      <a href="#" class="read-more" title="Learnmore">See complete List</a> </div>
+    <div class="col-md-4" >
+      <h4 class="home-heading">Use Case</h4>
+      <img src="/static/images/use-case.jpg" class="body-sec-image" alt="Use-case"/>
+      <div class="home-content-box">
+        <p class="home-content"><strong>"SciSphere helped shift our perspective from opinion based to data driven "</strong></p>
+        <p class="home-content"><strong>A. Ravishankar,</strong><br />
+          Vice President, Business Development <br />
+          Madura Microfinance</p>
+      </div>
+      <a href="#" class="read-more" title="Learnmore">Watch it</a> </div>
+    <div class="col-md-4">
+      <h4 class="home-heading">On the Horizon</h4>
+      <a href="/home-analyze"><img src="/static/images/on-the-horizon.jpg" class="body-sec-image" alt="On-the-horizon" /></a>
+      <div class="home-content-box">
+        <p class="home-content">Upload your business data for <strong>powerful insights</strong> into the location dependent drivers of your business performance</p>
+      </div>
+      <a href="/home-analyze" class="read-more" title="Learnmore">Learn More</a> </div>
+  </div>
+</div>
+<!-- -->
+{% include "footer.html" %}  
+<!-- -->
+
+</body>
+</html>

@@ -1,0 +1,1534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#slides').slidesjs({ width: 990, height: 140});
+	$('#logo-wrap').floatScroll({positionTop:0});
+	$('.slider-title-wrap').click(function(){
+		$('html, body').animate({scrollTop: $(this).offset().top-56}, 500);
+	});
+	$('.data-list').floatScroll({
+		positionTop:130,
+		bounds: function($el){
+			return $("#datasec-content-sec");
+		}
+	});
+	
+	/*-- --*/
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+		return results[1] || 0;
+	}
+	$('#datasec-list-sec .data-list li').removeClass('active');	
+	var active = $.urlParam('tag');	
+	$('#lft_'+active).addClass('active');
+	$('#datasec-content-sec .tab-content .tab-pane').removeClass('active');
+	$('#datasec-content-sec .tab-content #data'+active).addClass('active');
+	/*-- --*/
+	$('#datasec-list-sec li a').click(function(e) {
+        $('html, body').animate({scrollTop: $('#datasec-content-sec').offset().top-100}, 500);
+    });
+});
+$(document).scroll(function () {
+	var y = $(this).scrollTop();
+	var x = $("#home-slider").position();
+	if (y > (x.top - 180)) {
+		$('.slider-title-wrap').animate({top :'0px'},10);
+	}else {
+		$('.slider-title-wrap').animate({top :'-40px'},10);
+	}
+});
+</script>
+</head>
+
+<body>
+<header class="home-header" id="logo-wrap">
+  <div class="logo-wrap" >
+    <div class="container pos-rel">
+      <div class="pull-left"> <a href="/index.html" class="logo" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+      <div class="pull-right">
+        <div class="logo-wrap-top">
+          <div class="link-sec pull-right"> 
+          	<p class="pull-left sec-1">
+                <span class="cus-text">Customer Support</span> 
+                <span class="cus-no">+91 44 42148631</span> 
+            	<a href="/accounts/login/" class="link-button link-button-gray" title="Log In">Log In</a>
+            </p>
+            <p class="pull-left">
+                <a href="https://www.facebook.com/pages/SciSphere-India/1480618278894388" target="_blank" title="Facebook" class="sm" id="fb"></a> 
+                <a href="https://twitter.com/SciSphere_India" target="_blank" title="Twitter" class="sm" id="tw"></a> 
+                <a href="http://www.linkedin.com/company/scisphere" target="_blank" title="Linked In" class="sm" id="li"></a> 
+                <a href="https://plus.google.com/u/0/b/105169011525829533656/105169011525829533656/about" target="_blank" title="Google+" class="sm" id="gplus"></a> 
+                <a href="https://www.youtube.com/channel/UCKaH6d6dVZ_HSFKn8jEwYQA" target="_blank" title="Youtube" class="sm" id="youtube"></a>
+                <!--<a href="#" target="_blank" title="Youtube" class="sm" id="rss"></a>-->
+            </p>
+            
+          </div>
+        </div>
+        <div class="logo-wrap-bottom">
+          <ul class="nav navbar-nav homemenu pull-right" role="tablist">
+            <li><a href="/index.html?tag=1" name="analytics" title="Products" >Products</a></li>
+            <li><a href="/pricing.html" title="Pricing">Pricing</a></li>
+            <li><a href="/demos.html" title="Demos">Demos</a></li>
+            <li><a href="/labs.html" title="Labs">Labs</a></li>
+            <li><a href="#" title="Blog">Blog</a></li>
+            <li><a href="/app/contact" title="Contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <a href="/app/signup/" class="link-button link-button-red signup-button" title="Free Sign Up">Free Sign Up</a>
+    </div>
+  </div>  
+</header>
+<div class="about-inner-body">
+  <div class="container  inner-page-content-section">
+  	 <div class="col-md-12 dataset-title-wrap">
+     	<h3 class="signup-heading">Datasets</h3>
+        <div class="col-md-8">
+        	<p class="content">Currently available datasets are derived from the Census (2001, 2011) and Economic Census (2005) and are referenced at the settlement level</p>
+ 
+<p class="content"><span class="content-subtitle">Coming Soon</span>Datasets from RBI, Credit Bureaus Ward/Neighborhood level granularity within cities</p>
+        </div>
+        <div class="col-md-4">
+        </div>
+     </div>
+     <div class="col-md-12" id="dataset-tab-wrap">
+     	<div class="col-md-3" id="datasec-list-sec" >
+        	<ul class="data-list nav nav-tabs" role="tablist" >
+            	<li><span>Datasets</span></li>
+		<li class="active" id="lft_1"><a href="#data1" role="tab" data-toggle="tab">Demographic</a></li>
+		<li id="lft_2"><a href="#data2" role="tab" data-toggle="tab">Economic</a></li>
+		<li id="lft_3"><a href="#data3" role="tab" data-toggle="tab">Geospatial</a></li>
+		<li id="lft_4"><a href="#data4" role="tab" data-toggle="tab">Industry</a></li>
+		<!--<li id="lft_5"><a href="#data5" role="tab" data-toggle="tab">Employment by Industry (%)</a></li>-->
+		<!--<li id="lft_6"><a href="#data6" role="tab" data-toggle="tab">Financial</a></li>
+		<li id="lft_7"><a href="#data7" role="tab" data-toggle="tab">Education</a></li>
+		<li id="lft_8"><a href="#data8" role="tab" data-toggle="tab">Health</a></li>
+		<li id="lft_9"><a href="#data9" role="tab" data-toggle="tab">Horticulture</a></li>-->
+		<!--<li id="lft_10"><a href="#data10" role="tab" data-toggle="tab">Industry: Average Firm Size</a></li>-->
+            </ul>
+        </div>
+        <div class="col-md-9" id="datasec-content-sec">
+        	<div class="tab-content">
+              <div class="tab-pane active" id="data1">
+              	<h3 class="dataset-title">Demographic</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Population</li>
+				<li>Number of Households</li>
+				<li>Gender Ratio</li>
+				<li>Gender Ratio 0-6</li>
+				<li>Literacy Rate</li>
+				<li>Gender Literacy Ratio</li>
+				<li>Female Literacy Rate</li>
+				<li>Male Literacy Rate</li>
+				<li>Decadal Gains in Literacy (Z-Score)</li>
+				<li>Age Ratio (0-6)</li>
+				<li>Average Household Size</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Decadal Urbanization (Z-Score)</li>
+				<li>Urbanization Ratio</li>
+				<li>Urban Percent</li>
+				<li>Population Density</li>
+				<li>Decadal Migration</li>
+				<li>Total Male Population</li>
+				<li>Total Female Population</li>
+				<li>Population 0-6</li>
+				<li>Male Population 0-6</li>
+				<li>Female Population 0-6</li>
+				<li>Total Workers</li>
+                        </ul>    
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Total Male Workers</li>
+				<li>Total Female Workers</li>
+				<li>Marginal Workers 3-6</li>
+				<li>Male Marginal Workers 3-6</li>
+				<li>Female Marginal Workers 3-6</li>
+				<li>Marginal Workers 0-3</li>
+				<li>Male Marginal Workers 0-3</li>
+				<li>Female Marginal Workers 0-3</li>
+				<li>Non-Workers</li>
+				<li>Male Non-Workers</li>
+				<li>Female Non-Workers</li>
+				<li>Female Marginal Workers </li>
+                        </ul>    
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="data2">
+              	<h3 class="dataset-title">Economic</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Main Worker Rate</li>
+				<li>Main Worker Rate for Females</li>
+				<li>Main Worker Rate for Males</li>
+				<li>Main Worker Rate Gender Ratio</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Industrial Worker Rate</li>
+				<li>Decadal Industrialization (Z-Score)</li>
+				<li>Agriculture Worker Rate</li>
+				<li>Average Employees per Firm</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Median Employees per Firm</li>
+				<li>Max Employees in a Firm</li>
+				<li>Number of Unique Industries</li>
+                        </ul>
+                    </div>
+                </div>    
+              </div>
+              <div class="tab-pane" id="data3">
+              	<!-- -->
+                <h3 class="dataset-title">Geospatial</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+                        	<li>Land Area (Sq. Km)</li>
+				<li>Distance to National Highway (Km)</li>
+				<li>Distance to State Highway (Km)</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+                        	<li>Distance to Tertiary Road (Km)</li>
+                            <li>Distance to Major District Road (Km)</li>
+                            <li>5 Km Radius Population </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+                        	<li>10 Km Radius Population</li>
+                            <li>15 Km Radius Population</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+              <div class="tab-pane" id="data4">
+              	<!-- -->
+                <h3 class="dataset-title">Industry</h3>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>[Primary Industry Name] by Emp</li>
+				<li>[Primary Industry] by Firm Size</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>[Primary Industry Name] by Firm Size</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>% Employed in Primary Industry</li>
+                        </ul>
+                    </div>
+                </div>
+		<!-- -->
+                <h3 class="dataset-title">Employment rate and Average firm size for the following industries:</h3>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Animals Farming</li>
+				<li>Post and Courier</li>
+				<li>Crops and Animal Farming</li>
+				<li>Agriculture and Animal Husbandry</li>
+				<li>Hunting and Trapping Propagation</li>
+				<li>Forestry and Logging</li>
+				<li>Fish Farm Service</li>
+				<li>Coal Mining</li>
+				<li>Mining Lignite</li>
+				<li>Mining Peat</li>
+				<li>Petroleum and Natural Gas</li>
+				<li>Horticultural</li>
+				<li>Mining Uranium and Thorium</li>
+				<li>Mining Iron</li>
+				<li>Mining Non Ferrous Metals</li>
+				<li>Mining Stone Sand</li>
+				<li>Mining and Quarrying</li>
+				<li>Food Processing</li>
+				<li>Dairy Product</li>
+				<li>Grain and Starch</li>
+				<li>Other Food Products</li>
+				<li>Beverage</li>
+				<li>Tobacco Products</li>
+				<li>Spinning Weaving</li>
+				<li>Other Textiles</li>
+				<li>Knitted Fabrics</li>
+				<li>Apparel</li>
+				<li>Fur</li>
+				<li>Leather</li>
+				<li>Footwear</li>
+				<li>Saw Milling</li>
+				<li>Wood and Plaiting</li>
+				<li>Paper</li>
+				<li>Publishing</li>
+				<li>Printing</li>
+				<li>Recorded Media</li>
+				<li>Coke Oven Products</li>
+				<li>Petroleum Products</li>
+				<li>Nuclear Fuel</li>
+				<li>Basic Chemicals</li>
+				<li>Other Chemicals</li>
+				<li>Man Made Fibers</li>
+				<li>Rubber Products</li>
+				<li>Plastic Products</li>
+				<li>Glass Products</li>
+				<li>Non Metallic Minerals</li>
+				<li>Iron and Steel</li>
+				<li>Precious Metals</li>
+				<li>Metal Casting</li>
+				<li>Structural Metal Products</li>
+				<li>Other Fabricated Metal</li>
+				<li>General Purpose Machinery</li>
+				<li>Special Purpose Machinery</li>
+				<li>Domestic Appliances</li>
+				<li>Computing Machinery</li>
+				<li>Motors Generators and Transformers</li>
+				<li>Electricity Distribution and Controls</li>
+				<li>Insulated Wire</li>
+				<li>Batteries</li>
+				<li>Lamps and Lighting Equipment</li>
+				<li>Other Electrical Equipment</li>
+				<li>Electronic Components</li>
+				<li>TV and Radio Transmitters</li>
+				<li>TV and Radio Receivers</li>
+				<li>Medical and Instruments</li>
+				<li>Optical and Photographic Equipment</li>
+				<li>Watches and Clocks</li>
+				<li>Motor Vehicles</li>
+				<li>Motor Vehicles Bodies</li>
+				<li>Motor Vehicles Engines</li>
+				<li>Ships Building</li>
+				<li>Locomotives</li>
+				<li>Aircraft and Spacecraft</li>
+				<li>Transport Equipment</li>
+				<li>Furniture</li>
+				<li>Jewellery</li>
+				<li>Recycling of Metal</li>
+				<li>Recycling of Non Metal</li>
+				<li>Electricity Production</li>
+				<li>Gas Manufacture</li>
+				<li>Steam and Water Supply</li>
+				<li>Water Purification</li>
+				<li>Site Preparation</li>
+				<li>Civil Engineering</li>
+				<li>Building Installation</li>
+				<li>Building Completion</li>
+				<li>Renting of Construction Equipment</li>
+				<li>Sale of Motor Vehicles</li>
+				<li>Motor Vehicles Maintenance</li>
+				<li>Sale of Motor Cycles</li>
+				<li>Motor Cycles Maintenance</li>
+				<li>Automotive Fuel</li>
+				<li>Wholesale On Contract</li>
+				<li>Wholesale of Agricultural Material</li>
+				<li>Household Good Wholesale</li>
+				<li>Non Agricultural Material Wholesale</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Machinery Equipment Wholesale</li>
+				<li>Other Specialized Wholesale</li>
+				<li>Non Specialized Retail</li>
+				<li>Retail Food Tobacco</li>
+				<li>Retail Specialized Stores</li>
+				<li>Sale of Second Hand Goods</li>
+				<li>Retail Trade Not in Stores</li>
+				<li>Repair of Personal Goods</li>
+				<li>Hotels</li>
+				<li>Restaurants Bars and Canteens</li>
+				<li>Railways Transport</li>
+				<li>Land Transport</li>
+				<li>Transport Pipelines</li>
+				<li>Water Transport</li>
+				<li>Inland Water Transport</li>
+				<li>Scheduled Air Transport</li>
+				<li>Non Scheduled Air Transport</li>
+				<li>Supporting and Auxiliary Transport</li>
+				<li>Telecommunications</li>
+				<li>Monetary Intermediation</li>
+				<li>Other Financial Intermediation</li>
+				<li>Insurance and Pension Funding</li>
+				<li>Auxiliary Financial Intermediation Service</li>
+				<li>Auxiliary Insurance and Pension Funding</li>
+				<li>Real Estate On Own Property</li>
+				<li>Real Estate On Contract Basis</li>
+				<li>Renting of Transport Equipment</li>
+				<li>Renting Office Machinery</li>
+				<li>Personal Goods Renting</li>
+				<li>Hardware Consultancy</li>
+				<li>Software Consultancy</li>
+				<li>Data Processing</li>
+				<li>Electronic Content Distribution</li>
+				<li>Account and Computing Computer Machinery</li>
+				<li>Website Hosting</li>
+				<li>Natural Sciences and Engineering</li>
+				<li>Social Sciences and Humanities</li>
+				<li>Accounting and Auditing</li>
+				<li>Architectural and Technical Activities</li>
+				<li>Advertising</li>
+				<li>Business Activities</li>
+				<li>Public Service</li>
+				<li>Community Service</li>
+				<li>Social Security</li>
+				<li>Primary Education</li>
+				<li>Secondary Education</li>
+				<li>Higher Education</li>
+				<li>Other Education</li>
+				<li>Human Health Activities</li>
+				<li>Veterinary Activities</li>
+				<li>Social Work</li>
+				<li>Sewage Disposal</li>
+				<li>Professional Organisations</li>
+				<li>Trade Unions</li>
+				<li>Other Membership Organisations</li>
+				<li>Entertainment Activities</li>
+				<li>News Agency Activities</li>
+				<li>Library Museums and Cultural Activities</li>
+				<li>Sports and Other Recreation</li>
+				<li>Salon and Tailoring Activities</li>
+				<li>Private Household Employers</li>
+				<li>Undifferentiated Goods Producing</li>
+				<li>Undifferentiated Service Producing</li>
+				<li>Extra Territorial Organizations</li>
+				<li>Agriculture, Hunting and Related Service Activities</li>
+				<li>Forestry, Logging and Related Service Activities</li>
+				<li>Fishing, Aquaculture and Service Activities Incidental to  Fishing</li>
+				<li>Mining of Coal and Lignite; Extraction of Peat</li>
+				<li>Extraction of Crude Petroleum and Natural Gas; Service Activities Incidental to  Oil and Gas Extraction, Excluding Surveying</li>
+				<li>Mining of Uranium and Thorium Ores</li>
+				<li>Mining of Metal Ores</li>
+				<li>Other Mining and Quarrying</li>
+				<li>Manufacture of Food Products and Beverages</li>
+				<li>Manufacture of Tobacco Products</li>
+				<li>Manufacture of Textiles</li>
+				<li>Manufacture of Wearing Apparel; Dressing and Dyeing of Fur</li>
+				<li>Tanning and Dressing of Leather; Manufacture of Luggage, Handbags, Saddlery, Harness and Footwear</li>
+				<li>Manufacture of Wood and of Products of Wood and Cork, Except Furniture; Manufacture of Articles of Straw and Plaiting Materials</li>
+				<li>Manufacture of Paper and Paper Products</li>
+				<li>Publishing, Printing and Reproduction of Recorded Media</li>
+				<li>Manufacture of Coke, Refined Petroleum Products and Nuclear Fuel</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Manufacture of Chemicals and Chemical Products</li>
+				<li>Manufacture of Rubber and Plastics Products</li>
+				<li>Manufacture of Other Non-Metallic Mineral Products</li>
+				<li>Manufacture of Basic Metals</li>
+				<li>Manufacture of Fabricated Metal Products, Except Machinery and Equipment</li>
+				<li>Manufacture of Machinery and Equipment</li>
+				<li>Manufacture of Office, Accounting and Computing Machinery</li>
+				<li>Manufacture of Electrical Machinery and Apparatus</li>
+				<li>Manufacture of Radio, Television and Communication Equipment and Apparatus</li>
+				<li>Manufacture of Medical, Precision and Optical Instruments, Watches and Clocks</li>
+				<li>Manufacture of Motor Vehicles, Trailers and Semi - Trailers</li>
+				<li>Manufacture of Other Transport Equipment</li>
+				<li>Manufacture of Furniture; Manufacturing</li>
+				<li>Recycling</li>
+				<li>Electricity, Gas, Steam and Hot Water Supply</li>
+				<li>Collection, Purification and Distribution of Water</li>
+				<li>Construction</li>
+				<li>Sale, Maintenance and Repair of Motor Vehicles and Motorcycles; Retail Sale of Automotive Fuel</li>
+				<li>Wholesale Trade and Commission Trade, Except of Motor Vehicles and Motorcycles</li>
+				<li>Retail Trade, Except of Motor Vehicles and Motorcycles; Repair of Personal and Household Goods</li>
+				<li>Hotels and Restaurants</li>
+				<li>Land Transport; Transport Via Pipelines</li>
+				<li>Water Transport</li>
+				<li>Air Transport</li>
+				<li>Supporting and Auxiliary Transport Activities; Activities of Travel Agencies</li>
+				<li>Post and Telecommunications</li>
+				<li>Financial Intermediation, Except Insurance and Pension Funding</li>
+				<li>Insurance and Pension Funding, Except Compulsory Social Security</li>
+				<li>Activities Auxiliary to  Financial Intermediation</li>
+				<li>Real Estate Activities</li>
+				<li>Renting of Machinery and Equipment Without Operator and of Personal and Household Goods</li>
+				<li>Computer and Related Activities</li>
+				<li>Research and Development</li>
+				<li>Other Business Activities</li>
+				<li>Public Administration and Defence; Compulsory Social Security</li>
+				<li>Education</li>
+				<li>Health and Social Work</li>
+				<li>Sewage and Refuse Disposal, Sanitation and Similar Activities</li>
+				<li>Activities of Membership Organizations</li>
+				<li>Recreational, Cultural and Sporting Activities</li>
+				<li>Other Service Activities</li>
+				<li>Activities of Private Households as Employers of Domestic Staff</li>
+				<li>Undifferentiated Goods-Producing Activities of Private Households for Own Use</li>
+				<li>Undifferentiated Service-Producing Activities of Private Households for Own Use</li>
+				<li>Extraterritorial Organizations and Bodies</li>
+				<li>Agriculture, Hunting and Forestry</li>
+				<li>Fishing</li>
+				<li>Mining and Quarrying</li>
+				<li>Manufacturing</li>
+				<li>Electricity, Gas and Water Supply</li>
+				<li>Construction</li>
+				<li>Wholesale and Retail Trade, Repair of Motor Vehicles, Motorcycles and Personal and Household Goods</li>
+				<li>Hotels and Restaurants</li>
+				<li>Transport, Storage and Communications</li>
+				<li>Financial Intermediation</li>
+				<li>Real Estate, Renting and Business Activities</li>
+				<li>Public Administration and Defence; Compulsory Social Security</li>
+				<li>Education</li>
+				<li>Health and Social Work</li>
+				<li>Other Community, Social and Personal Service Activities</li>
+				<li>Activities of Private Households as Employers and Undifferentiated Production Activities of Private Households</li>
+				<li>Extraterritorial Organizations and Bodies</li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+              <div class="tab-pane" id="data5">
+              	<!-- -->
+                <h3 class="dataset-title">Employment by Industry (%)</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Employment in Animals Farming </li>
+				<li>Emploment in Account and Computing Computer Machinery </li>
+				<li>Employment in Accounting and Auditing </li>
+				<li>Employment in Activities Auxiliary to  Financial Intermediation</li>
+				<li>Employment in Activities of Membership Organizations</li>
+				<li>Employment in Activities of Private Households as Employers and Undifferentiated Production Activities of Private Households</li>
+				<li>Employment in Activities of Private Households as Employers of Domestic Staff</li>
+				<li>Employment in Advertising </li>
+				<li>Employment in Agriculture and Animal Husbandry </li>
+				<li>Employment in Agriculture, Hunting and Forestry</li>
+				<li>Employment in Agriculture, Hunting and Related Service Activities</li>
+				<li>Employment in Air Transport</li>
+				<li>Employment in Aircraft and Spacecraft </li>
+				<li>Employment in Apparel </li>
+				<li>Employment in Architectural and Technical Activities </li>
+				<li>Employment in Automotive Fuel </li>
+				<li>Employment in Auxiliary Financial Intermediation Service </li>
+				<li>Employment in Auxiliary Insurance and Pension Funding </li>
+				<li>Employment in Basic Chemicals </li>
+				<li>Employment in Batteries </li>
+				<li>Employment in Beverage </li>
+				<li>Employment in Building Completion </li>
+				<li>Employment in Building Installation </li>
+				<li>Employment in Business Activities </li>
+				<li>Employment in Civil Engineering </li>
+				<li>Employment in Coal Mining </li>
+				<li>Employment in Coke Oven Products </li>
+				<li>Employment in Collection, Purification and Distribution of Water</li>
+				<li>Employment in Community Service </li>
+				<li>Employment in Computer and Related Activities</li>
+				<li>Employment in Computing Machinery </li>
+				<li>Employment in Construction</li>
+				<li>Employment in Construction</li>
+				<li>Employment in Crops and Animal Farming </li>
+				<li>Employment in Dairy Product </li>
+				<li>Employment in Data Processing </li>
+				<li>Employment in Domestic Appliances </li>
+				<li>Employment in Education</li>
+				<li>Employment in Education</li>
+				<li>Employment in Electricity Distribution and Controls </li>
+				<li>Employment in Electricity Production </li>
+				<li>Employment in Electricity, Gas and Water Supply</li>
+				<li>Employment in Electricity, Gas, Steam and Hot Water Supply</li>
+				<li>Employment in Electronic Components </li>
+				<li>Employment in Electronic Content Distribution </li>
+				<li>Employment in Entertainment Activities </li>
+				<li>Employment in Extra Territorial Organizations </li>
+				<li>Employment in Extraction of Crude Petroleum and Natural Gas; Service Activities Incidental to  Oil and Gas Extraction, Excluding Surveying</li>
+				<li>Employment in Extraterritorial Organizations and Bodies</li>
+				<li>Employment in Extraterritorial Organizations and Bodies</li>
+				<li>Employment in Financial Intermediation</li>
+				<li>Employment in Financial Intermediation, Except Insurance and Pension Funding</li>
+				<li>Employment in Fish Farm Service </li>
+				<li>Employment in Fishing</li>
+				<li>Employment in Fishing, Aquaculture and Service Activities Incidental to  Fishing</li>
+				<li>Employment in Food Processing </li>
+				<li>Employment in Footwear </li>
+				<li>Employment in Forestry and Logging </li>
+				<li>Employment in Forestry, Logging and Related Service Activities</li>
+				<li>Employment in Fur </li>
+				<li>Employment in Furniture </li>
+				<li>Employment in Gas Manufacture </li>
+				<li>Employment in General Purpose Machinery </li>
+				<li>Employment in Glass Products </li>
+				<li>Employment in Grain and Starch </li>
+				<li>Employment in Hardware Consultancy </li>
+				<li>Employment in Health and Social Work</li>
+				<li>Employment in Health and Social Work</li>
+				<li>Employment in Higher Education </li>
+				<li>Employment in Horticultural </li>
+				<li>Employment in Hotels </li>
+				<li>Employment in Hotels and Restaurants</li>
+				<li>Employment in Hotels and Restaurants</li>
+				<li>Employment in Household Good Wholesale </li>
+				<li>Employment in Human Health Activities </li>
+				<li>Employment in Hunting and Trapping Propagation </li>
+				<li>Employment in Inland Water Transport </li>
+				<li>Employment in Insulated Wire </li>
+				<li>Employment in Insurance and Pension Funding </li>
+				<li>Employment in Insurance and Pension Funding, Except Compulsory Social Security</li>
+				<li>Employment in Iron and Steel </li>
+				<li>Employment in Jewellery </li>
+				<li>Employment in Knitted Fabrics </li>
+				<li>Employment in Lamps and Lighting Equipment </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+
+				<li>Employment in Land Transport </li>
+				<li>Employment in Land Transport; Transport Via Pipelines</li>
+				<li>Employment in Leather </li>
+				<li>Employment in Library Museums and Cultural Activities </li>
+				<li>Employment in Locomotives </li>
+				<li>Employment in Machinery Equipment Wholesale </li>
+				<li>Employment in Man Made Fibers </li>
+				<li>Employment in Manufacture of Basic Metals</li>
+				<li>Employment in Manufacture of Chemicals and Chemical Products</li>
+				<li>Employment in Manufacture of Coke, Refined Petroleum Products and Nuclear Fuel</li>
+				<li>Employment in Manufacture of Electrical Machinery and Apparatus</li>
+				<li>Employment in Manufacture of Fabricated Metal Products, Except Machinery and Equipment</li>
+				<li>Employment in Manufacture of Food Products and Beverages</li>
+				<li>Employment in Manufacture of Furniture; Manufacturing</li>
+				<li>Employment in Manufacture of Machinery and Equipment</li>
+				<li>Employment in Manufacture of Medical, Precision and Optical Instruments, Watches and Clocks</li>
+				<li>Employment in Manufacture of Motor Vehicles, Trailers and Semi - Trailers</li>
+				<li>Employment in Manufacture of Office, Accounting and Computing Machinery</li>
+				<li>Employment in Manufacture of Other Non-Metallic Mineral Products</li>
+				<li>Employment in Manufacture of Other Transport Equipment</li>
+				<li>Employment in Manufacture of Paper and Paper Products</li>
+				<li>Employment in Manufacture of Radio, Television and Communication Equipment and Apparatus</li>
+				<li>Employment in Manufacture of Rubber and Plastics Products</li>
+				<li>Employment in Manufacture of Textiles</li>
+				<li>Employment in Manufacture of Tobacco Products</li>
+				<li>Employment in Manufacture of Wearing Apparel; Dressing and Dyeing of Fur</li>
+				<li>Employment in Manufacture of Wood and of Products of Wood and Cork, Except Furniture; Manufacture of Articles of Straw and Plaiting Materials</li>
+				<li>Employment in Manufacturing</li>
+				<li>Employment in Medical and Instruments </li>
+				<li>Employment in Metal Casting </li>
+				<li>Employment in Mining and Quarrying </li>
+				<li>Employment in Mining and Quarrying </li>
+				<li>Employment in Mining Iron </li>
+				<li>Employment in Mining Lignite </li>
+				<li>Employment in Mining Non Ferrous Metals </li>
+				<li>Employment in Mining of Coal and Lignite; Extraction of Peat</li>
+				<li>Employment in Mining of Metal Ores</li>
+				<li>Employment in Mining of Uranium and Thorium Ores</li>
+				<li>Employment in Mining Peat </li>
+				<li>Employment in Mining Stone Sand </li>
+				<li>Employment in Mining Uranium and Thorium </li>
+				<li>Employment in Monetary Intermediation </li>
+				<li>Employment in Motor Cycles Maintenance </li>
+				<li>Employment in Motor Vehicles </li>
+				<li>Employment in Motor Vehicles Bodies </li>
+				<li>Employment in Motor Vehicles Engines </li>
+				<li>Employment in Motor Vehicles Maintenance </li>
+				<li>Employment in Motors Generators and Transformers </li>
+				<li>Employment in Natural Sciences and Engineering </li>
+				<li>Employment in News Agency Activities </li>
+				<li>Employment in Non Agricultural Material Wholesale </li>
+				<li>Employment in Non Metallic Minerals </li>
+				<li>Employment in Non Scheduled Air Transport </li>
+				<li>Employment in Non Specialized Retail </li>
+				<li>Employment in Nuclear Fuel </li>
+				<li>Employment in Optical and Photographic Equipment </li>
+				<li>Employment in Other Business Activities</li>
+				<li>Employment in Other Chemicals </li>
+				<li>Employment in Other Community, Social and Personal Service Activities</li>
+				<li>Employment in Other Education </li>
+				<li>Employment in Other Electrical Equipment </li>
+				<li>Employment in Other Fabricated Metal </li>
+				<li>Employment in Other Financial Intermediation </li>
+				<li>Employment in Other Food Products </li>
+				<li>Employment in Other Membership Organisations </li>
+				<li>Employment in Other Mining and Quarrying</li>
+				<li>Employment in Other Service Activities</li>
+				<li>Employment in Other Specialized Wholesale </li>
+				<li>Employment in Other Textiles </li>
+				<li>Employment in Paper </li>
+				<li>Employment in Personal Goods Renting </li>
+				<li>Employment in Petroleum and Natural Gas </li>
+				<li>Employment in Petroleum Products </li>
+				<li>Employment in Plastic Products </li>
+				<li>Employment in Post and Courier </li>
+				<li>Employment in Post and Telecommunications</li>
+				<li>Employment in Precious Metals </li>
+				<li>Employment in Primary Education </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+
+				<li>Employment in Printing </li>
+				<li>Employment in Private Household Employers </li>
+				<li>Employment in Professional Organisations </li>
+				<li>Employment in Public Administration and Defence; Compulsory Social Security</li>
+				<li>Employment in Public Administration and Defence; Compulsory Social Security</li>
+				<li>Employment in Public Service </li>
+				<li>Employment in Publishing </li>
+				<li>Employment in Publishing, Printing and Reproduction of Recorded Media</li>
+				<li>Employment in Railways Transport </li>
+				<li>Employment in Real Estate Activities</li>
+				<li>Employment in Real Estate On Contract Basis </li>
+				<li>Employment in Real Estate On Own Property </li>
+				<li>Employment in Real Estate, Renting and Business Activities</li>
+				<li>Employment in Recorded Media </li>
+				<li>Employment in Recreational, Cultural and Sporting Activities</li>
+				<li>Employment in Recycling</li>
+				<li>Employment in Recycling of Metal </li>
+				<li>Employment in Recycling of Non Metal </li>
+				<li>Employment in Renting of Construction Equipment </li>
+				<li>Employment in Renting of Machinery and Equipment Without Operator and of Personal and Household Goods</li>
+				<li>Employment in Renting of Transport Equipment </li>
+				<li>Employment in Renting Office Machinery </li>
+				<li>Employment in Repair of Personal Goods </li>
+				<li>Employment in Research and Development</li>
+				<li>Employment in Restaurants Bars and Canteens </li>
+				<li>Employment in Retail Food Tobacco </li>
+				<li>Employment in Retail Specialized Stores </li>
+				<li>Employment in Retail Trade Not in Stores  </li>
+				<li>Employment in Retail Trade, Except of Motor Vehicles and Motorcycles; Repair of Personal and Household Goods</li>
+				<li>Employment in Rubber Products </li>
+				<li>Employment in Sale of Motor Cycles </li>
+				<li>Employment in Sale of Motor Vehicles </li>
+				<li>Employment in Sale of Second Hand Goods </li>
+				<li>Employment in Sale, Maintenance and Repair of Motor Vehicles and Motorcycles; Retail Sale of Automotive Fuel</li>
+				<li>Employment in Salon and Tailoring Activities </li>
+				<li>Employment in Saw Milling </li>
+				<li>Employment in Scheduled Air Transport </li>
+				<li>Employment in Secondary Education </li>
+				<li>Employment in Sewage and Refuse Disposal, Sanitation and Similar Activities</li>
+				<li>Employment in Sewage Disposal </li>
+				<li>Employment in Ships Building </li>
+				<li>Employment in Site Preparation </li>
+				<li>Employment in Social Sciences and Humanities </li>
+				<li>Employment in Social Security </li>
+				<li>Employment in Social Work </li>
+				<li>Employment in Software Consultancy </li>
+				<li>Employment in Special Purpose Machinery </li>
+				<li>Employment in Spinning Weaving </li>
+				<li>Employment in Sports and Other Recreation </li>
+				<li>Employment in Steam and Water Supply </li>
+				<li>Employment in Structural Metal Products </li>
+				<li>Employment in Supporting and Auxiliary Transport </li>
+				<li>Employment in Supporting and Auxiliary Transport Activities; Activities of Travel Agencies</li>
+				<li>Employment in Tanning and Dressing of Leather; Manufacture of Luggage, Handbags, Saddlery, Harness and Footwear</li>
+				<li>Employment in Telecommunications </li>
+				<li>Employment in tobacco Products </li>
+				<li>Employment in Trade Unions </li>
+				<li>Employment in Transport Equipment </li>
+				<li>Employment in Transport, Storage and Communications</li>
+				<li>Employment in TV and Radio Receivers </li>
+				<li>Employment in TV and Radio Transmitters </li>
+				<li>Employment in Undifferentiated Goods Producing </li>
+				<li>Employment in Undifferentiated Goods-Producing Activities of Private Households for Own Use</li>
+				<li>Employment in Undifferentiated Service Producing </li>
+				<li>Employment in Undifferentiated Service-Producing Activities of Private Households for Own Use</li>
+				<li>Employment in Veterinary Activities </li>
+				<li>Employment in Watches and Clocks </li>
+				<li>Employment in Water Purification </li>
+				<li>Employment in Water Transport</li>
+				<li>Employment in Water Transport </li>
+				<li>Employment in Website Hosting </li>
+				<li>Employment in Wholesale and Retail Trade, Repair of Motor Vehicles, Motorcycles and Personal and Household Goods</li>
+				<li>Employment in Wholesale of Agricultural Material </li>
+				<li>Employment in Wholesale On Contract </li>
+				<li>Employment in Wholesale Trade and Commission Trade, Except of Motor Vehicles and Motorcycles</li>
+				<li>Employment in Wood and Plaiting </li>
+				<li>Employment in Transport Pipelines </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+              <div class="tab-pane" id="data6">
+              	<!-- -->
+                <h3 class="dataset-title">Financial</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Number of Active Microfinance lender</li>
+				<li>Number of Centres</li>
+				<li>Number of MFIs reporting in region</li>
+				<li>> 1 MFI association (Active or Closed) - INQUIRY Based</li>
+				<li>Amount Outstanding > INR 50000</li>
+				<li>Average Ticket size per Active loan (in Rs)</li>
+				<li>Borrowers in 1st Loan Cycle</li>
+				<li>Borrowers in 2nd Loan Cycle</li>
+				<li>Borrowers in 3rd Loan Cycle or Greater</li>
+				<li>Defaults on Existing Loans</li>
+				<li>Disbursed Amt & Loan Cycle Distribution - Active Loans</li>
+				<li>Disbursed Amt & Term distribution (in Rs) - Active Loans</li>
+				<li>Group Loans - Overdue (% of Loans)</li>
+				<li>Group Loans - Overdue (in Rs)</li>
+				<li>Individual Loans Overdue (% of Loans) </li>
+				<li>Individual Loans Overdue (in Rs) </li>
+				<li>Inquiries Showing "Non compliant" Applicants</li>
+				<li>Loan Cycle 1 (> 50000)</li>
+				<li>Loan Cycle 1 (0-15000)</li>
+				<li>Loan Cycle 1 (15001-35000)</li>
+				<li>Loan Cycle 1 (35001-50000)</li>
+				<li>Loan Cycle 2 (> 50000)</li>
+				<li>Loan Cycle 2 (0-15000)</li>
+				<li>Loan Cycle 2 (15001-35000)</li>
+				<li>Loan Cycle 2 (35001-50000)</li>
+				<li>Loan Cycle 3 or Greater (> 50000)</li>
+				<li>Loan Cycle 3 or Greater (0-15000)</li>
+				<li>Loan Cycle 3 or Greater (15001-35000)</li>
+				<li>Loan Cycle 3 or Greater (35001-50000)</li>
+				<li>Loan Purpose(Automobile)</li>
+				<li>Loan Purpose(Education)</li>
+				<li>Loan Purpose(Housing)</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Loan Purpose(Income)</li>
+				<li>Loan Purpose(Not Stipulated)</li>
+				<li>Loan Purpose(Others)</li>
+				<li>Loan Purpose(Realestate)</li>
+				<li>Loans Active with > 4 MFI</li>
+				<li>Loans Active with 2 MFI </li>
+				<li>Loans Active with 3 MFI </li>
+				<li>Loans Active with 4 MFI </li>
+				<li>Loans Group Lending(T01,T02)</li>
+				<li>Loans Individual Lending(T03) </li>
+				<li>Loans Overdue </li>
+				<li>Loans Overdue by DPD (120+)</li>
+				<li>Loans Overdue by DPD (1-30)</li>
+				<li>Loans Overdue by DPD (31-60)</li>
+				<li>Loans Overdue by DPD (61-90)</li>
+				<li>Loans Overdue by DPD (91-120)</li>
+				<li>Loans Overdue by DPD (Not Stipulated)</li>
+				<li>Occupation(Agriculture)</li>
+				<li>Occupation(Contract Employee)</li>
+				<li>Occupation(Employee)</li>
+				<li>Occupation(Not Stipulated)</li>
+				<li>Occupation(Others)</li>
+				<li>Occupation(Self Employee)</li>
+				<li>Oldest Loan Disbursed</li>
+				<li>Percentage of Borrowers - Active </li>
+				<li>Percentage of Borrowers - Overdue</li>
+				<li>Portfolio - Overdue</li>
+				<li>Portfolio Overdue by DPD (120+)</li>
+				<li>Portfolio Overdue by DPD (1-30)</li>
+				<li>Portfolio Overdue by DPD (31-60)</li>
+				<li>Portfolio Overdue by DPD (61-90)</li>
+				<li>Portfolio Overdue by DPD (91-120)</li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Portfolio Overdue by DPD (Not Stipulated)</li>
+				<li>Stated Borrower Monthly Income (>100000)</li>
+				<li>Stated Borrower Monthly Income (0-5000)</li>
+				<li>Stated Borrower Monthly Income (10001-15000)</li>
+				<li>Stated Borrower Monthly Income (15001-50000)</li>
+				<li>Stated Borrower Monthly Income (50001-100000)</li>
+				<li>Stated Borrower Monthly Income (5001-10000)</li>
+				<li>Stated Borrower Monthly Income (in Rs)</li>
+				<li>Stated Borrower Monthly Income (NA)</li>
+				<li>Sum total of MFI's Clients (Non-Distinct)</li>
+				<li>Term > 24 months (>50000)</li>
+				<li>Term > 24 months (0-15000) </li>
+				<li>Term > 24 months (15001-35000)</li>
+				<li>Term > 24 months (35001-50000)</li>
+				<li>Term 0-6 months (>50000) </li>
+				<li>Term 0-6 months (0-15000)</li>
+				<li>Term 0-6 months (15001-35000)</li>
+				<li>Term 0-6 months (35001-50000)</li>
+				<li>Term 13-24 months (>50000)</li>
+				<li>Term 13-24 months (0-15000)</li>
+				<li>Term 13-24 months (15001-35000)</li>
+				<li>Term 13-24 months (35001-50000)</li>
+				<li>Term 7-12 months (>50000)</li>
+				<li>Term 7-12 months (0-15000)</li>
+				<li>Term 7-12 months (15001-35000)</li>
+				<li>Term 7-12 months (35001-50000)</li>
+				<li>Total # of Active loans</li>
+				<li>Total # of Closed Loan Records for Region</li>
+				<li>Total Active Outstanding Amount</li>
+				<li>Total Amount Disbursed  (in Rs)</li>
+				<li>Total Amount Overdue (in Rs)</li>
+				<li>Total Written Off Amount (in Rs)</li>
+				<li>Total Written Off Loans</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+              <div class="tab-pane" id="data7">
+              	<!-- -->
+                <h3 class="dataset-title">Education</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Minimally skilled for Agriculture and Allied(2012-2017)</li>
+				<li>Total Demand for Agriculture and Allied(2012-2017)</li>
+				<li>Skilled for Agriculture and Allied(2017-2022)</li>
+				<li>Semi skilled for  BFSI (2012-2017)</li>
+				<li>Minimally skilled for BFSI (2017-2022)</li>
+				<li>Total Demand for BFSI (2017-2022)</li>
+				<li>Skilled for Building, Construction and Real Estate(2012-2017)</li>
+				<li>Semi skilled for Building, Construction and Real Estate(2017-2022)</li>
+				<li>Minimally skilled for Chemicals & Pharmaceuticals (2012-2017)</li>
+				<li>Total Demand for Chemicals & Pharmaceuticals (2012-2017)</li>
+				<li>Skilled for Chemicals & Pharmaceuticals (2017-2022)</li>
+				<li>Semi skilled for  Construction Material and Building Hardware (2012-2017)</li>
+				<li>Minimally skilled for Construction Material and Building Hardware (2017-2022)</li>
+				<li>Total Demand for Construction Material and Building Hardware (2017-2022)</li>
+				<li>Skilled for Education and Skill Development(2012-2017)</li>
+				<li>Semi skilled for Education and Skill Development(2017-2022)</li>
+				<li>Minimally skilled for Electronics and IT hardware(2012-2017)</li>
+				<li>Total Demand for Electronics and IT hardware(2012-2017)</li>
+				<li>Skilled for Electronics and IT hardware(2017-2022)</li>
+				<li>Semi skilled for  Food Processing(2012-2017)</li>
+				<li>Minimally skilled for Food Processing(2017-2022)</li>
+				<li>Total Demand for Food Processing(2017-2022)</li>
+				<li>Skilled for Furniture and Furnishings(2012-2017)</li>
+				<li>Semi skilled for Furniture and Furnishings(2017-2022)</li>
+				<li>Minimally skilled for Healthcare Services(2012-2017)</li>
+				<li>Total Demand for Healthcare Services(2012-2017)</li>
+				<li>Skilled for Healthcare Services(2017-2022)</li>
+				<li>Semi skilled for  IT/ITES(2012-2017)</li>
+				<li>Minimally skilled for IT/ITES(2017-2022)</li>
+				<li>Total Demand for IT/ITES(2017-2022)</li>
+				<li>Skilled for Manufacturing of Engineering Goods(2012-2017)</li>
+				<li>Semi skilled for Manufacturing of Engineering Goods(2017-2022)</li>
+				<li>Minimally skilled for Mineral Processing &  Fabrication(2012-2017)</li>
+				<li>Total Demand for Mineral Processing &  Fabrication(2012-2017)</li>
+				<li>Skilled for Mineral Processing &  Fabrication(2017-2022)</li>
+				<li>Semi skilled for  Misc. Manufacturing(2012-2017)</li>
+				<li>Minimally skilled for Misc. Manufacturing(2017-2022)</li>
+				<li>Total Demand for Misc. Manufacturing(2017-2022)</li>
+				<li>Skilled for Organized Retail (2012-2017)</li>
+				<li>Semi skilled for Organized Retail (2017-2022)</li>
+				<li>Minimally skilled for Paper & Paper Products(2012-2017)</li>
+				<li>Total Demand for Paper & Paper Products(2012-2017)</li>
+				<li>Skilled for Paper & Paper Products(2017-2022)</li>
+				<li>Semi skilled for  Rubber and Plastics(2012-2017)</li>
+				<li>Minimally skilled for Rubber and Plastics(2017-2022)</li>
+				<li>Total Demand for Rubber and Plastics(2017-2022)</li>
+				<li>Skilled for Textiles and Clothing(2012-2017)</li>
+				<li>Semi skilled for Textiles and Clothing(2017-2022)</li>
+				<li>Minimally skilled for Transportation & Logistics(2012-2017)</li>
+				<li>Total Demand for Transportation & Logistics(2012-2017)</li>
+				<li>Skilled for Transportation & Logistics(2017-2022)</li>
+				<li>Semi skilled for  Travel, Tourism & Hospitality(2012-2017)</li>
+				<li>Minimally skilled for Travel, Tourism & Hospitality(2017-2022)</li>
+				<li>Total Demand for Travel, Tourism & Hospitality(2017-2022)</li>
+				<li># Schools - English medium</li>
+				<li># Schools - Sindhi medium</li>
+				<li># Schools - Telugu medium</li>
+				<li># Schools - HSC-General</li>
+				<li># Schools - Uchattar -Uttar-Buniyadi</li>
+				<li># Schools - Grant-in-aided100</li>
+				<li># Schools - Others</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li> # Schools - Gujarati medium</li>
+				<li>Semi skilled for  Agriculture and Allied(2012-2017)</li>
+				<li>Minimally skilled for Agriculture and Allied(2017-2022)</li>
+				<li>Total Demand for Agriculture and Allied(2017-2022)</li>
+				<li>Skilled for BFSI (2012-2017)</li>
+				<li>Semi skilled for BFSI (2017-2022)</li>
+				<li>Minimally skilled for Building, Construction and Real Estate(2012-2017)</li>
+				<li>Total Demand for Building, Construction and Real Estate(2012-2017)</li>
+				<li>Skilled for Building, Construction and Real Estate(2017-2022)</li>
+				<li>Semi skilled for Chemicals & Pharmaceuticals (2012-2017)</li>
+				<li>Minimally skilled for Chemicals & Pharmaceuticals (2017-2022)</li>
+				<li>Total Demand for Chemicals & Pharmaceuticals (2017-2022)</li>
+				<li>Skilled for Construction Material and Building Hardware (2012-2017)</li>
+				<li>Semi skilled for Construction Material and Building Hardware (2017-2022)</li>
+				<li>Minimally skilled for Education and Skill Development(2012-2017)</li>
+				<li>Total Demand for Education and Skill Development(2012-2017)</li>
+				<li>Skilled for Education and Skill Development(2017-2022)</li>
+				<li>Semi skilled for  Electronics and IT hardware(2012-2017)</li>
+				<li>Minimally skilled for Electronics and IT hardware(2017-2022)</li>
+				<li>Total Demand for Electronics and IT hardware(2017-2022)</li>
+				<li>Skilled for Food Processing(2012-2017)</li>
+				<li>Semi skilled for Food Processing(2017-2022)</li>
+				<li>Minimally skilled for Furniture and Furnishings(2012-2017)</li>
+				<li>Total Demand for Furniture and Furnishings(2012-2017)</li>
+				<li>Skilled for Furniture and Furnishings(2017-2022)</li>
+				<li>Semi skilled for Healthcare Services(2012-2017)</li>
+				<li>Minimally skilled for Healthcare Services(2017-2022)</li>
+				<li>Total Demand for Healthcare Services(2017-2022)</li>
+				<li>Skilled for IT/ITES(2012-2017)</li>
+				<li>Semi skilled for IT/ITES(2017-2022)</li>
+				<li>Minimally skilled for Manufacturing of Engineering Goods(2012-2017)</li>
+				<li>Total Demand for Manufacturing of Engineering Goods(2012-2017)</li>
+				<li>Skilled for Manufacturing of Engineering Goods(2017-2022)</li>
+				<li>Semi skilled for  Mineral Processing &  Fabrication(2012-2017)</li>
+				<li>Minimally skilled for Mineral Processing &  Fabrication(2017-2022)</li>
+				<li>Total Demand for Mineral Processing &  Fabrication(2017-2022)</li>
+				<li>Skilled for Misc. Manufacturing(2012-2017)</li>
+				<li>Semi skilled for Misc. Manufacturing(2017-2022)</li>
+				<li>Minimally skilled for Organized Retail (2012-2017)</li>
+				<li>Total Demand for Organized Retail (2012-2017)</li>
+				<li>Skilled for Organized Retail (2017-2022)</li>
+				<li>Semi skilled for  Paper & Paper Products(2012-2017)</li>
+				<li>Minimally skilled for Paper & Paper Products(2017-2022)</li>
+				<li>Total Demand for Paper & Paper Products(2017-2022)</li>
+				<li>Skilled for Rubber and Plastics(2012-2017)</li>
+				<li>Semi skilled for Rubber and Plastics(2017-2022)</li>
+				<li>Minimally skilled for Textiles and Clothing(2012-2017)</li>
+				<li>Total Demand for Textiles and Clothing(2012-2017)</li>
+				<li>Skilled for Textiles and Clothing(2017-2022)</li>
+				<li>Semi skilled for Transportation & Logistics(2012-2017)</li>
+				<li>Minimally skilled for Transportation & Logistics(2017-2022)</li>
+				<li>Total Demand for Transportation & Logistics(2017-2022)</li>
+				<li>Skilled for Travel, Tourism & Hospitality(2012-2017)</li>
+				<li>Semi skilled for Travel, Tourism & Hospitality(2017-2022)</li>
+				<li>No of Partners</li>
+				<li># Schools - Marathi medium</li>
+				<li># Schools - Tamil medium</li>
+				<li># Schools - Oriya medium</li>
+				<li># Schools - SSC</li>
+				<li># Schools - Aided-only-for-Salary</li>
+				<li># Schools - Grant-in-aided60-40</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li># Schools - Sainik School</li>
+				<li># Schools - Hindi medium</li>
+				<li>Skilled for Agriculture and Allied(2012-2017)</li>
+				<li>Semi skilled for Agriculture and Allied(2017-2022)</li>
+				<li>Minimally skilled for BFSI (2012-2017)</li>
+				<li>Total Demand for BFSI (2012-2017)</li>
+				<li>Skilled for BFSI (2017-2022)</li>
+				<li>Semi skilled for  Building, Construction and Real Estate(2012-2017)</li>
+				<li>Minimally skilled for Building, Construction and Real Estate(2017-2022)</li>
+				<li>Total Demand for Building, Construction and Real Estate(2017-2022)</li>
+				<li>Skilled for Chemicals & Pharmaceuticals (2012-2017)</li>
+				<li>Semi skilled for Chemicals & Pharmaceuticals (2017-2022)</li>
+				<li>Minimally skilled for Construction Material and Building Hardware (2012-2017)</li>
+				<li>Total Demand for Construction Material and Building Hardware (2012-2017)</li>
+				<li>Skilled for Construction Material and Building Hardware (2017-2022)</li>
+				<li>Semi skilled for Education and Skill Development(2012-2017)</li>
+				<li>Minimally skilled for Education and Skill Development(2017-2022)</li>
+				<li>Total Demand for Education and Skill Development(2017-2022)</li>
+				<li>Skilled for Electronics and IT hardware(2012-2017)</li>
+				<li>Semi skilled for Electronics and IT hardware(2017-2022)</li>
+				<li>Minimally skilled for Food Processing(2012-2017)</li>
+				<li>Total Demand for Food Processing(2012-2017)</li>
+				<li>Skilled for Food Processing(2017-2022)</li>
+				<li>Semi skilled for  Furniture and Furnishings(2012-2017)</li>
+				<li>Minimally skilled for Furniture and Furnishings(2017-2022)</li>
+				<li>Total Demand for Furniture and Furnishings(2017-2022)</li>
+				<li>Skilled for Healthcare Services(2012-2017)</li>
+				<li>Semi skilled for Healthcare Services(2017-2022)</li>
+				<li>Minimally skilled for IT/ITES(2012-2017)</li>
+				<li>Total Demand for IT/ITES(2012-2017)</li>
+				<li>Skilled for IT/ITES(2017-2022)</li>
+				<li>Semi skilled for  Manufacturing of Engineering Goods(2012-2017)</li>
+				<li>Minimally skilled for Manufacturing of Engineering Goods(2017-2022)</li>
+				<li>Total Demand for Manufacturing of Engineering Goods(2017-2022)</li>
+				<li>Skilled for Mineral Processing &  Fabrication(2012-2017)</li>
+				<li>Semi skilled for Mineral Processing &  Fabrication(2017-2022)</li>
+				<li>Minimally skilled for Misc. Manufacturing(2012-2017)</li>
+				<li>Total Demand for Misc. Manufacturing(2012-2017)</li>
+				<li>Skilled for Misc. Manufacturing(2017-2022)</li>
+				<li>Semi skilled for  Organized Retail (2012-2017)</li>
+				<li>Minimally skilled for Organized Retail (2017-2022)</li>
+				<li>Total Demand for Organized Retail (2017-2022)</li>
+				<li>Skilled for Paper & Paper Products(2012-2017)</li>
+				<li>Semi skilled for Paper & Paper Products(2017-2022)</li>
+				<li>Minimally skilled for Rubber and Plastics(2012-2017)</li>
+				<li>Total Demand for Rubber and Plastics(2012-2017)</li>
+				<li>Skilled for Rubber and Plastics(2017-2022)</li>
+				<li>Semi skilled for Textiles and Clothing(2012-2017)</li>
+				<li>Minimally skilled for Textiles and Clothing(2017-2022)</li>
+				<li>Total Demand for Textiles and Clothing(2017-2022)</li>
+				<li>Skilled for Transportation & Logistics(2012-2017)</li>
+				<li>Semi skilled for Transportation & Logistics(2017-2022)</li>
+				<li>Minimally skilled for Travel, Tourism & Hospitality(2012-2017)</li>
+				<li>Total Demand for Travel, Tourism & Hospitality(2012-2017)</li>
+				<li>Skilled for Travel, Tourism & Hospitality(2017-2022)</li>
+				<li>Demand-Partners Coverage</li>
+				<li># Schools - Urdu medium</li>
+				<li># Schools - Sanskrit medium</li>
+				<li># Schools - HSC-Science</li>
+				<li># Schools - Vocational</li>
+				<li># Schools - Government</li>
+				<li># Schools - Other-Department</li>
+				<li># Schools - Self-Financed</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+              <div class="tab-pane" id="data8">
+              	<!-- -->
+                <h3 class="dataset-title">Health</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Infant Mortality Rate (RURAL)</li>
+				<li>Neonatal Mortality Rate (RURAL)</li>
+				<li>Mortality Rate for Age Less than 5 (RURAL)</li>
+				<li>Children Aged 12-23 Months Fully Immunized</li>
+				<li>Children Breastfed within one hour of birth</li>
+				<li>Children who Received HAF/ORS/ORT</li>
+				<li>Children Suffering from Fever</li>
+				<li>Unmet Need for Spacing</li>
+				<li>Percentage of Female Sterilization</li>
+				<li>Total Fertility Rate</li>
+				<li>Person Suffering from Fever(all types)</li>
+				<li>People Diagnosed for hypertension</li>
+				<li>People Diagnosed for Arthritis</li>
+				<li>People Diagnosed for any Kind of Chronic Illness and Getting Regular Treatment from Govt Source</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Number of PHCs</li>
+				<li>Infant Mortality Rate (URBAN)</li>
+				<li>Neonatal Mortality Rate (URBAN)</li>
+				<li>Mortality Rate for Age Less than 5 (URBAN)</li>
+				<li>Children who have not received any vaccination</li>
+				<li>Children (aged 6-35 months) exclusively breastfed for at least six months</li>
+				<li>Children who Suffered from ARI</li>
+				<li>Children Suffering from Fever who Sought Treatment</li>
+				<li>Unmet Need for Limiting</li>
+				<li>Crude Death Rate</li>
+				<li>Person Suffering from Diarrhoea/ dysentry</li>
+				<li>Person Suffering from acute illness(any type)</li>
+				<li>People Diagnosed for TB</li>
+				<li>People Diagnosed for any Type of Chronic Illness</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Number of DHs</li>
+				<li>Number of Govt Blood Banks</li>
+				<li>Infant Mortality Rate (TOTAL)</li>
+				<li>Neonatal Mortality Rate (TOTAL)</li>
+				<li>Mortality Rate for Age Less than 5 (TOTAL)</li>
+				<li>Children with birth weight less than 2.5 kg</li>
+				<li>Children Suffering from Diarrhoea</li>
+				<li>Children who Sought Treatment for ARI</li>
+				<li>Currently Using any Method for FP</li>
+				<li>Total Unmet Need</li>
+				<li>Crude Birth Rate</li>
+				<li>Person Suffering from ARI</li>
+				<li>People Diagnosed for Diabetes</li>
+				<li>People Diagnosed for asthma/chronic respiatory diseases</li>
+				<li>People Diagnosed for any Kind of Chronic Illness and Getting Regular Treatment</li>
+				<li>Number of CHCs</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+              <div class="tab-pane" id="data9">
+              	<!-- -->
+                <h3 class="dataset-title">Horticulture</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Commercial Flower Crops Total Production</li>
+				<li>Aromatic Plants Total Area</li>
+				<li>Aromatic Plants Total Production</li>
+				<li>Aromatic Plants Total Yield</li>
+				<li>Banana Total Area</li>
+				<li>Banana Total Production</li>
+				<li>Banana Total Yield</li>
+				<li>Beans Total Area</li>
+				<li>Beans Total Production</li>
+				<li>Beans Total Yield</li>
+				<li>Commercial Flower Crops Total Yield</li>
+				<li>Fruit Crops Total Area</li>
+				<li>Fruit Crops Total Production</li>
+				<li>Fruit Crops Total Yield</li>
+				<li>Grapes Total Area</li>
+				<li>Grapes Total Production</li>
+				<li>Grapes Total Yield</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Green Chillies Total Area</li>
+				<li>Green Chillies Total Production</li>
+				<li>Green Chillies Total Yield</li>
+				<li>Mango Total Area</li>
+				<li>Mango Total Production</li>
+				<li>Mango Total Yield</li>
+				<li>Medicinal Plants Total Area</li>
+				<li>Medicinal Plants Total Production</li>
+				<li>Medicinal Plants Total Yield</li>
+				<li>Commercial Flower Crops Total Area</li>
+				<li>Onion Total Area</li>
+				<li>Onion Total Production</li>
+				<li>Onion Total Yield</li>
+				<li>Plantation Crops Total Area</li>
+				<li>Plantation Crops Total Production</li>
+				<li>Plantation Crops Total Yield</li>
+				<li>Pomegranate Total Area</li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Pomegranate Total Production</li>
+				<li>Pomegranate Total Yield</li>
+				<li>Potato Total Area</li>
+				<li>Potato Total Production</li>
+				<li>Potato Total Yield</li>
+				<li>Spice Crops Total Area</li>
+				<li>Spice Crops Total Production</li>
+				<li>Spice Crops Total Yield</li>
+				<li>Sweet Potato Total Area</li>
+				<li>Sweet Potato Total Production</li>
+				<li>Sweet Potato Total Yield</li>
+				<li>Tomato Total Area</li>
+				<li>Tomato Total Production</li>
+				<li>Tomato Total Yield</li>
+				<li>Vegetable Crops Total Area</li>
+				<li>Vegetable Crops Total Production</li>
+				<li>Vegetable Crops Total Yield</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+              <div class="tab-pane" id="data10">
+              	<!-- -->
+                <h3 class="dataset-title">Industry: Average Firm Size</h3>
+                <div class="col-md-12">
+                	<div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Average Firm Size in Animals Farming </li>
+				<li>Average Firm Size in Post and Courier </li>
+				<li>Average Firm Size in Crops and Animal Farming </li>
+				<li>Average Firm Size in Agriculture and Animal Husbandry </li>
+				<li>Average Firm Size in Hunting and Trapping Propagation </li>
+				<li>Average Firm Size in Forestry and Logging </li>
+				<li>Average Firm Size in Fish Farm Service </li>
+				<li>Average Firm Size in Coal Mining </li>
+				<li>Average Firm Size in Mining Lignite </li>
+				<li>Average Firm Size in Mining Peat </li>
+				<li>Average Firm Size in Petroleum and Natural Gas </li>
+				<li>Average Firm Size in Horticultural </li>
+				<li>Average Firm Size in Mining Uranium and Thorium </li>
+				<li>Average Firm Size in Mining Iron </li>
+				<li>Average Firm Size in Mining Non Ferrous Metals </li>
+				<li>Average Firm Size in Mining Stone Sand </li>
+				<li>Average Firm Size in Mining and Quarrying </li>
+				<li>Average Firm Size in Food Processing </li>
+				<li>Average Firm Size in Dairy Product </li>
+				<li>Average Firm Size in Grain and Starch </li>
+				<li>Average Firm Size in Other Food Products </li>
+				<li>Average Firm Size in Beverage </li>
+				<li>Average Firm Size in Tobacco Products </li>
+				<li>Average Firm Size in Spinning Weaving </li>
+				<li>Average Firm Size in Other Textiles </li>
+				<li>Average Firm Size in Knitted Fabrics </li>
+				<li>Average Firm Size in Apparel </li>
+				<li>Average Firm Size in Fur </li>
+				<li>Average Firm Size in Leather </li>
+				<li>Average Firm Size in Footwear </li>
+				<li>Average Firm Size in Saw Milling </li>
+				<li>Average Firm Size in Wood and Plaiting </li>
+				<li>Average Firm Size in Paper </li>
+				<li>Average Firm Size in Publishing </li>
+				<li>Average Firm Size in Printing </li>
+				<li>Average Firm Size in Recorded Media </li>
+				<li>Average Firm Size in Coke Oven Products </li>
+				<li>Average Firm Size in Petroleum Products </li>
+				<li>Average Firm Size in Nuclear Fuel </li>
+				<li>Average Firm Size in Basic Chemicals </li>
+				<li>Average Firm Size in Other Chemicals </li>
+				<li>Average Firm Size in Man Made Fibers </li>
+				<li>Average Firm Size in Rubber Products </li>
+				<li>Average Firm Size in Plastic Products </li>
+				<li>Average Firm Size in Glass Products </li>
+				<li>Average Firm Size in Non Metallic Minerals </li>
+				<li>Average Firm Size in Iron and Steel </li>
+				<li>Average Firm Size in Precious Metals </li>
+				<li>Average Firm Size in Metal Casting </li>
+				<li>Average Firm Size in Structural Metal Products </li>
+				<li>Average Firm Size in Other Fabricated Metal </li>
+				<li>Average Firm Size in General Purpose Machinery </li>
+				<li>Average Firm Size in Special Purpose Machinery </li>
+				<li>Average Firm Size in Domestic Appliances </li>
+				<li>Average Firm Size in Computing Machinery </li>
+				<li>Average Firm Size in Motors Generators and Transformers </li>
+				<li>Average Firm Size in Electricity Distribution and Controls </li>
+				<li>Average Firm Size in Insulated Wire </li>
+				<li>Average Firm Size in Batteries </li>
+				<li>Average Firm Size in Lamps and Lighting Equipment </li>
+				<li>Average Firm Size in Other Electrical Equipment </li>
+				<li>Average Firm Size in Electronic Components </li>
+				<li>Average Firm Size in TV and Radio Transmitters </li>
+				<li>Average Firm Size in TV and Radio Receivers </li>
+				<li>Average Firm Size in Medical and Instruments </li>
+				<li>Average Firm Size in Optical and Photographic Equipment </li>
+				<li>Average Firm Size in Watches and Clocks </li>
+				<li>Average Firm Size in Motor Vehicles </li>
+				<li>Average Firm Size in Motor Vehicles Bodies </li>
+				<li>Average Firm Size in Motor Vehicles Engines </li>
+				<li>Average Firm Size in Ships Building </li>
+				<li>Average Firm Size in Locomotives </li>
+				<li>Average Firm Size in Aircraft and Spacecraft </li>
+				<li>Average Firm Size in Transport Equipment </li>
+				<li>Average Firm Size in Furniture </li>
+				<li>Average Firm Size in Jewellery </li>
+				<li>Average Firm Size in Recycling of Metal </li>
+				<li>Average Firm Size in Recycling of Non Metal </li>
+				<li>Average Firm Size in Electricity Production </li>
+				<li>Average Firm Size in Gas Manufacture </li>
+				<li>Average Firm Size in Steam and Water Supply </li>
+				<li>Average Firm Size in Water Purification </li>
+				<li>Average Firm Size in Site Preparation </li>
+				<li>Average Firm Size in Civil Engineering </li>
+				<li>Average Firm Size in Building Installation </li>
+				<li>Average Firm Size in Building Completion </li>
+				<li>Average Firm Size in Renting of Construction Equipment </li>
+				<li>Average Firm Size in Sale of Motor Vehicles </li>
+				<li>Average Firm Size in Motor Vehicles Maintenance </li>
+				<li>Average Firm Size in Sale of Motor Cycles </li>
+				<li>Average Firm Size in Motor Cycles Maintenance </li>
+				<li>Average Firm Size in Automotive Fuel </li>
+				<li>Average Firm Size in Wholesale On Contract </li>
+				<li>Average Firm Size in Wholesale of Agricultural Material </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Average Firm Size in Household Good Wholesale </li>
+				<li>Average Firm Size in Non Agricultural Material Wholesale </li>
+				<li>Average Firm Size in Machinery Equipment Wholesale </li>
+				<li>Average Firm Size in Other Specialized Wholesale </li>
+				<li>Average Firm Size in Non Specialized Retail </li>
+				<li>Average Firm Size in Retail Food Tobacco </li>
+				<li>Average Firm Size in Retail Specialized Stores </li>
+				<li>Average Firm Size in Sale of Second Hand Goods </li>
+				<li>Average Firm Size in Retail Trade Not in Stores  </li>
+				<li>Average Firm Size in Repair of Personal Goods </li>
+				<li>Average Firm Size in Hotels </li>
+				<li>Average Firm Size in Restaurants Bars and Canteens </li>
+				<li>Average Firm Size in Railways Transport </li>
+				<li>Average Firm Size in Land Transport </li>
+				<li>Average Firm Size in Transport Pipelines </li>
+				<li>Average Firm Size in Water Transport </li>
+				<li>Average Firm Size in Inland Water Transport </li>
+				<li>Average Firm Size in Scheduled Air Transport </li>
+				<li>Average Firm Size in Non Scheduled Air Transport </li>
+				<li>Average Firm Size in Supporting and Auxiliary Transport </li>
+				<li>Average Firm Size in Telecommunications </li>
+				<li>Average Firm Size in Monetary Intermediation </li>
+				<li>Average Firm Size in Other Financial Intermediation </li>
+				<li>Average Firm Size in Insurance and Pension Funding </li>
+				<li>Average Firm Size in Auxiliary Financial Intermediation Service </li>
+				<li>Average Firm Size in Auxiliary Insurance and Pension Funding </li>
+				<li>Average Firm Size in Real Estate On Own Property </li>
+				<li>Average Firm Size in Real Estate On Contract Basis </li>
+				<li>Average Firm Size in Renting of Transport Equipment </li>
+				<li>Average Firm Size in Renting Office Machinery </li>
+				<li>Average Firm Size in Personal Goods Renting </li>
+				<li>Average Firm Size in Hardware Consultancy </li>
+				<li>Average Firm Size in Software Consultancy </li>
+				<li>Average Firm Size in Data Processing </li>
+				<li>Average Firm Size in Electronic Content Distribution </li>
+				<li>Average Firm Size in Account and Computing Computer Machinery </li>
+				<li>Average Firm Size in Website Hosting </li>
+				<li>Average Firm Size in Natural Sciences and Engineering </li>
+				<li>Average Firm Size in Social Sciences and Humanities </li>
+				<li>Average Firm Size in Accounting and Auditing </li>
+				<li>Average Firm Size in Architectural and Technical Activities </li>
+				<li>Average Firm Size in Advertising </li>
+				<li>Average Firm Size in Business Activities </li>
+				<li>Average Firm Size in Public Service </li>
+				<li>Average Firm Size in Community Service </li>
+				<li>Average Firm Size in Social Security </li>
+				<li>Average Firm Size in Primary Education </li>
+				<li>Average Firm Size in Secondary Education </li>
+				<li>Average Firm Size in Higher Education </li>
+				<li>Average Firm Size in Other Education </li>
+				<li>Average Firm Size in Human Health Activities </li>
+				<li>Average Firm Size in Veterinary Activities </li>
+				<li>Average Firm Size in Social Work </li>
+				<li>Average Firm Size in Sewage Disposal </li>
+				<li>Average Firm Size in Professional Organisations </li>
+				<li>Average Firm Size in Trade Unions </li>
+				<li>Average Firm Size in Other Membership Organisations </li>
+				<li>Average Firm Size in Entertainment Activities </li>
+				<li>Average Firm Size in News Agency Activities </li>
+				<li>Average Firm Size in Library Museums and Cultural Activities </li>
+				<li>Average Firm Size in Sports and Other Recreation </li>
+				<li>Average Firm Size in Salon and Tailoring Activities </li>
+				<li>Average Firm Size in Private Household Employers </li>
+				<li>Average Firm Size in Undifferentiated Goods Producing </li>
+				<li>Average Firm Size in Undifferentiated Service Producing </li>
+				<li>Average Firm Size in Extra Territorial Organizations </li>
+				<li>Average Firm Size in Agriculture, Hunting and Related Service Activities </li>
+				<li>Average Firm Size in Forestry, Logging and Related Service Activities </li>
+				<li>Average Firm Size in Fishing, Aquaculture and Service Activities Incidental to  Fishing </li>
+				<li>Average Firm Size in Mining of Coal and Lignite; Extraction of Peat </li>
+				<li>Average Firm Size in Extraction of Crude Petroleum and Natural Gas; Service Activities Incidental to  Oil and Gas Extraction, Excluding Surveying </li>
+				<li>Average Firm Size in Mining of Uranium and Thorium Ores </li>
+				<li>Average Firm Size in Mining of Metal Ores </li>
+				<li>Average Firm Size in Other Mining and Quarrying </li>
+				<li>Average Firm Size in Manufacture of Food Products and Beverages </li>
+				<li>Average Firm Size in Manufacture of Tobacco Products </li>
+				<li>Average Firm Size in Manufacture of Textiles </li>
+				<li>Average Firm Size in Manufacture of Wearing Apparel; Dressing and Dyeing of Fur </li>
+				<li>Average Firm Size in Tanning and Dressing of Leather; Manufacture of Luggage, Handbags, Saddlery, Harness and Footwear </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                    	<ul class="dataset-cont-list">
+				<li>Average Firm Size in Manufacture of Wood and of Products of Wood and Cork, Except Furniture; Manufacture of Articles of Straw and Plaiting Materials </li>
+				<li>Average Firm Size in Manufacture of Paper and Paper Products </li>
+				<li>Average Firm Size in Publishing, Printing and Reproduction of Recorded Media </li>
+				<li>Average Firm Size in Manufacture of Coke, Refined Petroleum Products and Nuclear Fuel </li>
+				<li>Average Firm Size in Manufacture of Chemicals and Chemical Products </li>
+				<li>Average Firm Size in Manufacture of Rubber and Plastics Products </li>
+				<li>Average Firm Size in Manufacture of Other Non-Metallic Mineral Products </li>
+				<li>Average Firm Size in Manufacture of Basic Metals </li>
+				<li>Average Firm Size in Manufacture of Fabricated Metal Products, Except Machinery and Equipment </li>
+				<li>Average Firm Size in Manufacture of Machinery and Equipment </li>
+				<li>Average Firm Size in Manufacture of Office, Accounting and Computing Machinery </li>
+				<li>Average Firm Size in Manufacture of Electrical Machinery and Apparatus </li>
+				<li>Average Firm Size in Manufacture of Radio, Television and Communication Equipment and Apparatus </li>
+				<li>Average Firm Size in Manufacture of Medical, Precision and Optical Instruments, Watches and Clocks </li>
+				<li>Average Firm Size in Manufacture of Motor Vehicles, Trailers and Semi - Trailers </li>
+				<li>Average Firm Size in Manufacture of Other Transport Equipment </li>
+				<li>Average Firm Size in Manufacture of Furniture; Manufacturing </li>
+				<li>Average Firm Size in Recycling </li>
+				<li>Average Firm Size in Electricity, Gas, Steam and Hot Water Supply </li>
+				<li>Average Firm Size in Collection, Purification and Distribution of Water </li>
+				<li>Average Firm Size in Construction </li>
+				<li>Average Firm Size in Sale, Maintenance and Repair of Motor Vehicles and Motorcycles; Retail Sale of Automotive Fuel </li>
+				<li>Average Firm Size in Wholesale Trade and Commission Trade, Except of Motor Vehicles and Motorcycles </li>
+				<li>Average Firm Size in Retail Trade, Except of Motor Vehicles and Motorcycles; Repair of Personal and Household Goods </li>
+				<li>Average Firm Size in Hotels and Restaurants </li>
+				<li>Average Firm Size in Land Transport; Transport Via Pipelines </li>
+				<li>Average Firm Size in Water Transport </li>
+				<li>Average Firm Size in Air Transport </li>
+				<li>Average Firm Size in Supporting and Auxiliary Transport Activities; Activities of Travel Agencies </li>
+				<li>Average Firm Size in Post and Telecommunications </li>
+				<li>Average Firm Size in Financial Intermediation, Except Insurance and Pension Funding </li>
+				<li>Average Firm Size in Insurance and Pension Funding, Except Compulsory Social Security </li>
+				<li>Average Firm Size in Activities Auxiliary to  Financial Intermediation </li>
+				<li>Average Firm Size in Real Estate Activities </li>
+				<li>Average Firm Size in Renting of Machinery and Equipment Without Operator and of Personal and Household Goods </li>
+				<li>Average Firm Size in Computer and Related Activities </li>
+				<li>Average Firm Size in Research and Development </li>
+				<li>Average Firm Size in Other Business Activities </li>
+				<li>Average Firm Size in Public Administration and Defence; Compulsory Social Security </li>
+				<li>Average Firm Size in Education </li>
+				<li>Average Firm Size in Health and Social Work </li>
+				<li>Average Firm Size in Sewage and Refuse Disposal, Sanitation and Similar Activities </li>
+				<li>Average Firm Size in Activities of Membership Organizations </li>
+				<li>Average Firm Size in Recreational, Cultural and Sporting Activities </li>
+				<li>Average Firm Size in Other Service Activities </li>
+				<li>Average Firm Size in Activities of Private Households as Employers of Domestic Staff </li>
+				<li>Average Firm Size in Undifferentiated Goods-Producing Activities of Private Households for Own Use </li>
+				<li>Average Firm Size in Undifferentiated Service-Producing Activities of Private Households for Own Use </li>
+				<li>Average Firm Size in Extraterritorial Organizations and Bodies </li>
+				<li>Average Firm Size in Agriculture, Hunting and Forestry </li>
+				<li>Average Firm Size in Fishing </li>
+				<li>Average Firm Size in Mining and Quarrying </li>
+				<li>Average Firm Size in Manufacturing </li>
+				<li>Average Firm Size in Electricity, Gas and Water Supply </li>
+				<li>Average Firm Size in Construction </li>
+				<li>Average Firm Size in Wholesale and Retail Trade, Repair of Motor Vehicles, Motorcycles and Personal and Household Goods </li>
+				<li>Average Firm Size in Hotels and Restaurants </li>
+				<li>Average Firm Size in Transport, Storage and Communications </li>
+				<li>Average Firm Size in Financial Intermediation </li>
+				<li>Average Firm Size in Real Estate, Renting and Business Activities </li>
+				<li>Average Firm Size in Public Administration and Defence; Compulsory Social Security </li>
+				<li>Average Firm Size in Education </li>
+				<li>Average Firm Size in Health and Social Work </li>
+				<li>Average Firm Size in Other Community, Social and Personal Service Activities </li>
+				<li>Average Firm Size in Activities of Private Households as Employers and Undifferentiated Production Activities of Private Households </li>
+				<li>Average Firm Size in Extraterritorial Organizations and Bodies </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- -->
+              </div>
+
+
+
+
+            </div>
+        </div>
+     </div>
+     
+     <div class="col-md-12 ds-video-wrap">
+     	<div class="col-md-12 video-container">
+            <div class="col-md-8 dataset-main-video">
+                <div class="col-md-11">
+                    <iframe frameborder="0" name="XU1MZ3pWWOQ" src="https://www.youtube.com/embed/XU1MZ3pWWOQ" allowfullscreen class="dataset-video-frame"></iframe>
+                </div>
+            </div>
+            <div class="col-md-4 dataset-main-video-details">
+                <div class="video-title-wrap">
+                    <h3 class="video-title">Derived Variables on Explore</h3><span class="video-date">Feb 19, 2015</span>
+                </div>
+                <p class="video-desc">Understand the various derived variables on SciSphere and how they are powerful predictors of the success and growth of microeconomies.</p>
+            </div>
+        </div>
+     </div>
+  </div>
+</div>
+<div class="home-footersec">
+  <div class="container">
+    <div class="col-lg-12">
+    	<p class="footer-content pull-left">
+        	<a href="/dataset.html?tag=1" title="Datasets">Datasets</a>  &nbsp; | &nbsp;
+            <a href="/pricing.html" title="Pricing">Pricing</a>  &nbsp; | &nbsp;
+            <a href="/demos.html" title="Demos">Demos</a>  &nbsp; | &nbsp;
+            <a href="/labs.html" title="Labs">Labs</a>  &nbsp; | &nbsp;
+            <a href="#" title="Blog">Blog</a>  &nbsp; | &nbsp;
+            <a href="/app/contact" title="Contact">Contact</a>  &nbsp; | &nbsp;
+            <a href="/about.html" title="About">About</a>
+        </p>
+        <p class="footer-content pull-right">
+        	<span class="copyright-text">&copy; Copyright 2014 Scisphere, inc. All rights reserved.</span>
+        </p>
+      </div>
+  </div>
+</div>
+<!-- -->
+
+</body>
+</html>

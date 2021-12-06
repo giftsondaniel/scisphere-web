@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block additional-headers %}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="/static/css/form.css">
+
+{% endblock %}
+
+{% block body %}
+<body>
+    {% include "topbar.html" %}
+    <div id="formplayer">
+        <iframe id="touchforms" src="{{ touchforms }}">
+        </iframe>
+    </div>
+    <script type="text/javascript">
+        $(window).bind('resize', function(){
+            $('#touchforms').height($(window).height() - 40);
+        });
+        $(window).trigger('resize');
+    </script>
+</body>
+{% endblock %}

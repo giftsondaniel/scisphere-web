@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<title>SciSphere | Trend</title>
+<!-- Fonts -->
+<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>-->
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<!-- **** jquery.selectBoxIt.css jquery-ui.css bootstrap.css **** -->
+<link type="text/css" rel="stylesheet" href="/static/css/region-lib1.css" />
+<!--<link type="text/css" rel="stylesheet" href="/static/css/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/jquery-ui.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/jquery.selectBoxIt.css" />-->
+<link type="text/css" rel="stylesheet" href="/static/css/jquery.datetimepicker.css"/>
+<link type="text/css" rel="stylesheet" href="/static/css/custom.css" />
+<!--<link type="text/css" rel="stylesheet" href="/static/css/explorer.css" />-->
+<!--<link type="text/css" rel="stylesheet" href="/static/trend/css/region_trend.css">-->
+
+<!-- Scripts -->
+<!-- **** 1.9.1-jquery.min.js jquery-ui.min.js bootstrap.js jquery.combine.js queue.v1.min.js d3.v2.min.js underscore-min.js jstat.min.js **** -->
+<script type="text/javascript" src="/static/js/region-lib1.js" ></script>
+<!--<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/js/jquery.combine.js" ></script> 
+<script type="text/javascript" src="/static/js/queue.v1.min.js"></script>
+<script type="text/javascript" src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript" src="/static/js/underscore-min.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/jstat.min.js"></script>-->
+<!--<script type="text/javascript" src="http://malsup.github.com/min/jquery.form.min.js"></script> <!-- for ajax form submission--> 
+<!--<script type="text/javascript" src="/static/js/jquery.easing.min.js"></script> <!-- Easing -->
+<!--<script type="text/javascript" src="/static/js/jquery.easing.1.3.js"></script>  <!-- Easing 1.3 -->
+<!--<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script> -->
+<!--<script type="text/javascript" src="/static/js/jquery.bxslider.js"></script> <!-- Bx Slider -->
+<!--<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script> <!-- Mouse Wheel -->
+<!--<script type="text/javascript" src="/static/js/jquery.jscrollpane.min.js"></script> <!-- Scroll pane-->
+<!--<script type='text/javascript' src="/static/js/jquery.jqpagination.js"></script><!-- Pagination -->
+<!-- added >
+<script type="text/javascript" src="/static/js/canvg-1.3/rgbcolor.js"></script--> 
+<!--<script type="text/javascript" src="/static/js/canvg-1.3/StackBlur.js"></script>-->
+<!--<script type="text/javascript" src="/static/js/canvg-1.3/canvg.js"></script>-->
+
+<!-- **** jquery.ba-bbq.min.js moment.js stickytooltip.js **** -->
+<script type="text/javascript" src="/static/js/region-lib2.js" ></script>
+<!--<script type="text/javascript" src="/static/region_explorer/js/jquery.ba-bbq.min.js"></script>
+<script type="text/javascript" src="/static/js/moment/2.0.0/moment.js"></script>
+<script type="text/javascript" src="/static/js/stickytooltip.js"></script>-->
+
+<!-- **** bootbox.js fancyfields-1.2.min.js jquery.datetimepicker.js **** -->
+<script type="text/javascript" src="/static/js/trend-lib1.js" ></script>
+<!--<script type="text/javascript" src="/static/js/bootbox.js"></script>
+<script type="text/javascript" src="/static/js/fancyfields-1.2.min.js" ></script>
+<script type="text/javascript" src="/static/js/jquery.datetimepicker.js"></script>-->
+
+<!-- plugins -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	trend="trend";
+
+        /*$("#menu").lavaLamp({fx: "backout", click: function(event, menuItem) {return false;}});*/
+	$('.carousel').carousel({interval: 0});
+	/*$('.help').tooltip();*/
+
+	$('.help').width( $('#help').width() +5 );
+	$('.help').popover({
+		selector: 'a',
+		trigger: 'hover',
+		placement:'left'
+	    });
+
+	/*$('.submenu-sec').bxSlider({
+		slideWidth: 130,
+		minSlides: 3,
+		maxSlides: 3,
+		moveSlides: 1,
+		pager: false
+	});*/
+	$('.scroll-pane').jScrollPane();
+	
+	/*--Acc --*/
+	$('.popup-accordian li a').click(function(e) {
+		if($(this).hasClass('acc-act')){
+			$(this).removeClass('acc-act');
+		}
+		else{
+			$('.popup-accordian li a').removeClass('acc-act');
+			$(this).addClass('acc-act');
+		}
+	});
+
+	/* variable pagination */
+	$variable_table_rows = $('#load-master-variable tbody tr');
+	var variable_table_row_limit = 6;
+	variableTotalPage = Math.ceil($variable_table_rows.length / variable_table_row_limit);
+	var variable_page_table = function(page) {
+		// calculate the offset and limit values
+		var offset = (page - 1) * variable_table_row_limit,
+			limit = page * variable_table_row_limit;
+		// hide all table rows
+		$variable_table_rows.hide();
+		// show only the n rows
+		$variable_table_rows.slice(offset, limit).show();
+	}
+
+	$('.pagination-variable').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: variableTotalPage,
+		paged		: variable_page_table
+	});
+	/* variable pagination */
+
+	/* geostate pagination */
+	$geostate_table_rows = $('#load-master-geography tbody tr');
+	var geostate_table_row_limit = 6;
+	geostateTotalPage = Math.ceil($geostate_table_rows.length / geostate_table_row_limit);
+	var geostate_page_table = function(page) {
+		// calculate the offset and limit values
+		var offset = (page - 1) * geostate_table_row_limit,
+			limit = page * geostate_table_row_limit;
+		// hide all table rows
+		$geostate_table_rows.hide();
+		// show only the n rows
+		$geostate_table_rows.slice(offset, limit).show();
+	}
+
+	$('.pagination-geostate').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: geostateTotalPage,
+		paged		: geostate_page_table
+	});
+	/* geostate pagination */
+	/* myvariable pagination */
+	$myvariable_table_rows = $('#load-master-myvariable tbody tr');
+	var myvariable_table_row_limit = 6;
+	myvariableTotalPage = Math.ceil($myvariable_table_rows.length / myvariable_table_row_limit);
+	var myvariable_page_table = function(page) {
+		// calculate the offset and limit values
+		var offset = (page - 1) * myvariable_table_row_limit,
+			limit = page * myvariable_table_row_limit;
+		// hide all table rows
+		$myvariable_table_rows.hide();
+		// show only the n rows
+		$myvariable_table_rows.slice(offset, limit).show();
+	}
+
+	$('.pagination-myvariable').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: myvariableTotalPage,
+		paged		: myvariable_page_table
+	});
+	/* myvariable pagination */
+
+	/*--*/
+	//$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+	$('.date-field').datetimepicker({ format:/*'Y-m-d'*/'d-m-Y', timepicker:false });
+	
+});
+
+
+function myVariableListDown(){
+	
+	/*-- Left Panel Accordian --*/
+	$('.explore-leftpane-acc .panel .acc-head').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$(this).addClass('acc-listact');
+		}
+    });
+	/*-- /Left Panel Accordian --*/
+	/*-- Popup Pagination --*/
+	$('.pagination').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: 1000,
+		paged		: function(page) {
+			$('.log').prepend('<li>Requested page ' + page + '</li>');
+		}
+	});
+	/*-- /Popup Pagination --*/
+	/*-- Popup Accordian Act/Deact --*/
+	$('.popup-accordian li a').click(function(e) {
+		if($(this).hasClass('acc-act')){ $(this).removeClass('acc-act');}
+		else{
+			$('.popup-accordian li a').removeClass('acc-act');
+			$(this).addClass('acc-act');
+		}
+    });
+	/*-- /Popup Accordian Act/Deact --*/
+	$('.drop-content').stop().slideUp(100);
+	$('.pop-vari-trig').click(function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		$(this).parent('.drop-head').parent('.pop-dropdown-wrap').addClass('pop-dropdown-act');
+		
+		$('.drop-content').stop().slideUp(100);
+		$(this).parent('.drop-head').next('.drop-content').stop().slideDown(200);
+		
+		if($(this).hasClass('pop-vari-trig-act')){
+			$(this).removeClass('pop-vari-trig-act');
+			$('.drop-content').stop().slideUp(100);
+			$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		}else{
+			$('.pop-vari-trig').removeClass('pop-vari-trig-act');
+			$(this).addClass('pop-vari-trig-act');
+		}
+    });
+	$(document).click(function(e) {
+		$('.drop-content').slideUp(100);
+		$('.drop-content').removeClass('pop-vari-trig-act');
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+    });
+	
+	/*-- Left Panel Add button trigger --*/
+	$('.panel .head-sec .add').click(function(event) {
+        var add_id = $(this).attr('id');
+		var id_val = add_id.split(/\-/)[1];
+		$('.pop-acc-title').removeClass('acc-act');
+		$('#acc-'+id_val+'-title').addClass('acc-act');
+		$('.pop-acc-content').removeClass('in');
+		$('.pop-acc-content').css({'height':''});
+		$('#pop-'+id_val).addClass('in');
+    });
+
+}
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+	/*-- Menu transition -- /
+	$('.user-menu').slideUp(0);
+    $('#drop-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });*/
+	
+	/*-- Left Panel Accordian --*/
+	$('.explore-leftpane-acc .panel .acc-head').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$(this).addClass('acc-listact');
+		}
+    });
+	/*-- /Left Panel Accordian --*/
+	/*-- Popup Pagination --*/
+	$('.pagination').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: 1000,
+		paged		: function(page) {
+			$('.log').prepend('<li>Requested page ' + page + '</li>');
+		}
+	});
+	/*-- /Popup Pagination --*/
+	/*-- Popup Accordian Act/Deact --*/
+	$('.popup-accordian li a').click(function(e) {
+		if($(this).hasClass('acc-act')){ $(this).removeClass('acc-act');}
+		else{
+			$('.popup-accordian li a').removeClass('acc-act');
+			$(this).addClass('acc-act');
+		}
+    });
+	/*-- /Popup Accordian Act/Deact --*/
+	$('.drop-content').stop().slideUp(100);
+	$('.pop-vari-trig').click(function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		$(this).parent('.drop-head').parent('.pop-dropdown-wrap').addClass('pop-dropdown-act');
+		
+		$('.drop-content').stop().slideUp(100);
+		$(this).parent('.drop-head').next('.drop-content').stop().slideDown(200);
+		
+		if($(this).hasClass('pop-vari-trig-act')){
+			$(this).removeClass('pop-vari-trig-act');
+			$('.drop-content').stop().slideUp(100);
+			$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		}else{
+			$('.pop-vari-trig').removeClass('pop-vari-trig-act');
+			$(this).addClass('pop-vari-trig-act');
+		}
+    });
+	$(document).click(function(e) {
+		$('.drop-content').slideUp(100);
+		$('.drop-content').removeClass('pop-vari-trig-act');
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+    });
+	
+	/*-- Left Panel Add button trigger --*/
+	$('.panel .head-sec .add').click(function(event) {
+        var add_id = $(this).attr('id');
+		var id_val = add_id.split(/\-/)[1];
+		$('.pop-acc-title').removeClass('acc-act');
+		$('#acc-'+id_val+'-title').addClass('acc-act');
+		$('.pop-acc-content').removeClass('in');
+		$('.pop-acc-content').css({'height':''});
+		$('#pop-'+id_val).addClass('in');
+    });
+	/*-- Date Function --*/
+	//$('.date-field').datetimepicker({ format:'d/m/Y', timepicker:false });
+	//$('.date-field').datetimepicker({ format:'Y-m-d'/*'d/m/Y'*/, timepicker:false });
+	$('#date_from').datetimepicker({ format:/*'Y-m-d'*/'d-m-Y', timepicker:false });
+	$('#date_to').datetimepicker({ format:/*'Y-m-d'*/'d-m-Y', timepicker:false });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	/*-- Sub Header --*/
+	//$('.submenu-sec').bxSlider({ slideWidth: 130, minSlides: 4, maxSlides: 8, moveSlides: 1, pager: false });
+	$(".submenu-sec").bxSlider({slideWidth: 170,minSlides: 3,maxSlides: 6,moveSlides: 1,pager: false});
+
+	/*-- Custom Selectbox --*/
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+	/*-- Custom Checkbox --*/
+	$(".explore-checkbox").fancyfields();
+});
+</script>
+<script type="text/javascript">
+
+var orgid = {{orgID}};
+var templatename = "{{templatename}}";
+//console.log(templatename);
+$(document).ready(function(e) {
+    $('.user-menu').slideUp(0);
+    $('#drop-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+});
+
+var subscriptionList = '{{subscriptionList}}';
+var sub_list="";
+if(subscriptionList){
+    	subscriptionList = subscriptionList.replace(/&quot;/g,'"');
+    	subscriptionList = subscriptionList.replace(/&#39;/g,'"');
+    	subscriptionList = subscriptionList.replace(/None/g,'""');
+    	subscriptionList = subscriptionList.replace(/u"/g,'"');
+    	sub_list = JSON.parse(subscriptionList);
+}
+
+</script>
+<style>
+
+	#date-div #from_time_id {
+	   	border:1px solid #E9EDEF;
+	}
+
+	#date-div #to_time_id {
+	   	border:1px solid #E9EDEF;
+	}
+	
+	.drop-content{
+		/*left:550px;*/
+		width:200px;
+	}
+	.drop-content-inner{
+		width:200px;
+	}
+	.shepherd-content{
+		border:1px;
+		border-color:"black";
+	}
+	
+
+	/*for popup*/
+	#container {
+		text-align: center;
+		margin: 8em 3em;
+	}
+	.mapRect{
+		-moz-box-shadow:    3px 3px 5px 6px #777;
+		-webkit-box-shadow: 3px 3px 5px 6px #777;
+		box-shadow:         3px 3px 5px 6px #777;	
+		display: block;
+	}
+        .axes.nest .axis.nest text {
+            font-size: 10px;
+        }
+        .bar {
+            fill: steelblue;
+        }
+	.col-lg-6 {
+		width: 100%;
+	}.rightpanel-map-tab, .rightpanel-asc-tab {
+		float: right;
+		margin-right: 0;
+		margin-bottom: 20px;
+		margin-top:0px;
+	}
+	.explore-rightpanel .explore-page-title, .page-title {
+		padding-bottom: 10px;
+		border-bottom: 1px solid #D6D6D6;
+	}
+	.tick text {
+		color: #B4B3B3;/*#B8B6B6;/*#7A7A7A;*/
+		font-size: 10px;
+		/*font-weight: 400;*/
+		font-family: 'Open Sans', sans-serif;
+		
+	}
+
+	#xaxis text, #yaxis text, tick text {
+		font-size: 10px;
+		/*fill: #5F5F5F;*/
+	}
+    </style>
+    <script>
+        var COORDS = {
+            RECT: function(dim, tail) {
+                var subUnits = _.isArray(tail) ? tail : [tail];
+                var isFacet = (subUnits[0].type === 'COORDS.RECT');
+                return {
+                    type: 'COORDS.RECT',
+                    guide: {
+                        showGridLines: (isFacet ? '' : 'xy'),
+                        padding: {L: 64, B: 32, R: 8, T: 8}
+                    },
+                    axes: dim,
+                    unit: subUnits
+                };
+            }
+        };
+
+        var DIM = function(x, y) {
+            return [
+                x ? {scaleDim: x} : null,
+                y ? {scaleDim: y} : null
+            ];
+        };
+
+        var ELEMENT = {
+            POINT: function (x, y, color, size) {
+                return {
+                    type: 'ELEMENT.POINT',
+                    x: x,
+                    y: y,
+                    color: color,
+                    size: size
+                };
+            }
+        };
+
+    </script>
+</head>
+<body>
+<body>
+<!-- -->
+<div class="main">
+    {% include "header-primary.html" %}  
+    <!-- Secondary Header -->
+        <!-- Secondary Header -->
+    <header class="navbar sub-header">
+    	<div class="container ">
+        	<div class="submenu-sec">
+            	<div class="sub-menu"><a href="{% url 'trend' %}" title="Trend" class="active"> 
+			<span class="submenu-icon" id="submenu-trend"></span> 
+			<span class="submneu-con">Trend</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+                <div class="sub-menu"><a href="{% url 'region_explorer' %}" title="Region">
+                	<span class="submenu-icon" id="submenu-region"></span>
+                     <span class="submneu-con">Region</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+                <div class="sub-menu"><a href="{% url 'filters_layers' %}" title="Filter">
+                	<span class="submenu-icon" id="submenu-filter"></span>
+                    	<span class="submneu-con">Filter</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+            	<div class="sub-menu"><a href="{% url 'snapshot' %}" title="Snapshot">
+                	<span class="submenu-icon" id="submenu-snap"></span>
+                    	<span class="submneu-con">Snapshot</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+              <!--<div class="sub-menu"><a href="{% url 'region_compare' %}" title="Compare">
+                	<span class="submenu-icon" id="submenu-region"></span>
+                     <span class="submneu-con">Compare</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>-->
+		<div class="sub-menu"><a href="{% url 'correlate' %}" title="Correlate" >
+			<span class="submenu-icon" id="submenu-corr"></span>
+			<span class="submneu-con">Correlate</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+
+
+            </div>
+        </div>	
+    </header>
+    <!-- Secondary Header --><div class="body-sec">
+    	<div class="container">
+            <!--Main body left panel -->
+            <div class="col-md-2-5 left-panel">
+                <div class="item-panel" id="geo-panel">
+                    <h5 class="left-con-head">Geography<a class="add" data-toggle="modal" data-target=".contextual-variable" title="Geography" onclick='geoClick();'></a></h5>
+		        <div id="menu-div" style="display:none">
+                            <select id="level_0_Id" class="custom_selectbox" onChange="level0Change()">
+                                <option value="0" disabled="true">Select Country</option>
+                            </select>
+                            <select id="level_1_Id" class="custom_selectbox" onChange="level1Change()">
+                                <option value="0">Loading Data...</option>
+                            </select>
+	     	            <select id="levelId" class="custom_selectbox" onChange="levelChange()"></select>
+          		    <!--<select id="fieldId" onChange="fieldChange()" style="display:none"></select>-->
+                            <select id="yearId" onChange="fieldChange()" style="display:none"></select>
+                        </div>
+                </div>
+
+
+
+
+                <div class="item-panel" id="context-var">
+                	<h5 class="left-con-head">Contextual Variables <a class="add" data-toggle="modal" data-target=".contextual-variable" title="Contextual Variables" onclick='contextClick();'></a></h5>
+                    <!-- Pop Up Panel-->
+                    <div class="modal fade contextual-variable" id="contextual-variable-popup"  tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button><!-- Close -->
+                            <div class="clearfix">
+                            	<div class="popup-body"><!-- Popup Panel Body -->
+                                	<ul class="nav navbar-nav popup-accordian" id="accordion">
+                                        <li class="panel">
+                                            <a data-toggle="collapse" data-target="#pop-geo" data-parent="#accordion" class="pop-acc-title acc-act">Geography<span class="acc-arrow"></span></a>
+                                            <div id="pop-geo" class="collapse pop-acc-content">
+                                                <!--  GEO   -->
+						   <div class="popup-content-wrap clearfix">
+                                                	<div class="popup-leftpanel">
+                                                        <div class="variable-list-sec">
+                                                            <h5 class="variable-title">Selected State<span id="selected-geostate-count"></span></h5>
+                                                            <table border="0" width="100%" class="variable-table" id="selected-geostate"></table>
+                                                        </div>
+                                                        <span class="pop-leftbottom-con">you can remove a state from the list by clicking the trash icon next to it.</span>
+                                                    </div>
+                                                	<div class="popup-rightpanel">
+                                                    	<div class="popup-right-content-sec">
+                                                        	<!-- Category -->
+                                                        	<div class="category-wrap">
+                                                                <h4 class="pop-left-head">Selected Country</h4>
+                                                                <div class="popup-selectbox-sec">
+                                                                    <select class="custom_selectbox popup-selectbox" id="geoCountryId" onchange="loadGeoState()">
+                                                                    </select>
+                                                                </div>    
+                                                            </div>
+
+                                                            <!-- GEO State List Table -->
+                                                            <table width="100%" border="0" class="popup-table" id="load-master-geography"></table>
+                                                            <!-- -->
+                                                            <div class="pagi-wrap">
+                                                                <div class="pull-right">
+                                                                  <!-- Pagination Start -->
+                                                                    <div class="gigantic pagination-geostate" id="geo_pg1">
+                                                                        <a href="#" class="first" data-action="first">First</a>
+                                                                        <a href="#" class="previous" data-action="previous"><span></span></a>
+                                                                        <input type="text" readonly="readonly" class="page-field"/>
+                                                                        <a href="#" class="next" data-action="next"><span></span></a>
+                                                                        <a href="#" class="last" data-action="last">Last</a>
+                                                                        <div class="pagi-goto"><span>Go to</span> <input type="text" class="goto-field" value="" id="pg-geo-goto" onchange="geoPaginationGoTo();"/></div>
+                                                                    </div>
+                                                                <!-- Pagination Start -->  
+                                                                </div>
+                                                            </div>
+                                                            <!-- -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+					        <!--  GEO   -->
+                                            </div>
+                                        </li>
+                                        <li class="panel">
+                                            <a data-toggle="collapse" data-target="#pop-contextual" data-parent="#accordion" class="pop-acc-title acc-act">Contextual Variables<span class="acc-arrow"></span> </a>
+                                            <div id="pop-contextual" class="collapse pop-acc-content clearfix" >
+                                                <div class="popup-title-wrap">
+                                                	<div class="pop-right-title-section">
+
+                                                    	<p>You can select a maximum of 10 variables, <a class="tot-sel" data-toggle="modal" data-target=".total-select" title="Variables"><span id="selected-variable-count-title"></span> selected</a>.Click on a Variable to select it</p>
+							      <!-- Search Variable -->
+							      <div class="input-group">
+								<input class="search-field"  type="text" name="search" value="" id="id_search2" placeholder="Search Variable" onchange="textSearch();"onkeyup="this.onchange();" onpaste="this.onchange();"
+											 oninput="this.onchange();" /> <span class="loading"></span>
+								<div class="input-group-addon">
+								  <input type="button" class="search-button">
+								</div>
+							      </div>
+                                                    	<!--<div class="input-group">
+                                                          <input class="search-field" type="email" placeholder="">
+                                                          <div class="input-group-addon"><input type="button"  class="search-button"/></div>
+                                                        </div>-->
+                                                        
+                                                        <div class="modal fade total-select" tabindex="2" role="dialog" aria-labelledby="" aria-hidden="true">
+                                                             <div class="modal-dialog modal-md">
+                                                                <div class="modal-content modal-conatiner-small">
+                                                                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button><!-- Close -->
+                                                                  <div class="popup-small-sec">
+                                                                    <p class="center-text">You can select only 10 variables at a time</p>
+                                                                    <div class="button-wrap" >
+                                                                        <button type="button" class="btn btn-primary btn-gray" data-toggle="button">ok</button>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            	<div class="popup-content-wrap clearfix">
+                                                	<div class="popup-leftpanel">
+                                                        <div class="variable-list-sec">
+                                                        	<h5 class="variable-title">Selected Variables<span id="selected-variable-count"></span></h5>
+                                                            <table border="0" width="100%" class="variable-table" id="selected-variable"></table>
+                                                        </div>
+                                                        <span class="pop-leftbottom-con">you can remove a variable from the list by clicking the X icon next to it.</span>
+                                                    </div>
+                                                	<div class="popup-rightpanel">
+                                                    	<div class="popup-right-content-sec">
+                                                        	<!-- Category -->
+                                                        	<div class="category-wrap">
+                                                                <h4 class="pop-left-head">Selected Category</h4>
+                                                                <div class="popup-selectbox-sec">
+                                                                    <select class="custom_selectbox popup-selectbox" id="variableCategoryId" onchange="loadVariable()">
+                                                                        <option value="allcategories">All Categories</option>
+                                                                    </select>
+                                                                </div>    
+                                                            </div>
+                                                            <!-- Variable List Table -->
+                                                            <table width="100%" border="0" class="popup-table" id="load-master-variable"></table>
+                                                            <!-- -->
+                                                            <div class="pagi-wrap">
+                                                                <div class="pull-right">
+                                                                  <!-- Pagination Start -->
+                                                                    <div class="gigantic pagination-variable" id="pg2">
+                                                                        <a href="#" class="first" data-action="first">First</a>
+                                                                        <a href="#" class="previous" data-action="previous"><span></span></a>
+                                                                        <input type="text" readonly="readonly" class="page-field"/>
+                                                                        <a href="#" class="next" data-action="next"><span></span></a>
+                                                                        <a href="#" class="last" data-action="last">Last</a>
+                                                                        <div class="pagi-goto"><span>Go to</span> <input type="text" class="goto-field" value="" id="pg-variable-goto" onchange="variablePaginationGoTo();"/></div>
+                                                                    </div>
+                                                                <!-- Pagination Start -->  
+                                                                </div>
+                                                            </div>
+                                                            <!-- -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="panel">
+                                            <a data-toggle="collapse" data-target="#pop-myvar" data-parent="#accordion" class="pop-acc-title acc-act">My Variables <span class="acc-arrow"></span></a>
+                                            <div id="pop-myvar" class="collapse pop-acc-content">
+					       <div class="popup-title-wrap" >
+					          <div class="pop-right-title-section">
+						  <p>You can select a maximum of 10 variables, <span id="selected-my-variable-count-title"></span> selected. Click on a Variable to select it</p>
+				 	       </div>
+ 						<!--  MY Variables   -->
+						   <div class="popup-content-wrap clearfix">
+                                                	<div class="popup-leftpanel">
+                                                        <div class="variable-list-sec">
+                                                            <h5 class="variable-title">Selected Variables<span id="selected-my-variable-count"></span></h5>
+                                                            <table border="0" width="100%" class="variable-table" id="selected-my-variable"></table>
+                                                        </div>
+                                                        <span class="pop-leftbottom-con">you can remove a variable from the list by clicking the trash icon next to it.</span>
+                                                    	</div>
+                                                	<div class="popup-rightpanel">
+                                                    	<div class="popup-right-content-sec"><!-- Variable List Table -->
+                                                                
+                                                        	<!-- Category -->
+                                                        	<div class="category-wrap">
+                                                                <h4 class="pop-left-head">Selected Template</h4>
+                                                                <div class="popup-selectbox-sec">
+                                                                    <select class="custom_selectbox popup-selectbox" id="myVariableTempId" onchange="loadMyVariable()">
+                                                                    </select>
+                                                                </div>    
+                                                            </div>
+                                                            <!-- My Variable List Table -->
+                                                            <table width="100%" border="0" class="popup-table" id="load-master-myvariable"></table>
+                                                            <!-- -->
+                                                            <div class="pagi-wrap">
+                                                                <div class="pull-right">
+                                                                    <!-- Pagination Start -->
+                                                                    <div class="gigantic pagination-myvariable" id="myvar_pg1">
+                                                                        <a href="#" class="first" data-action="first">First</a>
+                                                                        <a href="#" class="previous" data-action="previous"><span></span></a>
+                                                                        <input type="text" readonly="readonly" class="page-field"/>
+                                                                        <a href="#" class="next" data-action="next"><span></span></a>
+                                                                        <a href="#" class="last" data-action="last">Last</a>
+                                                                        <div class="pagi-goto"><span>Go to</span> <input type="text" class="goto-field" id="pg-myvar-goto" onchange="myVariablePaginationGoTo()" value=""/></div>
+                                                                    </div>
+                                                                    <!-- Pagination Start -->  
+                                                                </div>
+                                                            </div>
+                                                            <!-- -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+					        <!--  MY Variables   --> 						
+                                            </div>
+                                        </li>
+                                    </ul>
+                                     <div class="button-wrap" style="text-align:left;">
+                                        <button type="button" class="btn btn-primary btn-red" data-toggle="button" data-dismiss="modal" onclick="applySelectedVariable();">Apply</button>
+                                        <button type="button" class="btn btn-primary btn-gray" data-toggle="button" data-dismiss="modal" onclick="cancelSelection();">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Contextual Variables List -->
+
+                    <ul class="nav navbar-nav item-panel-list2">
+			<li>
+				<ul class="nav navbar-nav item-panel-list2" id="tableId"></ul>
+			</li>
+                    </ul>
+                </div>
+		<!-- My Variables start -->
+                <div class="item-panel" id="my-var">
+                   <h5 class="left-con-head">My Variables<a href="#" class="add" data-toggle="modal" data-target=".contextual-variable" title="My Variables" onclick="myVarClick();"></a></h5>
+                   <!-- Pop Up Panel-->
+                   <!-- My Variables Content -->
+                   <ul class="nav navbar-nav item-panel-list2">
+                      <li>
+                         <ul class="nav navbar-nav item-panel-list2" id="myVariableListId"></ul>
+                      </li>
+                   </ul>
+                </div>
+		<!-- My Variables end -->
+            </div>
+            <!--Main body right panel -->
+
+            <div class="col-md-7-5 right-panel">
+            	<!--div class="title-wrap-region">
+                    <ol class="breadcrumb" id="breadcrumb_id">
+                    </ol>
+
+		    <div id='help-popover'>
+			<a class="help" data-toggle="tooltip" data-placement="left" data-popover="true" data-html=true data-content="
+				Region allows you to compare a set of contiguous regions within a selected geography along a selected dimension.For example, 
+				compare all Districts within a State or all Taluks within a District by Population. <br><br>
+				To add or change contextual variables in the list available in the menu,<br> click the + button next to Contextual variables.<br><br>
+				<strong>Choropleth Map</strong><br><br>
+				&nbsp;&nbsp;The color of the sub-region represents its value. You can:<br>
+				&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;Hover over an area to see its name and value. <br>
+				&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;Right click to see a snapshot of the sub-region across the contextual variables in your list.<br>
+				&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;Click on a sub-region to drill down to the next level.  <br><br>
+				<strong>Bar Graphs</strong><br><br>
+				In this view each bar represents a sub-region of the overall selection. 
+				Hover over the bar to see the name of the place and its value." id="help"></a></div>
+
+                </div -->
+                <div style="height: 53px; overflow: hidden;"><h2 class="page-title"><font id="spacialcontent"></font>&nbsp;<span class="explore-page-title" id="fieldDetails"></span></h2>		
+                </div>		
+                <div class="right-content-panel"><!-- Right Panel Body -->
+                    <!--div class="col-lg-6">
+		        <div id="sales-perfomance1" class="cc">
+			</div>
+
+			<div style="display:none">
+				<div id="line" class="cc">
+				</div>
+			</div>
+
+                    </div-->
+                    <div class="col-lg-6">
+
+			<select id="time_type" style="display:none;"  onchange="timeTypeChange();" width="100px;"></select><!--  -->
+                    	<div class="tab-sec correlate-tab clearfix">
+				
+				     
+
+                        	<div class="calendar-wrap">
+                            	<div class="calendar-sec">
+                                	<label class="label-field">From</label>
+                                    <input id="date_from" type="text" name="Name" placeholder="Date" class="date-field" />
+                                </div>
+                                <div class="calendar-sec">
+                                	<label class="label-field">To</label>
+                                    <input id="date_to" type="text" name="Name" placeholder="Date" class="date-field" />
+                                </div>
+                            </div>
+
+
+
+			 &nbsp;<input type="button" value="Apply" class="link-button link-button-red upload-button" id="apply_button1" onclick="hashUpdate();"/>
+			<a id="normalizeId" onclick="yaxisChange();" style="padding-left:180px;color:#B7B7B7;" class="" value="Normalize" >Normalize</a>
+
+			<ul class="nav nav-tabs rightpanel-map-tab" role="tablist">
+                                <li id="line_chart" class="active"><a href="#line" role="tab" data-toggle="tab" id="tab-map"  onclick="chartChange('line');" title="Line">Line</a></li>
+                                <li class=""><a href="#stacked" role="tab" data-toggle="tab" id="tab-grid" onclick="chartChange('stack');" title="Stacked Lines">Stacked Lines</a></li>
+			</ul>
+		
+			<div class="nav nav-tabs rightpanel-map-tab" style="display:none;" data-toggle="buttons" >
+			   <label class="btn btn-primary active" id="line" onclick="chartChange('line');">
+			   <input type="radio" name="options" > Line Chart
+			   </label>
+			   <label class="btn btn-primary" id="area" onclick="chartChange('stack');">
+			   <input type="radio" name="options" > Stacked Chart
+			   </label>
+			</div>
+				<div class="col-md-10 col-md-offset-1" style="margin-left: 0px;width: 75.5%" id="chart">
+				</div>
+				<div id="legend" class="trend-legend-content"></div>
+                    	<!-- -->
+                         
+                    <!-- -->
+                    </div>
+                </div>
+                <div class="button-wrap"><!-- Right Panel Button -->
+                	<!--<button type="button" class="btn btn-primary btn-red" data-toggle="button">Save</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- canvas -->
+<!-- Pop Up Panel my-save-->
+          <div class="modal fade my-save" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                <!-- Close -->
+                <div class="</div>">
+		<form id="ajaxform" action="/app/post_image_pins/" method="post" >{% csrf_token %}
+		    <table width="100%" cellpadding="4" cellspacing="4">
+		        <tr>
+			    <td colspan="2" align="center">
+			        <h3 id="idSavedImage"></h3>
+			    </td>
+			</tr>
+		        <tr>
+		            <td width="50%">
+			        <canvas id="canvas"></canvas>
+			    </td>
+		            <td width="50%" style="vertical-align: middle;" align="center">
+			        <textarea rows="3" cols="25" id="pin-form-description" name="description" placeholder="Description" class="text-field"></textarea><br><br>
+		                <input type="hidden" id="pin-form-tags" name="tags" value="Saved_Image" placeholder="Tags">
+                  	        <input type="hidden" id="pin-form-image" name="image">
+		                <input type="hidden" id="imgWidth" name="width">
+             	                <input type="hidden" id="imgHeight" name="height">
+		                <input type="hidden" id="pathName" name="pathName">
+				<!--<input type="submit" class="btn btn-primary btn-red" value="Save Image" />-->
+				<input type="button" class="btn btn-primary btn-red" value="Save Image" onclick="applySaveImage()" />
+		            </td>
+		        </tr>
+		    </table>
+		</form>	
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- canvas -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...<!-- Button trigger modal -->
+							<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
+							  Launch demo modal
+							</button>
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sagittis tempus nisi, aliquet dignissim neque viverra at. Etiam feugiat lectus a interdum commodo. Ut posuere massa sed ornare faucibus. Etiam non nibh at ante convallis convallis at porttitor sem. Nulla gravida lorem ornare est vestibulum fermentum. Phasellus id felis id sapien interdum pharetra. Pellentesque vitae nunc cursus nunc sagittis hendrerit vel ut mi. Duis commodo sodales blandit. Suspendisse placerat elementum vehicula. Morbi a congue mi, sit amet rhoncus turpis. Nulla non metus et ipsum pharetra pharetra quis vitae enim. Sed pellentesque lectus sed varius fringilla. Quisque fringilla velit a dictum blandit. Fusce blandit rhoncus diam. Ut condimentum vitae erat in blandit.
+
+Nullam leo nisi, molestie in lacus vitae, dictum ornare leo. Fusce libero tortor, semper sit amet convallis eu, rutrum quis velit. Fusce eget odio purus. Integer ut quam luctus, aliquet augue quis, cursus arcu. Aenean vitae luctus magna, at blandit massa. Vivamus semper pellentesque magna, quis facilisis felis ultrices lobortis. Maecenas ac pellentesque turpis. Proin ac volutpat augue, sed elementum nunc. Sed non arcu est. Maecenas non arcu accumsan, accumsan erat vitae, tristique est. Sed vel scelerisque felis. Phasellus mattis risus in dolor placerat, a auctor tortor vestibulum. Nulla facilisi. Sed suscipit malesuada enim quis facilisis. Cras dictum magna id diam interdum, molestie lacinia arcu fermentum.
+
+Vestibulum elementum augue massa, vitae hendrerit neque blandit non. Quisque posuere dapibus purus, at tincidunt eros facilisis et. Fusce ac quam urna. Nullam a sodales lorem. Integer semper eu justo vulputate congue. Nunc lobortis mauris nisl, malesuada tincidunt orci vestibulum quis. Sed in nisl tempus, convallis eros id, tincidunt magna. Curabitur pretium dolor sed ante eleifend lobortis. Sed lacinia, dui sed posuere vestibulum, mi turpis pharetra ipsum, id sagittis ipsum sem aliquam magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec eget faucibus risus. Sed pulvinar sem vitae elit porttitor, nec rhoncus est malesuada.
+
+Phasellus velit dolor, viverra quis aliquam in, auctor at turpis. Fusce est purus, tempus eget dolor in, molestie faucibus quam. Pellentesque metus elit, mollis vitae ante ut, hendrerit mattis neque. Donec vitae luctus leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ut ligula eget dolor posuere cursus. Pellentesque ultrices a leo id aliquet.
+
+Praesent aliquet sed orci sed fermentum. Proin fringilla id lorem vel egestas. Quisque id tempor risus. Mauris blandit ultrices nulla id vehicula. Vivamus nulla nisi, iaculis vel est non, convallis varius justo. Sed condimentum eget velit eget tempor. Suspendisse posuere tellus diam, et blandit nisi mattis in. In at facilisis felis. Phasellus gravida nec nunc eget molestie. Proin vitae mollis neque. Nam sollicitudin sed massa sed consequat. Nullam lacus purus, euismod vel placerat sit amet, malesuada et eros. Aliquam erat volutpat.
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sagittis tempus nisi, aliquet dignissim neque viverra at. Etiam feugiat lectus a interdum commodo. Ut posuere massa sed ornare faucibus. Etiam non nibh at ante convallis convallis at porttitor sem. Nulla gravida lorem ornare est vestibulum fermentum. Phasellus id felis id sapien interdum pharetra. Pellentesque vitae nunc cursus nunc sagittis hendrerit vel ut mi. Duis commodo sodales blandit. Suspendisse placerat elementum vehicula. Morbi a congue mi, sit amet rhoncus turpis. Nulla non metus et ipsum pharetra pharetra quis vitae enim. Sed pellentesque lectus sed varius fringilla. Quisque fringilla velit a dictum blandit. Fusce blandit rhoncus diam. Ut condimentum vitae erat in blandit.
+
+Nullam leo nisi, molestie in lacus vitae, dictum ornare leo. Fusce libero tortor, semper sit amet convallis eu, rutrum quis velit. Fusce eget odio purus. Integer ut quam luctus, aliquet augue quis, cursus arcu. Aenean vitae luctus magna, at blandit massa. Vivamus semper pellentesque magna, quis facilisis felis ultrices lobortis. Maecenas ac pellentesque turpis. Proin ac volutpat augue, sed elementum nunc. Sed non arcu est. Maecenas non arcu accumsan, accumsan erat vitae, tristique est. Sed vel scelerisque felis. Phasellus mattis risus in dolor placerat, a auctor tortor vestibulum. Nulla facilisi. Sed suscipit malesuada enim quis facilisis. Cras dictum magna id diam interdum, molestie lacinia arcu fermentum.
+
+Vestibulum elementum augue massa, vitae hendrerit neque blandit non. Quisque posuere dapibus purus, at tincidunt eros facilisis et. Fusce ac quam urna. Nullam a sodales lorem. Integer semper eu justo vulputate congue. Nunc lobortis mauris nisl, malesuada tincidunt orci vestibulum quis. Sed in nisl tempus, convallis eros id, tincidunt magna. Curabitur pretium dolor sed ante eleifend lobortis. Sed lacinia, dui sed posuere vestibulum, mi turpis pharetra ipsum, id sagittis ipsum sem aliquam magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec eget faucibus risus. Sed pulvinar sem vitae elit porttitor, nec rhoncus est malesuada.
+
+Phasellus velit dolor, viverra quis aliquam in, auctor at turpis. Fusce est purus, tempus eget dolor in, molestie faucibus quam. Pellentesque metus elit, mollis vitae ante ut, hendrerit mattis neque. Donec vitae luctus leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ut ligula eget dolor posuere cursus. Pellentesque ultrices a leo id aliquet.
+
+Praesent aliquet sed orci sed fermentum. Proin fringilla id lorem vel egestas. Quisque id tempor risus. Mauris blandit ultrices nulla id vehicula. Vivamus nulla nisi, iaculis vel est non, convallis varius justo. Sed condimentum eget velit eget tempor. Suspendisse posuere tellus diam, et blandit nisi mattis in. In at facilisis felis. Phasellus gravida nec nunc eget molestie. Proin vitae mollis neque. Nam sollicitudin sed massa sed consequat. Nullam lacus purus, euismod vel placerat sit amet, malesuada et eros. Aliquam erat volutpat.
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+  <!-- snapshot Pop Up Panel-->
+	<input type="button" value="click" data-toggle="modal" data-target=".snapshot-popup" id="snapshot-popup-id" style="display:none">
+          <!-- Pop Up Panel-->
+          <div class="modal fade snapshot-popup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content" style="height:550px;">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                <!-- Close -->
+                <div class="</div>">
+			<div id="canvas_custom"></div>	
+                </div>
+              </div>
+            </div>
+          </div>
+	
+  <!-- snapshot Pop Up Panel-->
+
+ <!-- popup tooltip -->
+          <div id="stickytooltip" class="stickytooltip">
+            <div class="sticky-tool-inner" id="sticky-tool-inner" >
+                <!-- -->
+            </div>
+        </div>
+	 <div class="stickytooltip2">
+          	<div class="st-arrow"></div>
+          </div>	
+ <!-- popup tooltip -->
+{% include "footer.html" %}  
+<script type="text/javascript" src="/static/trend/lib/chart.js"></script>
+<script type="text/javascript" src="/static/common_js/common_variable.js"></script>
+<script>
+      VIZ.onResize();
+      $(window).on("resize", function() {
+        VIZ.onResize();
+      });
+</script>
+<script type="text/javascript" src="/static/trend/explorer-trend.js"></script>
+</body>
+<style>
+      /*body {
+        font: 9px sans-serif;
+        color: #121401;
+      }* /
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #121401;
+        stroke-width: 2px;
+        shape-rendering: crispEdges;
+      }*/
+	.axis path, .axis line {
+  	  fill: none;
+	  stroke: #9B9C95;
+	  stroke-width: 1px;
+	  shape-rendering: crispEdges;
+	}
+      .point {
+        stroke: grey;
+        stroke-width: 3px;
+        opacity: 0;
+      }
+      .point:hover{
+        opacity: .5;
+      }
+      .btn-group {
+        padding-left: 60px;
+      }
+    </style>
+</html>
+
+
+

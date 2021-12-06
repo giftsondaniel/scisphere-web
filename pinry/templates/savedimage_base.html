@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+{% load compress %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Scisphere</title>
+    <meta name="description" content="Mobile data collection made easy. formhub is built on a belief that data collection and analysis should be fast, flexible and reliable. And open source, of course.">
+    <meta name="author" content="">
+    <meta name="google-site-verification" content="8pAiKPreksD8GiYnSCtWm9QG3i6wyuKg7E2Y95RTzRM" />
+<!-- css -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/screen.css?v=2809679b01" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet"> <!--elango -->
+    <link href="/static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- mail task assign popup -->
+    <!--<script src="/static/js/jquery/1.7.1/jquery.min.js"></script>-->
+    <script type="text/javascript" src="/static/js/jquery.reveal.js"></script>
+    <link rel="stylesheet" href="/static/css/reveal.css">
+
+    {% block additional-headers %}{% endblock %}
+<!-- css -->
+
+        {%  if request.resolver_match.kwargs.user %}
+            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/user/{{ request.resolver_match.kwargs.user }}/">
+        {% elif request.resolver_match.kwargs.tag %}
+            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/tag/{{ request.resolver_match.kwargs.tag }}/">
+        {% else %}
+            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/">
+        {% endif %}
+
+        <!--  ___                     ___           ___                 
+             /  /\      ___          /__/\         /  /\          ___   
+            /  /::\    /  /\         \  \:\       /  /::\        /__/|  
+           /  /:/\:\  /  /:/          \  \:\     /  /:/\:\      |  |:|  
+          /  /:/~/:/ /__/::\      _____\__\:\   /  /:/~/:/      |  |:|  
+         /__/:/ /:/  \__\/\:\__  /__/::::::::\ /__/:/ /:/___  __|__|:|  
+         \  \:\/:/      \  \:\/\ \  \:\~~\~~\/ \  \:\/:::::/ /__/::::\  
+          \  \::/        \__\::/  \  \:\  ~~~   \  \::/~~~~     ~\~~\:\ 
+           \  \:\        /__/:/    \  \:\        \  \:\           \  \:\
+            \  \:\       \__\/      \  \:\        \  \:\           \__\/
+             \__\/                   \__\/         \__\/             -->
+
+       <!-- <title>{% block title %}Pinry{% endblock %}</title>-->
+
+        <!-- CSS -->
+        <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>-->
+
+
+        {% compress css %}
+            <link rel="stylesheet" href="/static/pinry/vendor/bootstrap/3.0.0/css/bootstrap.css"/>
+            <link rel="stylesheet" href="/static/pinry/vendor/fineuploader/3.1.1/fineuploader.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/messages.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/lightbox.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/pinry.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/pin_popup.css"/>
+        {%  endcompress %}
+        {% compress css inline %}
+            {% block extra_css %}{% endblock %}
+        {% endcompress %}
+        <!-- End CSS -->
+
+        <!-- Start JavaScript Variables -->
+        <script>
+        var apiLimitPerPage = {{ API_LIMIT_PER_PAGE }},
+            errors = {% if not messages %}null,{% else %}[
+                {% for message in messages %}{
+                    tags: "{{ message.tags }}",
+                    text: "{{ message }}"
+                }{% endfor %}
+            ],{% endif %}
+            currentUser = {
+                id: "{{ user.id }}",
+                username: "{{ user.username }}",
+                gravatar: "{{ user.gravatar }}"
+            },
+            pinFilter = "{{ request.resolver_match.kwargs.pin }}",
+            tagFilter = "{{ request.resolver_match.kwargs.tag }}",
+            userFilter = "{{ request.resolver_match.kwargs.user }}";
+        </script>
+
+        <!-- End JavaScript Variables -->
+
+     </head>
+     <body>
+
+{% include "topbar.html"%}
+<br>
+        <!-- End Navigation -->
+
+        <!-- Messages -->
+        <ul id="messages"></ul>
+        <!-- End Messages -->
+
+
+        <!-- Content -->
+        {% block yield %}{% endblock %}
+        <!-- End Content -->
+
+        <!-- Templates -->
+        {% include "includes/messages.html" %}
+        {% include "includes/lightbox.html" %}
+        {% include "includes/pins.html" %}
+        {% include "includes/pin_form.html" %}
+        {% block extra_templates %}{% endblock %}
+        <!-- End Templates -->
+
+        <!-- JavaScript -->
+        {% compress js %}
+            <script src="/static/pinry/vendor/jquery/2.0.3/jquery-2.0.3.js"></script>
+	    <script src="/static/pinry/vendor/jquery/2.0.3/jquery-dateFormat.min.js"></script>
+            <script src="/static/pinry/vendor/fineuploader/3.1.1/jquery.fineuploader.js"></script>
+            <script src="/static/pinry/vendor/bootstrap/3.0.0/js/bootstrap.js"></script>
+            <script src="/static/pinry/vendor/handlebars/1.0.0/handlebars.js"></script>
+	    <script src="/static/pinry/vendor/jquery/2.0.3/moment.min.js"></script>
+            <script src="/static/pinry/js/helpers.js"></script>
+            <script src="/static/pinry/js/messages.js"></script>
+            <script src="/static/pinry/js/lightbox.js"></script>
+            <script type="text/javascript">
+$(window).load(function() {
+    /**
+     * tileLayout will simply tile/retile the block/pin container when run. This
+     * was put into a function in order to adjust frequently on screen size 
+     * changes.
+     */
+    window.tileLayout = function() {
+        console.log("* tileLayout *")
+        var blockContainer = $('#pins'),
+            blocks = blockContainer.children('.pin'),
+            blockMargin = 15,
+            blockWidth = 240,
+            rowSize = Math.floor(blockContainer.width()/(blockWidth+blockMargin)),
+            colHeights = [],
+            rowMargins = [],
+            marginLeft = 0;
+
+        // Fill our colHeights array with 0 for each row we have
+        for (var i=0; i < rowSize; i++) colHeights[i] = 0;
+        // Fill out our rowMargins which will be static after this
+        for (var i=0; i < rowSize; i++) {
+            // Our first item has a special margin to keep things centered
+            if (i == 0) rowMargins[0] = (blockContainer.width()-rowSize*(blockWidth+blockMargin))/2;
+            else rowMargins[i] = rowMargins[i-1]+(blockWidth+blockMargin);
+        }
+        // Loop through every block
+        for (var b=0; b < blocks.length; b++) {
+            // Get the jQuery object of the current block
+            block = blocks.eq(b);
+            // Position our new pin in the shortest column
+            var sCol = 0;
+            for (var i=0; i < rowSize; i++) {
+                if (colHeights[sCol] > colHeights[i]) sCol = i;
+            }
+            block.css({
+                'margin-left': rowMargins[sCol],
+                'margin-top':  colHeights[sCol],
+            });
+            block.fadeIn(300);
+            colHeights[sCol] += block.height()+(blockMargin);
+        }
+
+        // Edit pin if pencil icon clicked
+        $('.glyphicon-pencil').each(function() {
+            var thisPin = $(this);
+            $(this).off('click');
+            $(this).click(function() {
+                $(this).off('click');
+                pinForm($(this).data('id'));
+            });
+        });
+
+        // Share pin if pencil icon clicked
+        $('.glyphicon-share').each(function() {
+            var thisPin = $(this);
+            $(this).off('click');
+            $(this).click(function() {
+                $(this).off('click');
+                pinForm($(this).data('id'));
+            });
+        });
+
+        // Delete pin if trash icon clicked
+        $('.glyphicon-trash').each(function() {
+            var thisPin = $(this);
+            $(this).off('click');
+            $(this).click(function() {
+                $(this).off('click');
+                var promise = deletePinData($(this).data('id'));
+                promise.success(function() {
+                    thisPin.closest('.pin').remove();
+                    tileLayout();
+                });
+                promise.error(function() {
+                    message('Problem deleting image.', 'alert alert-error');
+                });
+            });
+        });
+
+        // Show edit-buttons only on mouse over
+        $('.pin').each(function(){
+            var thisPin = $(this);
+            thisPin.find('.editable').hide();
+            thisPin.off('hover');
+            thisPin.hover(function() {
+                thisPin.find('.editable').stop(true, true).fadeIn(300);
+            }, function() {
+                thisPin.find('.editable').stop(true, false).fadeOut(300);
+            });
+        });
+
+        $('.spinner').css('display', 'none');
+        blockContainer.css('height', colHeights.sort().slice(-1)[0]);
+    }
+
+    /**
+     * On scroll load more pins from the server
+     */
+    window.scrollHandler = function() {
+        var windowPosition = $(window).scrollTop() + $(window).height();
+        var bottom = $(document).height() - 100;
+        if(windowPosition > bottom) loadPins();
+    }
+
+    /**
+     * Load our pins using the pins template into our UI, be sure to define a
+     * offset outside the function to keep a running tally of your location.
+     */
+    function loadPins() {
+        console.log("* loadpins *")
+        // Disable scroll
+        $(window).off('scroll');
+
+        // Show our loading symbol
+        $('.spinner').css('display', 'block');
+
+        // Fetch our pins from the api using our current offset
+        var apiUrl = '/api/v1/pin/?format=json&order_by=-id&offset='+String(offset);
+        if (tagFilter) apiUrl = apiUrl + '&tag=' + tagFilter;
+        //if (userFilter) apiUrl = apiUrl + '&submitter__username=' + userFilter;
+        //if(tagFilter == ""){
+        //if (currentUser.username) apiUrl = apiUrl + '&submitter__username=' + currentUser.username;
+        //}
+        if (currentUser.username) apiUrl = apiUrl + '&submitter__username=' + currentUser.username + '&tag=Saved_Image';
+        $.get(apiUrl, function(pins) {
+            // Set which items are editable by the current user
+            for (var i=0; i < pins.objects.length; i++) 
+                pins.objects[i].editable = (pins.objects[i].submitter.username == currentUser.username);
+
+            // Use the fetched pins as our context for our pins template
+            var template = Handlebars.compile($('#pins-template').html());
+            var html = template({pins: pins.objects});
+            // Append the newly compiled data to our container
+            $('#pins').append(html);
+
+            // We need to then wait for images to load in and then tile
+            tileLayout();
+            lightbox();
+            $('#pins').ajaxStop(function() {
+                $('img').load(function() {
+                    $(this).fadeIn(300);
+                });
+            });
+
+            if (pins.objects.length < apiLimitPerPage) {
+                $('.spinner').css('display', 'none');
+                /*if ($('#pins').length != 0) {
+                    var theEnd = document.createElement('div');
+                    theEnd.id = 'the-end';
+                    $(theEnd).html('&mdash; End &mdash;');
+                    $(theEnd).css('padding', 50);
+                    $('body').append(theEnd);
+                }*/
+            } else {
+                $(window).scroll(scrollHandler);
+            }
+        });
+
+        // Up our offset, it's currently defined as 50 in our settings
+        offset += apiLimitPerPage;
+    }
+
+
+    // Set offset for loadPins and do our initial load
+    var offset = 0;
+    loadPins();
+
+    // If our window gets resized keep the tiles looking clean and in our window
+    $(window).resize(function() {
+        tileLayout();
+        lightbox();
+    })
+});
+
+     
+</script>
+            <script src="/static/pinry/js/pin-form.js"></script>
+            <script src="/static/pinry/js/jquery.cookie.js"></script>
+        {% endcompress %}
+	    <script type="text/javascript">
+	
+		Handlebars.registerHelper('dateFormat', function(context, block) {
+	 	  if (window.moment) {
+	   	     var f = block.hash.format || "YYYY-MM-DD";
+	   	     return moment(context).fromNow();
+		  }else{
+		    return context;   //  moment plugin not available. return data as is.
+		  };
+		});
+	    </script>
+        {% compress js inline %}
+            {% block extra_js %}{% endblock %}
+        {% endcompress %}
+        <!-- End JavaScript -->
+  {% include "side_menu.html" %} <!-- added side menu-->
+  {% include "footer.html" %}
+    </body>
+</html>
+

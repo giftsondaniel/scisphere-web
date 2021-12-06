@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript" src="/static/js/jquery.tinycarousel.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#logo-wrap').floatScroll({positionTop:0});
+	$('.demo-video-thumb').tinycarousel();
+	/*-- --*/
+	$('.demo-main-video-sec .video-container').css({'display':'none'});
+	$('.demo-main-video-sec #video-container-1').css({'display':'block'});
+	$('.demo-video-thumb .video-thumbs:first').addClass('active');
+	
+	$('.demo-video-thumb .video-thumbs').click(function(e) {
+		$('.demo-video-thumb .video-thumbs').removeClass('active');
+        $(this).addClass('active');
+		var id_val = $(this).attr('id');
+		var id_no = id_val.substr(13);
+		$('.demo-main-video-sec .video-container').css({'display':'none'});
+		$('.demo-main-video-sec #video-container-'+id_no).css({'display':'block'});
+		var vid_name = $('.demo-main-video-sec #video-container-'+id_no+ ' Iframe').attr('name');
+		$('.demo-main-video-sec .demo-video-frame').attr('src','');
+		$('.demo-main-video-sec #video-container-'+id_no+' .demo-video-frame').attr('src','https://www.youtube.com/embed/'+vid_name+'?rel=0&autoplay=1');
+    });
+	/*-- --*/
+	$('.demo-video-thumb .video-thumbs .video-overlay').fadeOut(0);
+	$('.demo-video-thumb .video-thumbs').hover(function(e) {
+        $(this).find('.video-overlay').stop().fadeIn(300);
+    }, function(){$(this).find('.video-overlay').stop().fadeOut(100);});
+	/*-- --*/
+	$('.demo-video-thumb .video-thumbs').click(function(event) {
+		event.preventDefault();
+    });
+	/*-- Carousel Next Prev --*/
+	$('.demo-carousel-next').click(function(e) {
+		var p = $('.demo-main-thumb-sec .demo-video-thumb ul li.active').attr('id');
+		var id_no = p.substr(13);
+		var valnew = parseInt(id_no)+1;
+		$('.demo-video-thumb .video-thumbs').removeClass('active');
+		$('.demo-video-thumb #video-thumbs-'+valnew).addClass('active');
+		$('.demo-main-video-sec .video-container').css({'display':'none'});
+		$('.demo-main-video-sec #video-container-'+valnew).css({'display':'block'});
+		var vid_name = $('.demo-main-video-sec #video-container-'+valnew+ ' Iframe').attr('name');
+		$('.demo-main-video-sec .demo-video-frame').attr('src','');
+		$('.demo-main-video-sec #video-container-'+valnew+' .demo-video-frame').attr('src','https://www.youtube.com/embed/'+vid_name+'?rel=0&autoplay=1');
+    });
+	$('.demo-carousel-prev').click(function(e) {
+		var p = $('.demo-main-thumb-sec .demo-video-thumb ul li.active').attr('id');
+		var id_no = p.substr(13);
+		var valnew = parseInt(id_no)-1;
+		$('.demo-video-thumb .video-thumbs').removeClass('active');
+		$('.demo-video-thumb #video-thumbs-'+valnew).addClass('active');
+		$('.demo-main-video-sec .video-container').css({'display':'none'});
+		$('.demo-main-video-sec #video-container-'+valnew).css({'display':'block'});
+		var vid_name = $('.demo-main-video-sec #video-container-'+valnew+ ' Iframe').attr('name');
+		$('.demo-main-video-sec .demo-video-frame').attr('src','');
+		$('.demo-main-video-sec #video-container-'+valnew+' .demo-video-frame').attr('src','https://www.youtube.com/embed/'+vid_name+'?rel=0&autoplay=1');
+		
+    });
+	/*-- --*/
+});
+</script>
+</head>
+
+<body>
+<header class="home-header" id="logo-wrap">
+  <div class="logo-wrap" >
+    <div class="container pos-rel">
+      <div class="pull-left"> <a href="/index.html" class="logo" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+      <div class="pull-right">
+        <div class="logo-wrap-top">
+          <div class="link-sec pull-right"> 
+          	<p class="pull-left sec-1">
+                <span class="cus-text">Customer Support</span> 
+                <span class="cus-no">+91 44 42148631</span> 
+            	<a href="/accounts/login/" class="link-button link-button-gray" title="Log In">Log In</a>
+            </p>
+            <p class="pull-left">
+                <a href="https://www.facebook.com/pages/SciSphere-India/1480618278894388" target="_blank" title="Facebook" class="sm" id="fb"></a> 
+                <a href="https://twitter.com/SciSphere_India" target="_blank" title="Twitter" class="sm" id="tw"></a> 
+                <a href="http://www.linkedin.com/company/scisphere" target="_blank" title="Linked In" class="sm" id="li"></a> 
+                <a href="https://plus.google.com/u/0/b/105169011525829533656/105169011525829533656/about" target="_blank" title="Google+" class="sm" id="gplus"></a> 
+                <a href="https://www.youtube.com/channel/UCKaH6d6dVZ_HSFKn8jEwYQA" target="_blank" title="Youtube" class="sm" id="youtube"></a>
+            </p>
+          </div>
+        </div>
+        <div class="logo-wrap-bottom">
+          <ul class="nav navbar-nav homemenu pull-right" role="tablist">
+            <li><a href="/index.html?tag=1" name="analytics" title="Products" >Products</a></li>
+            <li><a href="/pricing.html" title="Pricing">Pricing</a></li>
+            <li class="active"><a href="/demos.html" title="Demos">Demos</a></li>
+            <li><a href="/labs.html" title="Labs">Labs</a></li>
+            <li><a href="#" title="Blog">Blog</a></li>
+            <li><a href="/app/contact" title="Contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <a href="/app/signup/" class="link-button link-button-red signup-button" title="Free Sign Up">Free Sign Up</a>
+    </div>
+  </div>  
+</header>
+
+<div class="home-bodysec">
+  <div class="container">
+  	<div class="col-lg-12" >
+        <h3 class="signup-heading">Demos</h3>
+        <div class="col-md-12">
+			<div class="demo-video-wrapper clearfix">
+            	<div class="col-md-12 demo-main-video-sec">
+                	<!-- Video Container 1 -->
+                    <div class="col-md-12 video-container" id="video-container-1">
+                    	<div class="col-md-8 demo-main-video">
+                            <div class="col-md-11">
+                                <iframe frameborder="0" name="pOsVffCNcag" src="https://www.youtube.com/embed/pOsVffCNcag" allowfullscreen class="demo-video-frame"></iframe>
+                            </div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">SciSphere Explore Demo</h3><span class="video-date">Feb 22, 2015</span></div>
+                            <p class="video-desc">This video outlines the features of the Explore features on SciSphere and a potential use case.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 2 -->
+                    <div class="col-md-12 video-container" id="video-container-2">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="XU1MZ3pWWOQ" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Derived Variables on Explore</h3><span class="video-date">Feb 19, 2015</span></div>
+                            <p class="video-desc">Understand the various derived variables on SciSphere and how they are powerful predictors of the success and growth of microeconomies.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 3 -->
+                    <div class="col-md-12 video-container" id="video-container-3">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="MxTHAlRAhXk" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Structure of Branch Performance</h3><span class="video-date">Feb 20, 2015</span></div>
+                            <p class="video-desc">Learn how your branch performance distributes across geographies and why this often reflects economic context rather than internal operation.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 4 -->
+                    <div class="col-md-12 video-container" id="video-container-4">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="_BKi12igycg" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Our Location Selection Model</h3><span class="video-date">Feb 20, 2015</span></div>
+                            <p class="video-desc">Understand how our nonlinear machine learning location selection model works.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 5 -->
+                    <div class="col-md-12 video-container" id="video-container-5">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="VktLtvBEf88" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Location Analytics on SciSphere</h3><span class="video-date">Feb 19, 2015</span></div>
+                            <p class="video-desc">See how you can quickly use the results of our location selection models on SciSphere to shortlist places.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 6 -->
+                    <div class="col-md-12 video-container" id="video-container-6">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="iVX4i9fj5AI" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Banking Case Study</h3><span class="video-date">Apr 23, 2013</span></div>
+                            <p class="video-desc">See the potential impact of our location selection analytics in a live case study of a private sector bank.</p>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <!-- Video Container 7 -->
+                    <div class="col-md-12 video-container" id="video-container-7">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="75_7Z9Ve3ZQ" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Microfinance Case Study</h3><span class="video-date">Feb 19, 2015</span></div>
+                            <p class="video-desc">See the potential impact of our location selection analytics in a live case study of a rural microfinance institution. </p>
+                        </div>
+                    </div>
+                    <!-- Video Container 8 -->
+                    <div class="col-md-12 video-container" id="video-container-8">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="JhCyBPErYsk" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Using SciSphere for Branch Selection at Madura Microfinance</h3>
+                            	<span class="video-date">Feb 22, 2015</span></div>
+                            <p class="video-desc">Learn how Madura Microfinance has been using SciSphere.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 9 -->
+                    <div class="col-md-12 video-container" id="video-container-9">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="QOedu9LfWLU" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">SciSphere Analyze</h3><span class="video-date">Feb 20, 2015</span></div>
+                            <p class="video-desc">Understand what goes behind our Analytics feature, start to finish.</p>
+                        </div>
+                    </div>
+                    <!-- -->
+                </div>
+                
+                <div class="col-md-12 demo-main-thumb-sec" >
+                	<div class="demo-video-thumb">
+                    	<span class="buttons prev demo-carousel-prev"></span>
+                    	<div class="viewport">
+                            <ul class="overview">
+                            	<li class="video-thumbs" id="video-thumbs-1">
+                                    <img src="/static/images/demo-video-thumb-1.png" alt="Video Thumb"/>
+                                    <span class="timer">04.11</span>
+                                    <p class="video-overlay"><span class="overlay-title">SciSphere Explore Demo</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-2">
+                                    <img src="/static/images/demo-video-thumb-2.png" alt="Video Thumb"/>
+                                    <span class="timer">07.53</span>
+                                    <p class="video-overlay"><span class="overlay-title">Derived Variables on Explore</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-3">
+                                    <img src="/static/images/demo-video-thumb-3.png" alt="Video Thumb"/>
+                                    <span class="timer">08.50</span>
+                                    <p class="video-overlay"><span class="overlay-title">Structure of Branch Performance</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-4">
+                                    <img src="/static/images/demo-video-thumb-5.png" alt="Video Thumb"/>
+                                    <span class="timer">08.02</span>
+                                    <p class="video-overlay"><span class="overlay-title">Our Location Selection Model</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-5">
+                                    <img src="/static/images/demo-video-thumb-6.png" alt="Video Thumb"/>
+                                    <span class="timer">06.35</span>
+                                    <p class="video-overlay"><span class="overlay-title">Location Analytics on SciSphere</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-6">
+                                    <img src="/static/images/demo-video-thumb-7.png" alt="Video Thumb"/>
+                                    <span class="timer">05.47</span>
+                                    <p class="video-overlay"><span class="overlay-title">Banking Case Study</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-7">
+                                    <img src="/static/images/demo-video-thumb-8.png" alt="Video Thumb"/>
+                                    <span class="timer">01.40</span>
+                                    <p class="video-overlay"><span class="overlay-title">Microfinance Case Study</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-8">
+                                    <img src="/static/images/demo-video-thumb-9.png" alt="Video Thumb"/>
+                                    <span class="timer">01.57</span>
+                                    <p class="video-overlay"><span class="overlay-title">Branch Selection at Madura Microfinance</span></p>
+                                </li>
+                                <li class="video-thumbs" id="video-thumbs-9">
+                                    <img src="/static/images/demo-video-thumb-4.png" alt="Video Thumb"/>
+                                    <span class="timer">11.59</span>
+                                    <p class="video-overlay"><span class="overlay-title">SciSphere Analyze</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="buttons next demo-carousel-next"></span>
+                    </div>
+                </div>
+                
+       	    </div> 
+        </div>
+    </div>
+  </div>
+</div>
+<div class="home-footersec">
+  <div class="container">
+    <div class="col-lg-12">
+    	<p class="footer-content pull-left">
+        	<a href="/dataset.html?tag=1" title="Datasets">Datasets</a>  &nbsp; | &nbsp;
+            <a href="/pricing.html" title="Pricing">Pricing</a>  &nbsp; | &nbsp;
+            <a href="/demos.html" title="Demos">Demos</a>  &nbsp; | &nbsp;
+            <a href="/labs.html" title="Labs">Labs</a>  &nbsp; | &nbsp;
+            <a href="#" title="Blog">Blog</a>  &nbsp; | &nbsp;
+            <a href="/app/contact" title="Contact">Contact</a>  &nbsp; | &nbsp;
+            <a href="/about.html" title="About">About</a>
+        </p>
+        <p class="footer-content pull-right">
+        	<span class="copyright-text">&copy; Copyright 2014 SciSphere, inc. All rights reserved.</span>
+        </p>
+      </div>
+  </div>
+</div>
+<!-- -->
+</body>
+</html>

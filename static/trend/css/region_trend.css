@@ -1,0 +1,161 @@
+/*#footer-container { position: absolute; width: 100%; height: 10px; left: 0px; top:760px; bottom: 0px; } */
+
+.legend_trend {
+	margin: 26.5em 0 0 -7.2em;
+	/*margin: 0.5em 0 0 -7.2em;
+	padding-left:560px;
+	padding-top:400px;*/	
+	width: 20%;
+	font-size: 10px;/*14px;*/
+	height: 20%;
+	z-index:-10;
+}
+
+.comparelegend {
+	margin: 26.5em 0 0 -7.2em;
+	/*margin: 0.5em 0 0 -7.2em;
+	padding-left:560px;
+	padding-top:400px;*/	
+	width: 20%;
+	font-size: 14px;
+	height: 20%;
+	z-index:-10;
+}
+.taluks {
+	fill: none;
+}
+.districts {
+	fill: none;
+	stroke: #fff;
+	stroke-linejoin: round;
+}
+svg {
+	//*position: absolute;
+	/*top: 0px;
+	left: 0;*/
+}
+
+.land-glow use {
+	fill-opacity: 2;
+	filter: url(#blur);
+}
+.land-fill {
+	fill: #fff;
+}
+.state-boundary {
+	fill: none;
+	stroke: #777;
+	stroke-width: .70px;
+}
+.county-boundary {
+	fill: none;
+}
+.land-fill, .county-boundary {
+	stroke: #777;
+	stroke-width: 1.35px;
+}
+.land {
+	/* fill: #fff;*/
+	z-index:999999;
+	/* stroke: #777;
+	stroke-width: 2;*/
+}
+.bar {
+	fill: steelblue;
+}
+
+.bar:hover {
+	fill: red;
+}
+
+.axis {
+	font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	shape-rendering: crispEdges;
+}
+.x.axis path {
+	display: block;
+}
+.y.axis path {
+	display: block;
+}
+#map {
+	/*padding-left: 150px;*/
+	padding-top: 10px;
+}
+#TN_adm3_borders {
+	fill: none;
+	stroke: white;
+	stroke-width: 0.2px;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	pointer-events: none;
+}
+#TN_adm3_borders_final {
+	fill: none;
+	/*pointer-events: auto;*/
+}
+#bar{
+	/*margin-left:510px;
+	padding-top:40px;*/
+	overflow-x:auto;
+	overflow-y:hidden;
+	/*margin-top: -40px;*/
+	margin-left: -45px;
+}
+
+	
+#bar1{
+	/*margin-left:00px;
+	margin-top:100px;*/
+	overflow-x:auto;
+	overflow-y:hidden;
+}	
+
+#barChart{
+	margin-left:50px;
+	overflow-x:auto;
+	overflow-y:hidden;
+}	
+#menuId{
+	width:100%;
+	/*padding-left: 150px; */
+	padding-top: 20px;	
+}	
+
+line {
+	stroke: black;
+}
+/* snapshot option box */
+#my_custom_menu{
+	display:none; 
+	/*height:80px; 
+	width:120px;*/
+	position: absolute;
+	left: 0;
+	top: 3;
+	background-color: #fff;
+	border: 1px #ccc solid;
+	border-radius: 6px;
+	box-shadow: #333 2px 2px 4px;
+	padding: 20px;
+	padding-left: 17px;
+	line-height: 1.5;
+	font-family: arial, helvetica, sans-serif;
+}
+.close-snapshot {
+	font-size: 20px;
+	line-height: .5;
+	position: absolute;
+	top: 5px;
+	right: 4px;
+	color: #aaa;
+	text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+	font-weight: bold;
+	cursor: pointer;
+} 
+/* snapshot option box */

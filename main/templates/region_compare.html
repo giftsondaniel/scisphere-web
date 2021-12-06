@@ -1,0 +1,645 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere | Region</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/explorer.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<script type="text/javascript" src="/static/css/jquery-ui.css"></script> <!-- new added -->
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script><!-- Custom Selectbox -->
+<script type="text/javascript" src="/static/js/jquery.bxslider.js"></script><!-- Bx Slider -->
+<script type="text/javascript" src="/static/js/fancyfields-1.2.min.js" ></script><!-- Custom Checkbox -->
+<script type='text/javascript' src="/static/js/jquery.jqpagination.js"></script><!-- Pagination -->
+
+<script type="text/javascript" src="/static/js/crossfilter.js"></script>
+<script type="text/javascript" src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript" src="/static/js/topojson.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/cartogram.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/jstat.min.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/colorbrewer.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/jquery.ba-bbq.min.js"></script>
+<script type="text/javascript" src="/static/js/bootbox.js"></script>
+<script type="text/javascript" src="/static/js/underscore-min.js"></script>
+<script type="text/javascript" src="/static/js/moment/2.0.0/moment.js"></script>
+<script type="text/javascript" src="/static/js/stickytooltip.js"></script><!-- tooltip for popup on variables -->
+
+<script type="text/javascript" src="/static/region_explorer/lib/region_compare/column-chart.js"></script>
+<script type="text/javascript" src="/static/region_explorer/lib/region_compare/chart.js"></script>
+<script type="text/javascript" src="/static/region_explorer/lib/region_compare/talukChart.js"></script>
+<script type="text/javascript" src="/static/region_explorer/lib/region_compare/fullTalukChart.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	/*-- Sub Header --*/
+	$('.submenu-sec').bxSlider({ slideWidth: 130, minSlides: 3, maxSlides: 5, moveSlides: 1, pager: false });
+	/*-- Custom Selectbox --*/
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+	/*-- Custom Checkbox --*/
+	$(".explore-checkbox").fancyfields();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	/*-- Menu transition --*/
+	$('.user-menu').slideUp(0);
+    $('#drop-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+	
+	/*-- Left Panel Accordian --*/
+	$('.explore-leftpane-acc .panel .acc-head').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$(this).addClass('acc-listact');
+		}
+    });
+	/*-- /Left Panel Accordian --*/
+	/*-- Popup Pagination --*/
+	$('.pagination').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: 1000,
+		paged		: function(page) {
+			$('.log').prepend('<li>Requested page ' + page + '</li>');
+		}
+	});
+	/*-- /Popup Pagination --*/
+	/*-- Popup Accordian Act/Deact --*/
+	$('.popup-accordian > li > a').click(function(e) {
+		if($(this).hasClass('acc-act')){ $(this).removeClass('acc-act');}
+		else{
+			$('.popup-accordian > li > a').removeClass('acc-act');
+			$(this).addClass('acc-act');
+		}
+    });
+	/*-- /Popup Accordian Act/Deact --*/
+	$('.drop-content').stop().slideUp(100);
+	$('.pop-vari-trig').click(function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		$(this).parent('.drop-head').parent('.pop-dropdown-wrap').addClass('pop-dropdown-act');
+		
+		$('.drop-content').stop().slideUp(100);
+		$(this).parent('.drop-head').next('.drop-content').stop().slideDown(200);
+		
+		if($(this).hasClass('pop-vari-trig-act')){
+			$(this).removeClass('pop-vari-trig-act');
+			$('.drop-content').stop().slideUp(100);
+			$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		}else{
+			$('.pop-vari-trig').removeClass('pop-vari-trig-act');
+			$(this).addClass('pop-vari-trig-act');
+		}
+    });
+	$(document).click(function(e) {
+		$('.drop-content').slideUp(100);
+		$('.drop-content').removeClass('pop-vari-trig-act');
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+    });
+	
+	/*-- Left Panel Add button trigger --*/
+	$('.panel .head-sec .add').click(function(event) {
+        var add_id = $(this).attr('id');
+		var id_val = add_id.split(/\-/)[1];
+		$('.pop-acc-title').removeClass('acc-act');
+		$('#acc-'+id_val+'-title').addClass('acc-act');
+		$('.pop-acc-content').removeClass('in');
+		$('.pop-acc-content').css({'height':''});
+		$('#pop-'+id_val).addClass('in');
+		
+    });
+
+
+	/* variable pagination */
+	$variable_table_rows = $('#load-master-variable tbody tr');
+	var variable_table_row_limit = 6;
+	var variableTotalPage = Math.ceil($variable_table_rows.length / variable_table_row_limit);
+	var variable_page_table = function(page) {
+		// calculate the offset and limit values
+		var offset = (page - 1) * variable_table_row_limit,
+			limit = page * variable_table_row_limit;
+		// hide all table rows
+		$variable_table_rows.hide();
+		// show only the n rows
+		$variable_table_rows.slice(offset, limit).show();
+	}
+	if(variableTotalPage==0){
+		variableTotalPage=1;
+	}
+	$('.pagination-variable').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: variableTotalPage,
+		paged		: variable_page_table
+	});
+	/* variable pagination */
+
+	/* myvariable pagination */
+	$myvariable_table_rows = $('#load-master-myvariable tbody tr');
+	var myvariable_table_row_limit = 6;
+	var myvariableTotalPage = Math.ceil($myvariable_table_rows.length / myvariable_table_row_limit);
+	var myvariable_page_table = function(page) {
+		// calculate the offset and limit values
+		var offset = (page - 1) * myvariable_table_row_limit,
+			limit = page * myvariable_table_row_limit;
+		// hide all table rows
+		$myvariable_table_rows.hide();
+		// show only the n rows
+		$myvariable_table_rows.slice(offset, limit).show();
+	}
+	if(myvariableTotalPage==0){
+		myvariableTotalPage=1;
+	}
+	$('.pagination-myvariable').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: myvariableTotalPage,
+		paged		: myvariable_page_table
+	});
+	/* myvariable pagination */
+
+	
+});
+
+
+var orgid = {{orgID}};
+var templatename = "{{templatename}}";
+
+
+function myVariableListDown(){
+	
+	/*-- Left Panel Accordian --*/
+	$('.explore-leftpane-acc .panel .acc-head').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$(this).addClass('acc-listact');
+		}
+    });
+	/*-- /Left Panel Accordian --*/
+	/*-- Popup Pagination --*/
+	$('.pagination').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: 1000,
+		paged		: function(page) {
+			$('.log').prepend('<li>Requested page ' + page + '</li>');
+		}
+	});
+	/*-- /Popup Pagination --*/
+	/*-- Popup Accordian Act/Deact --*/
+	$('.popup-accordian li a').click(function(e) {
+		if($(this).hasClass('acc-act')){ $(this).removeClass('acc-act');}
+		else{
+			$('.popup-accordian li a').removeClass('acc-act');
+			$(this).addClass('acc-act');
+		}
+    });
+	/*-- /Popup Accordian Act/Deact --*/
+	$('.drop-content').stop().slideUp(100);
+	$('.pop-vari-trig').click(function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		$(this).parent('.drop-head').parent('.pop-dropdown-wrap').addClass('pop-dropdown-act');
+		
+		$('.drop-content').stop().slideUp(100);
+		$(this).parent('.drop-head').next('.drop-content').stop().slideDown(200);
+		
+		if($(this).hasClass('pop-vari-trig-act')){
+			$(this).removeClass('pop-vari-trig-act');
+			$('.drop-content').stop().slideUp(100);
+			$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+		}else{
+			$('.pop-vari-trig').removeClass('pop-vari-trig-act');
+			$(this).addClass('pop-vari-trig-act');
+		}
+    });
+	$(document).click(function(e) {
+		$('.drop-content').slideUp(100);
+		$('.drop-content').removeClass('pop-vari-trig-act');
+		$('.pop-dropdown-wrap').removeClass('pop-dropdown-act');
+    });
+	
+	/*-- Left Panel Add button trigger --*/
+	$('.panel .head-sec .add').click(function(event) {
+        var add_id = $(this).attr('id');
+		var id_val = add_id.split(/\-/)[1];
+		$('.pop-acc-title').removeClass('acc-act');
+		$('#acc-'+id_val+'-title').addClass('acc-act');
+		$('.pop-acc-content').removeClass('in');
+		$('.pop-acc-content').css({'height':''});
+		$('#pop-'+id_val).addClass('in');
+    });
+
+}
+
+</script>
+<style>
+/*histogram steelblue*/
+	.bar rect {
+		fill: #B6B6B4;
+		shape-rendering: crispEdges;
+	}
+
+	.bar text {
+		fill: #5F5F5F;
+	}
+
+	.axis path, .axis line {
+		fill: none;
+		stroke: #000;
+		shape-rendering: crispEdges;
+	}
+/*histogram steelblue*/
+	path {
+		fill: none;
+		stroke: black;
+	}
+	line {
+		stroke: black;
+	}
+	tbody,h3{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font: inherit;
+		font-size: 100%;
+		vertical-align: baseline;
+	}
+	.pop-variable-table tr td {
+		padding-right: 30px;
+		border-bottom: 1px solid #ccc;
+	}
+
+</style>
+</head>
+<body>
+<div class="main"> 
+  	<!-- Primary Header  -->
+    {% include "header-primary.html" %}  
+  	<!-- /Primary Header  -->
+  
+  	<!-- Secondary Header -->
+    <header class="navbar sub-header">
+    	<div class="container ">
+        	<div class="submenu-sec">
+                <div class="sub-menu"><a href="{% url 'region_compare' %}" class="active" title="Compare">
+                	<span class="submenu-icon" id="submenu-region"></span>
+                     	<span class="submneu-con">Compare</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+                <div class="sub-menu"><a href="{% url 'region_explorer' %}" title="Region">
+                	<span class="submenu-icon" id="submenu-region"></span>
+                     	<span class="submneu-con">Region</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+                <div class="sub-menu"><a href="{% url 'filters_layers' %}" title="Filter">
+                	<span class="submenu-icon" id="submenu-filter"></span>
+                    	<span class="submneu-con">Filter</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+            	<div class="sub-menu"><a href="{% url 'snapshot' %}" title="Snapshot">
+                	<span class="submenu-icon" id="submenu-snap"></span>
+                    	<span class="submneu-con">Snapshot</span></a>
+		</div>
+                <div class="sub-menu"><a href="{% url 'trend' %}" title="Trend">
+                	<span class="submenu-icon" id="submenu-trend"></span>
+                    	<span class="submneu-con">Trend</span>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+		<div class="sub-menu"><a href="{% url 'correlate' %}" title="Correlate" >
+			<span class="submenu-icon" id="submenu-corr"></span>
+			<span class="submneu-con">Correlate</span> </a>
+                    	<span class="submenu-arrow"></span></a>
+		</div>
+            </div>
+        </div>	
+    </header>
+  	<!-- /Secondary Header -->
+  
+  	<!-- Main body -->
+    <div class="body-sec">
+        <div class="container">
+            <!--Main body left panel -->
+            <div class="col-md-2-5 left-panel explore-left-panel">
+            	<div class="item-panel">
+                    <ul class="nav navbar-nav explore-leftpane-acc" id="accordion">
+                        <li class="panel"> 
+                        	<div class="head-sec">
+                            	<a data-toggle="collapse" aria-expanded="false" data-target="#geo" class="acc-head acc-listact"><span class="arrow"></span>Geography</a>
+                                <a href="#" class="add" id="add-geo" data-toggle="modal" data-target=".left-panel-popup" title="Geography"></a>
+                            </div>
+                            <div id="geo" class="collapse in">
+                            	<div class="group-panel">
+				    <select id="level_0_Id" class="custom_selectbox">
+		                        <option value="0" disabled="true">Select Country</option>
+		                    </select>
+		                    <select id="yearId" onChange="fieldChange()" style="display:none"></select>
+				    <div id="geo-var-sec"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel"> 
+                        	<div class="head-sec">
+                            	<a data-toggle="collapse" aria-expanded="false" data-target="#con-var" class="acc-head acc-listact"><span class="arrow"></span>Contextual Variables</a>
+                                <a href="#" class="add" id="add-contextual" data-toggle="modal" data-target=".left-panel-popup" title="Contextual Variables" onclick='contextClick();'></a>
+                            </div>
+                            <div id="con-var" class="collapse in">
+                            	<ul class="nav navbar-nav item-panel-list2">
+				   <li>
+				      <ul class="nav navbar-nav item-panel-list2" id="tableId"></ul>
+				   </li>
+				</ul>
+                            </div>
+                        </li>
+                        <li class="panel"> 
+                        	<div class="head-sec">
+                            	<a data-toggle="collapse" aria-expanded="false" data-target="#my-variable" class="acc-head acc-listact"><span class="arrow"></span>My Variables</a>
+                                <a href="#" class="add" id="add-variable" data-toggle="modal" data-target=".left-panel-popup" title="My Variables" onclick="myVarClick();"></a>
+                            </div>
+                            <div id="my-var" class="collapse in">
+			       <ul class="nav navbar-nav item-panel-list2">
+				  <li>
+				     <ul class="nav navbar-nav item-panel-list2" id="myVariableListId"></ul>
+				  </li>
+			       </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- Pop Up Panel-->
+                    <div class="modal fade left-panel-popup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                                <div class="clearfix">
+                                	<!-- Popup Panel Body -->
+                                    <div class="popup-body export-popup-body">
+
+                                        <ul class="nav navbar-nav popup-accordian" id="pop-accordion">
+                                          <!-- Geography Panel -->	
+                                          <li class="panel"> 
+                                            <a data-toggle="collapse" data-target="#pop-geo" data-parent="#pop-accordion" href="#" class="pop-acc-title" id="acc-geo-title">Geography<span class="acc-arrow"></span></a>
+                                            <div id="pop-geo" class="collapse pop-acc-content explore-popup-body">
+                                            	<div class="pop-acc-inner">
+                                               		<!-- Popup Title Wrap -->
+                                                    <div class="popup-title-wrap clearfix">
+                                                        <h4 class="title">Select geographical level to compare</h4>
+                                                        <div class="select-wrap1 variable-selectbox" style="width:200px;">
+                                                            <select class="custom_selectbox" id="geo_level" onChange="onLevelChange();">
+                                                                <option value="2">District Level</option>
+                                                                <option value="3">Taluk Level</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /Popup Title Wrap -->
+                                                    <!-- Popup Content Wrap -->
+                                                    <div class="popup-content-wrap" style="min-height:300px;">
+                                                        <!-- Select box Row  -->
+							<table id="geo_content_id"></table>
+                                                        <!-- Select box Row  -->
+                                                    </div>    
+                                                    <!-- /Popup Content Wrap -->
+                                                </div>	
+                                            </div>
+                                          </li>
+                                          <!-- /Geography Panel -->	
+                                          
+                                          <!-- Contextual Variables Panel -->	
+                                          <li class="panel"> 
+                                            <a data-toggle="collapse" data-target="#pop-contextual" data-parent="#pop-accordion" class="pop-acc-title" id="acc-contextual-title">Contextual Variables<span class="acc-arrow"></span> </a>
+                                            <div id="pop-contextual" class="collapse pop-acc-content clearfix" >
+                                              <div class="popup-title-wrap">
+                                                <div class="pop-right-title-section">
+                                                  <p>You can select a maximum of 10 variables, <a class="tot-sel" data-toggle="modal" data-target=".total-select" title="Variables"><span id="selected-variable-count-title"></span> selected</a>.Click on a Variable to add it</p>
+
+
+
+
+							<!-- Search Variable -->
+							      <div class="input-group">
+								<input class="search-field"  type="text" name="search" value="" id="id_search2" placeholder="Search Variable" onchange="textSearch();"onkeyup="this.onchange();" onpaste="this.onchange();"
+											 oninput="this.onchange();" /> <span class="loading"></span>
+								<div class="input-group-addon">
+								  <input type="button" class="search-button">
+								</div>
+							      </div>
+
+
+
+                                                  <!--<div class="input-group">
+                                                    <input class="search-field" type="email" placeholder="">
+                                                    <div class="input-group-addon">
+                                                      <input type="button"  class="search-button"/>
+                                                    </div>
+                                                  </div>-->
+                                                  <div class="modal fade total-select" tabindex="2" role="dialog" aria-labelledby="" aria-hidden="true">
+                                                    <div class="modal-dialog modal-md">
+                                                      <div class="modal-content modal-conatiner-small">
+                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                                                        <!-- Close -->
+                                                        <div class="popup-small-sec">
+                                                          <p class="center-text">You can select only 10 variables at a time</p>
+                                                          <div class="button-wrap" >
+                                                            <button type="button" class="btn btn-primary btn-gray" data-toggle="button">ok</button>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="popup-content-wrap clearfix">
+                                                <div class="popup-leftpanel">
+                                                  <div class="variable-list-sec">
+                                                    <h5 class="variable-title">Selected Variables<span id="selected-variable-count"></span></h5>
+                                                    <table border="0" width="100%" class="variable-table" id="selected-variable"></table>
+                                                  </div>
+                                                  <span class="pop-leftbottom-con">you can remove a variable from the list by clicking the trash icon next to it.</span> </div>
+                                                <div class="popup-rightpanel">
+                                                  <div class="popup-right-content-sec"> 
+                                                    <!-- Category -->
+                                                    <div class="category-wrap">
+                                                      <h4 class="pop-left-head">Selected Category</h4>
+                                                      <div class="popup-selectbox-sec">
+                                                        <select class="custom_selectbox popup-selectbox" id="variableCategoryId" onchange="loadVariable()">
+                                                           <option value="allcategories">All Categories</option>
+                                                        </select>
+                                                      </div>
+                                                    </div>
+                                                    <!-- Variable List Table -->
+                                                    <table width="100%" border="0" class="popup-table" id="load-master-variable"></table>
+                                                    <!-- -->
+                                                    <div class="pagi-wrap">
+                                                      <div class="pull-right"> 
+                                                          <!-- Pagination Start -->
+                                                            <div class="gigantic pagination-variable" id="pg2">
+                                                                <a href="#" class="first" data-action="first">First</a>
+                                                                <a href="#" class="previous" data-action="previous"><span></span></a>
+                                                                <input type="text" readonly="readonly" class="page-field"/>
+                                                                <a href="#" class="next" data-action="next"><span></span></a>
+                                                                <a href="#" class="last" data-action="last">Last</a>
+                                                                <div class="pagi-goto"><span>Go to</span> <input type="text" class="goto-field" value="" id="pg-variable-goto" onchange="variablePaginationGoTo();"/></div>
+                                                            </div>
+                                                        <!-- Pagination Start --> 
+                                                      </div>
+                                                    </div>
+                                                    <!-- --> 
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </li>
+                                          <!-- /Contextual Variables Panel -->	
+                                          
+                                          <!-- My Variables Panel -->	
+                                          <li class="panel"> 
+                                            <a data-toggle="collapse" data-target="#pop-variable" data-parent="#pop-accordion" href="#" class="pop-acc-title" id="acc-variable-title">My Variables <span class="acc-arrow"></span></a>
+                                            <div id="pop-variable" class="collapse pop-acc-content">
+												<div class="pop-acc-inner">                                                	
+                                                    <!-- Title Wrap -->
+                                                    <div class="popup-title-wrap">
+                                                        <div class="pop-right-title-section">
+                                                        	<p>You can select a maximum of 10 variables, <span id="selected-my-variable-count-title"></span> selected</a>.Click on a Variable to add it</p>
+
+
+
+                                                            <div class="input-group">
+                                                            	<input class="search-field" type="email" placeholder="">
+                                                            	<div class="input-group-addon"><input type="button"  class="search-button"/></div>
+                                                            </div>
+                                                            <div class="modal fade total-select" tabindex="2" role="dialog" aria-labelledby="" aria-hidden="true">
+                                                            	<div class="modal-dialog modal-md">
+                                                            		<div class="modal-content modal-conatiner-small">
+                                                            			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                                                            			<!-- Close -->
+                                                            			<div class="popup-small-sec">
+                                                                            <p class="center-text">You can select only 10 variables at a time</p>
+                                                                            <div class="button-wrap" >
+                                                                            <button type="button" class="btn btn-primary btn-gray" data-toggle="button">ok</button>
+                                                                            </div>
+                                                            			</div>
+                                                            		</div>
+                                                            	</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /Title Wrap -->
+                                                    
+                                                    <!-- Content Wrap -->
+                                                    <div class="popup-content-wrap clearfix">
+                                                        <div class="popup-leftpanel">
+                                                        	<div class="variable-list-sec">
+                                                        	   <h5 class="variable-title">Selected Variables<span id="selected-my-variable-count"></span></h5>
+                                                                   <table border="0" width="100%" class="variable-table" id="selected-my-variable"></table>
+                                                        	</div>
+                                                        	<span class="pop-leftbottom-con">you can remove a variable from the list by clicking the trash icon next to it.</span> 
+                                                        </div>
+                                                        <div class="popup-rightpanel">
+                                                        	<div class="popup-right-content-sec"> 
+                                                        	   <!-- Category -->
+                                                        	   <div class="category-wrap">
+                                                        	      <h4 class="pop-left-head">Selected Template</h4>
+                                                        	      <div class="popup-selectbox-sec">
+                                                                         <select class="custom_selectbox popup-selectbox" id="myVariableTempId" onchange="loadMyVariable()"></select>
+                                                                      </div>
+                                                        	   </div>
+                                                                   <!-- Variable List Table -->
+								   <table width="100%" border="0" class="popup-table" id="load-master-myvariable"></table>
+                                                                   <!-- -->
+                                                                   <div class="pagi-wrap">
+                                                                      <div class="pull-right">
+                                                                         <!-- Pagination Start -->
+                                                                         <div class="gigantic pagination-myvariable" id="myvar_pg1">
+                                                                            <a href="#" class="first" data-action="first">First</a>
+                                                                            <a href="#" class="previous" data-action="previous"><span></span></a>
+                                                                            <input type="text" readonly="readonly" class="page-field"/>
+                                                                            <a href="#" class="next" data-action="next"><span></span></a>
+                                                                            <a href="#" class="last" data-action="last">Last</a>
+                                                                            <div class="pagi-goto"><span>Go to</span> <input type="text" class="goto-field" id="pg-myvar-goto" onchange="myVariablePaginationGoTo()" value=""/></div>
+                                                                         </div>
+                                                                         <!-- Pagination Start -->  
+                                                                      </div>
+                                                                   </div>
+                                                                   <!-- -->
+                                                        	</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- /Content Wrap -->
+                                                </div>	
+                                            </div>
+                                          </li>
+                                          <!-- /My Variables Panel -->
+                                        </ul>
+                                        <div class="button-wrap" style="text-align:left;">
+             				  <button type="button" class="btn btn-primary btn-red" data-toggle="button" data-dismiss="modal" onclick="applyGeoVariable();">Apply</button>
+                                          <button type="button" class="btn btn-primary btn-gray" data-toggle="button" data-dismiss="modal" onclick="cancelSelection();">Cancel</button>
+                                        </div>
+                                    </div>
+                                    <!-- /Popup Panel Body -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Pop Up Panel-->
+                </div>
+            </div>
+            <!--/Main body left panel -->
+            
+            <!--Main body right panel -->
+            <div class="col-md-7-5 right-panel explore-rightpanel">
+            	<!-- Title Wrap -->
+            	<!--<div class="title-wrap">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Region</a></li>
+                        <li><a href="#">Geography</a></li>
+                        <li class="active"><span>District Level</span></li>
+                    </ol>
+                </div>-->
+                <!-- /Title Wrap -->
+                <h2 class="page-title explore-page-title"><span id="fieldDetails"></span></h2>
+                <!-- Content panel -->
+                <div class="right-content-panel">
+		        <!--<div style="overflow: hidden;">
+				<h2 class="page-title"><span class="page-subtitle" id="fieldDetails"></span></h2>
+		        </div>-->
+			<div id="map_legend"></div>
+			<div class="right-content-panel" id="mapview"></div>
+                </div>
+                <!-- /Content panel -->
+                
+            </div>
+            <!--/Main body right panel -->
+        </div>
+    </div>  
+  	<!-- /Main body -->
+ <!-- popup tooltip -->
+    <div id="stickytooltip" class="stickytooltip">
+       <div class="sticky-tool-inner" id="sticky-tool-inner"></div>
+    </div>
+    <div class="stickytooltip2">
+       <div class="st-arrow"></div>
+    </div>	
+ <!-- popup tooltip -->
+<!-- Footer Section -->
+{% include "footer.html" %}
+<script type="text/javascript" src="/static/region_explorer/region-compare.js"></script>
+<!--<script type="text/javascript" src="/static/region_explorer/explorer-region.{{ JS_MD5_REGION }}.js"></script>-->
+<script type="text/javascript" src="/static/common_js/common_variable_compare.js"></script>
+<!-- /Footer Section -->
+</div><!--/Main -->
+</body>
+</html>

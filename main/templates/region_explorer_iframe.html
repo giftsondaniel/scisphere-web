@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere | Region</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link href="/static/css/explorer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/static/region_explorer/css/region_explorer.css">
+<!-- Scripts -->
+
+<!-- added -->
+<script type="text/javascript" src="/static/js/crossfilter.js"></script>
+<script type="text/javascript" src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript" src="/static/js/topojson.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/cartogram.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/jstat.min.js"></script>
+<script type="text/javascript" src="/static/region_explorer/js/colorbrewer.js"></script>
+
+
+<script type="text/javascript">
+
+	var level0Id 	= "{{level_0}}";
+	var level1Id 	= "{{level_1}}";
+	var level_id	="{{level_Id}}";
+	var fieldId	="{{field_Id}}";
+	var leveltype	="{{level_type}}";
+	var type	="{{type}}";
+	var colorRequired="{{color}}";
+	var sizeRequired="{{size}}";
+	var titleHtml	="{{title}}";
+	var renderData = '{{data|escapejs}}';
+
+	renderData = JSON.parse(renderData);
+
+       /* var filteredData =[];
+        if(renderData.hits){
+                if(renderData.hits.hits){
+                        renderData = renderData.hits.hits;
+                        for(var i=0;i< renderData.length;i++){
+                             filteredData.push(renderData[i]._source);
+                        }
+                }
+        }
+        renderData = filteredData;*/
+
+	d3.select('#title-id').html = titleHtml;
+
+</script>
+<style>
+	html {
+	    /* font-family: sans-serif; */
+	    -ms-text-size-adjust: 100%;
+	    -webkit-text-size-adjust: 100%;
+	    font-family: 'Open Sans', sans-serif;
+	}
+	body{
+		margin: 0em 0em;
+	}
+	.map_land:hover
+	{ 
+		opacity: 0.5; 
+	} 
+	#xaxis .domain ,#grid line {
+		fill:none;
+		stroke:#000;
+	}
+	#xaxis text, #yaxis text {
+		font-size: 10px;
+		fill: #5F5F5F;
+	}
+/*snapshot*/
+
+/*for popup*/
+	#container {
+		text-align: center;
+		margin: 8em 3em;
+	}
+	.mapRect{
+		-moz-box-shadow:    3px 3px 5px 6px #777;
+		-webkit-box-shadow: 3px 3px 5px 6px #777;
+		box-shadow:         3px 3px 5px 6px #777;	
+		display: block;
+	}
+	#tooltipPopup{
+	    border: 0.5px solid #a1a1a1;
+	    padding: 10px 40px; 
+	    background-color: rgba(255, 255, 255, 0.5);	
+	    border-radius: 3px;
+	}
+	.right-content-panel {
+	    margin-bottom: 0px;
+	}
+	#map {
+	    padding-top: 0px;
+	}
+
+	.right-content-panel {
+	    display: block;
+	    min-height: 250px;
+	}
+	.popup-title{
+	    align: center;
+	    padding-top: 5px;
+	    padding-bottom: 5px;	
+	
+	}
+	.popup-title{
+	    align: center;
+	    width:448px;
+	    display: block;
+	    background:  rgb(246, 249, 254);/*#F5F5F5;*/
+	    color: #83A8D5;
+	    padding: 0px;
+	    height:30px;	
+	    font-size: 12px;
+	    margin-bottom: 0px;
+	}
+	h2 {
+	    display: block;
+	    font-size: 1.5em;
+	    -webkit-margin-before: 0.3em;
+	    -webkit-margin-after: 0.3em;
+	    -webkit-margin-start: 0px;
+	    -webkit-margin-end: 0px;
+	    font-weight: bold;
+	}
+</style>
+</head>
+<body>
+<!-- -->
+<div class="main">
+	<div  class="popup-title" id="popup-title" ><h2 id="title-id" align="center"></h2></div>
+	<div class="right-content-panel" class="bar" id="map"></div>
+</div>	
+ <!-- popup tooltip -->
+<script type="text/javascript" src="/static/share/share.js"></script>
+<script type="text/javascript" src="/static/share/lib/chart.js"></script>
+<script type="text/javascript" src="/static/share/lib/column-chart.js"></script>
+<script type="text/javascript" src="/static/share/tooltip.js"></script>
+<script type="text/javascript">
+
+	document.getElementById('title-id').innerHTML = titleHtml;
+	d3.select('#title-id').html = titleHtml;
+
+</script>
+</body>
+</html>
+

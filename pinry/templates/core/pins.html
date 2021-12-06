@@ -1,0 +1,24 @@
+{% extends "mysphere.html" %}
+{% block yield %}
+
+{% load taggit_extras %}
+
+{% if forvar %}
+{% get_taglist as tags for forvar %}
+{% else %}
+{% get_taglist as tags %}
+{% endif %}
+
+    <!--<div id="tag-list" style="width:200px; float:right;">
+    <ul>
+      <li><font><a href="/insight70">View All</a></font></li>
+     {% for tag in tags %}
+      <li><font size={{tag.weight|floatformat:0}}><a href="/pins/tag/{{tag}}/">{{tag}}</a></font> </li>
+     {% endfor %}
+     </ul>
+    </div>-->
+
+    <div id="pins" class="pins-load" style="min-height:400px;"></div>
+    <!--<div class="spinner"></div>-->
+{% endblock %}
+

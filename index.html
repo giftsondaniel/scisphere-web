@@ -1,0 +1,1264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Scisphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript" src="/static/js/jquery.tinycarousel.js"></script>
+<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#banner-slides').slidesjs({navigation: false,  pagination:false, height:400,  play: {  effect: "fade", interval: 10000} });
+	$('#logo-wrap').floatScroll({positionTop:0});
+	
+	/*-- Banner Link --*/
+	$('.banner-link-list li .banner-links').click(function(e) {
+        var  nam = $(this).attr('name');
+		$('.usecase-list li').removeClass('active');
+		$('.usecase-list #list-'+nam).addClass('active');
+		
+		$('.home-main-tab-list li').removeClass('active');
+		$('.home-main-tab-list #list-usecase').addClass('active');
+		
+		$('.home-tab-content>.tab-pane').removeClass('active');
+		$('.home-tab-content #usecase').addClass('active');
+		$('html, body').animate({scrollTop: $('.home-bodysec').offset().top-100}, 500);
+    });
+	
+	/*-- Home Main Link --*/
+	$('.homemenu li .menu-link').click(function(e) {
+		var  nam = $(this).attr('name');
+		$('.home-main-tab-list li').removeClass('active');
+		$('.home-main-tab-list #list-'+nam).addClass('active');
+		$('.home-tab-content>.tab-pane').removeClass('active');
+		$('.home-tab-content #'+nam).addClass('active');
+	});
+	$('.homemenu li .menu-link').click(function(e) {
+        $('html, body').animate({scrollTop: $('.home-bodysec').offset().top-100}, 500);
+    });
+	$('.home-main-tab-list li a').click(function(e) {
+		$('.homemenu li ').removeClass('active');
+        $('html, body').animate({scrollTop: $('.home-bodysec').offset().top-100}, 500);
+    });
+	$('.home-main-tab-list #list-analytics').click(function(e) {
+		$('.homemenu li.main-menu-1').addClass('active');
+    });
+	
+	/*-- Tiny Carousel Binding --*/
+	$('#use-thumb-wrap').tinycarousel();
+	$('#micro-thumb-wrap').bind("click", function(){ $('#micro-thumb-wrap').tinycarousel(); });
+	$(".homequick-video-wrap").jScrollPane({autoReinitialise: true});
+	
+	/*-- Usecase Video Section --*/
+ 	$('#usecase-video-wrap .videobox, #microfinance-video-wrap .videobox').removeClass('enable');
+	$('#use-videothumb-1, #micro-videothumb-1').addClass('current');
+	$('#use-videobox-1, #micro-videobox-1').addClass('enable');
+	$('#use-thumb-wrap .videothumb').click(function(e) {
+		var id_val = $(this).attr('id');
+		var id_no = id_val.substr(15);
+		$('#use-thumb-wrap .videothumb').removeClass('current');
+		$(this).addClass('current');
+		$('#usecase-video-wrap .videobox').css({'display':'none'});
+		$('#use-videobox-'+id_no).css({'display':'block'});
+	});
+	$('#micro-thumb-wrap .videothumb').click(function(e) {
+		var id_val = $(this).attr('id');
+		var id_no = id_val.substr(17);
+		$('#micro-thumb-wrap .videothumb').removeClass('current');
+		$(this).addClass('current');
+		$('#microfinance-video-wrap .videobox').css({'display':'none'});
+		$('#micro-videobox-'+id_no).css({'display':'block'});
+	});
+	
+	/*-- Popup Video Frame --*/
+	$('.video-frame').attr('src','');
+	$('#usecase-video-wrap .video-post').click(function(event) {
+		event.preventDefault();
+		var vname = $(this).attr('name');
+        $('#usecase-video-wrap .video-frame').attr('src','https://www.youtube.com/embed/'+vname+'?rel=0&autoplay=1');
+    });
+	$('#microfinance-video-wrap .video-post').click(function(event) {
+		event.preventDefault();
+		var vname = $(this).attr('name');
+		$('#microfinance-video-wrap .video-frame').attr('src','https://www.youtube.com/embed/'+vname+'?rel=0&autoplay=1');
+    });
+	$('.anatytics-video-sec .modal').click( function(){
+		$('.anatytics-video-sec .video-frame').attr('src','');
+	});
+	
+	/*-- Demos Video Sec --*/
+	$('.banner-link-list li .banner-links, .home-main-tab-list li a').click(function(e) {
+		$('.demo-main-video-sec .demo-video-frame').attr('src','');
+		$('.dataset-main-video .dataset-video-frame').attr('src','');
+    });
+	
+	$('.home-main-tab-list #list-datasets a').click(function(e) {
+		$('.dataset-main-video .dataset-video-frame').attr('src','https://www.youtube.com/embed/XU1MZ3pWWOQ');
+    });
+	$('.home-main-tab-list #list-demos a').click(function(e) {
+		$('.homedemo-video-wrapper .demo-main-video-sec .demo-video-frame').attr('src','https://www.youtube.com/embed/pOsVffCNcag');
+		$('.homedemo-video-wrapper .demo-video-thumb .video-thumbs').removeClass('active');
+        $('.homedemo-video-wrapper .demo-video-thumb #video-thumbs-1').addClass('active');
+		
+    });
+	
+	$('#homedemo-carousel').bind("click", function(){ $('#homedemo-carousel').tinycarousel();});
+	$('.demo-video-thumb .video-thumbs .video-overlay').fadeOut(0);
+	$('.demo-video-thumb .video-thumbs').hover(function(e) {
+        $(this).find('.video-overlay').stop().fadeIn(300);
+    }, function(){$(this).find('.video-overlay').stop().fadeOut(100);});
+	$('.demo-video-thumb .video-thumbs').click(function(event) {
+		event.preventDefault();
+    });
+	
+	$('.homedemo-video-wrapper .demo-main-video-sec .video-container').css({'display':'none'});
+	$('.homedemo-video-wrapper .demo-main-video-sec #video-container-1').css({'display':'block'});
+	$('.homedemo-video-wrapper .demo-video-thumb .video-thumbs:first').addClass('active');
+	
+	$('.homedemo-video-wrapper .demo-video-thumb .video-thumbs').click(function(e) {
+		$('.homedemo-video-wrapper .demo-video-thumb .video-thumbs').removeClass('active');
+        $(this).addClass('active');
+		var id_val = $(this).attr('id');
+		var id_no = id_val.substr(13);
+		$('.homedemo-video-wrapper .demo-main-video-sec .video-container').css({'display':'none'});
+		$('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+id_no).css({'display':'block'});
+		var vid_name = $('.demo-main-video-sec #video-container-'+id_no+ ' Iframe').attr('name');
+		$('.homedemo-video-wrapper .demo-main-video-sec .demo-video-frame').attr('src','');
+		$('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+id_no+' .demo-video-frame').attr('src','https://www.youtube.com/embed/'+vid_name+'?rel=0&autoplay=1');
+    });
+	/*-- Carousel Next Prev --*/
+	$('.demo-carousel-next').click(function(e) {
+		var p = $('.homedemo-video-wrapper .demo-main-thumb-sec .demo-video-thumb ul li.active').attr('id');
+		var id_no = p.substr(13);
+		var valnew = parseInt(id_no)+1;
+		$('.homedemo-video-wrapper .demo-video-thumb .video-thumbs').removeClass('active');
+		$('.homedemo-video-wrapper .demo-video-thumb #video-thumbs-'+valnew).addClass('active');
+		$('.homedemo-video-wrapper .demo-main-video-sec .video-container').css({'display':'none'});
+		$('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+valnew).css({'display':'block'});
+		var vid_name = $('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+valnew+ ' Iframe').attr('name');
+		$('.homedemo-video-wrapper .demo-main-video-sec .demo-video-frame').attr('src','');
+		$('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+valnew+' .demo-video-frame').attr('src','https://www.youtube.com/embed/'+vid_name+'?rel=0&autoplay=1');
+    });
+	$('.demo-carousel-prev').click(function(e) {
+		var p = $('.homedemo-video-wrapper .demo-main-thumb-sec .demo-video-thumb ul li.active').attr('id');
+		var id_no = p.substr(13);
+		var valnew = parseInt(id_no)-1;
+		$('.homedemo-video-wrapper .demo-video-thumb .video-thumbs').removeClass('active');
+		$('.homedemo-video-wrapper .demo-video-thumb #video-thumbs-'+valnew).addClass('active');
+		$('.homedemo-video-wrapper .demo-main-video-sec .video-container').css({'display':'none'});
+		$('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+valnew).css({'display':'block'});
+		var vid_name = $('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+valnew+ ' Iframe').attr('name');
+		$('.homedemo-video-wrapper .demo-main-video-sec .demo-video-frame').attr('src','');
+		$('.homedemo-video-wrapper .demo-main-video-sec #video-container-'+valnew+' .demo-video-frame').attr('src','https://www.youtube.com/embed/'+vid_name+'?rel=0&autoplay=1');
+		
+    });
+	
+	/*-- URL Param --*/
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+		return results[1] || 0;
+	}
+	$('.home-main-tab-list li').removeClass('active');
+	$('.home-main-tab-list .lft_1').addClass('active');		
+	var active = $.urlParam('tag');	
+	$('.lft_'+active).addClass('active');
+	
+	$('.homemenu li').removeClass('active');
+	$('.homemenu li.main-menu-'+active).addClass('active');
+	$('.home-tab-content>.tab-pane').removeClass('active');
+	$('.home-tab-content .main-tab-pane-'+active).addClass('active');
+	if(active==1){
+		$('.home-main-tab-list li').removeClass('active');
+		$('.lft_'+active).addClass('active');
+		$('html, body').animate({scrollTop: $('.home-bodysec').offset().top-100}, 500);
+	}
+});
+</script>
+</head>
+
+<body>
+<header class="home-header" id="logo-wrap">
+  <div class="logo-wrap" >
+    <div class="container pos-rel">
+      <div class="pull-left"> <a href="/index.html" class="logo" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+      <div class="pull-right">
+        <div class="logo-wrap-top">
+          <div class="link-sec pull-right"> 
+          	<p class="pull-left sec-1">
+                <span class="cus-text">Customer Support</span> 
+                <span class="cus-no">+91 44 42148631</span> 
+            	<a href="/accounts/login/" class="link-button link-button-gray" title="Log In">Log In</a>
+            </p>
+            <p class="pull-left">
+                <a href="https://www.facebook.com/pages/SciSphere-India/1480618278894388" target="_blank" title="Facebook" class="sm" id="fb"></a> 
+                <a href="https://twitter.com/SciSphere_India" target="_blank" title="Twitter" class="sm" id="tw"></a> 
+                <a href="http://www.linkedin.com/company/scisphere" target="_blank" title="Linked In" class="sm" id="li"></a> 
+                <a href="https://plus.google.com/u/0/b/105169011525829533656/105169011525829533656/about" target="_blank" title="Google+" class="sm" id="gplus"></a> 
+                <a href="https://www.youtube.com/channel/UCKaH6d6dVZ_HSFKn8jEwYQA" target="_blank" title="Youtube" class="sm" id="youtube"></a>
+                <!--<a href="#" target="_blank" title="Youtube" class="sm" id="rss"></a>-->
+            </p>
+            
+          </div>
+        </div>
+        <div class="logo-wrap-bottom">
+          <ul class="nav navbar-nav homemenu pull-right" role="tablist">
+            <!--<li><a href="#usecase" name="usecase" title="Use Case" role="tab" data-toggle="tab" class="menu-link">Use Case</a></li>
+            <li><a href="dataset.html?tag=1" title="Datasets">Datasets</a></li>	-->
+            <li class="main-menu-1"><a href="#analytics" name="analytics" title="Products" role="tab" data-toggle="tab" class="menu-link">Products</a></li>
+            <li><a href="/pricing.html" title="Pricing">Pricing</a></li>
+            <li><a href="/demos.html" title="Demos">Demos</a></li>
+            <li><a href="/labs.html" title="Labs">Labs</a></li>
+            <li><a href="#" title="Blog">Blog</a></li>
+            <li><a href="/app/contact" title="Contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <a href="/app/signup/" class="link-button link-button-red signup-button" title="Free Sign Up">Free Sign Up</a>
+    </div>
+  </div>  
+</header>
+
+<div class="banner-sec">
+	<div id="banner-slides">
+    	<div class="ban-slide" id="ban-slide-1" ></div>
+        <div class="ban-slide" id="ban-slide-2" ></div>
+        <div class="ban-slide" id="ban-slide-5" ></div>
+    </div>
+    <div class="container banner-link-wrap">
+    	<div class="col-md-3 banner-link-sec">
+        	<ul class="banner-link-list" role="tablist">
+            	<li><a href="#banking" title="Banking" name="bank" class="banner-links bank" role="tab" data-toggle="tab">Banking</a></li>
+                <li><a href="#microfinance" title="Microfinance" name="finance" class="banner-links finance" role="tab" data-toggle="tab">Microfinance</a></li>
+                <li><a href="#retail" title="Retail" name="retail" class="banner-links retail" role="tab" data-toggle="tab">Retail</a></li>
+                <li><a href="#nonprofit" title="Non profit" name="nonprofit" class="banner-links non-profit" role="tab" data-toggle="tab">Non-profit</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="home-bodysec">
+  <div class="container">
+  	<div class="col-lg-12" >
+  		<div class="col-md-9" >
+        	<div class="col-md-11">
+            	<!-- -->
+            	<div class="home-main-tab">
+                  <ul class="nav nav-tabs home-main-tab-list" role="tablist" >
+                  	<li id="list-analytics" class="active lft_1"><a href="#analytics" role="tab" data-toggle="tab" title="Analytics" >Products</a></li>
+                    <li id="list-datasets"><a href="#datasets" role="tab" data-toggle="tab" title="Datasets" >Datasets</a></li>
+                    <li id="list-usecase"><a href="#usecase" role="tab" data-toggle="tab" title="Use Cases">Use Cases</a></li>
+                    <li id="list-demos"><a href="#demos" role="tab" data-toggle="tab" title="Demos" >Demos</a></li>
+                  </ul>
+                </div>
+                <div class="tab-content home-tab-content">
+                
+                	<!-- Usecase -->
+                  	<div class="tab-pane clearfix " id="usecase">
+                        <div class="col-md-12">
+                            <div class="col-md-3" id="usecase-list-sec" >
+                                <ul class="usecase-list nav nav-tabs" role="tablist" >
+                                    <li class="active" id="list-bank"><a href="#banking" role="tab" data-toggle="tab">Banking</a></li>
+                                    <li id="list-finance"><a href="#microfinance" role="tab" data-toggle="tab">Microfinance</a></li>
+                                    <li id="list-retail"><a href="#retail" role="tab" data-toggle="tab">Retail</a></li>
+                                    <li id="list-nonprofit"><a href="#nonprofit" role="tab" data-toggle="tab">Non-profit</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-9" id="usecase-content-sec" >
+                                <div class="tab-content">
+                                    <!-- banking -->
+                                    <div class="tab-subpane active" id="banking">
+                                    	<div class="desc">
+                                        	<!-- Video Wrapper -->
+                                            <div class="anatytics-video-sec pull-right" id="usecase-video-wrap">
+                                            	<div class="video-layer">
+                                                	 <div class="videobox" id="use-videobox-1">
+                                                        <div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".usecase-video" title="video" class="video-post" id="use-video-post-1" name="MxTHAlRAhXk"><img src="/static/images/demo-video-thumb-3.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Structure of Branch Performance</h5>
+                                                            <p class="video-desc">Learn how your branch performance distributes across geographies and why this often reflects economic context rather than internal operation.</p>
+                                                        </div>
+                                                     </div>
+                                                     <div class="videobox" id="use-videobox-2">
+                                                        <div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".usecase-video" title="video" class="video-post" id="use-video-post-2" name="_BKi12igycg"><img src="/static/images/demo-video-thumb-5.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Our Location Selection Model</h5>
+                                                            <p class="video-desc">Understand how our nonlinear machine learning location selection model works.</p>
+                                                        </div>
+                                                     </div>
+                                                     <div class="videobox" id="use-videobox-3">
+                                                        <div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".usecase-video" title="video" class="video-post" id="use-video-post-3" name="VktLtvBEf88"><img src="/static/images/demo-video-thumb-6.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Location Analytics on SciSphere</h5>
+                                                            <p class="video-desc">See how you can quickly use the results of our location selection models on SciSphere to shortlist places.</p>
+                                                        </div>
+                                                     </div>
+                                                     <div class="videobox" id="use-videobox-4">
+                                                        <div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".usecase-video" title="video" class="video-post" id="use-video-post-4" name="W_ksjLg2cVs"><img src="/static/images/demo-video-thumb-7.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Banking Case Study</h5>
+                                                            <p class="video-desc">See the potential impact of our location selection analytics in a live case study of a private sector bank.</p>
+                                                        </div>
+                                                     </div>
+                                                     <div class="videobox" id="use-videobox-5">
+                                                        <div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".usecase-video" title="video" class="video-post" id="use-video-post-5" name="XU1MZ3pWWOQ"><img src="/static/images/demo-video-thumb-2.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Derived Variables on Explore</h5>
+                                                            <p class="video-desc">Understand the various derived variables on SciSphere and how they are powerful predictors of the success and growth of microeconomies.</p>
+                                                        </div>
+                                                     </div>
+                                                     <div class="videobox" id="use-videobox-6">
+                                                        <div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".usecase-video" title="video" class="video-post" id="use-video-post-6" name="pOsVffCNcag"><img src="/static/images/demo-video-thumb-1.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">SciSphere Explore Demo</h5>
+                                                            <p class="video-desc">This video outlines the features of the Explore features on SciSphere and a potential use case.</p>
+                                                        </div>
+                                                     </div>
+                                                     <div class="videobox" id="use-videobox-7">
+                                                        <div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".usecase-video" title="video" class="video-post" id="use-video-post-7" name="QOedu9LfWLU"><img src="/static/images/demo-video-thumb-4.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">SciSphere Analyze</h5>
+                                                            <p class="video-desc">Understand what goes behind our Analytics feature, start to finish.</p>
+                                                        </div>
+                                                     </div>
+                                                </div> 
+                                                <!-- Popup -->
+                                                <div class="modal fade usecase-video " tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                      <div class="modal-content">
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                                                              <div class="clearfix">
+                                                                    <div class="popup-body">
+     													<iframe width="100%" height="300px"  frameborder="0" allowfullscreen class="video-frame"></iframe>
+                                                                    </div>
+                                                              </div>  
+                                                      </div>
+                                                    </div>
+                                                </div>           
+                                                <!-- Popup Ends-->
+                                                <div class="video-thumb-layer" id="use-thumb-wrap">
+                                                    <span class="buttons prev"></span>
+                                                    <div class="viewport">
+                                                        <ul class="overview">
+                                                            <li class="videothumb" id="use-videothumb-1" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-3.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="use-videothumb-2">
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-5.png" alt="video-thumb" />
+                                                                <span class="sel-arrow"></span>
+                                                            </li>
+                                                            <li class="videothumb" id="use-videothumb-3" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-6.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="use-videothumb-4">
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-7.png" alt="video-thumb" />
+                                                                <span class="sel-arrow"></span>
+                                                            </li>
+                                                            <li class="videothumb" id="use-videothumb-5">
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-2.png" alt="video-thumb" />
+                                                                <span class="sel-arrow"></span>
+                                                            </li>
+                                                            <li class="videothumb" id="use-videothumb-6">
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-1.png" alt="video-thumb" />
+                                                                <span class="sel-arrow"></span>
+                                                            </li>
+                                                            <li class="videothumb" id="use-videothumb-7">
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-4.png" alt="video-thumb" />
+                                                                <span class="sel-arrow"></span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <span class="buttons next" ></span>
+                                                </div>    
+                                            </div>
+                                            <!-- Video Wrapper Ends -->
+                                        The expansion of Banking into India’s informal economy, and the aggressive financial inclusion agenda, comes associated with substantial cost and risk. Large variability in economic activity even among places of similar population can lead to very diverse outcomes in branch performance.</div>
+                                    	<p class="desc">SciSphere’s powerful derivative variables from the economic census and census provide strong predictors of economic growth down to the village level.  Using these variables such as average firm size, economic diversity and decadal migration that research has shown to be strong correlates of economic growth and robustness, Banks can quickly identify the more vibrant areas at all scales from cities to towns to villages.  In addition, maps showing the densities of different industries can also help better target products to different geographies.  For example, easily find all the places with high concentration of a particular industry of interest.</p>
+                                        <p class="desc">SciSphere's location selection algorithm also goes one step further to provide cutting edge analytics to predict which places will offer the highest potential for your particular products and business metrics. Our case studies have shown very high accuracy of our models in predicting the potential for deposits and advances. Watch our <a href="demos.html" title="Demo Videos">demo videos</a> to learn more.</p>
+                                        <p class="desc" style="padding-top:10px;"><span style="margin-right:10px;">Start your Free Trial now</span><a href="/app/signup/" class="link-button link-button-red" title="Free Sign Up">Free Sign Up</a> </p>
+                                    </div>
+                                    <!-- microfinance -->
+                                    <div class="tab-subpane" id="microfinance">
+                                    	<div class="desc">
+                                        	<div class="anatytics-video-sec pull-right" id="microfinance-video-wrap">
+                                            	<!-- Video Layer -->
+                                            	<div class="video-layer">
+                                                	<div class="videobox" id="micro-videobox-1">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-1" name="JhCyBPErYsk"><img src="/static/images/demo-video-thumb-9.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Using SciSphere for Branch Selection at Madura Microfinance</h5>
+                                                            <p class="video-desc">Learn how Madura Microfinance has been using SciSphere.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="videobox" id="micro-videobox-2">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-2" name="VktLtvBEf88"><img src="/static/images/demo-video-thumb-6.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Location Analytics on SciSphere</h5>
+                                                            <p class="video-desc">See how you can quickly use the results of our location selection models on SciSphere to shortlist places.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="videobox" id="micro-videobox-3">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-3" name="XU1MZ3pWWOQ"><img src="/static/images/demo-video-thumb-2.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Derived Variables on Explore</h5>
+                                                            <p class="video-desc">Understand the various derived variables on SciSphere and how they are powerful predictors of the success and growth of microeconomies.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="videobox" id="micro-videobox-4">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-4" name="MxTHAlRAhXk"><img src="/static/images/demo-video-thumb-3.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Structure of Branch Performance</h5>
+                                                            <p class="video-desc">Learn how your branch performance distributes across geographies and why this often reflects economic context rather than internal operation.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="videobox" id="micro-videobox-5">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-5" name="_BKi12igycg"><img src="/static/images/demo-video-thumb-5.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Our Location Selection Model</h5>
+                                                            <p class="video-desc">Understand how our nonlinear machine learning location selection model works.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="videobox" id="micro-videobox-6">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-6" name="75_7Z9Ve3ZQ"><img src="/static/images/demo-video-thumb-8.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">Microfinance Case Study</h5>
+                                                            <p class="video-desc">See the potential impact of our location selection analytics in a live case study of a rural microfinance institution.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="videobox" id="micro-videobox-7">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-7" name="pOsVffCNcag"><img src="/static/images/demo-video-thumb-1.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">SciSphere Explore Demo</h5>
+                                                            <p class="video-desc">This video outlines the features of the Explore features on SciSphere and a potential use case.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="videobox" id="micro-videobox-8">
+                                                    	<div class="video-player">
+                                                            <a href="#" data-toggle="modal" data-target=".micro-video" title="video" class="video-post" id="micro-video-post-8" name="QOedu9LfWLU"><img src="/static/images/demo-video-thumb-4.png" alt="" /><span class="overlay"></span></a>
+                                                        </div>
+                                                        <div class="video-content">
+                                                            <h5 class="video-title">SciSphere Analyze</h5>
+                                                            <p class="video-desc">Understand what goes behind our Analytics feature, start to finish.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Popup -->
+                                                <div class="modal fade micro-video " tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                      <div class="modal-content">
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                                                              <div class="clearfix">
+                                                                    <div class="popup-body">
+     																<iframe width="100%" height="300px"  frameborder="0" allowfullscreen class="video-frame">
+                                                                    </iframe>
+                                                                    </div>
+                                                              </div>  
+                                                      </div>
+                                                    </div>
+                                                </div>           
+                                                <!-- Popup Ends-->
+                                                <div class="video-thumb-layer" id="micro-thumb-wrap">
+                                                    <span class="buttons prev"></span>
+                                                    <div class="viewport">
+                                                        <ul class="overview">
+                                                            <li class="videothumb" id="micro-videothumb-1" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-9.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="micro-videothumb-2" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-6.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="micro-videothumb-3" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-2.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="micro-videothumb-4" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-3.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="micro-videothumb-5" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-5.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="micro-videothumb-6" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-8.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="micro-videothumb-7" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-1.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                            <li class="videothumb" id="micro-videothumb-8" >
+                                                                <span class="overlay"></span>
+                                                                <img src="/static/images/demo-video-thumb-4.png" alt="video-thumb" />
+                                                                <span class="sel-arrow" ></span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <span class="buttons next" ></span>
+                                                </div> 
+                                                <!-- -->
+                                            </div>
+                                       Microfinance is a major element of the financial inclusion agenda and by its nature requires operation in very data dark and more remote parts of the country.  Nonetheless, rural India is still relatively un-penetrated. The remoteness of many rural settlements imposes large costs of due diligence in a business already under margin pressures. Furthermore, villages differ substantially in economic profiles and therefore in their capital needs and risk profiles.</div>
+                                        <p class="desc">SciSphere’s powerful derivative variables from the economic census and census describe average firm size, economic diversity, decadal migration and other descriptors of microeconomies right down to the village level. This allows easy selection and classification of villages by potential and risk and also the scope for more tailored product innovation.  Using SciSphere Explore can substantially reduce time to market and enable shortlisting of more high potential locations within minutes.</p>
+                                        <p class="desc">SciSphere's location selection algorithm also goes one step further to provide cutting edge analytics to predict which places will offer the highest potential for various business metrics such as Portfolio growth and Portfolio at Risk. Our case studies have shown very high accuracy of our models in predicting the risk profile of places in terms of the likelihood of delayed payments and defaults. Watch our <a href="demos.html" title="Demo Videos">demo videos</a>  to learn more.</p>
+                                         <p class="desc" style="padding-top:10px;"><span style="margin-right:10px;">Start your Free Trial now</span><a href="/app/signup/" class="link-button link-button-red" title="Free Sign Up">Free Sign Up</a> </p>
+                                    </div>
+                                    <!-- Retail -->
+                                    <div class="tab-subpane" id="retail"><p class="desc">Coming Soon</p></div>
+                                    <!-- Non-profit -->
+                                    <div class="tab-subpane" id="nonprofit"><p class="desc">Coming Soon</p></div>
+                                </div>
+                        	</div>
+                         </div>   
+                  	</div>
+                  
+                  	<!-- Datasets -->
+                    <div class="tab-pane  main-tab-pane-2" id="datasets">
+                    	<div class="col-md-12 dataset-title-wrap">
+                        	<div class="col-md-12">
+                                 <div class="col-md-9 left-wrap">
+                                    <p class="content">Currently available datasets are derived from the Census (2001, 2011) and Economic Census (2005) and are referenced at the settlement level</p>
+                            <p class="content"><span class="content-subtitle">Coming Soon</span>Datasets from RBI, Credit Bureaus Ward/Neighborhood level granularity within cities</p>
+                                 </div>
+                                 <div class="col-md-3 right-wrap">
+                                    <div class="col-md-12 dataset-yt-thumb">
+                                        <div class="yt-thumb-wrap">
+                                          <p class="yt-thumb"><img src="/static/images/demo-datasets.png" alt="Derived Variables on Explore" /></p>
+                                          <p><a href="https://www.youtube.com/watch?v=XU1MZ3pWWOQ" class="yt-link" title="Derived Variables on Explore" target="_blank">View Demo</a></p>
+                                        </div>
+                                    </div>
+                                 </div>  
+                            </div>
+                         </div>
+						<!-- -->
+                        <div class="col-md-12 dataset-tabs-section">
+                            <div class="col-md-3" id="datasec-list-sec" >
+                                <ul class="data-list nav nav-tabs" role="tablist" >
+                                    <li><span>Datasets</span></li>
+                                    <li class="active"><a href="#data1" role="tab" data-toggle="tab">Demographic</a></li>
+                                    <li><a href="#data2" role="tab" data-toggle="tab">Economic</a></li>
+                                    <li><a href="#data3" role="tab" data-toggle="tab">Geospatial</a></li>
+                                    <li><a href="#data4" role="tab" data-toggle="tab">Industry</a></li>
+                                    <!--<li><a href="#data5" role="tab" data-toggle="tab">Employment by Industry (%)</a></li>-->
+                                    <!--<li><a href="#data6" role="tab" data-toggle="tab">Financial</a></li>
+                                    <li><a href="#data7" role="tab" data-toggle="tab">Education</a></li>
+                                    <li><a href="#data8" role="tab" data-toggle="tab">Health</a></li>
+                                    <li><a href="#data9" role="tab" data-toggle="tab">Horticulture</a></li>-->
+                                    <!--<li><a href="#data10" role="tab" data-toggle="tab">Industry: Average Firm Size</a></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-md-9" id="datasec-content-sec">
+                                <div class="tab-content">
+                                    <!-- Tab 1 -->                                		
+                                    <div class="tab-pane active" id="data1">
+                                        <h3 class="dataset-title">Demographic</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Population</li>
+							<li>Number of Households</li>
+							<li>Gender Ratio</li>
+							<li>Gender Ratio 0-6</li>
+							<li>Literacy Rate</li>
+							<li>Gender Literacy Ratio</li>
+							<li>Female Literacy Rate</li>
+							<li>Male Literacy Rate</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+		                                        <ul class="dataset-cont-list">
+							<li>Decadal Gains in Literacy (Z-Score)</li>
+							<li>Age Ratio (0-6)</li>
+							<li>Average Household Size</li>
+							<li>Decadal Urbanization (Z-Score)</li>
+							<li>Urbanization Ratio</li>
+							<li>Urban Percent</li>
+							<li>Population Density</li>
+							<li>Decadal Migration</li>
+	                                                <li class="read-more-li"><a href="dataset.html?tag=1" title="Read More" class="more">Readmore</a></li>
+                                                </ul>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 2 --> 
+                                    <div class="tab-pane" id="data2">
+                                        <h3 class="dataset-title">Economic</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Main Worker Rate</li>
+							<li>Main Worker Rate for Females</li>
+							<li>Main Worker Rate for Males</li>
+							<li>Main Worker Rate Gender Ratio</li>
+							<li>Industrial Worker Rate</li>
+							<li>Decadal Industrialization (Z-Score)</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Agriculture Worker Rate</li>
+							<li>Average Employees per Firm</li>
+							<li>Median Employees per Firm</li>
+							<li>Max Employees in a Firm</li>
+							<li>Number of Unique Industries</li>
+                                                </ul>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <!-- Tab 3 --> 
+                                    <div class="tab-pane" id="data3">
+                                        <h3 class="dataset-title">Geospatial</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+                                                    <li>Land Area (Sq. Km)</li>
+                                                    <li>Distance to National Highway (Km)</li>
+                                                    <li>Distance to State Highway (Km)</li>
+                                                    <li>Distance to Tertiary Road (Km)</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+                                                    <li>Distance to Major District Road (Km)</li>
+                                                    <li>5 Km Radius Population </li>
+                                                    <li>10 Km Radius Population</li>
+                                                    <li>15 Km Radius Population</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 4 --> 
+                                    <div class="tab-pane" id="data4">
+                                        <h3 class="dataset-title">Industry</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>[Primary Industry Name] by Emp</li>
+							<li>% Employed in Primary Industry</li>
+                                                </ul>
+					    </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>[Primary Industry Name] by Firm Size</li>
+							<li>[Primary Industry] by Firm Size</li>
+                                                </ul>
+					    </div>
+                                        </div>
+                                        <h3 class="dataset-title">Employment rate and Average firm size for the following industries:</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Animals Farming</li>
+							<li>Post and Courier</li>
+							<li>Crops and Animal Farming</li>
+							<li>Agriculture and Animal Husbandry</li>
+							<li>Hunting and Trapping Propagation</li>
+							<li>Forestry and Logging</li>
+							<li>Fish Farm Service</li>
+							<li>Coal Mining</li>
+                                                </ul>
+					    </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Mining Lignite</li>
+							<li>Mining Peat</li>
+							<li>Petroleum and Natural Gas</li>
+							<li>Horticultural</li>
+							<li>Mining Uranium and Thorium</li>
+							<li>Mining Iron</li>
+							<li>Mining Non Ferrous Metals</li>
+							<li>Mining Stone Sand</li>
+                                                    	<li class="read-more-li"><a href="dataset.html?tag=4" title="Read More" class="more">Readmore</a></li>
+                                                </ul>
+					    </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 5 --> 
+                                    <div class="tab-pane" id="data5">
+                                        <h3 class="dataset-title">Employment by Industry (%)</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Employment in Animals Farming </li>
+							<li>Emploment in Account and Computing Computer Machinery </li>
+							<li>Employment in Accounting and Auditing </li>
+							<li>Employment in Activities Auxiliary to  Financial Intermediation</li>
+							<li>Employment in Activities of Membership Organizations</li>
+							<li>Employment in Activities of Private Households as Employers and Undifferentiated Production Activities of Private Households</li>
+							<li>Employment in Activities of Private Households as Employers of Domestic Staff</li>
+							<li>Employment in Advertising </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Employment in Agriculture and Animal Husbandry </li>
+							<li>Employment in Agriculture, Hunting and Forestry</li>
+							<li>Employment in Agriculture, Hunting and Related Service Activities</li>
+							<li>Employment in Air Transport</li>
+							<li>Employment in Aircraft and Spacecraft </li>
+							<li>Employment in Apparel </li>
+							<li>Employment in Architectural and Technical Activities</li> 
+							<li>Employment in Automotive Fuel </li>
+							<li>Employment in Auxiliary Financial Intermediation Service </li>
+							<li>Employment in Auxiliary Insurance and Pension Funding </li>
+                                                    <li class="read-more-li"><a href="dataset.html?tag=5" title="Read More" class="more">Readmore</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 6 --> 
+                                    <div class="tab-pane" id="data6">
+                                        <h3 class="dataset-title">Financial</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Number of Active Microfinance lender</li>
+							<li>Number of Centres</li>
+							<li>Number of MFIs reporting in region</li>
+							<li>> 1 MFI association (Active or Closed) - INQUIRY Based</li>
+							<li>Amount Outstanding > INR 50000</li>
+							<li>Average Ticket size per Active loan (in Rs)</li>
+							<li>Borrowers in 1st Loan Cycle</li>
+							<li>Borrowers in 2nd Loan Cycle</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Borrowers in 3rd Loan Cycle or Greater</li>
+							<li>Defaults on Existing Loans</li>
+							<li>Disbursed Amt & Loan Cycle Distribution - Active Loans</li>
+							<li>Disbursed Amt & Term distribution (in Rs) - Active Loans</li>
+							<li>Group Loans - Overdue (% of Loans)</li>
+							<li>Group Loans - Overdue (in Rs)</li>
+							<li>Individual Loans Overdue (% of Loans) </li>
+							<li>Individual Loans Overdue (in Rs) </li>
+                                                    <li class="read-more-li"><a href="dataset.html?tag=6" title="Read More" class="more">Readmore</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 7 --> 
+                                    <div class="tab-pane" id="data7">
+                                        <h3 class="dataset-title">Education</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Minimally skilled for Agriculture and Allied(2012-2017)</li>
+							<li>Total Demand for Agriculture and Allied(2012-2017)</li>
+							<li>Skilled for Agriculture and Allied(2017-2022)</li>
+							<li>Semi skilled for  BFSI (2012-2017)</li>
+							<li>Minimally skilled for BFSI (2017-2022)</li>
+							<li>Total Demand for BFSI (2017-2022)</li>
+							<li>Skilled for Building, Construction and Real Estate(2012-2017)</li>
+							<li>Semi skilled for Building, Construction and Real Estate(2017-2022)</li>
+							<li>Minimally skilled for Chemicals & Pharmaceuticals (2012-2017)</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Total Demand for Chemicals & Pharmaceuticals (2012-2017)</li>
+							<li>Skilled for Chemicals & Pharmaceuticals (2017-2022)</li>
+							<li>Semi skilled for  Construction Material and Building Hardware (2012-2017)</li>
+							<li>Minimally skilled for Construction Material and Building Hardware (2017-2022)</li>
+							<li>Total Demand for Construction Material and Building Hardware (2017-2022)</li>
+							<li>Skilled for Education and Skill Development(2012-2017)</li>
+							<li>Semi skilled for Education and Skill Development(2017-2022)</li>
+                                                    	<li class="read-more-li"><a href="dataset.html?tag=7" title="Read More" class="more">Readmore</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 8 --> 
+                                    <div class="tab-pane" id="data8">
+                                        <h3 class="dataset-title">Health</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Infant Mortality Rate (RURAL)</li>
+							<li>Neonatal Mortality Rate (RURAL)</li>
+							<li>Mortality Rate for Age Less than 5 (RURAL)</li>
+							<li>Children Aged 12-23 Months Fully Immunized</li>
+							<li>Children Breastfed within one hour of birth</li>
+							<li>Children who Received HAF/ORS/ORT</li>
+							<li>Children Suffering from Fever</li>
+							<li>Unmet Need for Spacing</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Percentage of Female Sterilization</li>
+							<li>Total Fertility Rate</li>
+							<li>Person Suffering from Fever(all types)</li>
+							<li>People Diagnosed for hypertension</li>
+							<li>People Diagnosed for Arthritis</li>
+							<li>People Diagnosed for any Kind of Chronic Illness and Getting Regular Treatment from Govt Source</li>
+							<li>Number of PHCs</li>
+							<li>Infant Mortality Rate (URBAN)</li>
+                                                    	<li class="read-more-li"><a href="dataset.html?tag=8" title="Read More" class="more">Readmore</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 9 --> 
+                                    <div class="tab-pane" id="data9">
+                                        <h3 class="dataset-title">Horticulture</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Commercial Flower Crops Total Production</li>
+							<li>Aromatic Plants Total Area</li>
+							<li>Aromatic Plants Total Production</li>
+							<li>Aromatic Plants Total Yield</li>
+							<li>Banana Total Area</li>
+							<li>Banana Total Production</li>
+							<li>Banana Total Yield</li>
+							<li>Beans Total Area</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Beans Total Production</li>
+							<li>Beans Total Yield</li>
+							<li>Commercial Flower Crops Total Yield</li>
+							<li>Fruit Crops Total Area</li>
+							<li>Fruit Crops Total Production</li>
+							<li>Fruit Crops Total Yield</li>
+							<li>Grapes Total Area</li>
+							<li>Grapes Total Production</li>
+                                                    	<li class="read-more-li"><a href="dataset.html?tag=9" title="Read More" class="more">Readmore</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Tab 10 --> 
+                                    <div class="tab-pane" id="data10">
+                                        <h3 class="dataset-title">Industry: Average Firm Size</h3>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Average Firm Size in Animals Farming</li>
+							<li>Average Firm Size in Post and Courier</li>
+							<li>Average Firm Size in Crops and Animal Farming</li>
+							<li>Average Firm Size in Agriculture and Animal Husbandry</li>
+							<li>Average Firm Size in Hunting and Trapping Propagation</li>
+							<li>Average Firm Size in Forestry and Logging</li> 
+							<li>Average Firm Size in Fish Farm Service</li>
+							<li>Average Firm Size in Coal Mining</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="dataset-cont-list">
+							<li>Average Firm Size in Mining Lignite </li>
+							<li>Average Firm Size in Mining Peat </li>
+							<li>Average Firm Size in Petroleum and Natural Gas </li>
+							<li>Average Firm Size in Horticultural </li>
+							<li>Average Firm Size in Mining Uranium and Thorium 
+							<li>Average Firm Size in Mining Iron </li>
+							<li>Average Firm Size in Mining Non Ferrous Metals </li>
+							<li>Average Firm Size in Mining Stone Sand </li>
+                                                    	<li class="read-more-li"><a href="dataset.html?tag=10" title="Read More" class="more">Readmore</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -->
+                    </div>
+                    
+                    <!-- Products -->
+                    <div class="tab-pane active clearfix  main-tab-pane-1" id="analytics">
+                    	<div class="col-md-12">
+                        	<div class="col-md-3" id="product-list-sec" >
+                                <ul class="product-list nav nav-tabs" role="tablist" >
+                                    <li class="active" id="list-explore"><a href="#explore" role="tab" data-toggle="tab">Explore</a></li>
+                                    <li id="list-exploreplus"><a href="#exploreplus" role="tab" data-toggle="tab">Explore+</a></li>
+                                    <li id="list-analyze"><a href="#analyze" role="tab" data-toggle="tab">Analyze</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-9" id="product-content-sec" >
+                            	<div class="tab-content">
+                                	<!-- Explore -->
+                                    <div class="tab-subpane active" id="explore">
+                                    	<div class="col-md-12 title-sec">
+											<p class="title">Understand your markets and make faster, more efficient location decisions</p>
+                                            <div class="col-md-12">
+                                           		 <div class="col-md-8 left-wrap">
+                                                 	<p class="title-content">Easy visualization of 300+ economic, demographic and geospatial characteristics down to the village level from census 2011, economic census, RBI and other sources.</p>
+                                                    <ul class="sec-list">
+                                                        <li>Powerful derived variables that are strong predictors of economic growth.</li>
+                                                        <li>Explore and compare regions with graphical visualizations.</li>
+                                                        <li>Filter locations by up to ten characteristics at a time.</li>
+                                                        <li>Easy access anywhere through your laptop, mobile or tablet.</li>
+                                                    </ul>
+                                                    <a href="dataset.html?tag=1" title="Datasets and Variables" class="sec-link">View the datasets and variables on Explore here</a>
+                                                 </div>
+                                                 <div class="col-md-4 right-wrap" >
+                                                 	<div class="col-md-12 dataset-yt-thumb">
+                                                    	<div class="yt-thumb-wrap">
+                                                          <p class="yt-thumb"><img src="/static/images/demo-scisphere.jpg" alt="Scisphere Explore demo video" /></p>
+                                                          <p><a href="https://www.youtube.com/watch?v=pOsVffCNcag" class="yt-link" title="Scisphere Explore demo video" target="_blank">View Demo</a></p>
+                                                        </div>
+                                                    </div>
+                                                 </div>  
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                        	<div class="col-md-12 dataset-image-wrap">
+                                            	<img src="/static/images/explore-ss.jpg" alt="Explore Screen" />
+                                        	</div>
+                                        </div>
+                                    </div>
+                                    <!-- Explore + -->
+                                    <div class="tab-subpane" id="exploreplus">
+                                    	<div class="col-md-12 title-sec">
+                                           <p class="title">Visualize your branch data to gain expanded insights into drivers of performance</p>
+                                           <ul class="sec-list">
+                                            <li>Instantaneous geospatial and graphical views of your branch performance data.</li>
+                                            <li>Explore and compare branches by both performance and contextual parameters such as demographic, economic and geospatial characteristics of the location.</li>
+                                            <li>Filter branches by up to ten performance and contextual characteristics at a time.
+</li>
+                                           </ul>
+                                           <a href="dataset.html" title="Location Datasets and Variables" class="sec-link">View the location datasets and variables here</a>
+                                        </div>
+                                        <div class="col-md-12">
+                                        	<div class="col-md-12 analytics-content-wrap">
+                                            	<div class="col-md-12 dataset-image-wrap">
+                                                	<img src="/static/images/exploreplus-ss.jpg" alt="Explore Screen" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Analyze -->
+                                    <div class="tab-subpane" id="analyze">
+                                    	<div class="col-md-12 title-sec">
+                                           <p class="title">Analyze provides various applications for predictive analytics and planning at the click of a button.</p>
+                                           <div class="col-md-12">
+                                           		 <div class="col-md-8 left-wrap">
+                                                 	<p class="title-content">Our applications currently focus on location selection and location based planning.</p>
+                                           			<p class="title-content">These features are currently in beta and are accessible only to select customers.<br />
+                                           			See how you can take advantage of them right now!</p>
+                                                 </div>
+                                                 <div class="col-md-4 right-wrap" >
+                                                 	<div class="col-md-12 dataset-yt-thumb">
+                                                    	<div class="yt-thumb-wrap">
+                                                          <p class="yt-thumb"><img src="/static/images/demo-analyze.jpg" alt="SciSphere Analyze" /></p>
+                                                          <p><a href="https://www.youtube.com/watch?v=VktLtvBEf88" class="yt-link" title="SciSphere Analyze" target="_blank">View Demo</a></p>
+                                                        </div>
+                                                    </div>
+                                                 </div>  
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-12 ana-thumb-container">
+                                            <div class="col-md-11">
+                                                <div class="col-md-11">
+                                                    <div class="col-md-12 analytics-content-wrap">
+                                                        <h4 class="sec-heading">Location Selection</h4>
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-6 img-wrap">
+                                                                <img src="/static/images/location-selection-1.jpg" class="body-sec-image" alt="Location Selection"/>
+                                                            </div>
+                                                            <div class="col-md-6"><p class="sec-content">Find locations that predict high potential for various performance metrics such as deposits, advances and productivity with our automated algorithms.</p></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 analytics-content-wrap">
+                                                        <h4 class="sec-heading">Location Based Planning</h4>
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-6 img-wrap">
+                                                                <img src="/static/images/location-1.jpg" class="body-sec-image" alt="Location Selection"/>
+                                                            </div>
+                                                            <div class="col-md-6"><p class="sec-content">We often set targets and incentives uniformly across geographies even though location potential varies widely.  Plan in more targeted ways using location intelligence.</p></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 analytics-content-wrap">
+                                                        <h4 class="sec-heading">Spatial Optimization</h4>
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-6 img-wrap">
+                                                                <img src="/static/images/spatial-1.jpg" class="body-sec-image" alt="Location Selection"/>
+                                                            </div>
+                                                            <div class="col-md-6"><p class="sec-content">Regions are often based on government boundaries.  Organize your branches based on distance to gain significant benefits in operational efficiency.</p></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demos -->
+                    <div class="tab-pane  main-tab-pane-4" id="demos">
+                    	<div class="col-md-12">
+                        	<div class="demo-video-wrapper homedemo-video-wrapper clearfix">
+                            	<div class="col-md-12 demo-main-video-sec">
+                                	<!-- Video Container 1 -->
+                                    <div class="col-md-12 video-container" id="video-container-1">
+                                        <div class="col-md-8 demo-main-video">
+                                            <div class="col-md-11">
+                                                <iframe frameborder="0" name="pOsVffCNcag" src="https://www.youtube.com/embed/pOsVffCNcag" allowfullscreen class="demo-video-frame"></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 demo-main-video-details">
+                                            <div class="video-title-wrap"><h3 class="video-title">SciSphere Explore Demo</h3><span class="video-date">Feb 22, 2015</span></div>
+                                            <p class="video-desc">This video outlines the features of the Explore features on SciSphere and a potential use case.</p>
+                                        </div>
+                                    </div>
+                                    <!-- Video Container 2 -->
+                    <div class="col-md-12 video-container" id="video-container-2">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="XU1MZ3pWWOQ" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Derived Variables on Explore</h3><span class="video-date">Feb 19, 2015</span></div>
+                            <p class="video-desc">Understand the various derived variables on SciSphere and how they are powerful predictors of the success and growth of microeconomies.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 3 -->
+                    <div class="col-md-12 video-container" id="video-container-3">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="MxTHAlRAhXk" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Structure of Branch Performance</h3><span class="video-date">Feb 20, 2015</span></div>
+                            <p class="video-desc">Learn how your branch performance distributes across geographies and why this often reflects economic context rather than internal operation.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 4 -->
+                    <div class="col-md-12 video-container" id="video-container-4">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="_BKi12igycg" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Our Location Selection Model</h3><span class="video-date">Feb 20, 2015</span></div>
+                            <p class="video-desc">Understand how our nonlinear machine learning location selection model works.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 5 -->
+                    <div class="col-md-12 video-container" id="video-container-5">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="VktLtvBEf88" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Location Analytics on SciSphere</h3><span class="video-date">Feb 19, 2015</span></div>
+                            <p class="video-desc">See how you can quickly use the results of our location selection models on SciSphere to shortlist places.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 6 -->
+                    <div class="col-md-12 video-container" id="video-container-6">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="W_ksjLg2cVs" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Banking Case Study</h3><span class="video-date">Apr 23, 2013</span></div>
+                            <p class="video-desc">See the potential impact of our location selection analytics in a live case study of a private sector bank.</p>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <!-- Video Container 7 -->
+                    <div class="col-md-12 video-container" id="video-container-7">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="75_7Z9Ve3ZQ" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Microfinance Case Study</h3><span class="video-date">Feb 19, 2015</span></div>
+                            <p class="video-desc">See the potential impact of our location selection analytics in a live case study of a rural microfinance institution. </p>
+                        </div>
+                    </div>
+                    <!-- Video Container 8 -->
+                    <div class="col-md-12 video-container" id="video-container-8">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="JhCyBPErYsk" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">Using SciSphere for Branch Selection at Madura Microfinance</h3>
+                            	<span class="video-date">Feb 22, 2015</span></div>
+                            <p class="video-desc">Learn how Madura Microfinance has been using SciSphere.</p>
+                        </div>
+                    </div>
+                    <!-- Video Container 9 -->
+                    <div class="col-md-12 video-container" id="video-container-9">
+                        <div class="col-md-8 demo-main-video">
+                            <div class="col-md-11"><iframe frameborder="0" name="QOedu9LfWLU" allowfullscreen class="demo-video-frame"></iframe></div>
+                        </div>
+                        <div class="col-md-4 demo-main-video-details">
+                            <div class="video-title-wrap"><h3 class="video-title">SciSphere Analyze</h3><span class="video-date">Feb 20, 2015</span></div>
+                            <p class="video-desc">Understand what goes behind our Analytics feature, start to finish.</p>
+                        </div>
+                    </div>
+                    <!-- -->
+                                    <!-- -->
+                                </div>
+                                
+                                <div class="col-md-12 demo-main-thumb-sec" >
+                                	<div class="demo-video-thumb" id="homedemo-carousel">
+                                    	<span class="buttons prev demo-carousel-prev"></span>
+                                        <div class="viewport">
+                                            <ul class="overview">
+                                                <li class="video-thumbs" id="video-thumbs-1">
+                                                    <img src="/static/images/demo-video-thumb-1.png" alt="Video Thumb"/>
+                                                    <span class="timer">04.11</span>
+                                                    <p class="video-overlay"><span class="overlay-title">SciSphere Explore Demo</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-2">
+                                                    <img src="/static/images/demo-video-thumb-2.png" alt="Video Thumb"/>
+                                                    <span class="timer">07.53</span>
+                                                    <p class="video-overlay"><span class="overlay-title">Derived Variables on Explore</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-3">
+                                                    <img src="/static/images/demo-video-thumb-3.png" alt="Video Thumb"/>
+                                                    <span class="timer">08.50</span>
+                                                    <p class="video-overlay"><span class="overlay-title">Structure of Branch Performance</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-4">
+                                                    <img src="/static/images/demo-video-thumb-5.png" alt="Video Thumb"/>
+                                                    <span class="timer">08.02</span>
+                                                    <p class="video-overlay"><span class="overlay-title">Our Location Selection Model</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-5">
+                                                    <img src="/static/images/demo-video-thumb-6.png" alt="Video Thumb"/>
+                                                    <span class="timer">06.35</span>
+                                                    <p class="video-overlay"><span class="overlay-title">Location Analytics on SciSphere</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-6">
+                                                    <img src="/static/images/demo-video-thumb-7.png" alt="Video Thumb"/>
+                                                    <span class="timer">05.47</span>
+                                                    <p class="video-overlay"><span class="overlay-title">Banking Case Study</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-7">
+                                                    <img src="/static/images/demo-video-thumb-8.png" alt="Video Thumb"/>
+                                                    <span class="timer">01.40</span>
+                                                    <p class="video-overlay"><span class="overlay-title">Microfinance Case Study</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-8">
+                                                    <img src="/static/images/demo-video-thumb-9.png" alt="Video Thumb"/>
+                                                    <span class="timer">01.57</span>
+                                                    <p class="video-overlay"><span class="overlay-title">Branch Selection at Madura Microfinance</span></p>
+                                                </li>
+                                                <li class="video-thumbs" id="video-thumbs-9">
+                                                    <img src="/static/images/demo-video-thumb-4.png" alt="Video Thumb"/>
+                                                    <span class="timer">11.59</span>
+                                                    <p class="video-overlay"><span class="overlay-title">SciSphere Analyze</span></p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <span class="buttons next demo-carousel-next"></span>       
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- demo-video-wrapper Ends--> 
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+            </div>
+        </div>
+        <div class="col-md-3 right-latest-panel">
+        	<div class="latest-content-wrap">
+            	<span class="title">Videos</span>
+                <ul class="link-list">
+                    <li><a href="https://www.youtube.com/watch?v=pOsVffCNcag" title="SciSphere Explore Demo" class="links" target="_blank">SciSphere Explore Demo</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=XU1MZ3pWWOQ" title="Derived Variables on SciSphere" class="links" target="_blank">Derived Variables on SciSphere</a></li>
+                    <li class="last-link"><a href="https://www.youtube.com/watch?v=VktLtvBEf88" title="Location Analytics on SciSphere" class="links" target="_blank">Location Analytics on SciSphere</a></li>
+                </ul>
+            </div>
+            <div class="latest-content-wrap">
+            	<span class="title">Product Sheets </span>
+                 <ul class="link-list">
+                	<li><a href="/static/library/pdf/scisphere-explore.pdf" title="" class="links" target="_blank">Explore</a></li>
+                    <li><a href="/static/library/pdf/scisphere-explore-plus.pdf" title="" class="links" target="_blank">Explore+</a></li>
+                    <li class="last-link"><a href="/static/library/pdf/scisphere-analyze.pdf" title="" class="links" target="_blank">Analyze</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="home-footersec">
+  <div class="container">
+    <div class="col-lg-12">
+    	<p class="footer-content pull-left">
+        	<!--<a href="home.html" title="Use Case">Use Case</a>  &nbsp; | &nbsp;-->
+            <a href="/dataset.html?tag=1" title="Datasets">Datasets</a>  &nbsp; | &nbsp;
+            <a href="/pricing.html" title="Pricing">Pricing</a>  &nbsp; | &nbsp;
+            <a href="/demos.html" title="Demos">Demos</a>  &nbsp; | &nbsp;
+            <a href="/labs.html" title="Labs">Labs</a>  &nbsp; | &nbsp;
+            <a href="#" title="Blog">Blog</a>  &nbsp; | &nbsp;
+            <a href="/app/contact" title="Contact">Contact</a>  &nbsp; | &nbsp;
+            <a href="/about.html" title="About">About</a>
+        </p>
+        <p class="footer-content pull-right">
+        	<span class="copyright-text">&copy; Copyright 2014 Scisphere, inc. All rights reserved.</span>
+        </p>
+      </div>
+  </div>
+</div>
+<!-- -->
+</body>
+</html>

@@ -1,0 +1,108 @@
+.selectboxit-container {
+	position: relative;
+	display: inline-block;
+	width:100%;
+}
+.selectboxit-container .selectboxit {
+	width:100%;
+	z-index:1;
+}
+
+
+.selectboxit-container span, .selectboxit-container .selectboxit-options a {
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	color:#3E3E3E;
+	font-size:12px;
+}
+.selectboxit-container .selectboxit:focus {
+	outline: 0;
+}
+.selectboxit-text {
+	text-indent: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	float: left;
+	color:#aaa;
+}
+.selectboxit .selectboxit-option-icon-container {
+	margin-left: 5px;
+}
+.selectboxit-container .selectboxit-options {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	overflow-x: hidden;
+	overflow-y: auto;
+	cursor: pointer;
+	display: none;
+	z-index:2;
+}
+.selectboxit-option, .selectboxit-optgroup-header {
+	text-indent: 5px;
+	margin: 0;
+	list-style-type: none;
+}
+.selectboxit-arrow-container {
+	width: 25px;
+	position: absolute;
+	right: 0;
+}
+.selectboxit .selectboxit-arrow-container .selectboxit-arrow {
+	margin: 0 auto;
+	position: absolute;
+	height:90%;
+	top: 0%;
+	left:0px;
+}
+.selectboxit-option-icon-container {
+	float: left;
+}
+.selectboxit-btn {
+	border-bottom:1px solid #E9EDEF;
+}
+.selectboxit-default-arrow {
+	width: 18px;
+	height: 12px;
+	background:url(../images/Image-Set.png) no-repeat -14px -391px;
+}
+.selectboxit-list {
+	max-height:250px;
+	overflow:auto;
+	background-color: #ffffff;
+	border: 1px solid #ccc;
+}
+.popup-selectbox {
+	border:1px solid #ccc;
+}
+.selectboxit-list .selectboxit-option-anchor {
+	color: #333333;
+}
+.selectboxit-list .selectboxit-focus .selectboxit-option-anchor {
+	color: #666;
+	background-color: #f2f2f2;
+	background-repeat: repeat-x;
+}
+.select-wrap .selectboxit-btn, .select-wrap1 .selectboxit-btn {
+	border:1px solid #D8D8D8;
+}
+.select-wrap .selectboxit-default-arrow {
+	margin-top:0;
+	width: 10px;
+	height: 17px;
+	background:url(../images/sector-arrow.png) no-repeat;
+}
+.select-wrap .selectboxit .selectboxit-arrow-container .selectboxit-arrow {
+	right:0;
+	top:50%;
+	margin-top:-8px;
+}
+.select-wrap .selectboxit-container span, .select-wrap .selectboxit-container .selectboxit-options a, .select-wrap1 .selectboxit-container span, .select-wrap1 .selectboxit-container .selectboxit-options a {
+	color:#A4A4A4;
+}
+.temp-body .selectboxit-default-arrow{
+	background:#fFf url(../images/Image-Set.png) no-repeat -14px -391px;
+}

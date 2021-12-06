@@ -1,0 +1,1993 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script> 
+<script type="text/javascript" src="/static/js/underscore-min.js"></script>
+<script type="text/javascript" src="/static/common_js/FileSaver.js"></script>
+<script type="text/javascript" src="/static/js/bootbox.js"></script>
+<script type="text/javascript" src="/static/js/d3.v3.min.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/static/css/jquery-ui.css">
+<script src="/static/js/jquery-ui.js"></script>
+<style>
+.b-category{
+	display: none;
+}
+.text-field-varible{
+	width:130px;
+	float:left;
+	margin:0px 10px 5px 0px;
+	padding:6px 10px;
+}
+
+
+</style>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$('.user-menu').slideUp(0);
+	$('#drop-icon').click( function(event){
+		event.stopPropagation();
+		$('.user-menu').slideToggle(200);
+	});
+	$(document).click( function(){
+		$('.user-menu').slideUp(100);
+	});
+	/*-- Accordian --*/
+	$('.item-panel-list2 .panel .acc-head').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$('.item-panel-list2 .panel .acc-head').removeClass('acc-listact');
+			$(this).addClass('acc-listact');
+		}
+   	});
+	
+	$('.item-panel-list2 .collapse-sublist li a').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$('.item-panel-list2 .collapse-sublist li a').removeClass('acc-listact');
+			$(this).addClass('acc-listact');
+		}
+	});
+
+	/*-- Branch Categorization --*/
+	//$('.optionlist li .cate').click(function(e) {
+	//	$(this).toggleClass('cateact');
+    	//});
+	/*-- Drop down select --*/
+	$('.temp-cont-body').css({'display':'none'});
+	/*var def = $('#template :selected').text();
+	$('#'+def).css({'display':'block'});*/
+
+	/*$('#template').change(function(){
+		var onsec = $(this).val()
+		$('.temp-cont-body').css({'display':'none'});
+		$('#'+onsec).css({'display':'block'}); 
+	});*/
+
+});
+</script>
+<script type="text/javascript">
+
+$(function() {
+	$( "#datepicker" ).datepicker();
+});
+
+$(document).ready(function () {
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+
+});
+
+/*Title case*/
+String.prototype.toTitleCase = function() {
+  var i, j, str, lowers, uppers;
+  str = this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
+
+  str = str.replace(/_/g," ");
+  // Certain minor words should be left lowercase unless 
+  // they are the first or last words in the string
+  lowers = ['A', 'An', 'The', 'And', 'But', 'Or', 'For', 'Nor', 'As', 'At', 'Per', 
+  'By', 'For', 'From', 'In', 'Into', 'Near', 'Of', 'On', 'Onto', 'To', 'With'];
+  for (i = 0, j = lowers.length; i < j; i++)
+    str = str.replace(new RegExp('\\s' + lowers[i] + '\\s', 'g'), 
+      function(txt) {
+        return txt.toLowerCase();
+      });
+
+  // Certain words such as initialisms or acronyms should be left uppercase
+  uppers = ['Id', 'Tv','Town'];
+  for (i = 0, j = uppers.length; i < j; i++)
+     str = str.replace(new RegExp('\\b' + uppers[i] + '\\b', 'g'), 
+       uppers[i].toUpperCase());
+
+  return str;
+}
+
+
+var myTemplateList,variableList,variableProductList,unitList;
+var performanceVariable=[]; //initially pushing performance variable (key,values)
+var selectedPerformanceVariable=[];
+var branchCategoryArray=[]; //initially pushing values of branch category
+var selectedBranchCategoryArray=[];
+var placeVariable = [];
+//var timeUnitList = ["Year to date","For the Month","For the Year","For the Week","Daily"];
+var timeUnitList = {"1":"Year to Date","2":"For the Month","3":"For the Year","4":"For the Week","5":"Daily"};
+var years = [];
+
+
+window.onload=function(){
+	// year 
+	var date = new Date;
+	var year = date.getFullYear();
+	years = [];
+	for (var i = year; i > year - 5; i--) {
+		years.push(i); 
+	}
+
+	$('#loading').html("");
+
+	d3.json("/app/subscription_list",function(data){
+		sub_list = data;
+		if(sub_list['plus_plans'].length==0){
+			window.location="/app/region_explorer";
+		}else{
+			$.ajax({
+			    url: "/app/get_template_list",
+			    type: 'post',
+			    dataType: 'json',
+			    success: function (data) {
+				for(var key in data){
+					if(key=="templateList"){
+						templateList = JSON.parse(data[key])
+					}else if(key=="variableList"){
+						variableList = JSON.parse(data[key])
+					}else if(key=="variableProductList"){
+						variableProductList = JSON.parse(data[key])
+					}else if(key=="unitList"){
+						unitList = JSON.parse(data[key])
+					}else if(key=="myTemplateList"){
+						myTemplateList = JSON.parse(data[key])
+					}
+				}
+				loadTemplateData(templateList,variableList,variableProductList,unitList,myTemplateList);
+
+				//template download
+				var template_path = '{{template_path}}';
+				if(template_path){
+					window.location=template_path;
+				}
+			    }
+			});
+		}
+	});
+}
+
+
+function loadTemplateData(templateList,variableList,variableProductList,unitList,myTemplateList){
+	// mytemplate load
+	var myTemplateId = document.getElementById('id_mytemplate');
+	for(var i=0;i<myTemplateList.length;i++){
+		var content;
+		if(myTemplateList[i].mytemplate_name.length > 25){
+			content = myTemplateList[i].mytemplate_name.substring(0, 25)+"...";
+		}else{
+			content = myTemplateList[i].mytemplate_name;
+		}
+		var optlevel0 = document.createElement('option');
+		optlevel0.innerHTML = content;
+		optlevel0.value = myTemplateList[i]['id'];
+		optlevel0.setAttribute("rel","popover");
+		optlevel0.setAttribute("title","Template : "+myTemplateList[i].mytemplate_name);
+		myTemplateId.appendChild(optlevel0);
+	}
+	$("#id_mytemplate").data("selectBox-selectBoxIt").add();
+
+	// template load
+	var templateId = document.getElementById('template');
+	for(var i=0;i<templateList.length;i++){
+		var optlevel0 = document.createElement('option');
+		optlevel0.innerHTML = templateList[i]['fields']['name'];
+		optlevel0.value = templateList[i].pk;
+		templateId.appendChild(optlevel0);
+	}
+	$("#template").data("selectBox-selectBoxIt").add();
+
+	// custom unit load
+	var unitId = document.getElementById("unit_id");
+	for(var i=0;i<unitList.length;i++){
+		var optvariable = document.createElement('option');
+		optvariable.innerHTML = unitList[i]['fields'].name;
+		optvariable.value = unitList[i].pk;
+		unitId.appendChild(optvariable);
+	}
+	$("#unit_id").data("selectBox-selectBoxIt").add();
+
+	// custom time unit load
+	var timeUnitId = document.getElementById("time_unit_id");
+	for(var key in timeUnitList){
+		var optvariable = document.createElement('option');
+		optvariable.innerHTML = timeUnitList[key];
+		optvariable.value = key;
+		timeUnitId.appendChild(optvariable);
+	}
+ 	$("#time_unit_id").data("selectBox-selectBoxIt").add();
+
+	/*POP up on mouse over on select option*/
+	$("[rel='popover']").popover({ trigger: "hover", container: "body" });
+}
+
+
+function templateChange(){
+	perVarCustomCount={};
+	performanceVariableCustom={};
+	selectedPVCustom=[];
+
+	placeVariable=[];
+	branchCategoryArray=[];
+	performanceVariable=[];
+	selectedPerformanceVariable=[];
+	selectedBranchCategoryArray=[];
+
+	var templateId = document.getElementById('template').value;
+	var performanceVariableId = document.getElementById('performance-variable-id');
+
+
+
+	if(templateId!="0"){
+		$('.temp-cont-body').css({'display':'block'});
+	}else{
+		$('.temp-cont-body').css({'display':'none'});
+	}
+	var el = document.getElementById('template');
+	var templateText = el.options[el.selectedIndex].innerHTML;
+	document.getElementById("template-title").innerHTML=templateText;
+
+	if(document.getElementById("id_mytemplate").value == 0){
+		var date = new Date();
+		var dateString = date.getMonth() + 1 + "-" + date.getDate() + "-" + date.getFullYear();
+		document.getElementById("mytemplate-name-id").value=templateText+"_"+dateString;
+	}
+
+	var categoryContent="";
+	var perVarBodyContent="";
+	$("#performance-variable-id").data("selectBox-selectBoxIt").remove();
+
+
+	categoryContent+='<ul class="optionlist">';
+
+	var optvariable = document.createElement('option');
+	optvariable.innerHTML = "Select Performance Variable";
+	optvariable.value = "0";
+	performanceVariableId.appendChild(optvariable);
+
+	variableList = variableList.sort(function(a,b) { return d3.ascending(a.pk,b.pk); });
+
+	for(var i=0;i<variableList.length;i++){
+		if(variableList[i]['fields'].templates[0] == templateId){
+			// places
+			if(variableList[i]['fields'].variabletype == "places"){
+				var placeVariableName = variableList[i]['fields'].name;
+				var placeVariableId = variableList[i].pk;
+				var arr={};
+				arr[placeVariableId] = placeVariableName;
+				placeVariable.push(arr);
+			}
+			// category
+			if(variableList[i]['fields'].variabletype == "category"){
+				var branchCategoryName = variableList[i]['fields'].name;
+				var branchCategoryId = variableList[i].pk;
+
+				var arr={};
+				arr[branchCategoryId] = branchCategoryName;
+				branchCategoryArray.push(arr);
+				
+				categoryContent+='<li>'+
+						'<input type="checkbox" class="b-category" id="branch_category_'+branchCategoryId+'_check" onclick="branchCategoryClick('+"'"+branchCategoryId+"'"+')"></input>'+
+						'<label class="cate" for="branch_category_'+branchCategoryId+'_check" id="branch_category_'+branchCategoryId+'_label">'+branchCategoryName+'</label>'+
+						'</li>';
+
+			}
+			// performance variable
+			if(variableList[i]['fields'].variabletype == "performance variables"){
+				var pvId = variableList[i].pk;
+				var performanceVariableName = variableList[i]['fields'].name;
+
+				var optvariable = document.createElement('option');
+				optvariable.innerHTML = performanceVariableName;
+				optvariable.value = pvId;
+				performanceVariableId.appendChild(optvariable);
+
+				var arr={};
+				arr[pvId] = performanceVariableName;
+				performanceVariable.push(arr);
+				perVarBodyContent+="<div id='"+"pv_"+pvId+"'></div>";
+				
+			}
+		}
+	}
+	/* add custom variable in selection options */
+	var optvariable = document.createElement('option');
+	optvariable.innerHTML = "Define Custom Variable";
+	optvariable.value = "new";
+	performanceVariableId.appendChild(optvariable);
+
+	$("#performance-variable-id").data("selectBox-selectBoxIt").add();
+	categoryContent+='</ul>';
+	document.getElementById("category-id").innerHTML=categoryContent;
+	document.getElementById("variable-body-content-id").innerHTML=perVarBodyContent;
+}
+
+
+function branchCategoryClick(branchCategoryId){
+	for(var key in branchCategoryArray){
+		for(var key1 in branchCategoryArray[key]){
+			if(document.getElementById("branch_category_"+branchCategoryId+"_check")){
+				if(key1 == branchCategoryId){
+					if(document.getElementById("branch_category_"+branchCategoryId+"_check").checked){
+						selectedBranchCategoryArray.push(branchCategoryId);
+						$("#branch_category_"+branchCategoryId+"_label").attr("class","cate cateact");
+					}
+					else{
+						selectedBranchCategoryArray = _.without(selectedBranchCategoryArray, branchCategoryId);
+						$("#branch_category_"+branchCategoryId+"_label").attr("class","cate");
+					}
+				}
+			}
+			
+		}
+	}
+}
+
+
+function performanceVariableChange(value){
+	
+	var performanceVariableId = document.getElementById("performance-variable-id").value;
+	var variableTitleContent="";
+	var performanceContent="";
+
+	// define custom variable
+	if(performanceVariableId=='new'){
+		$("#define-custom-variable-id").css("display","block");
+	}
+	else if(performanceVariableId!='0'){
+	if(($.inArray(performanceVariableId, selectedPerformanceVariable) == -1)){
+		$("#define-custom-variable-id").css("display","none");
+		var variableDivId="";
+		for(var key in performanceVariable){
+			for(var key1 in performanceVariable[key]){
+				if(key1 == performanceVariableId){
+					variableDivId = key1;
+					//var pVarName = performanceVariable[key][key1].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+					variableTitleContent+=performanceVariable[key][key1];
+				}
+			}
+		}
+		var productFlag=0;
+		for(var i=0;i<variableProductList.length;i++){
+			if(variableProductList[i]['fields'].variable_id == performanceVariableId){
+				productFlag=1;
+			}
+		}
+
+		if(productFlag == 1){
+			performanceContent+='<div class="perform-sec clearfix">'+
+				    '<div class="var-title" id="variable-title-id">'+variableTitleContent+'';
+				if(value == "Yes"){
+					performanceContent+='<span class="var-title-close" data-toggle="modal" data-target=".new-variable_0"><img src="/static/images/close_dark.png" alt="Close" onclick="datasetExistMessage();"></span>';
+				}else{
+					performanceContent+='<span class="var-title-close" data-toggle="modal" data-target=".new-variable_0"><img src="/static/images/close_dark.png" alt="Close" onclick="closeVariableSection('+"'pv_"+variableDivId+"','"+performanceVariableId+"'"+')"></span>';
+				}
+
+			performanceContent+='</div>'+
+				    '<div class="var-field-sec">'+
+					'<div class="new-field clearfix">'+
+					    '<table id="table_'+variableDivId+'">'+
+					       '<tr>'+
+		                                  '<td>'+
+						     '<div class="select-wrap1 variable-selectbox" style="width:175px;">'+
+						        '<select class="custom_selectbox" id="variable_product_id_'+variableDivId+'_0">'+
+						           '<option value="0" selected="selected">Select Product</option>'+
+						        '</select>'+
+						     '</div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<div class="select-wrap1 variable-selectbox">'+
+						        '<select class="custom_selectbox" id="unit_id_'+variableDivId+'_0">'+
+						           '<option value="0" selected="selected">Select Unit</option>'+
+						        '</select>'+
+						     '</div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<div class="select-wrap1 variable-selectbox" style="width: 120px;">'+
+						        '<select class="custom_selectbox" id="time_unit_id_'+variableDivId+'_0" onchange="timeUnitChange('+"'time_spec_id_"+variableDivId+"_0','time_spec_div_"+variableDivId+"_0','time_spec_year_id_"+variableDivId+"_0','time_spec_year_div_"+variableDivId+"_0','time_unit_id_"+variableDivId+"_0'"+');">'+
+						           '<option value="0">Select Time Unit</option>'+
+						        '</select>'+
+						     '</div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<div id="time_spec_div_'+variableDivId+'_0"></div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<div id="time_spec_year_div_'+variableDivId+'_0"></div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<span id="add-arrow-id-'+variableDivId+'_0" class="var-add" onclick="addNewProduct('+"'table_"+variableDivId+"','"+variableDivId+"','"+performanceVariableId+"','No'"+')"></span>'+
+		                                  '</td>'+
+		                                  /*'<td>';
+				if(value == "Yes"){
+				   performanceContent+='<span id="close-arrow-id-'+variableDivId+'_0" class="var-close" onclick="datasetExistMessage();"></span>';
+				}else{
+				   performanceContent+='<span id="close-arrow-id-'+variableDivId+'_0" class="var-close" onclick="deleteProduct('+"'table_"+variableDivId+"','"+this+"'"+');"></span>';
+				}
+		                   performanceContent+='</td>'+*/
+					       '</tr>'+
+					    '</table>'+
+					'</div>'+
+				    '</div>'+
+				'</div>';
+
+
+		
+			perVarCount[variableDivId] = 0;
+			document.getElementById('pv_'+variableDivId+'').innerHTML=performanceContent;
+
+			// variable product load
+			var variableProductId = document.getElementById("variable_product_id_"+variableDivId+"_0");
+			for(var i=0;i<variableProductList.length;i++){
+				if(variableProductList[i]['fields'].variable_id == performanceVariableId){
+					var optvariable = document.createElement('option');
+					optvariable.innerHTML = variableProductList[i]['fields'].name;
+					optvariable.value = variableProductList[i].pk;
+					variableProductId.appendChild(optvariable);
+				}
+			}
+
+			// unit load
+			var unitId = document.getElementById("unit_id_"+variableDivId+"_0");
+			for(var i=0;i<unitList.length;i++){
+				var optvariable = document.createElement('option');
+				optvariable.innerHTML = unitList[i]['fields'].name;
+				optvariable.value = unitList[i].pk;
+				unitId.appendChild(optvariable);
+			}
+
+			// time unit load
+			var timeUnitId = document.getElementById("time_unit_id_"+variableDivId+"_0");
+			for(var key in timeUnitList){
+				var optvariable = document.createElement('option');
+				optvariable.innerHTML = timeUnitList[key];
+				optvariable.value = key;
+				timeUnitId.appendChild(optvariable);
+			}
+
+
+			for(var key in performanceVariable){
+			    for(var key1 in performanceVariable[key]){
+				if(key1 == performanceVariableId){
+					$('#variable_product_id_'+variableDivId+'_0').selectBoxIt({ defaultText: '', autoWidth: false });
+					$('#unit_id_'+variableDivId+'_0').selectBoxIt({ defaultText: '', autoWidth: false });
+					$('#time_unit_id_'+variableDivId+'_0').selectBoxIt({ defaultText: '', autoWidth: false });
+				}
+			    }	
+			}
+
+		}else{
+			/*performanceContent+='<div class="perform-sec clearfix">'+
+			    '<div class="var-title" id="variable-title-id">'+variableTitleContent+''+
+			       '<span class="var-title-close" data-toggle="modal" data-target=".new-variable_0"><img src="/static/images/close_dark.png" alt="Close" onclick="closeVariableSection('+"'pv_"+variableDivId+"','"+performanceVariableId+"'"+')"></span>'+
+			    '</div>'+
+			'</div>';*/
+
+			performanceContent+='<div class="perform-sec clearfix">'+
+				    '<div class="var-title" id="variable-title-id">'+variableTitleContent+'';
+				if(value == "Yes"){
+					performanceContent+='<span class="var-title-close" data-toggle="modal" data-target=".new-variable_0"><img src="/static/images/close_dark.png" alt="Close" onclick="datasetExistMessage();"></span>';
+				}else{
+					performanceContent+='<span class="var-title-close" data-toggle="modal" data-target=".new-variable_0"><img src="/static/images/close_dark.png" alt="Close" onclick="closeVariableSection('+"'pv_"+variableDivId+"','"+performanceVariableId+"'"+')"></span>';
+				}
+
+			performanceContent+='</div>'+
+				    '<div class="var-field-sec">'+
+					'<div class="new-field clearfix">'+
+					    '<table id="table_'+variableDivId+'">'+
+					       '<tr>'+
+		                                  '<td>'+
+						     '<div class="select-wrap1 variable-selectbox">'+
+						        '<select class="custom_selectbox" id="unit_id_'+variableDivId+'_0">'+
+						           '<option value="0" selected="selected">Select Unit</option>'+
+						        '</select>'+
+						     '</div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<div class="select-wrap1 variable-selectbox" style="width: 120px;">'+
+						        '<select class="custom_selectbox" id="time_unit_id_'+variableDivId+'_0" onchange="timeUnitChange('+"'time_spec_id_"+variableDivId+"_0','time_spec_div_"+variableDivId+"_0','time_spec_year_id_"+variableDivId+"_0','time_spec_year_div_"+variableDivId+"_0','time_unit_id_"+variableDivId+"_0'"+');">'+
+						           '<option value="0">Select Time Unit</option>'+
+						        '</select>'+
+						     '</div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<div id="time_spec_div_'+variableDivId+'_0"></div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<div id="time_spec_year_div_'+variableDivId+'_0"></div>'+
+		                                  '</td>'+
+		                                  '<td>'+
+						     '<span id="add-arrow-id-'+variableDivId+'_0" class="var-add" onclick="addNewProduct('+"'table_"+variableDivId+"','"+variableDivId+"','"+performanceVariableId+"','No'"+')"></span>'+
+		                                  '</td>'+
+					       '</tr>'+
+					    '</table>'+
+					'</div>'+
+				    '</div>'+
+				'</div>';
+
+			perVarCount[variableDivId] = 0;
+			document.getElementById('pv_'+variableDivId+'').innerHTML=performanceContent;
+
+			// unit load
+			var unitId = document.getElementById("unit_id_"+variableDivId+"_0");
+			for(var i=0;i<unitList.length;i++){
+				var optvariable = document.createElement('option');
+				optvariable.innerHTML = unitList[i]['fields'].name;
+				optvariable.value = unitList[i].pk;
+				unitId.appendChild(optvariable);
+			}
+
+			// time unit load
+			var timeUnitId = document.getElementById("time_unit_id_"+variableDivId+"_0");
+			for(var key in timeUnitList){
+				var optvariable = document.createElement('option');
+				optvariable.innerHTML = timeUnitList[key];
+				optvariable.value = key;
+				timeUnitId.appendChild(optvariable);
+			}
+
+
+			for(var key in performanceVariable){
+			    for(var key1 in performanceVariable[key]){
+				if(key1 == performanceVariableId){
+					$('#variable_product_id_'+variableDivId+'_0').selectBoxIt({ defaultText: '', autoWidth: false });
+					$('#unit_id_'+variableDivId+'_0').selectBoxIt({ defaultText: '', autoWidth: false });
+					$('#time_unit_id_'+variableDivId+'_0').selectBoxIt({ defaultText: '', autoWidth: false });
+				}
+			    }	
+			}
+
+
+		}
+	}
+	}
+
+	selectedPerformanceVariable.push(performanceVariableId);
+	selectedPerformanceVariable = _.uniq(selectedPerformanceVariable);
+
+	// reset performance variable
+	document.getElementById("performance-variable-id").value=0;
+	$("#performance-variable-id").data("selectBox-selectBoxIt").add();
+}
+
+
+
+function closeVariableSection(divId,pVarId){
+	bootbox.dialog({
+		message: "Are you sure want to remove the variable?",
+		buttons: {
+		no: {
+			label: "No"
+		},
+		yes: {
+			label: "Yes",
+			callback: function() {
+				document.getElementById(divId).innerHTML="";
+				selectedPerformanceVariable = _.without(selectedPerformanceVariable, pVarId);
+			}
+		}
+		}
+	});
+}
+
+function closeVariableSectionCustom(pvcId){
+	bootbox.dialog({
+		message: "Are you sure want to remove the variable?",
+		buttons: {
+		no: {
+			label: "No"
+		},
+		yes: {
+			label: "Yes",
+			callback: function() {
+				document.getElementById(pvcId).innerHTML="";
+				selectedPVCustom = _.without(selectedPVCustom, pvcId);
+				performanceVariableCustom = _.omit(performanceVariableCustom, pvcId);
+
+				//delete customTimeLineCheck[pvcIdName];
+			}
+		}
+		}
+	});
+}
+
+
+function timeUnitChange(timeSpecId,timeSpecDivId,timeSpecYearId,timeSpecYearDivId,unitId){
+	
+	var timeSpecContent="";
+	var timeSpecYearContent="";
+	var timeUnitId=document.getElementById(unitId).value;
+	if(timeUnitId == "0"){
+		$("#"+timeSpecDivId+"").attr("class","").css("width","");
+		timeSpecContent="";
+	} else if(timeUnitId == "2"){
+		$("#"+timeSpecDivId+"").attr("class","select-wrap1 variable-selectbox").css("width","70px");
+		timeSpecContent+='<select class="custom_selectbox" id="'+timeSpecId+'">'+
+				'<option value="01">Jan</option>'+
+				'<option value="02">Feb</option>'+
+				'<option value="03">Mar</option>'+
+				'<option value="04">Apr</option>'+
+				'<option value="05">May</option>'+
+				'<option value="06">Jun</option>'+
+				'<option value="07">Jul</option>'+
+				'<option value="08">Aug</option>'+
+				'<option value="09">Sep</option>'+
+				'<option value="10">Oct</option>'+
+				'<option value="11">Nov</option>'+
+				'<option value="12">Dec</option>'+
+				'</select>';
+		// year
+		$("#"+timeSpecYearDivId+"").attr("class","select-wrap1 variable-selectbox").css("width","70px");
+		timeSpecYearContent+='<select class="custom_selectbox" id="'+timeSpecYearId+'">'+
+				'</select>';
+
+	}else if(timeUnitId ==  "3"){
+		$("#"+timeSpecDivId+"").attr("class","select-wrap1 variable-selectbox").css("width","70px");
+		timeSpecContent+='<select class="custom_selectbox" id="'+timeSpecId+'">'+
+				'</select>';
+	}else{
+		$("#"+timeSpecDivId+"").attr("class","").css("width","");
+		timeSpecContent+='<input type="text" id="'+timeSpecId+'" name="timespec" class="text-field text-field-varible" placeholder="dd-mm-yyyy" style="width:90px;">';
+	}
+
+	document.getElementById(timeSpecDivId).innerHTML=timeSpecContent;
+	document.getElementById(timeSpecYearDivId).innerHTML=timeSpecYearContent;
+	// year load
+	if(timeUnitId ==  "3"){
+		var timeSpec = document.getElementById(timeSpecId);
+		for(var i=0;i<years.length;i++){
+			var optvariable = document.createElement('option');
+			optvariable.innerHTML = years[i];
+			optvariable.value = years[i];
+			timeSpec.appendChild(optvariable);
+		}
+	}
+	if(timeUnitId ==  "2"){
+		var timeSpecYear = document.getElementById(timeSpecYearId);
+		for(var i=0;i<years.length;i++){
+			var optvariable = document.createElement('option');
+			optvariable.innerHTML = years[i];
+			optvariable.value = years[i];
+			timeSpecYear.appendChild(optvariable);
+		}
+	}
+
+	$("#"+timeSpecId+"" ).datepicker();
+	$('#'+timeSpecId+'').selectBoxIt({ defaultText: '', autoWidth: false });
+	$('#'+timeSpecYearId+'').selectBoxIt({ defaultText: '', autoWidth: false });
+}
+
+
+var perVarCount={};
+function addNewProduct(tableID,productName,performanceVariableId,value){
+	
+  	var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+	if(perVarCount[productName]){
+		perVarCount[productName] = perVarCount[productName]+1;
+	}else{
+		perVarCount[productName] = 1;
+	}
+        var countval = perVarCount[productName];
+
+	/* check for product is available or not */
+	var productFlag=0;
+	for(var i=0;i<variableProductList.length;i++){
+		if(variableProductList[i]['fields'].variable_id == performanceVariableId){
+			productFlag=1;
+		}
+	}
+	if(productFlag==1){
+		// product type load ************* 1
+		var cell1 = row.insertCell(0);
+		var divelement1 = document.createElement("div");
+		divelement1.className = "select-wrap1 variable-selectbox";
+		divelement1.style.width = "175px";
+		var element1 = document.createElement("select");
+		element1.id = "variable_product_id_"+productName+"_"+countval;
+		element1.className = "custom_selectbox";
+		divelement1.appendChild(element1);
+		cell1.appendChild(divelement1);
+
+		var o = document.createElement('option');
+		o.value = "0";
+		o.text = "Select Product";
+		element1.options.add(o);
+		divelement1.appendChild(element1);
+
+		var variableProductId = document.getElementById("variable_product_id_"+productName+"_"+countval+"");
+		for(var i=0;i<variableProductList.length;i++){
+			if(variableProductList[i]['fields'].variable_id == performanceVariableId){
+				var optvariable = document.createElement('option');
+				optvariable.innerHTML = variableProductList[i]['fields'].name;
+				optvariable.value = variableProductList[i].pk;
+				variableProductId.appendChild(optvariable);
+			}
+		}
+		$('#variable_product_id_'+productName+'_'+countval+'').selectBoxIt({ defaultText: '', autoWidth: false });
+		// product type load
+
+		// Unit load ************* 2
+		var cell2 = row.insertCell(1);
+		var divelement2 = document.createElement("div");
+		divelement2.className = "select-wrap1 variable-selectbox";
+		var element2 = document.createElement("select");
+		element2.id = "unit_id_"+productName+"_"+countval;
+		element2.classList.add("custom_selectbox");
+		divelement2.appendChild(element2);
+		cell2.appendChild(divelement2);
+
+		var o = document.createElement('option');
+		o.value = "0";
+		o.text = "Select Unit";
+		element2.options.add(o);
+		divelement2.appendChild(element2);
+
+
+		var unitId = document.getElementById("unit_id_"+productName+"_"+countval);
+		for(var i=0;i<unitList.length;i++){
+			var optvariable = document.createElement('option');
+			optvariable.innerHTML = unitList[i]['fields'].name;
+			optvariable.value = unitList[i].pk;
+			unitId.appendChild(optvariable);
+		}
+
+		$('#unit_id_'+productName+'_'+countval+'').selectBoxIt({ defaultText: '', autoWidth: false });
+		// Unit load
+
+
+		// Time unit load ************* 3
+		var cell3 = row.insertCell(2);
+		var divelement3 = document.createElement("div");
+		divelement3.className = "select-wrap1 variable-selectbox";
+		divelement3.style.width = "120px";
+		var element3 = document.createElement("select");
+		element3.id = "time_unit_id_"+productName+"_"+countval;
+		element3.classList.add("custom_selectbox");
+		element3.onchange = function() { 
+			timeUnitChange("time_spec_id_"+productName+"_"+countval,"time_spec_div_"+productName+"_"+countval,"time_spec_year_id_"+productName+"_"+countval,"time_spec_year_div_"+productName+"_"+countval,"time_unit_id_"+productName+"_"+countval); 
+		};
+		divelement3.appendChild(element3);
+		cell3.appendChild(divelement3);
+
+		var o = document.createElement('option');
+		o.value = "0";
+		o.text = "Select Time Unit";
+		element3.options.add(o);
+		divelement3.appendChild(element3);
+
+
+		var timeUnitId = document.getElementById("time_unit_id_"+productName+"_"+countval);
+		for(var key in timeUnitList){
+			var optvariable = document.createElement('option');
+			optvariable.innerHTML = timeUnitList[key];
+			optvariable.value = key;
+			timeUnitId.appendChild(optvariable);
+		}
+
+		$('#time_unit_id_'+productName+'_'+countval+'').selectBoxIt({ defaultText: '', autoWidth: false });
+		// Time unit load
+
+		// time spec ************* 4
+		var cell4 = row.insertCell(3);
+		var divelement4 = document.createElement("div");
+		divelement4.class = "select-wrap1 variable-selectbox";
+		divelement4.id = "time_spec_div_"+productName+"_"+countval;
+		cell4.appendChild(divelement4);
+		// time spec
+
+		// time spec year ************* 5
+		var cell5 = row.insertCell(4);
+		var divelement5 = document.createElement("div");
+		divelement5.class = "select-wrap1 variable-selectbox";
+		divelement5.id = "time_spec_year_div_"+productName+"_"+countval;
+		cell5.appendChild(divelement5);
+		// time spec year
+
+
+		// Add arrow ************* 6
+		var cell6 = row.insertCell(5);
+		var element5 = document.createElement("span");
+		element5.id = "add-arrow-id-"+productName+"_"+countval;
+		element5.classList.add("var-add");
+		element5.onclick = function() { addNewProduct(tableID,productName,performanceVariableId,"No"); };
+		cell6.appendChild(element5);
+
+		// Close arrow ************* 7
+		var cell7 = row.insertCell(6);
+		var element6 = document.createElement("span");
+		element6.id = "close-arrow-id-"+productName+"_"+countval;
+		element6.classList.add("var-close");
+		if(value == "Yes"){
+			element6.onclick = function() { datasetExistMessage(); };
+		}else{
+			element6.onclick = function() { deleteProduct(tableID,this); };
+		}
+
+		cell7.appendChild(element6);
+
+	}else{
+		// Unit load ************* 2
+		var cell2 = row.insertCell(0);
+		var divelement2 = document.createElement("div");
+		divelement2.className = "select-wrap1 variable-selectbox";
+		var element2 = document.createElement("select");
+		element2.id = "unit_id_"+productName+"_"+countval;
+		element2.classList.add("custom_selectbox");
+		divelement2.appendChild(element2);
+		cell2.appendChild(divelement2);
+
+		var o = document.createElement('option');
+		o.value = "0";
+		o.text = "Select Unit";
+		element2.options.add(o);
+		divelement2.appendChild(element2);
+
+
+		var unitId = document.getElementById("unit_id_"+productName+"_"+countval);
+		for(var i=0;i<unitList.length;i++){
+			var optvariable = document.createElement('option');
+			optvariable.innerHTML = unitList[i]['fields'].name;
+			optvariable.value = unitList[i].pk;
+			unitId.appendChild(optvariable);
+		}
+
+		$('#unit_id_'+productName+'_'+countval+'').selectBoxIt({ defaultText: '', autoWidth: false });
+		// Unit load
+
+
+		// Time unit load ************* 3
+		var cell3 = row.insertCell(1);
+		var divelement3 = document.createElement("div");
+		divelement3.className = "select-wrap1 variable-selectbox";
+		divelement3.style.width = "120px";
+		var element3 = document.createElement("select");
+		element3.id = "time_unit_id_"+productName+"_"+countval;
+		element3.classList.add("custom_selectbox");
+		element3.onchange = function() { 
+			timeUnitChange("time_spec_id_"+productName+"_"+countval,"time_spec_div_"+productName+"_"+countval,"time_spec_year_id_"+productName+"_"+countval,"time_spec_year_div_"+productName+"_"+countval,"time_unit_id_"+productName+"_"+countval); 
+		};
+		divelement3.appendChild(element3);
+		cell3.appendChild(divelement3);
+
+		var o = document.createElement('option');
+		o.value = "0";
+		o.text = "Select Time Unit";
+		element3.options.add(o);
+		divelement3.appendChild(element3);
+
+
+		var timeUnitId = document.getElementById("time_unit_id_"+productName+"_"+countval);
+		for(var key in timeUnitList){
+			var optvariable = document.createElement('option');
+			optvariable.innerHTML = timeUnitList[key];
+			optvariable.value = key;
+			timeUnitId.appendChild(optvariable);
+		}
+
+		$('#time_unit_id_'+productName+'_'+countval+'').selectBoxIt({ defaultText: '', autoWidth: false });
+		// Time unit load
+
+		// time spec ************* 4
+		var cell4 = row.insertCell(2);
+		var divelement4 = document.createElement("div");
+		divelement4.class = "select-wrap1 variable-selectbox";
+		divelement4.id = "time_spec_div_"+productName+"_"+countval;
+		cell4.appendChild(divelement4);
+		// time spec
+
+		// time spec year ************* 5
+		var cell5 = row.insertCell(3);
+		var divelement5 = document.createElement("div");
+		divelement5.class = "select-wrap1 variable-selectbox";
+		divelement5.id = "time_spec_year_div_"+productName+"_"+countval;
+		cell5.appendChild(divelement5);
+		// time spec year
+
+
+		// Add arrow ************* 6
+		var cell6 = row.insertCell(4);
+		var element5 = document.createElement("span");
+		element5.id = "add-arrow-id-"+productName+"_"+countval;
+		element5.classList.add("var-add");
+		element5.onclick = function() { addNewProduct(tableID,productName,performanceVariableId,"No"); };
+		cell6.appendChild(element5);
+
+		// Close arrow ************* 7
+		var cell7 = row.insertCell(5);
+		var element6 = document.createElement("span");
+		element6.id = "close-arrow-id-"+productName+"_"+countval;
+		element6.classList.add("var-close");
+		if(value == "Yes"){
+			element6.onclick = function() { datasetExistMessage(); };
+		}else{
+			element6.onclick = function() { deleteProduct(tableID,this); };
+		}
+
+		cell7.appendChild(element6);
+	}
+}
+
+
+function deleteProduct(tableID,row){
+	var table=document.getElementById(tableID);
+	var i=row.parentNode.parentNode.rowIndex;
+
+	bootbox.dialog({
+		message: "Are you sure want to remove the variable?",
+		buttons: {
+		no: {
+			label: "No"
+		},
+		yes: {
+			label: "Yes",
+			callback: function() {
+					table.deleteRow(i);
+			}
+		}
+		}
+	});
+}
+
+
+var perVarCustomCount={};
+var performanceVariableCustom={};
+var selectedPVCustom=[];
+
+function addNewVariable(value){
+
+	var customVariableName = document.getElementById("custom_variable_id").value;
+	if(!customVariableName){
+		bootbox.alert("Custom Variable name is required. Please enter variable name.");
+		return false;
+	}
+	if(/^[a-zA-Z0-9-() ]*$/.test(customVariableName) == false) {
+		bootbox.alert("Special Characters are not allowed.");
+		return false;
+	}
+	var customUnitId = document.getElementById("unit_id").value;
+	if(customUnitId == 0){
+		bootbox.alert("A Unit must be selected for this operation. Please select a Unit.");
+		return false;
+	}
+	var customTimeUnitId = document.getElementById("time_unit_id").value;
+	if(customTimeUnitId == 0){
+		bootbox.alert("A Time Unit must be selected for this operation. Please select a Time Unit.");
+		return false;
+	}
+	var customTimeSpecId = document.getElementById("time_spec_id").value;
+	if(customTimeSpecId == 0 || customTimeSpecId ==""){
+		bootbox.alert("A Time Spec is required.");
+		return false;
+	}
+
+	if(perVarCustomCount["pvc"]){
+		perVarCustomCount["pvc"] = perVarCustomCount["pvc"]+1;
+	}else{
+		perVarCustomCount["pvc"] = 1;
+	}
+	var pvcId = "pvc_"+perVarCustomCount["pvc"];
+	
+	var pvcIdName = customVariableName.replace(/ /g,"");
+	pvcIdName = pvcIdName.replace(/[(]/g, "u0028");
+	pvcIdName = pvcIdName.replace(/[)]/g, "u0029");
+	pvcIdName = pvcIdName.trim().toLowerCase();
+	pvcIdName="pvc_"+pvcIdName;
+
+	if(customTimeLineCheck[pvcIdName]){
+		if(customTimeLineCheck[pvcIdName]!=customTimeUnitId){
+			bootbox.alert(customVariableName+" variable is already selected with a different time unit. please select the same time unit");
+			return false;	
+		}
+	}
+
+	if(($.inArray(pvcId, selectedPVCustom) == -1)){
+
+		var performanceContent="";
+		var iDiv  = document.getElementById("variable-body-content-id");
+		var div2 = document.createElement('div');
+		div2.id = pvcId;
+		iDiv.appendChild(div2);
+
+		var uid = document.getElementById('unit_id');
+		var unitText = uid.options[uid.selectedIndex].innerHTML;
+
+		var el = document.getElementById('time_unit_id');
+		var timeUnitText = el.options[el.selectedIndex].innerHTML;
+
+		var timeSpecText = document.getElementById('time_spec_id').value;
+
+		var timeSpecYearText="";
+		var pvcname = "";
+		var customId = pvcIdName+"_"+customUnitId+"_"+customTimeUnitId+"_"+customTimeSpecId;
+		pvcname = customVariableName +" "+timeUnitText+" "+timeSpecText;
+		if(customTimeUnitId == 2){
+			var element = document.getElementById('time_spec_id');
+			timeSpecText = element.options[element.selectedIndex].innerHTML;
+			timeSpecYearText = document.getElementById('time_spec_year_id').value;
+			pvcname = customVariableName +" "+timeUnitText+" "+timeSpecText+" "+timeSpecYearText;
+			customId = pvcIdName+"_"+customUnitId+"_"+customTimeUnitId+"_"+customTimeSpecId+"_"+timeSpecYearText;
+		}
+
+
+		/*if(document.getElementById('time_spec_year_id')){
+			if(document.getElementById('time_spec_year_id').value){
+				timeSpecYearText = document.getElementById('time_spec_year_id').value;
+				pvcname = customVariableName +" "+timeUnitText+" "+timeSpecText+" "+timeSpecYearText;
+				customId = pvcId+"_"+customUnitId+"_"+customTimeUnitId+"_"+customTimeSpecId+"_"+timeSpecYearText;
+			}
+		}*/
+
+		performanceContent+='<div class="perform-sec clearfix">'+
+				    '<div class="var-title" id="variable-title-id">'+pvcname.toTitleCase()+'';
+			if(value == "Yes"){
+				performanceContent+='<span class="var-title-close" data-toggle="modal" data-target=".new-variable_0"><img src="/static/images/close_dark.png" alt="Close" onclick="datasetExistMessage();"></span>';
+			}else{
+				performanceContent+='<span class="var-title-close" data-toggle="modal" data-target=".new-variable_0"><img src="/static/images/close_dark.png" alt="Close" onclick="closeVariableSectionCustom('+"'"+pvcId+"'"+')"></span>';
+			}
+		performanceContent+='</div>'+
+				'</div>';
+
+		document.getElementById(pvcId).innerHTML=performanceContent;
+
+		var obj={};
+		obj["id"] = customId;
+		obj["name"] = pvcname;
+		obj["customvariablename"] = customVariableName;
+		obj["unitid"] = customUnitId;
+		obj["unit"] = unitText;
+		obj["timeunitid"] = customTimeUnitId;
+		obj["timeunit"] = timeUnitText;
+		obj["timespecid"] = customTimeSpecId;
+		obj["timespec"] = timeSpecText;
+		obj["timespecyearid"] = timeSpecYearText;
+		obj["timespecyear"] = timeSpecYearText;
+		obj["keyid"]=pvcIdName;
+		performanceVariableCustom[pvcId] = obj;
+	}
+	selectedPVCustom.push(pvcId);
+	selectedPVCustom = _.uniq(selectedPVCustom);
+
+	customTimeLineCheck[pvcIdName]=customTimeUnitId;
+
+	document.getElementById("custom_variable_id").value="";
+	document.getElementById("performance-variable-id").value=0;
+	$("#performance-variable-id").data("selectBox-selectBoxIt").add();
+	$("#define-custom-variable-id").css("display","none");
+	
+}
+
+
+var performanceVariableArray=[];
+function TemplateGenerate(){
+	var timeUnitCheck={};
+	performanceVariableArray=[];
+	var myTemplateName = document.getElementById("mytemplate-name-id").value;
+
+	if(selectedBranchCategoryArray.length == 0){
+		bootbox.alert("A Branch Category must be selected for this operation. Please select a Branch Category.");
+		return false;
+	}
+
+	for(var key in performanceVariable){
+		for(var key1 in performanceVariable[key]){
+			var pVariableName = performanceVariable[key][key1];
+			if(document.getElementById("table_"+key1)){
+				if(perVarCount){
+					for(var pvkey in perVarCount){
+						if(key1 == pvkey){
+							var timeUnitArr=[];
+							for(var j=0;j<=perVarCount[pvkey];j++){
+								if(document.getElementById('variable_product_id_'+pvkey+'_'+j+'')){
+									var dataType='float';
+									var productTypeId = document.getElementById('variable_product_id_'+pvkey+'_'+j+'').value;
+									var unitId = document.getElementById('unit_id_'+pvkey+'_'+j+'').value;
+									var timeUnitId = document.getElementById('time_unit_id_'+pvkey+'_'+j+'').value;
+
+
+									if(productTypeId == 0){
+										bootbox.alert("A Product must be selected for this operation. Please select a Product.");
+										return false;
+									}
+									if(unitId == 0){
+										bootbox.alert("A Unit must be selected for this operation. Please select a Unit.");
+										return false;
+									}
+									if(timeUnitId == 0){
+										bootbox.alert("A Time Unit must be selected for this operation. Please select a Time Unit.");
+										return false;
+									}
+									var timeSpecId = document.getElementById('time_spec_id_'+pvkey+'_'+j+'').value;
+	
+									if(timeSpecId == ""){
+										bootbox.alert("A Time Spec is required.");
+										document.getElementById('time_spec_id_'+pvkey+'_'+j+'').focus();
+										return false;
+									}
+
+									
+									var el = document.getElementById('variable_product_id_'+pvkey+'_'+j+'');
+									var productTypeText = el.options[el.selectedIndex].innerHTML;
+									var unit = document.getElementById('unit_id_'+pvkey+'_'+j+'');
+									var unitValueText = unit.options[unit.selectedIndex].innerHTML;
+									var timeUnit = document.getElementById('time_unit_id_'+pvkey+'_'+j+'');
+									var timeUnitText = timeUnit.options[timeUnit.selectedIndex].innerHTML;
+									var timeSpecText = document.getElementById('time_spec_id_'+pvkey+'_'+j+'').value;
+									if(timeUnitId == 2){
+										var element = document.getElementById('time_spec_id_'+pvkey+'_'+j+'');
+										timeSpecText = element.options[element.selectedIndex].innerHTML;
+									}
+
+									var customId = "pv_"+key1+"_"+productTypeId+"_"+unitId+"_"+timeUnitId+"-@#-"+timeSpecId.toLowerCase();
+									var customName = pVariableName+" for "+productTypeText+" "+timeUnitText+" "+timeSpecText;
+									var date = timeSpecText;
+									var timeSpecYear="";
+									var keyType="";
+									if(timeUnitId == 3){ // year
+										keyType="Year";
+									}
+									if(timeUnitId == 1 || timeUnitId == 4 || timeUnitId == 5){ // date
+										keyType="Date";
+									}
+									if(timeUnitId == 2){ //timeunitid 2 is month
+										timeSpecYear = document.getElementById('time_spec_year_id_'+pvkey+'_'+j+'').value;
+										customId = "pv_"+key1+"_"+productTypeId+"_"+unitId+"_"+timeUnitId+"_"+timeSpecYear+"-@#-"+timeSpecId.toLowerCase();
+										customName = pVariableName+" for "+productTypeText+" "+timeUnitText+" "+timeSpecText+" "+timeSpecYear;
+										date = timeSpecId+"-"+timeSpecYear;
+										keyType="Month";
+									}
+
+									var unitObj={};
+									unitObj["productid"]=productTypeId;
+									unitObj["unitid"]=unitId;
+									unitObj["timeunitid"]=timeUnitId;
+									unitObj["timespecid"]=timeSpecId;
+									unitObj["timespecyearid"]=timeSpecYear;
+									unitObj["keyname"]=pVariableName+" for "+productTypeText;
+									timeUnitArr.push(unitObj);
+
+
+									var obj={};
+									obj["id"] = customId;
+									obj["name"] = customName;
+									obj["unitid"] = unitId;
+									obj["unit"] = unitValueText;
+									obj["datatype"] = dataType;
+									obj["timeunitid"] = timeUnitId;
+									obj["timeunit"] = timeUnitText;
+									obj["timespecid"] = timeSpecId;
+									obj["timespec"] = timeSpecText;
+									obj["timespecyearid"] = timeSpecYear;
+									obj["timespecyear"] = timeSpecYear;
+									obj["variableid"] = key1;
+									obj["variablename"] = pVariableName;
+									obj["productid"] = productTypeId;
+									obj["productname"] = productTypeText;
+									obj["date"] = date;
+									obj["keyid"] = "pv_"+key1+"_"+productTypeId;
+									obj["keyname"] = pVariableName+" for "+productTypeText;
+									obj["keytype"] = keyType;
+									performanceVariableArray.push(obj);
+
+								}else{
+									if(document.getElementById('unit_id_'+pvkey+'_'+j+'')){
+										var dataType='float';
+										var unitId = document.getElementById('unit_id_'+pvkey+'_'+j+'').value;
+										var timeUnitId = document.getElementById('time_unit_id_'+pvkey+'_'+j+'').value;
+
+
+										if(unitId == 0){
+											bootbox.alert("A Unit must be selected for this operation. Please select a Unit.");
+											return false;
+										}
+										if(timeUnitId == 0){
+											bootbox.alert("A Time Unit must be selected for this operation. Please select a Time Unit.");
+											return false;
+										}
+										var timeSpecId = document.getElementById('time_spec_id_'+pvkey+'_'+j+'').value;
+	
+										if(timeSpecId == ""){
+											bootbox.alert("A Time Spec is required.");
+											document.getElementById('time_spec_id_'+pvkey+'_'+j+'').focus();
+											return false;
+										}
+
+									
+										var unit = document.getElementById('unit_id_'+pvkey+'_'+j+'');
+										var unitValueText = unit.options[unit.selectedIndex].innerHTML;
+										var timeUnit = document.getElementById('time_unit_id_'+pvkey+'_'+j+'');
+										var timeUnitText = timeUnit.options[timeUnit.selectedIndex].innerHTML;
+										var timeSpecText = document.getElementById('time_spec_id_'+pvkey+'_'+j+'').value;
+										if(timeUnitId == 2){
+											var element = document.getElementById('time_spec_id_'+pvkey+'_'+j+'');
+											timeSpecText = element.options[element.selectedIndex].innerHTML;
+										}
+
+										var customId = "pv_"+key1+"_"+unitId+"_"+timeUnitId+"-@#-"+timeSpecId.toLowerCase();
+										var customName="";
+										if(timeUnitId == 1 || timeUnitId == 5){
+											customName = pVariableName+" for "+timeUnitText+" "+timeSpecText;
+										}else{
+											customName = pVariableName+" "+timeUnitText+" "+timeSpecText;
+										}
+										var date = timeSpecText;
+										var timeSpecYear="";
+										var keyType="";
+										if(timeUnitId == 3){ // year
+											keyType="Year";
+										}
+										if(timeUnitId == 1 || timeUnitId == 4 || timeUnitId == 5){ // date
+											keyType="Date";
+										}
+										if(timeUnitId == 2){ //timeunitid 2 is month
+											timeSpecYear = document.getElementById('time_spec_year_id_'+pvkey+'_'+j+'').value;
+											customId = "pv_"+key1+"_"+unitId+"_"+timeUnitId+"_"+timeSpecYear+"-@#-"+timeSpecId.toLowerCase();
+											customName = pVariableName+" "+timeUnitText+" "+timeSpecText+" "+timeSpecYear;
+											date = timeSpecId+"-"+timeSpecYear;
+											keyType="Month";
+										}
+
+										var unitObj={};
+										unitObj["productid"]="";
+										unitObj["unitid"]=unitId;
+										unitObj["timeunitid"]=timeUnitId;
+										unitObj["timespecid"]=timeSpecId;
+										unitObj["timespecyearid"]=timeSpecYear;
+										unitObj["keyname"]=pVariableName;
+										timeUnitArr.push(unitObj);
+
+
+										var obj={};
+										obj["id"] = customId;
+										obj["name"] = customName;
+										obj["unitid"] = unitId;
+										obj["unit"] = unitValueText;
+										obj["datatype"] = dataType;
+										obj["timeunitid"] = timeUnitId;
+										obj["timeunit"] = timeUnitText;
+										obj["timespecid"] = timeSpecId;
+										obj["timespec"] = timeSpecText;
+										obj["timespecyearid"] = timeSpecYear;
+										obj["timespecyear"] = timeSpecYear;
+										obj["variableid"] = key1;
+										obj["variablename"] = pVariableName;
+										obj["productid"] = "";
+										obj["productname"] = "";
+										obj["date"] = date;
+										obj["keyid"] = "pv_"+key1;
+										obj["keyname"] = pVariableName;
+										obj["keytype"] = keyType;
+										performanceVariableArray.push(obj);
+									}
+								}
+							}
+						timeUnitCheck[key1]=timeUnitArr;
+						}
+					}
+				}
+			}
+			else if(document.getElementById("pv_"+key1)){ // <div>
+				if(document.getElementById("pv_"+key1).innerHTML.length > 0){ // <div> content
+					var obj={};
+					obj["id"] = "pv_"+key1+"-@#";
+					obj["name"] = pVariableName;
+					obj["unitid"] = "";
+					obj["unit"] = "";
+					obj["datatype"] = "float";
+					obj["timeunitid"] = "";
+					obj["timeunit"] = "";
+					obj["timespecid"] = "";
+					obj["timespec"] = "";
+					obj["timespecyearid"] = "";
+					obj["timespecyear"] = "";
+					obj["variableid"] = key1;
+					obj["variablename"] = pVariableName;
+					obj["productid"] = "";
+					obj["productname"] = "";
+					obj["date"]="";
+					obj["keyid"] = "pv_"+key1;
+					obj["keyname"] = "";
+					obj["keytype"] = "";
+					performanceVariableArray.push(obj);	
+				}
+			}
+		}
+	}
+	/**/
+	
+	for(var i=0;i<selectedPVCustom.length;i++){
+		var date = performanceVariableCustom[selectedPVCustom[i]].timespecid;
+		var timeUnitId = performanceVariableCustom[selectedPVCustom[i]].timeunitid
+		var timeSpecYear="";
+		var keyType="";
+		if(timeUnitId == 3){ // year
+			keyType="Year";
+		}
+		if(timeUnitId == 1 || timeUnitId == 4 || timeUnitId == 5){ // date
+			keyType="Date";
+		}
+		if(timeUnitId == 2){ //timeunitid 2 is month
+			date = performanceVariableCustom[selectedPVCustom[i]].timespecid+"-"+performanceVariableCustom[selectedPVCustom[i]].timespecyearid;
+			keyType="Month";
+		}
+
+
+		var obj={};
+		obj["id"] = performanceVariableCustom[selectedPVCustom[i]].id+"-@#-"+performanceVariableCustom[selectedPVCustom[i]].timespec.toLowerCase();
+		obj["name"] = performanceVariableCustom[selectedPVCustom[i]].name;
+		obj["customvariablename"] = performanceVariableCustom[selectedPVCustom[i]].customvariablename;
+		obj["unitid"] = performanceVariableCustom[selectedPVCustom[i]].unitid;
+		obj["unit"] = performanceVariableCustom[selectedPVCustom[i]].unit;
+		obj["datatype"] = "float";
+		obj["timeunitid"] = performanceVariableCustom[selectedPVCustom[i]].timeunitid;
+		obj["timeunit"] = performanceVariableCustom[selectedPVCustom[i]].timeunit;
+		obj["timespecid"] = performanceVariableCustom[selectedPVCustom[i]].timespecid;
+		obj["timespec"] = performanceVariableCustom[selectedPVCustom[i]].timespec;
+		obj["timespecyearid"] = performanceVariableCustom[selectedPVCustom[i]].timespecyearid;
+		obj["timespecyear"] = performanceVariableCustom[selectedPVCustom[i]].timespecyear;
+		obj["variableid"] = performanceVariableCustom[selectedPVCustom[i]].id;
+		obj["variablename"] = performanceVariableCustom[selectedPVCustom[i]].name;
+		obj["productid"] = "";
+		obj["productname"] = performanceVariableCustom[selectedPVCustom[i]].customvariablename;
+		obj["date"]=date;
+		obj["keyid"] = performanceVariableCustom[selectedPVCustom[i]].keyid;
+		obj["keyname"] = performanceVariableCustom[selectedPVCustom[i]].customvariablename;
+		obj["keytype"] = keyType;
+		performanceVariableArray.push(obj);
+	}
+	/**/
+
+	// time unit validation
+	for(var key in timeUnitCheck){
+		for(var i=0;i<timeUnitCheck[key].length;i++){
+		for(var j=0;j<timeUnitCheck[key].length;j++){
+			if((timeUnitCheck[key][i]['productid'] == timeUnitCheck[key][j]['productid']) && 
+				(timeUnitCheck[key][i]['timeunitid']!=timeUnitCheck[key][j]['timeunitid'])){
+					//bootbox.alert("Different Time Unit for the same variable product is selected.");
+					bootbox.alert(timeUnitCheck[key][i]['keyname']+" variable is already selected with a different time unit. please select the same time unit");
+					return false;
+			}
+			if((timeUnitCheck[key][i]['productid'] == timeUnitCheck[key][j]['productid']) && 
+				(timeUnitCheck[key][i]['timeunitid']==timeUnitCheck[key][j]['timeunitid']) && 
+				(timeUnitCheck[key][i]['timespecid']==timeUnitCheck[key][j]['timespecid']) && 
+				(timeUnitCheck[key][i]['unitid']!=timeUnitCheck[key][j]['unitid']) &&
+				(timeUnitCheck[key][i]['timespecyearid']=="") ){
+					//bootbox.alert("Repeated variables found.");
+					bootbox.alert(timeUnitCheck[key][i]['keyname']+" variable is repeated.");
+					return false;
+			}
+			if((timeUnitCheck[key][i]['productid'] == timeUnitCheck[key][j]['productid']) && 
+				(timeUnitCheck[key][i]['timeunitid']==timeUnitCheck[key][j]['timeunitid']) && 
+				(timeUnitCheck[key][i]['timespecid']==timeUnitCheck[key][j]['timespecid']) && 
+				(timeUnitCheck[key][i]['unitid']!=timeUnitCheck[key][j]['unitid']) &&
+				(timeUnitCheck[key][i]['timespecyearid']==timeUnitCheck[key][j]['timespecyearid']) ){
+					//bootbox.alert("Repeated variables found.");
+					bootbox.alert(timeUnitCheck[key][i]['keyname']+" variable is repeated.");
+					return false;
+			}
+		}
+		}
+	}
+	/* check repeated variable */
+	var checkRepeatKey={};
+	for(var i=0;i<performanceVariableArray.length;i++){
+		if(!checkRepeatKey[performanceVariableArray[i].id]){
+			checkRepeatKey[performanceVariableArray[i].id] = performanceVariableArray[i].id;
+		} else {
+			bootbox.alert(performanceVariableArray[i].keyname+" variable is Repeated.");
+			return false;
+		}
+			
+	}
+	if(performanceVariableArray.length==0){
+		bootbox.alert("At least one Performance Variables is required.");
+		return false;
+	}
+	
+	if(myTemplateName == ""){
+		bootbox.alert("Template name is required.");
+		return false;
+	}
+
+	$('#loading').html('Downloading Template please wait...');
+	var myTemplateJson={};
+	var place={};
+	var category={};
+	var performance_variable={};
+	var derived_variable={};
+	var deriveNames=['avg'];
+	var placeNames=['l1','l2','l3'];
+	var levelsObj={};
+	var templateHeader=[];
+	var tsvData=[];
+	var tsvobj={};
+	// place
+	var pCount=0;
+	for(var key in placeVariable){
+		for(var key1 in placeVariable[key]){
+			var obj={};
+			obj["id"]="place_"+key1;
+			obj["name"]=placeVariable[key][key1];
+			if(placeVariable[key][key1] == 'Pincode'){
+				obj["datatype"]="int";
+			}else{
+				obj["datatype"]="text";
+			}
+			obj["description"]="";
+			obj["formula"]="";
+			obj["source"]="";
+			obj["unit"]="";
+			place[pCount] = obj;
+			pCount++;
+			// for tsv
+			tsvobj[placeVariable[key][key1]]="";
+			templateHeader.push(placeVariable[key][key1]);
+		}
+	}
+	// branch category
+
+	var categoryCount=0;
+	for(var key in branchCategoryArray){
+		for(var key1 in branchCategoryArray[key]){
+			for(var i=0;i<selectedBranchCategoryArray.length;i++){
+				if(key1 == selectedBranchCategoryArray[i]){
+					var obj={};
+					var name = branchCategoryArray[key][key1];
+					obj["id"]="category_"+key1+"";
+					if(branchCategoryArray[key][key1] == 'Latitude'){
+						obj["datatype"]="float";
+						name=name.toLowerCase();
+					}
+					else if(branchCategoryArray[key][key1] == 'Longitude'){
+						obj["datatype"]="float";
+						name=name.toLowerCase();
+					}else{
+						obj["datatype"]="text";
+
+					}
+					obj["name"]=name;
+					obj["description"]="";
+					obj["formula"]="";
+					obj["source"]="";
+					obj["unit"]="";
+					category[categoryCount] = obj;
+					categoryCount++;
+					// for tsv
+					tsvobj[name]="";
+					templateHeader.push(name);
+				}
+			}
+		}
+	}
+
+
+	// performance variable
+	for(var i=0;i<performanceVariableArray.length;i++){
+		var obj={};
+		obj["id"]=performanceVariableArray[i].id;
+		obj["name"]=performanceVariableArray[i].name;
+		if(performanceVariableArray[i].customvariablename){
+			obj["customvariablename"]=performanceVariableArray[i].customvariablename;
+		}
+		obj["datatype"]=performanceVariableArray[i].datatype;
+		obj["description"]="";
+		obj["formula"]="";
+		obj["source"]="";
+		obj["unitid"]=performanceVariableArray[i].unitid;
+		obj["unit"]=performanceVariableArray[i].unit;
+		obj["timeunitid"]=performanceVariableArray[i].timeunitid;
+		obj["timeunit"]=performanceVariableArray[i].timeunit;
+		obj["timespecid"]=performanceVariableArray[i].timespecid;
+		obj["timespec"]=performanceVariableArray[i].timespec;
+		obj["timespecyearid"]=performanceVariableArray[i].timespecyearid;
+		obj["timespecyear"]=performanceVariableArray[i].timespecyear;
+		obj["variableid"] = performanceVariableArray[i].variableid;
+		obj["variablename"] = performanceVariableArray[i].variablename;
+		obj["productid"] = performanceVariableArray[i].productid;
+		obj["productname"] = performanceVariableArray[i].productname;
+		obj["date"] = performanceVariableArray[i].date;
+		obj["keyid"] = performanceVariableArray[i].keyid;
+		obj["keyname"] = performanceVariableArray[i].keyname;
+		obj["keytype"] = performanceVariableArray[i].keytype;
+		performance_variable[i] = obj;
+		// for tsv
+		tsvobj[performanceVariableArray[i].name]="";
+		templateHeader.push(performanceVariableArray[i].name);
+	}
+	// derived variable and levels mapping
+	/*var count=0;
+	for(var i=0;i<placeNames.length;i++){
+		for(var j=0;j<performanceVariableArray.length;j++){
+			for(var dname in deriveNames){
+				var obj={};
+				var levels,derivedPlaceName;
+				if(placeNames[i]=="l1"){
+					levels = "level1";
+					derivedPlaceName="State";
+				}else if(placeNames[i]=="l2"){
+					levels = "level2";
+					derivedPlaceName="District";
+				}else if(placeNames[i]=="l3"){
+					levels = "level3";
+					derivedPlaceName="Taluk";
+				}
+				//obj["id"]=performanceVariableArray[j].id+"_"+deriveNames[dname]+"_by_"+placeNames[i];
+				obj["id"]=performanceVariableArray[j].id+"_by_"+deriveNames[dname];
+				//obj["name"]=performanceVariableArray[j].name+" "+deriveNames[dname]+" by "+derivedPlaceName;
+				obj["name"]=performanceVariableArray[j].name+" by "+deriveNames[dname];
+				obj["datatype"]=performanceVariableArray[j].datatype;
+				obj["description"]="";
+				obj["formula"]="";
+				obj["source"]="";
+				obj["unitid"]=performanceVariableArray[j].unitid;
+				obj["unit"]=performanceVariableArray[j].unit;
+				obj["timeunitid"]=performanceVariableArray[j].timeunitid;
+				obj["timeunit"]=performanceVariableArray[j].timeunit;
+				obj["timespecid"]=performanceVariableArray[j].timespecid;
+				obj["timespec"]=performanceVariableArray[j].timespec;
+				obj["timespecyearid"]=performanceVariableArray[j].timespecyearid;
+				obj["timespecyear"]=performanceVariableArray[j].timespecyear;
+				obj["variableid"] = performanceVariableArray[j].variableid;
+				obj["variablename"] = performanceVariableArray[j].variablename;
+				obj["productid"] = performanceVariableArray[j].productid;
+				obj["productname"] = performanceVariableArray[j].productname;
+				obj["date"] = performanceVariableArray[j].date;
+				obj["keyid"] = performanceVariableArray[j].keyid;
+				obj["keyname"] = performanceVariableArray[j].keyname;
+				obj["keytype"] = performanceVariableArray[j].keytype;
+				derived_variable[count] = obj;
+				count++;
+
+				if(levelsObj[levels]){
+					levelsObj[levels].push(performanceVariableArray[j].id+"_"+deriveNames[dname]+"_by_"+placeNames[i]);
+				}else{	
+					levelsObj[levels] = [(performanceVariableArray[j].id+"_"+deriveNames[dname]+"_by_"+placeNames[i])];
+				}
+				
+			}
+			if(levelsObj['level4']){
+			    if(( $.inArray(performanceVariableArray[j].name, levelsObj['level4']) == -1)){
+				levelsObj['level4'].push(performanceVariableArray[j].id);
+			    }
+			}else{
+				levelsObj['level4'] = [(performanceVariableArray[j].id)];
+			}
+		}
+	}*/
+
+
+	var count=0;
+	//for(var i=0;i<placeNames.length;i++){
+		for(var j=0;j<performanceVariableArray.length;j++){
+			for(var dname in deriveNames){
+				var obj={};
+				var levels,derivedPlaceName;
+				/*if(placeNames[i]=="l1"){
+					levels = "level1";
+					derivedPlaceName="State";
+				}else if(placeNames[i]=="l2"){
+					levels = "level2";
+					derivedPlaceName="District";
+				}else if(placeNames[i]=="l3"){
+					levels = "level3";
+					derivedPlaceName="Taluk";
+				}*/
+				//obj["id"]=performanceVariableArray[j].id+"_"+deriveNames[dname]+"_by_"+placeNames[i];
+				obj["id"]=performanceVariableArray[j].id+"_by_"+deriveNames[dname];
+				//obj["name"]=performanceVariableArray[j].name+" "+deriveNames[dname]+" by "+derivedPlaceName;
+				obj["name"]=performanceVariableArray[j].name+" ("+deriveNames[dname]+")";
+				obj["datatype"]=performanceVariableArray[j].datatype;
+				obj["description"]="";
+				obj["formula"]="";
+				obj["source"]="";
+				obj["unitid"]=performanceVariableArray[j].unitid;
+				obj["unit"]=performanceVariableArray[j].unit;
+				obj["timeunitid"]=performanceVariableArray[j].timeunitid;
+				obj["timeunit"]=performanceVariableArray[j].timeunit;
+				obj["timespecid"]=performanceVariableArray[j].timespecid;
+				obj["timespec"]=performanceVariableArray[j].timespec;
+				obj["timespecyearid"]=performanceVariableArray[j].timespecyearid;
+				obj["timespecyear"]=performanceVariableArray[j].timespecyear;
+				obj["variableid"] = performanceVariableArray[j].variableid;
+				obj["variablename"] = performanceVariableArray[j].variablename;
+				obj["productid"] = performanceVariableArray[j].productid;
+				obj["productname"] = performanceVariableArray[j].productname;
+				obj["date"] = performanceVariableArray[j].date;
+				obj["keyid"] = performanceVariableArray[j].keyid+"_by_"+deriveNames[dname];
+				obj["keyname"] = performanceVariableArray[j].keyname+" ("+deriveNames[dname]+")";
+				obj["keytype"] = performanceVariableArray[j].keytype;
+				derived_variable[count] = obj;
+				count++;
+
+
+				/*if(levelsObj[levels]){
+					levelsObj[levels].push(performanceVariableArray[j].id+"_"+deriveNames[dname]+"_by_"+placeNames[i]);
+				}else{	
+					levelsObj[levels] = [(performanceVariableArray[j].id+"_"+deriveNames[dname]+"_by_"+placeNames[i])];
+				}*/
+				if(levelsObj[levels]){
+					levelsObj[levels].push(performanceVariableArray[j].keyid+"_"+deriveNames[dname]);
+				}else{	
+					levelsObj[levels] = [(performanceVariableArray[j].keyid+"_"+deriveNames[dname])];
+				}
+			}
+			/*if(levelsObj['level4']){
+			    if(( $.inArray(performanceVariableArray[j].name, levelsObj['level4']) == -1)){
+				levelsObj['level4'].push(performanceVariableArray[j].id);
+			    }
+			}else{
+				levelsObj['level4'] = [(performanceVariableArray[j].id)];
+			}*/
+			if(levelsObj['level4']){
+			    if(( $.inArray(performanceVariableArray[j].keyid+"_sum", levelsObj['level4']) == -1)){
+				levelsObj['level4'].push(performanceVariableArray[j].keyid+"_sum");
+			    }
+			}else{
+				levelsObj['level4'] = [(performanceVariableArray[j].keyid+"_sum")];
+			}
+		}
+	//}
+
+
+	myTemplateJson["place"] = place;
+	myTemplateJson["category"] = category;
+	myTemplateJson["performance_variable"] = performance_variable;
+	myTemplateJson["derived_variable"] = derived_variable;
+
+	document.getElementById('mytemplate-header-json-id').value= JSON.stringify(templateHeader);
+	document.getElementById('mytemplate-json-id').value= JSON.stringify(myTemplateJson);
+	document.getElementById('levels-obj-id').value=JSON.stringify(levelsObj);
+	document.getElementById("mytemplate-form").submit();
+}
+
+
+
+/* template edit */
+var selectedTemplateJson;
+var datasetExist="No";
+function myTemplateEdit(){
+	var myTemplateId = document.getElementById("id_mytemplate").value;
+	d3.json("/app/dataset_exists/"+myTemplateId+"", function(data){
+		datasetExist = data["result"];
+
+		for(var i=0;i<myTemplateList.length;i++){
+			if(myTemplateList[i].id == myTemplateId){
+				selectedTemplateJson = myTemplateList[i].template_json;
+				document.getElementById("mytemplate-name-id").value = myTemplateList[i].mytemplate_name;
+				document.getElementById("template").value = myTemplateList[i].template_id;
+				$("#template").data("selectBox-selectBoxIt").add();
+				$("#template").onchange = templateChange();
+				branchCategoryLoad();
+				performanceVariableLoad();
+
+			}
+		}
+
+	});
+}
+
+function branchCategoryLoad(){
+	selectedBranchCategoryArray=[];
+	for(var key in selectedTemplateJson.category){
+		var categoryId = selectedTemplateJson.category[key].id;
+		categoryId = categoryId.split("_");
+		if(categoryId[1]){
+			selectedBranchCategoryArray.push(categoryId[1]);
+			selectedBranchCategoryArray = _.uniq(selectedBranchCategoryArray);
+			$("#branch_category_"+categoryId[1]+"_label").attr("class","cate cateact");
+			if(datasetExist == "Yes"){
+				$("#branch_category_"+categoryId[1]+"_check").attr({'disabled':'disabled'});
+			}
+		}
+	}
+}
+
+function performanceVariableLoad(){
+	selectedPVCustom=[];
+	var checkPvId;
+	var pCount = 0;
+	for(var key in selectedTemplateJson.performance_variable){
+		var pvId = selectedTemplateJson.performance_variable[key].id;
+		pvId = pvId.split("-");
+		var pvId1 = pvId[0].split("_");
+		var variableId=selectedTemplateJson.performance_variable[key].variableid;
+		var productId=selectedTemplateJson.performance_variable[key].productid;
+		var unitId=selectedTemplateJson.performance_variable[key].unitid;
+		var timeUnitId=selectedTemplateJson.performance_variable[key].timeunitid;
+		var timeSpecId=selectedTemplateJson.performance_variable[key].timespecid;
+		var timeSpecYearId=selectedTemplateJson.performance_variable[key].timespecyearid;
+
+		if(pvId1[0] == "pv"){
+		if(pvId1[1]){
+			if(checkPvId != pvId1[1]){
+				pCount = 0;
+				document.getElementById("performance-variable-id").value = variableId; //pvId1[1];
+				$("#performance-variable-id").data("selectBox-selectBoxIt").add();
+				if(datasetExist == "Yes"){
+					$("#performance-variable-id").onchange = performanceVariableChange("Yes");
+				}else{
+					$("#performance-variable-id").onchange = performanceVariableChange("No");
+				}
+				checkPvId = pvId1[1];
+				// product load
+				if(pvId1[2]){
+					if(productId){
+						document.getElementById("variable_product_id_"+pvId1[1]+"_0").value = productId; //pvId1[2];
+						$("#variable_product_id_"+pvId1[1]+"_0").data("selectBox-selectBoxIt").add();
+					}
+
+					document.getElementById("unit_id_"+pvId1[1]+"_0").value = unitId; //pvId1[3];
+					$("#unit_id_"+pvId1[1]+"_0").data("selectBox-selectBoxIt").add();
+
+					document.getElementById("time_unit_id_"+pvId1[1]+"_0").value = timeUnitId; //pvId1[4];
+					$("#time_unit_id_"+pvId1[1]+"_0").data("selectBox-selectBoxIt").add();
+					$("#time_unit_id_"+pvId1[1]+"_0").onchange = timeUnitChange('time_spec_id_'+pvId1[1]+'_0','time_spec_div_'+pvId1[1]+'_0','time_spec_year_id_'+pvId1[1]+'_0','time_spec_year_div_'+pvId1[1]+'_0','time_unit_id_'+pvId1[1]+'_0');
+
+					document.getElementById("time_spec_id_"+pvId1[1]+"_0").value = timeSpecId;
+					$("#time_spec_id_"+pvId1[1]+"_"+pCount+"").data("selectBox-selectBoxIt").add();
+					if(timeSpecYearId){
+						document.getElementById("time_spec_year_id_"+pvId1[1]+"_0").value = timeSpecYearId; //pvId1[5];
+						$("#time_spec_year_id_"+pvId1[1]+"_0").data("selectBox-selectBoxIt").add();
+					}
+					pCount++;
+				}
+			}else if(checkPvId == pvId1[1]){
+				if(datasetExist == "Yes"){
+					$("#add-arrow-id-"+pvId1[1]+"_"+pCount+"").onclick = addNewProduct('table_'+pvId1[1]+'',pvId1[1],pvId1[1],"Yes");
+				}else{
+					$("#add-arrow-id-"+pvId1[1]+"_"+pCount+"").onclick = addNewProduct('table_'+pvId1[1]+'',pvId1[1],pvId1[1],"No");
+				}
+				if(productId){
+					document.getElementById("variable_product_id_"+pvId1[1]+"_"+pCount+"").value = productId;
+					$("#variable_product_id_"+pvId1[1]+"_"+pCount+"").data("selectBox-selectBoxIt").add();
+				}
+
+				document.getElementById("unit_id_"+pvId1[1]+"_"+pCount+"").value = unitId;
+				$("#unit_id_"+pvId1[1]+"_"+pCount+"").data("selectBox-selectBoxIt").add();
+
+				document.getElementById("time_unit_id_"+pvId1[1]+"_"+pCount+"").value = timeUnitId;
+				$("#time_unit_id_"+pvId1[1]+"_"+pCount+"").data("selectBox-selectBoxIt").add();
+				$("#time_unit_id_"+pvId1[1]+"_"+pCount+"").onchange = timeUnitChange('time_spec_id_'+pvId1[1]+'_'+pCount+'','time_spec_div_'+pvId1[1]+'_'+pCount+'','time_spec_year_id_'+pvId1[1]+'_'+pCount+'','time_spec_year_div_'+pvId1[1]+'_'+pCount+'','time_unit_id_'+pvId1[1]+'_'+pCount+'');
+
+				document.getElementById("time_spec_id_"+pvId1[1]+"_"+pCount+"").value = timeSpecId;
+				$("#time_spec_id_"+pvId1[1]+"_"+pCount+"").data("selectBox-selectBoxIt").add();
+				if(timeSpecYearId){
+					document.getElementById("time_spec_year_id_"+pvId1[1]+"_"+pCount+"").value = timeSpecYearId;
+					$("#time_spec_year_id_"+pvId1[1]+"_"+pCount+"").data("selectBox-selectBoxIt").add();
+				}
+				pCount++;
+			}
+		}
+		}else if(pvId1[0] == "pvc"){
+			var pvId1 = pvId[0].split("_");
+			//addNewVariable(){
+			document.getElementById("custom_variable_id").value = selectedTemplateJson.performance_variable[key].customvariablename;
+			document.getElementById("unit_id").value = pvId1[2];
+			$("#unit_id").data("selectBox-selectBoxIt").add();
+			document.getElementById("time_unit_id").value = pvId1[3];
+			$("#time_unit_id").data("selectBox-selectBoxIt").add();
+			timeUnitChange('time_spec_id','time_spec_div','time_spec_year_id','time_spec_year_div','time_unit_id');
+			document.getElementById("time_spec_id").value = timeSpecId;
+			$("#time_spec_id").data("selectBox-selectBoxIt").add();
+			if(timeSpecYearId){
+				document.getElementById("time_spec_year_id").value = timeSpecYearId;
+				$("#time_spec_year_id").data("selectBox-selectBoxIt").add();
+			}
+			if(datasetExist == "Yes"){
+				addNewVariable("Yes");
+			}else{
+				addNewVariable("No");
+			}
+		}
+	}
+}
+
+function datasetExistMessage(){
+	bootbox.alert("You are not allowed to delete this variable. data for this variable already uploaded.");
+}
+
+</script>
+</head>
+<body>
+<header class="navbar header">
+  <div class="container">
+    <div class="navbar-header"> <a href="/index.html" class="logo-inner" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+    <nav class="collapse navbar-collapse">
+      <ul class="nav navbar-nav menu" id="menu">
+        <li class="current"><a href="/app/upload" title="Upload" ><span class="menu-icon" id="menu-up"></span>Upload</a></li>
+        <li><a href="/app/region_explorer" title="Explore"><span class="menu-icon" id="menu-exp"></span>Explore</a></li>
+        <li><a href="/app/analyze" title="Analyze"><span class="menu-icon" id="menu-ana"></span>Analyze</a></li>
+        <li><a href="/app/mysphere" title="MySphere"><span class="menu-icon" id="menu-mys"></span>MySphere</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right account-sec">
+        <li>{% if user %}<div id="fullname" style="margin-top:23px;">{{user}}</div>{% endif %}</li>
+        <li class="dropdown" > <span class="menu-icon" id="drop-icon"></span>
+          <div class="user-menu"> <span class="menu-arrow"></span>
+            <ul>
+              <li><a href="/app/upgrade_account" title="Change Plan"><span class="usermenu-icon" id="change-plan"></span>Change Plan</a></li>
+              <!--<li><a href="#" title="Profile Setting"><span class="usermenu-icon" id="pro-setting"></span>Profile Setting</a></li>-->
+              <li><a href="/accounts/password/change/" title="Change Password"><span class="usermenu-icon" id="change-pwd"></span>Change Password</a></li>
+              <!--<li><a href="#" title="Help Center"><span class="usermenu-icon" id="helpcenter"></span>Help Center</a></li>-->
+              <li><a href="{% url 'auth_logout' %}" title="Logout" class="logout">Log Out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- Secondary Header -->
+<header class="navbar sub-header">
+  <div class="container "> </div>
+</header>
+
+<!-- Body Section -->
+<div class="body-sec innerpage-body">
+  <div class="container" id="template-container">
+    <!--Main body left panel -->
+    <div class="col-md-2-5 left-panel">
+      <!-- Added for select option in templates -->
+      <div class="item-panel" id="uploader-items">
+	<h5 class="left-con-head">Uploader</h5>
+	<!-- Added for select option in templates -->
+	<div id="menu-div" style="display:block">
+          <select class="custom_selectbox" name="mytemplate" id="id_mytemplate" onchange="myTemplateEdit();">
+            <option value="0">My Templates</option>
+            <!--{% for temp in myTemplateList %}
+		<option value="{{ temp.id }}">{{ temp.mytemplate_name }}</option>
+	    {% endfor %}-->
+          </select>
+        </div>
+      </div>
+    </div>
+    <!--Main body right panel -->
+    <form method="post" id="mytemplate-form" action="/app/template" enctype="multipart/form-data">
+    <div class="col-md-7-5 right-panel">
+    	<div class="breadcrumb-wrap">
+        	<ul>
+            	<li class="temp active"><span>Create your Template</span></li>
+                <a href="/app/upload"><li class="upload"><span>Upload</span></li></a>
+                <li class="verify"><span>Verify</span></li>
+            </ul>
+        </div>
+        <div class="content-wrap">
+        	<p class="desc"><span class="title">Dataset Template Wizard</span>Customize Scisphere's predefined template for your data by
+            </p>
+            <p class="desc-list">
+            	(i) Removing predefined fields that are not part of your dataset,<br />
+                (ii) Selecting relevant units and time periods for your data and<br />
+                (iii) Defining your own variables if you don't see them in the predefined list.
+            </p>
+        </div>
+        <div class="template-wrap">
+        	<div class="temp-header">
+            	<h4 class="title">Select a Template</h4>
+                <div class="select-wrap1" style="width:200px;">
+                    <select class="custom_selectbox" id="template" name="template" onChange="templateChange()">
+                        <option value="0">Select</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="temp-body">
+                <!-- Microfinance Section -->
+                <div class="temp-cont-body" id="template-section-id">
+                    <h3 class="title" id="template-title"></h3>
+                    <div class="temp-label-wrap">
+                    	<span class="req-text">Required Fields *</span>
+                        <p class="temp-label">
+                            <span>State</span>
+                            <span>District</span>
+                            <span>Taluk</span>
+                            <span>Village/Town</span>
+                            <span>Pin Code</span>
+			</p>
+                    </div>
+                    <div class="temp-frame clearfix">
+                    	<h3 class="sec-title">Option Fields</h3>
+                        <div class="col-md-12">
+                            <div class="col-md-3 l-panel">
+                            	<h4 class="head">Branch Categorization* </h4>
+                                <span class="sub-head">Click to select</span>
+				<div id="category-id"></div>
+                            </div>
+                            <div class="col-md-9 r-panel">
+                            	<h4 class="head">Performance Variables* </h4>
+                                <span class="sub-head">At least one performance Variables is required</span>
+                            	<div class="perform-wrap">
+                                	<div class="select-wrap1" style="width:250px; margin-bottom:10px;">
+                                        <select class="custom_selectbox" id="performance-variable-id" onchange="performanceVariableChange('No');">
+                                            <option value="0" selected="selected">Select Performance Variable</option>
+                                        </select>
+                                    </div>
+                                    <div class="perform-opt-wrap">
+                                        <div class="perform-sec clearfix" id="define-custom-variable-id" style="display: none;">
+                                        	<div class="var-field-sec">
+                                            	<div class="default-field clearfix">
+                                                    <input type="text" class="text-field text-field-varible" name="customVariable" id="custom_variable_id" />
+                                                    <div class="select-wrap1 variable-selectbox">
+                                                        <select class="custom_selectbox" id="unit_id">
+                                                            <option value="0">Select Unit</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="select-wrap1 variable-selectbox">
+                                                        <select class="custom_selectbox" id="time_unit_id" onchange="timeUnitChange('time_spec_id','time_spec_div','time_spec_year_id','time_spec_year_div','time_unit_id');">
+                                                            <option value="0">Select Time Unit</option>
+                                                        </select>
+                                                    </div>
+						    <div id="time_spec_div"></div>
+						    <div id="time_spec_year_div"></div>
+						    <span id="add-arrow-id" class="var-add" onclick="addNewVariable('No');"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 
+                                        <!-- Variable Fields -->
+					<div id="variable-body-content-id"></div>
+                                        <!-- -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="upload-wrap ">
+                    	<h4 class="head">Select a Template</h4>         
+                        <div class="download-sec clearfix">
+                          <input type="text" class="text-field text-field-upload" name="mytemplate-name" id="mytemplate-name-id" value="" placeholder="Template" >
+                          <input type="button" value="Download" class="link-button link-button-red upload-button" id="file_input_gobutton1" onclick="TemplateGenerate();"/>
+                          <span class="notify">Enter Your Custom Name</span> 
+			  <div id="loading"></div>
+                        </div>
+                    </div>
+                </div>    
+                <!-- -->
+            </div>
+        </div>
+        <!-- -->
+    </div>
+    <input type="hidden" id="mytemplate-header-json-id" name="mytemplate-header-json">
+    <input type="hidden" id="mytemplate-json-id" name="mytemplate-json">
+    <input type="hidden" id="levels-obj-id" name="levels-obj">
+    </form>
+  </div>
+</div>
+
+<!-- Footer Section-->
+{% include "footer.html" %}
+<!-- -->
+
+</body>
+</html>

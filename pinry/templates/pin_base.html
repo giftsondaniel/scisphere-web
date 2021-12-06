@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+{% load compress %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Scisphere</title>
+    <meta name="description" content="Mobile data collection made easy. formhub is built on a belief that data collection and analysis should be fast, flexible and reliable. And open source, of course.">
+    <meta name="author" content="">
+    <meta name="google-site-verification" content="8pAiKPreksD8GiYnSCtWm9QG3i6wyuKg7E2Y95RTzRM" />
+<!-- css -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/screen.css?v=2809679b01" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet"> <!--elango -->
+    <link href="/static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+
+    <!-- mail task assign popup -->
+    <!--<script src="/static/js/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/static/pinry/vendor/jquery/2.0.3/jquery-2.0.3.js"></script>-->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+    <script type="text/javascript" src="/static/js/jquery.reveal.js"></script>
+    <link rel="stylesheet" href="/static/css/reveal.css">
+
+
+    {% block additional-headers %}{% endblock %}
+<!-- css -->
+
+        {%  if request.resolver_match.kwargs.user %}
+            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/user/{{ request.resolver_match.kwargs.user }}/">
+        {% elif request.resolver_match.kwargs.tag %}
+            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/tag/{{ request.resolver_match.kwargs.tag }}/">
+        {% else %}
+            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/">
+        {% endif %}
+
+        <!--  ___                     ___           ___                 
+             /  /\      ___          /__/\         /  /\          ___   
+            /  /::\    /  /\         \  \:\       /  /::\        /__/|  
+           /  /:/\:\  /  /:/          \  \:\     /  /:/\:\      |  |:|  
+          /  /:/~/:/ /__/::\      _____\__\:\   /  /:/~/:/      |  |:|  
+         /__/:/ /:/  \__\/\:\__  /__/::::::::\ /__/:/ /:/___  __|__|:|  
+         \  \:\/:/      \  \:\/\ \  \:\~~\~~\/ \  \:\/:::::/ /__/::::\  
+          \  \::/        \__\::/  \  \:\  ~~~   \  \::/~~~~     ~\~~\:\ 
+           \  \:\        /__/:/    \  \:\        \  \:\           \  \:\
+            \  \:\       \__\/      \  \:\        \  \:\           \__\/
+             \__\/                   \__\/         \__\/             -->
+
+       <!-- <title>{% block title %}Pinry{% endblock %}</title>-->
+
+        <!-- CSS -->
+        <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>-->
+
+
+        {% compress css %}
+            <link rel="stylesheet" href="/static/pinry/vendor/bootstrap/3.0.0/css/bootstrap.css"/>
+            <link rel="stylesheet" href="/static/pinry/vendor/fineuploader/3.1.1/fineuploader.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/messages.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/lightbox.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/pinry.css"/>
+            <link rel="stylesheet" href="/static/pinry/css/pin_popup.css"/>
+        {%  endcompress %}
+        {% compress css inline %}
+            {% block extra_css %}{% endblock %}
+        {% endcompress %}
+        <!-- End CSS -->
+
+        <!-- Start JavaScript Variables -->
+        <script>
+        var apiLimitPerPage = {{ API_LIMIT_PER_PAGE }},
+            errors = {% if not messages %}null,{% else %}[
+                {% for message in messages %}{
+                    tags: "{{ message.tags }}",
+                    text: "{{ message }}"
+                }{% endfor %}
+            ],{% endif %}
+            currentUser = {
+                id: "{{ user.id }}",
+                username: "{{ user.username }}",
+                gravatar: "{{ user.gravatar }}"
+            },
+            pinFilter = "{{ request.resolver_match.kwargs.pin }}",
+            tagFilter = "{{ request.resolver_match.kwargs.tag }}",
+            userFilter = "{{ request.resolver_match.kwargs.user }}";
+        </script>
+
+        <!-- End JavaScript Variables -->
+
+     </head>
+     <body>
+
+{% include "pinry_topbar.html"%}
+<br>
+        <!-- End Navigation -->
+
+        <!-- Messages -->
+        <ul id="messages"></ul>
+        <!-- End Messages -->
+
+
+        <!-- Content -->
+        {% block yield %}{% endblock %}
+        <!-- End Content -->
+
+        <!-- Templates -->
+        {% include "includes/messages.html" %}
+        {% include "includes/lightbox.html" %}
+        {% include "includes/pins.html" %}
+        {% include "includes/pin_form.html" %}
+        {% block extra_templates %}{% endblock %}
+        <!-- End Templates -->
+
+        <!-- JavaScript -->
+        {% compress js %}
+	    <script src="/static/pinry/vendor/jquery/2.0.3/jquery-dateFormat.min.js"></script>
+            <script src="/static/pinry/vendor/fineuploader/3.1.1/jquery.fineuploader.js"></script>
+            <script src="/static/pinry/vendor/bootstrap/3.0.0/js/bootstrap.js"></script>
+            <script src="/static/pinry/vendor/handlebars/1.0.0/handlebars.js"></script>
+	    <script src="/static/pinry/vendor/jquery/2.0.3/moment.min.js"></script>
+            <script src="/static/pinry/js/helpers.js"></script>
+            <script src="/static/pinry/js/messages.js"></script>
+            <script src="/static/pinry/js/lightbox.js"></script>
+            <script src="/static/pinry/js/pinry.js"></script>
+            <script src="/static/pinry/js/pin-form.js"></script>
+            <script src="/static/pinry/js/jquery.cookie.js"></script>
+        {% endcompress %}
+	    <script type="text/javascript">
+		Handlebars.registerHelper('dateFormat', function(context, block) {
+	 	  if (window.moment) {
+	   	     var f = block.hash.format || "YYYY-MM-DD";
+	   	     return moment(context).fromNow();
+		  }else{
+		    return context;   //  moment plugin not available. return data as is.
+		  };
+		});
+	    </script>
+        {% compress js inline %}
+            {% block extra_js %}{% endblock %}
+        {% endcompress %}
+        <!-- End JavaScript -->
+    </body>
+</html>
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery-selectify.js"></script>
+<script type="text/javascript" src="/static/js/jquery.passstrength.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script src="/static/js/bootbox.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$(".selectbox").selectify();
+});
+
+function createAccount(){
+	if(document.getElementById('id_first_name').value == ""){
+		bootbox.alert("First name is required.");
+		document.getElementById('id_first_name').focus();
+		return false;
+	}
+	if(document.getElementById('id_last_name').value == ""){
+		bootbox.alert("Last name is required.");
+		return false;
+	}
+	if(document.getElementById('id_email').value == ""){
+		bootbox.alert("Email is required.");
+		return false;
+	}
+	if(document.getElementById('id_password1').value == ""){
+		bootbox.alert("Password is required.");
+		return false;
+	}
+	if(document.getElementById('id_password2').value == ""){
+		bootbox.alert("Reenter Password is required.");
+		return false;
+	}
+	if(document.getElementById('id_password1').value != document.getElementById('id_password2').value){
+		bootbox.alert("You must type the same password each time.");
+		return false;
+	}
+
+	if(document.getElementById('id_checkbox').checked == true){
+		//document.getElementById('id_username').value = document.getElementById('id_email').value;
+		document.getElementById('id_submit').click();
+	}else{
+		bootbox.alert("You must agree to the terms to register.");
+		return false;
+	}
+}
+
+function resetValue(){
+	document.getElementById('id_first_name').value="";
+	document.getElementById('id_last_name').value="";
+	document.getElementById('id_job_title').value="";
+	document.getElementById('id_company').value="";
+	document.getElementById('id_email').value="";
+	document.getElementById('id_selector').value="Sector";
+}
+</script>
+</head>
+
+<body>
+<!-- -->
+{% include "home-header.html" %}  
+<!-- -->
+<div class="body-sec innerpage-body" >
+  <div class="container" id="signup-body">
+    <div class="col-lg-6" >
+      <h3 class="signup-heading">Sign up</h3>
+      <p class="sub-title">SciSphere is currently in beta and by invitation only. </p>
+      <p class="sub-title">To request access, please fill in this form and we will contact you very soon.</p>
+      <br />
+      <p class="form-head"> All fields are required. </p>
+     
+      <form method="post" action="/app/signup/">
+        <table cellpadding="0" cellspacing="0" border="0" class="signup-table" width="100%">
+
+          <tr>
+            <td>{{ form.first_name.errors }}{{ form.first_name }}<!--<input type="text" name="first_name" id="id_first_name" placeholder="First name" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td>{{ form.last_name.errors }}{{ form.last_name}}<!--<input type="text" name="last_name" id="id_last_name" placeholder="Last name" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td>{{ form.job_title.errors }}{{ form.job_title}}<!--<input type="text" name="job_title" id="id_job_title" placeholder="Job title" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td>{{ form.company.errors }}{{ form.company}}<!--<input type="text" name="company" id="id_company" placeholder="Company" class="text-field"/>--></td>
+          </tr>
+	  <tr>
+            <td >{{ form.sector.errors }}<select class="text-field selectbox" name="sector" id="id_selector" style="width:0px;">
+                    <option value="Sector" selected="selected">Sector</option>
+                    <option value="Non-profit"> Non-profit</option>
+                    <option value="Government"> Government</option>
+                    <option value="Media and Publishing">Media and Publishing</option>
+                    <option value="Financial Services">Financial Services</option>
+                    <option value="Agriculture">Agriculture</option>
+                    <option value="FMCG">FMCG</option>
+                    <option value="Telecom">Telecom</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Other">Other</option>
+                </select></td>
+          </tr>
+          <tr>
+            <td>{{ form.email.errors }}{{ form.email}}<!--<input type="text" name="email" id="id_email" placeholder="Email" class="text-field"/>--></td>
+          </tr>
+	  <tr>
+            <td class="form-td" colspan="3"><div class="form-button-wrap">
+		<input type="submit" class="btn btn-primary btn-red" value="Request Invitation"  style="margin-right:15px;"  id="id_submit" />
+                <button type="reset" onclick="resetValue()" class="btn btn-primary btn-gray" data-toggle="button" id="id_reset" style="width:100px;">reset</button>
+              </div></td>
+             
+          </tr>
+        </table>
+      </form>
+      <!-- --> 	
+    </div>
+  </div>
+</div>
+<div style="height:50px;"></div>
+<!-- -->
+{% include "footer.html" %}  
+<!-- -->
+</body>
+</html>

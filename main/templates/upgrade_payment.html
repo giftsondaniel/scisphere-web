@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/multi-select.js" ></script>
+<script type="text/javascript" src="/static/js/fancyfields-1.2.min.js" ></script>
+
+<script src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript" src="/static/js/underscore-min.js"></script>
+<!-- bootbox alert -->
+<script src="/static/js/bootbox.js"></script>
+<!-- bootbox alert -->
+<style>
+.total-wrap {
+	width: 322px;
+	background: #F1F1F1;
+	height: 55px;
+	padding: 5px 0px;
+	margin-bottom: 20px;
+}
+.selectbox-wrap {
+	width: 510px;
+	background: #E8E8E8;
+	padding: 20px 20px;
+	margin-bottom: 5px;
+}
+
+
+</style>
+<script type="text/javascript">
+$(document).ready(function () {
+	/*$('.multiselect').multiSelect({
+		selectableHeader : '<div class=selected_list>Available States</div>',
+		selectedHeader : '<div class=selected_list>Selected States</div>'
+	});*/
+	$(".check-fields").fancyfields();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $('.user-menu').slideUp(0);
+    $('.menu-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+});
+
+var id_0 = '';
+var id_1 = '';
+var level1Data;
+window.onload=function(){
+
+	id_0 = {{level0_Id}};
+	id_1 = [{{level1_Id}}];
+	//id_1 =["28","24","29","32","23"];
+	var sub_list;
+	var url="/app/subscription_list";
+	d3.json(url,function(data){
+		sub_list = data;
+
+	level0_Id = id_0;
+	d3.json("/app/scisphere/places/countrydetail?level0="+level0_Id+"" , function(data) {
+		d3.selectAll("#data-fetching").remove();
+		level1Data = data.level1;
+		var level1_Id = document.getElementById('level1_Id');
+                var statesSelected_Li =""
+		var stateCount = 0;
+		var currency = 0;
+		for(var key in level1Data) {
+			if(key == level0_Id){
+				//sorting
+				
+				var level1list = level1Data[key];
+				var sortable = [];
+				for (var state in level1list)
+				      sortable.push([state, level1list[state]])
+				sortable.sort(function(a,b) { return d3.ascending(a[1],b[1]); });
+				//sorting
+				for(var i=0;i<sortable.length;i++){
+					//if(( $.inArray(sortable[i][0], sub_list['free_plans']['state']) == -1)){ // 
+					var a = id_1.indexOf(parseInt(sortable[i][0]));
+					
+					if(a != -1){
+						var optlevel1 = document.createElement('option');
+						var valCh = sortable[i][1];
+						var valCam = valCh.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+						statesSelected_Li +="<li><a >"+valCam+"</a></li>"
+						stateCount++; 	
+					}
+				}
+
+				
+				currency = (stateCount *25000);	
+	
+				//document.getElementById('selected-state-count').innerHTML=stateCount;
+				//document.getElementById('selected-state-currency').innerHTML="Rs. "+currency;
+			break;
+	
+			}
+		}
+			
+		/*
+	
+		$('.multiselect').multiSelect({
+			selectableHeader : '<div class=selected_list>Available States</div>',
+			selectedHeader : '<div class=selected_list>Selected States</div>'
+		});*/
+	
+		
+		document.getElementById('selectedStates').innerHTML = statesSelected_Li;
+	});
+	});
+
+}
+
+// this function calling from multi-select.js
+function selectAndDeselect(){
+	var stateCount = 0;
+	var currency = 0;
+	if($("#level1_Id").val()){
+		stateCount = $(".ms-selection ul").children().length;	
+        }
+	
+	currency = (stateCount *25000);	
+	
+	document.getElementById('selected-state-count').innerHTML=stateCount;
+	document.getElementById('selected-state-currency').innerHTML="Rs. "+currency;
+}
+
+function subscription(){
+	//var level1Array = $("#level1_Id").val();
+
+	console.log("subscription");
+	//console.log($("#level1_Id").val());
+	var first_name = document.getElementById("first_name_id").value;
+	var company = document.getElementById("company_name_id").value;
+	var state = document.getElementById("state_id").value;
+	var town_city = document.getElementById("town_city_id").value;
+	var billing_address1 = document.getElementById("billing_address1_id").value;
+	var billing_address2 = document.getElementById("billing_address2_id").value;
+	var date = document.getElementById("date_id").value;
+	var cheque_number = document.getElementById("cheque_number_id").value;
+
+	if(!cheque_number){
+		alert("Please enter the check number");	
+		return false;
+	}
+
+	var address = "";//first_name+', '+billing_address1+', '+billing_address2+', '+town_city+', '+state;
+	if(first_name){
+		address += first_name;
+	}
+	if(billing_address1){
+		address += ', '+billing_address1;
+	}
+	if(billing_address2){
+		address +=', '+ billing_address2;
+	}
+	if(town_city){
+		address += ', '+town_city;
+	}
+	if(state){
+		address +=', '+ state;
+	}
+	
+
+	//var address = first_name+', '+billing_address1+', '+billing_address2+', '+town_city+', '+state;
+
+	var level0_Id = id_0;
+	var level1Array = id_1;
+
+	var url="/app/subscription_upgrade?level0id="+level0_Id+"&level1id="+level1Array+" &payment_mode=check&payment_txt_id=6290023214545413&payment_status=pending&address=Thiruvanmiyur&companyname=Scimergent&payment_location=Chennai&payment_provider=SBI" ;
+
+	url="/app/subscription_upgrade?level0id="+level0_Id+"&level1id="+level1Array
+		+"&payment_mode=check"
+		+"&payment_txt_id="+cheque_number
+		+"&payment_status=pending"
+		+"&address="+address
+		+"&companyname="+company
+		+"&payment_location=Chennai"
+		+"&payment_provider=SBI" ;
+
+	
+	//var url="/app/subscription_upgrade?level0id="+level0_Id+"&level1id="+level1Array+"&payment_mode="+payment_mode+"&payment_txt_id="+payment_txt_id+"&";
+ 	//var0 url="/app/upgrade_payment?level0id="+level0_Id+"&level1id="+level1Array+"";
+
+	d3.json(url,function(data){
+		//bootbox.alert("Your plan has been successfully saved and will be activated when your payment has been processed.");
+
+		/*document.getElementById("first_name_id").value= "";
+		document.getElementById("company_name_id").value= "";
+		document.getElementById("state_id").value= "";
+		document.getElementById("town_city_id").value= "";
+		document.getElementById("billing_address1_id").value= "";
+		document.getElementById("billing_address2_id").value= "";
+		document.getElementById("date_id").value= "";
+		document.getElementById("cheque_number_id").value= "";*/
+
+		bootbox.dialog({
+			  message: "Your request has been sent. Would you like to upgrade your account even more?",
+			  buttons: {
+			    no: {
+			      label: "No Thank You.",
+			      callback: function() {
+				window.location="/app/region_explorer";
+			      }		
+			    },
+			    yes: {
+			      label: "Yes Please.",
+			      callback: function() {
+				window.location="/app/upgrade_account";
+			      }
+			    }
+			  }
+			});
+	});
+
+}
+
+function changeMode(){
+	
+	var radios = document.getElementsByName('payment_mode'), 
+	    value  = '';
+
+	for (var i = radios.length; i--;) {
+	    if (radios[i].checked) {
+		value = radios[i].value;
+		console.log("value::::"+ value);
+		var innerString ="";
+		if(value=="Credit_Card"){
+			innerString = '<tr><td><input style="width:450px"  type="text" name="visa_number" id="visa_number_id"  placeholder="Visa Number" class="text-field" ></input></td></tr>'
+					+ '<tr><td><input   type="text" name="pin" id="pin_id"  placeholder="PIN" class="text-field"></input></td></tr>'
+					+ '<tr><td class="form-td"><div class="form-button-wrap"><button type="button" '
+					+ 'class="btn btn-primary btn-red" data-toggle="button" style=" width:100px; margin-right:15px;" onclick="subscription()" >Place Order</button>	  '
+					+ '</div></td></tr>';
+
+
+		}else{
+			innerString = '<tr><td><input style="width:450px"  type="text" name="billing_address1" id="cheque_number_id"  placeholder="Cheque Number" class="text-field" ></input></td></tr>'+
+					'<tr><td><input   type="text" name="date" id="date_id" placeholder="Date" class="text-field"></input></td></tr>'+
+			'<tr><td class="form-td"><div class="form-button-wrap"><button type="button" class="btn btn-primary btn-red" data-toggle="button" style=" width:100px; margin-right:15px;" onclick="subscription()" >Place Order</button>	  </div></td></tr>';
+	
+		}
+		document.getElementById("tableID").innerHTML = innerString;
+		break;
+	    }
+	}
+}
+
+</script>
+</head>
+
+<body>
+<header class="navbar header">
+  <div class="container">
+    <div class="navbar-header"> <a href="#" class="" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+    <nav class="collapse navbar-collapse">
+      <ul class="nav navbar-nav menu" id="menu">
+        <li><a href="/app/upload" title="Upload"><span class="menu-icon" id="menu-up"></span>Upload</a></li>
+        <li><a href="/app/region_explorer" title="Explore"><span class="menu-icon" id="menu-exp"></span>Explore</a></li>
+        <li><a href="/app/rural_location" title="Analyze"><span class="menu-icon" id="menu-ana"></span>Analyze</a></li>
+        <li class="current"><a href="#" title="MySphere"><span class="menu-icon" id="menu-mys"></span>MySphere</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right account-sec">
+        <li><a href="#" id="settings" title="Settings"></a></li>
+        <li>{% if user %}<div id="fullname" style="margin-top:23px;">{{user}}</div>{% endif %}</li>
+        <!--<li><a href="#" id="user-image" title="User"><img src="/static/images/user-icon.jpg" /></a></li>-->
+        <li class="dropdown" > <span class="menu-icon" id="drop-icon"></span>
+          <div class="user-menu"> <span class="menu-arrow"></span>
+            <ul>
+              <li><a href="/app/upgrade_account" title="Change Plan"><span class="usermenu-icon" id="change-plan"></span>Change Plan</a></li>
+              <!--<li><a href="#" title="Profile Setting"><span class="usermenu-icon" id="pro-setting"></span>Profile Setting</a></li>-->
+              <li><a href="/accounts/password/change/" title="Change Password"><span class="usermenu-icon" id="change-pwd"></span>Change Password</a></li>
+              <!--<li><a href="#" title="Help Center"><span class="usermenu-icon" id="helpcenter"></span>Help Center</a></li>-->
+              <li><a href="{% url 'auth_logout' %}" title="Logout" class="logout">Log Out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- Secondary Header -->
+<header class="navbar sub-header">
+  <div class="container "> </div>
+</header>
+<div class="body-sec innerpage-body" >
+  <div class="container">
+    <div class="col-lg-7">
+      <h2 class="inner-page-title">Payment Information</h2>
+      <p class="inner-page-subcontent">Payment Mode</p>
+      <table>
+	<td>
+	    <tr><input type="radio" name="payment_mode" value="Cheque_DD" checked="checked" onclick="changeMode()" >Cheque/DD</input>&nbsp;<input type="radio" name="payment_mode" value="Credit_Card" onclick="changeMode()" >Credit Card</input></tr>
+	</td>	
+      </table>	
+        <table cellpadding="0" cellspacing="0" border="0" class="signup-table" width="100%">
+          <tr>
+	     <td>
+		<input type="text" name="first_name" id="first_name_id" placeholder="First Name" class="text-field"/>&nbsp;&nbsp;
+		<input type="text" name="last_name" id="last_name_id" placeholder="Last Name" class="text-field"/>
+	     </td>
+	  </tr>
+          <tr><td><input  type="text" name="company_name" id="company_name_id"  placeholder="Company Name" class="text-field"/>&nbsp;&nbsp;<input  type="text" name="designation" id="designation_id"  placeholder="Designation" class="text-field"/></td></tr>
+          <tr><td><input style="width:505px"  type="text" name="billing_address1" id="billing_address1_id"  placeholder="Billing Address 1" class="text-field"/></td></tr>
+          <tr><td><input style="width:505px"  type="text" name="billing_address2" id="billing_address2_id"  placeholder="Billing Address 2" class="text-field"/></td></tr>
+          <tr><td><input type="text" name="town_city" id="town_city_id"  placeholder="Town City"  class="text-field"/>&nbsp;&nbsp;<input type="text" name="State" id="state_id" placeholder="State" class="text-field"/></td></tr>
+          <tr><td><input type="text" name="pincode" id="pincode_id" placeholder="Pincode" class="text-field"/></td></tr>
+          <tr><td><input type="text" name="phone_Number" id="phone_number_id" placeholder="Phone Number" class="text-field"/></td></tr>
+        </table>
+      <div class="selectbox-wrap">
+
+	<ul class="nav navbar-nav item-panel-list2" id="selectedStates" style="display:none">
+	</ul>	
+	
+	<table cellpadding="0" id="tableID" cellspacing="0" border="0" class="signup-table" width="100%">
+	<tr><td><input style="width:450px"  type="text" name="billing_address1" id="cheque_number_id"  placeholder="Cheque Number" class="text-field"/></td></tr>
+	<tr><td><input   type="text" name="billing_address1" id="date_id"  placeholder="Date" class="text-field"/></td></tr>
+	<tr>
+	  <td class="form-td">
+  	  <div class="form-button-wrap">
+             <button type="button" class="btn btn-primary btn-red" data-toggle="button" style=" width:100px; margin-right:15px;" onclick="subscription()">Place Order</button>
+          </div>
+           </td>
+         </tr>
+        </table>
+
+
+      </div>
+      
+	
+    </div>
+    <div class="col-lg-5">
+
+    </div>
+  </div>
+</div>
+<!-- -->
+{% include "footer.html" %}
+<!-- -->
+
+</body>
+</html>

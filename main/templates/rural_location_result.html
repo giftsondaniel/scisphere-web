@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere | Predict</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.easing.min.js"></script><!-- Easing -->
+<script type="text/javascript" src="/static/js/jquery.easing.1.3.js"></script><!-- Easing 1.3 -->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script>
+<script type="text/javascript" src="/static/js/jquery.bxslider.js"></script><!-- Bx Slider -->
+<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script><!-- Mouse Wheel -->
+<script type='text/javascript' src="/static/js/jquery.offset.js"></script><!-- Menu Position -->
+<script type='text/javascript' src="/static/js/bootstrap-slider.js"></script>
+<script type="text/javascript" src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript" src="/static/js/bootbox.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	/*-- Menu Carousel --*/
+	$('.submenu-sec').bxSlider({
+		slideWidth: 130,
+		minSlides: 3,
+		maxSlides: 3,
+		moveSlides: 1,
+		pager: false
+	});
+	/*-- UI Slider with Legends --*/
+
+
+	var range_slid = $( "#range2" ).slider({});
+	var vals = range_slid.data().sliderMax - range_slid.data().sliderMin;
+  
+	for (var i = 0; i <= vals; i=i+0.1) {
+		var el = $('<label class="slider_legend">'+parseFloat(i+range_slid.data().sliderMin).toFixed(1)+'</label>').css('left',(i/vals*100)+'%');
+    
+		$(range_slid).parent().append(el);
+	}
+
+  /*$('.range').on('slide',function(slideEvt){
+      for(var i=0;i<rocData.length;i++){
+        if(rocData[i]['Cutoff'] == slideEvt['value']){
+          document.getElementById('accuracyId').innerHTML=Math.round(rocData[i]['Accuracy']*100)+"%";
+          document.getElementById('tprId').innerHTML=Math.round(rocData[i]['TP_Rate']*100)+"%";
+        }
+      }
+  });*/
+
+	/*-- Custom SelectBox --*/
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+});
+
+function rangeSlider(){
+    $(".range").slider({ formater: function(v) {
+    var p = $(this);
+    var sliderValue = p[0].value[0];
+    if(rocData.length>0){
+      for(var i=0;i<rocData.length;i++){
+        if(rocData[i]['Cutoff'] == sliderValue){
+          document.getElementById('accuracyId').innerHTML=Math.round(rocData[i]['Accuracy']*100)+"%";
+          document.getElementById('tprId').innerHTML=Math.round(rocData[i]['TP_Rate']*100)+"%";
+        }
+      }
+    }
+  }});
+}
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(e) {
+	$('.user-menu').slideUp(0);
+    $('.menu-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+	/*-- --*/
+	$('.sub-menu-list-sec').slideUp(0);
+    $('.submenu-dropdown').click( function(){
+		var id = $(this).parent('div').attr('id');
+		var st =id.substr(9, 3);
+		if($(this).parent('div').hasClass('submenu-act')){
+			$(this).parent('div').removeClass('submenu-act')
+			$(this).parent('div').siblings('div').removeClass('submenu-act');
+			$('.sub-menu-list-sec').slideUp(200);
+			$('.link-arrow').css({'display':'none'});
+		}
+		else{
+			$(this).parent('div').addClass('submenu-act');
+			$(this).parent('div').siblings('div').removeClass('submenu-act');
+			$('.sub-menu-list-sec').slideUp(0);
+			$('.link-arrow').css({'display':'none'});
+			current_parent = $(this).parent('.sub-menu.submenu-act');
+			position_menu = current_parent.offsetRelative("div.bx-viewport");
+			$('#submenu-list'+st).css('left',position_menu.left + 20);
+			$('#submenu-list'+st).slideDown(200);
+			$(this).siblings('.link-arrow').css({'display':'block'});
+		}
+    });
+	$('.sub-menu').click( function(event){
+        event.stopPropagation();
+    });
+    $(document).click( function(){
+        $('.sub-menu-list-sec').slideUp(100);
+		$('.link-arrow').css({'display':'none'});
+		$('.submenu-dropdown').parent('div').removeClass('submenu-act');
+    });
+
+});
+</script>
+
+<script type="text/javascript">
+
+function modelMasterClick(modelId,modelName){
+	for(var i=0;i<modelMasterList.length;i++){
+		$("#model_id_"+modelMasterList[i].id).removeClass('active');
+	}
+	$("#model_id_"+modelId).addClass('active');
+	window.location="/app/rural_location?modelid="+modelId;
+	
+}
+
+var modelMasterList,modelId,modelExecutionStatus;
+var totalRecord;
+var rocData;
+window.onload = function(){
+	modelMasterList = '{{modelMasterList|escapejs}}';
+	modelId = '{{modelId}}';
+	if(modelMasterList){
+		modelMasterList = JSON.parse(modelMasterList);
+	}
+	if(modelMasterList.length>0){
+		var content="";
+		document.getElementById("breadcrumb_id").innerHTML='<span>'+modelMasterList[0].model_name+'</span>';
+		for(var i=0;i<modelMasterList.length;i++){
+			if(modelId == modelMasterList[i].id){
+				content +='<li id="model_id_'+modelMasterList[i].id+'" class="active"><a title="'+modelMasterList[i].model_name+'" onclick="modelMasterClick('+"'"+modelMasterList[i].id+"','"+modelMasterList[i].model_name+"'"+')">'+modelMasterList[i].model_name+'</a></li>';
+				document.getElementById("breadcrumb_id").innerHTML='<span>'+modelMasterList[i].model_name+'</span>';
+			}else{
+				content +='<li id="model_id_'+modelMasterList[i].id+'" class=""><a title="'+modelMasterList[i].model_name+'" onclick="modelMasterClick('+"'"+modelMasterList[i].id+"','"+modelMasterList[i].model_name+"'"+')">'+modelMasterList[i].model_name+'</a></li>';
+			}
+		}
+		if(content){
+			document.getElementById("model_list_id").innerHTML=content;
+		}
+	}
+
+
+
+	var rocBuildPath = '{{rocBuildPath}}';
+	d3.csv(rocBuildPath, function(rData){
+		rocData=rData;
+		for(var i=0;i<rocData.length;i++){
+			if(rocData[i].Cutoff == 0.6){
+				document.getElementById('accuracyId').innerHTML=rocData[i]['Accuracy']*100+"%";
+				document.getElementById('tprId').innerHTML=rocData[i]['TP_Rate']*100+"%";
+			}
+		}
+    		rangeSlider();
+
+	});
+
+
+	d3.json("/app/scisphere/places/{{level1Id}}/datasummary?category=mylocation&summarykey={{perMerticId}}&index={{orgId}}&leveltype=village_town", function(data) {
+		d3.json("/app/scisphere/places/countrydetail?level0=356" , function(cData) {console.log(data);
+    			if(data){
+				if(data != "No Result Found"){
+		    			var status="";
+		    			for(var key in data){
+		    				totalRecord = data[key].totalCount;
+		    				document.getElementById('totalRecord').innerHTML=totalRecord;
+		    				document.getElementById('emptyRecord').innerHTML=data[key].nullCount;
+		    				document.getElementById('naRecord').innerHTML=data[key].naCount;
+		    			}
+
+		    			if(totalRecord<100){
+		    				status="Critical";
+		    			}else if(totalRecord>100 && totalRecord<150){
+		    				status="Warning";
+		    			}else if(totalRecord>150){
+						status="Green";
+		    			}
+		    			document.getElementById('statusId').innerHTML=status;
+				}
+          			var modelList = '{{modelList|escapejs}}';
+          
+				if(modelList){
+					/*modelList = modelList.replace(/&quot;/g,'"');
+					modelList = modelList.replace(/&#39;/g,'"');
+					modelList = modelList.replace(/None/g,'""');
+					modelList = modelList.replace(/u"/g,'"');*/
+					modelList = JSON.parse(modelList);
+				}
+
+				//variable key name load.
+				variableKeys={};
+				var variableCategory = cData["keys"];
+				for(var i=0;i<variableCategory.length; i++){
+					variableKeys[variableCategory[i]._source['key']]=variableCategory[i]._source['title'];
+				}
+          
+				var keyVariableContent="";
+				for(var i=0;i<modelList.length;i++){
+    					for(var key in modelList[i]["key_variables"]){
+						var varKey = modelList[i]["key_variables"][key];
+						var splitKey = varKey.split(".");
+						if(splitKey.length>1){
+							if(variableKeys[splitKey[0].toUpperCase()] && variableKeys[splitKey[1].toUpperCase()]){
+								keyVariableContent+='<p class="title-text">'+variableKeys[splitKey[0].toUpperCase()]+' * '+variableKeys[splitKey[1].toUpperCase()]+'<p>';
+							}
+						}else{
+							splitKey = varKey.split("by");
+							if(splitKey.length>1){
+								if(variableKeys[splitKey[0].toUpperCase()] && variableKeys[splitKey[1].toUpperCase()]){
+									keyVariableContent+='<p class="title-text">'+variableKeys[splitKey[0].toUpperCase()]+' by '+variableKeys[splitKey[1].toUpperCase()]+'<p>';
+								}
+							}
+						}
+						//keyVariableContent+='<p class="title-text">'+variableKeys[modelList[i]["key_variables"][key]]+'<p>';
+						//keyVariableContent+='<p class="title-text">'+variableKeys["IND_PCA_01"]+'<p>';
+    					}
+					//document.getElementById('trainingSetId').innerHTML= Math.ceil((totalRecord * modelList[i]["training_set"])/100);
+					//document.getElementById('testSetId').innerHTML=Math.floor((totalRecord * modelList[i]["test_set"])/100);
+					//document.getElementById('accuracyId').innerHTML=modelList[i]["accuracy"];
+					//document.getElementById('tprId').innerHTML=modelList[i]["tpr"];
+					document.getElementById('trainingSetId').innerHTML= modelList[i]["training_set"];
+					document.getElementById('testSetId').innerHTML=modelList[i]["test_set"];
+    				}
+	    			document.getElementById('metricId').innerHTML="{{perMerticName}}";
+	    			document.getElementById('level1Id').innerHTML="{{level1Name}}";
+	    			document.getElementById('keyVariablesId').innerHTML=keyVariableContent;
+    			}
+		});
+	});
+
+}
+
+function modelExecute(){
+
+	modelExecutionStatus='{{modelExecutionStatus}}';
+	if(modelExecutionStatus == "1"){
+		bootbox.alert("Model Score '{{modelName}} - {{perMerticName}}' is already available.");
+		return false;
+	}
+
+	var url = "/app/model_execution?projectId={{projectId}}&modelId={{modelId}}&httpCookie={{httpcookie}}&userModelId={{userModelId}}&level1Id={{level1Id}}";
+	$.ajax({
+		url: url,
+		type: 'post',
+		dataType: 'json',
+		success: function (data) {
+			document.getElementById("applymodelid").disabled = true;
+			if(data['result'] == "Success"){
+				bootbox.alert("Model Score Execution process has started.");
+			}else{
+				bootbox.alert("Failed to executed.");
+			}
+		}
+	});
+}
+
+function rocViewFunction(){
+	var http = new XMLHttpRequest();
+	http.open('HEAD', '{{rocCurvePath}}', false);
+	http.send();
+
+	if(http.status != 404){
+		document.getElementById("roc-img-id").innerHTML = '<img src="{{rocCurvePath}}" style="display: block; margin-left: auto; margin-right: auto;">';
+	}else{
+		document.getElementById("roc-img-id").innerHTML="No Image Found.";
+	}
+}
+
+</script>
+</head>
+<body>
+<!-- -->
+<div class="main"> 
+  <!-- Primary Header  -->
+      {% include "header-primary-analyze.html" %} 
+  <!-- Secondary Header -->
+  <header class="navbar sub-header">
+    <div class="container pos-rel">
+      <div class="submenu-sec" >
+        <div class="sub-menu" id="sub-menu-1"> <a href="/app/rural_location" title="Predict" class="active" > 
+          <span class="submenu-icon" id="submenu-predict"></span> 
+          <span class="submneu-con">Predict</span> </a> <span class="submenu-dropdown"></span> <span class="link-arrow"></span> </div>
+        <div class="sub-menu" id="sub-menu-2"> <a href="#" title="Plan"> 
+          <span class="submenu-icon" id="submenu-plan"></span> 
+          <span class="submneu-con">Plan</span> </a> </span> 
+          <!--<span class="submenu-dropdown"></span>
+                    <span class="link-arrow"></span>--> 
+        </div>
+        <div class="sub-menu" id="sub-menu-3"> <a href="#" title="Optimize"> 
+          <span class="submenu-icon" id="submenu-optimize"></span> 
+          <span class="submneu-con">Optimize</span> </a> </span> 
+          <!--<span class="submenu-dropdown"></span>
+                    <span class="link-arrow"></span>--> 
+        </div>
+      </div>
+      <div class="sub-menu-list-sec" id="submenu-list1">
+        <ul class="sub-menu-list" id="model_list_id">
+          <!--<li><a href="/app/rural_location" title="Rural Location Potential">Rural Location Potential</a></li>
+          <li class="link_dis"><a href="#" title="Rural Customer Potential">Rural Customer Potential</a></li>
+          <li class="link_dis"><a href="#" title="Urban Location Potential">Urban Location Potential</a></li>
+          <li class="link_dis"><a href="#" title="Urban Customer Potential">Urban Customer Potential</a></li>-->
+        </ul>
+      </div>
+      <!--<div class="sub-menu-list-sec" id="submenu-list2">
+            <ul class="sub-menu-list">
+                <li><a href="#" title="Build Location Selection Model">Build Location </a></li>
+                <li><a href="#" title="Optimally organize location clusters">Optimally organize</a></li>
+            </ul>
+        </div>
+        <div class="sub-menu-list-sec" id="submenu-list3">
+            <ul class="sub-menu-list">
+                <li><a href="#" title="Build Location Selection Model"> Selection Model</a></li>
+                <li><a href="#" title="Optimally organize location clusters">location clusters</a></li>
+            </ul>
+        </div>--> 
+    </div>
+  </header>
+  <div class="body-sec">
+    <div class="container"> 
+      <!--Main body main panel -->
+      <div class="col-md-12 main-panel">
+        <div class="title-wrap">
+          <ol class="breadcrumb">
+            <li><a>Predict</a></li>
+            <li class="active" id="breadcrumb_id"><!--<span>Rural Location</span>--></li>
+          </ol>
+        </div>
+        <div class="right-content-panel"><!-- Right Panel Body -->
+          <div class="col-lg-12">
+            <p class="desc">This feature predicts the potential of a location for your product/performance along a particular performance metric. The model uses contextual data within SciSphere’s database as input and is trained and tested on your selected outcome metric for different subsets of your existing branches and uses</p>
+            <br />
+            <div class="col-md-5">
+              <h3 class="content">INPUTS</h3>
+              <p class="title-text">Performance Metric : <strong id="metricId"></strong> </p>
+              <p class="title-text">Geography : <strong id="level1Id"> </strong> </p>
+              <p class="title-text">Population : <strong> 0 - 10,000</strong> </p>
+              <br />
+              <p class="title-text">Total Record : <strong id="totalRecord"> </strong> </p>
+              <p class="title-text">Empty Record : <strong id="emptyRecord"> </strong> </p>
+              <p class="title-text">NA Record : <strong id="naRecord"> </strong> </p>
+              <br />
+              <p class="title-text">Status : <strong id="statusId"> </strong> </p>
+              <br />
+              <p class="title-text">Records in Training Set : <strong id="trainingSetId"> </strong> </p>
+              <p class="title-text">Records in Test Set : <strong id="testSetId"> </strong> </p>
+              <!-- -->
+              <h3 class="content-subtitle">Top 5 variables driving model</h3>
+              <span id="keyVariablesId"></span>
+            </div>
+            <!-- -->
+            <div class="col-md-7">
+              <h3 class="content">Model Performance</h3>
+              <div class="col-md-6">
+                <div class="block-row"> <span class="block-subtitle">Model Score</span>
+                  <div class="range-sec" style="padding-bottom:10px;padding-top:10px;">
+                    <input id="range2" type="text" class="range" value="" data-slider-min="0.1" data-slider-max="1.0" data-slider-step="0.1" data-slider-value="0.6"/>
+                  </div>
+                </div>
+                <table border="0" class="info-table" style="margin-bottom:20px;">
+                  <tr>
+                    <td class="title" width="180px">Accuracy</td>
+                    <td class="desc"><strong id="accuracyId"></strong></td>
+                  </tr>
+                  <tr>
+                    <td class="title" width="180px">True Positive Rate</td>
+                    <td class="desc"><strong id="tprId"></strong></td>
+                  </tr>
+                </table>
+                <!--<div class="block-row"> <a href="{{rocCurvePath}}" target="_blank" class="block-link" title="View Truth Table and ROC curve">View Truth Table and ROC curve</a>-->
+                <div class="block-row"> <a data-toggle="modal" data-target=".roc-view" id="roc-view-id" class="block-link" onclick="rocViewFunction()" title="View Truth Table and ROC curve">View Truth Table and ROC curve</a>
+                  <p class="text-note">Satisfied with the model performance?</p>
+                </div>
+              </div>
+              <!-- -->
+              <div class="col-md-offset-1 col-md-5">
+                <div class="block-content text-center">
+                  <h3 class="text-title">Potential Improvement</h3>
+                  <span class="text-desc">when using model for selection</span> <span class="text-subtitle">30%</span> <span class="text-desc">with a value of</span> <span class="text-subtitle">Rs. 15 Crores</span> <span class="text-desc">in additional deposits per branch</span> </div>
+              </div>
+              <div class="col-md-12">
+                <div class="block-row">
+                  <button type="button" class="btn btn-primary btn-red model-btn" onclick="modelExecute()" id="applymodelid">Apply Model to all Locations <br />
+                  and save to My Variables</button>
+                </div>
+                <!-- --> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- snapshot Pop Up Panel-->
+          <!-- Pop Up Panel-->
+          <div class="modal fade roc-view" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content" style="height:550px;">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                <!-- Close -->
+		   <div id="roc-img-id"></div>
+              </div>
+            </div>
+          </div>	
+  <!-- snapshot Pop Up Panel-->
+
+  <!-- Footer Section -->
+   {% include "footer.html" %}
+</div>
+<!-- -->
+</body>
+</html>
+
+<!-- -->
+<!-- -->

@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load compress %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/explorer.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/multi-select.js" ></script>
+<script type="text/javascript" src="/static/js/fancyfields-1.2.min.js" ></script>
+<script type='text/javascript' src="/static/js/jquery.jqpagination.js"></script><!-- Pagination -->
+
+<!-- added -->
+
+<script type="text/javascript" src="/static/js/jquery.reveal.js"></script>
+<link rel="stylesheet" href="/static/css/reveal.css">
+{% compress css %}
+    <link rel="stylesheet" href="/static/pinry/vendor/bootstrap/3.0.0/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/pinry/vendor/fineuploader/3.1.1/fineuploader.css"/>
+    <link rel="stylesheet" href="/static/pinry/css/messages.css"/>
+    <link rel="stylesheet" href="/static/pinry/css/lightbox.css"/>
+    <link rel="stylesheet" href="/static/pinry/css/pinry.css"/>
+    <link rel="stylesheet" href="/static/pinry/css/pin_popup.css"/>
+{%  endcompress %}
+{% compress css inline %}
+    {% block extra_css %}{% endblock %}
+{% endcompress %}
+
+
+<!-- Start JavaScript Variables -->
+        <script>
+        var apiLimitPerPage = {{ API_LIMIT_PER_PAGE }},
+            errors = {% if not messages %}null,{% else %}[
+                {% for message in messages %}{
+                    tags: "{{ message.tags }}",
+                    text: "{{ message }}"
+                }{% endfor %}
+            ],{% endif %}
+            currentUser = {
+                id: "{{ user.id }}",
+                username: "{{ user.username }}",
+                gravatar: "{{ user.gravatar }}"
+            },
+            pinFilter = "{{ request.resolver_match.kwargs.pin }}",
+            tagFilter = "{{ request.resolver_match.kwargs.tag }}",
+            userFilter = "{{ request.resolver_match.kwargs.user }}";
+        </script>
+
+        <!-- End JavaScript Variables -->
+<!-- added -->
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+	$('.multiselect').multiSelect({
+		selectableHeader : '<div class=selated_list>All States</div>',
+		selectedHeader : '<div class=selated_list>Selected States</div>'
+	});
+	$(".check-fields").fancyfields();
+	/*-- Accordian --*/
+	$('#innerpage-accordion li div.head-wrap').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$('#innerpage-accordion li div.head-wrap').removeClass('acc-listact');
+			$(this).addClass('acc-listact');
+		}
+    });
+	/*-- Pagination start --*/
+
+	/*$('.pagination').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: 100,
+		paged		: function(page) {
+			$('.log').prepend('<li>Requested page ' + page + '</li>');
+		}
+	});*/
+	/*-- Pagination end--*/
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $('.user-menu').slideUp(0);
+    $('#drop-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+});
+</script>
+
+</head>
+<body>
+<header class="navbar header">
+  <div class="container">
+    <div class="navbar-header"> <a href="#" class="" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+    <nav class="collapse navbar-collapse">
+      <ul class="nav navbar-nav menu" id="menu">
+        <li><a href="/app/upload" title="Upload"><span class="menu-icon" id="menu-up"></span>Upload</a></li>
+        <li><a href="/app/region_explorer" title="Explore"><span class="menu-icon" id="menu-exp"></span>Explore</a></li>
+        <li><a href="/app/analyze" title="Analyze"><span class="menu-icon" id="menu-ana"></span>Analyze</a></li><!-- rural_location -->
+        <li class="current"><a href="/app/mysphere" title="MySphere"><span class="menu-icon" id="menu-mys"></span>MySphere</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right account-sec">
+        <li><a href="#" id="settings" title="Settings"></a></li>
+	 <li>{% if user %}<div id="fullname" style="margin-top:23px;">{{user}}</div>{% endif %}</li>
+        <!--<li><a href="#" id="user-image" title="User"><img src="/static/images/user-icon.jpg" /></a></li>-->
+        <li class="dropdown" > <span class="menu-icon" id="drop-icon"></span>
+          <div class="user-menu"> <span class="menu-arrow"></span>
+            <ul>
+              <li><a href="/app/upgrade_account" title="Change Plan"><span class="usermenu-icon" id="change-plan"></span>Change Plan</a></li>
+              <!--<li><a href="#" title="Profile Setting"><span class="usermenu-icon" id="pro-setting"></span>Profile Setting</a></li>-->
+              <li><a href="/accounts/password/change/" title="Change Password"><span class="usermenu-icon" id="change-pwd"></span>Change Password</a></li>
+              <!--<li><a href="#" title="Help Center"><span class="usermenu-icon" id="helpcenter"></span>Help Center</a></li>-->
+              <li><a href="{% url 'auth_logout' %}" title="Logout" class="logout">Log Out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- Secondary Header -->
+<header class="navbar sub-header" style="margin:0;">
+  <div class="container ">
+    <!--<p class="pull-left subheader-content">State Selected: <span> Tamil Nadu</span></p>-->
+    <a href="/app/upgrade_account" class="pull-right subheader-link">Upgrade your account</a> </div>
+</header>
+<!-- Coming soon -->
+<div class="comingsoon-wrap" >
+  <div class="container">
+    <p class="content"><span>Coming Soon:</span> LOCATION ANALYTICS <a href="/analyze-location.html" style="color: #D1D1D1;">Learn More.</a></p>
+  </div>
+</div>
+
+
+<!-- Main body -->
+<div class="body-sec innerpage-body" >
+  <div class="container" >
+    <ul id="innerpage-accordion">
+      <li class="panel">
+        <div class="head-wrap acc-listact" data-toggle="collapse" data-target="#content-wrap1" data-parent="#innerpage-accordion" >
+          <h4 class="title pull-left">Your Saved Views</h4>
+          <a href="#" class="right-con pull-right">Explore</a> </div>
+        <div class="content-wrap collapse in" id="content-wrap1">
+	<!--<a href="#" onclick="pinForm()"><img src="/static/pinry/img/pin.png" style="height:25px; width:25px;" title="New Pin"></a>-->
+          <!--<h4 class="content-title">Population of TN</h4>-->
+		<!-- Content -->
+		{% block yield %}{% endblock %}
+		<!-- End Content -->
+	        <!-- Templates -->
+		{% include "includes/messages.html" %}
+		{% include "includes/lightbox.html" %}
+		{% include "includes/pins.html" %}
+		{% include "includes/pin_form.html" %}
+		{% block extra_templates %}{% endblock %}
+		<!-- End Templates -->
+
+
+          <!--<img src="/static/images/saved-view-map.png" />-->
+          <!--<div class="more-wrap"> <a href="#" class="read-more">More</a> </div>-->
+          <div class="pagi-wrap">
+            <div class="pull-right"> 
+              <!-- Pagination Start -->
+              <div class="gigantic pagination" id="pg1"> 
+		<a href="#" class="first" data-action="first">First</a> 
+		<a href="#" class="previous" data-action="previous"><span></span></a>
+                <input type="text" readonly="readonly" class="page-field"/>
+                <a href="#" class="next" data-action="next" id="next-page-pin"><span></span></a> 
+		<a href="#" class="last" data-action="last" id="last-page-pin">Last</a>
+                <div class="pagi-goto"><span>Go to</span>
+                  <input type="text" class="goto-field" value="" id="pg-pin-goto" onchange="pinPaginationGoTo();"/>
+                </div>
+              </div>
+              <!-- Pagination Start --> 
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="panel">
+        <div class="head-wrap" data-toggle="collapse" data-target="#content-wrap2" data-parent="#innerpage-accordion">
+          <h4 class="title">Your Saved Lists</h4>
+        </div>
+        <div class="content-wrap collapse" id="content-wrap2">
+	  <div id="savedList" class="saved-pin-List"></div>
+          <!--<div class="more-wrap"> <a href="#" class="read-more">More</a> </div>-->
+          <div class="pagi-wrap">
+            <div class="pull-right"> 
+              <!-- Pagination Start -->
+              <div class="gigantic pagination-pinsavedlist" id="pg2"> 
+		<a href="#" class="first" data-action="first">First</a> 
+		<a href="#" class="previous" data-action="previous"><span></span></a>
+                <input type="text" readonly="readonly" class="page-field"/>
+                <a href="#" class="next" data-action="next" id="next-page-pin-list"><span></span></a> 
+		<a href="#" class="last" data-action="last" id="last-page-pin-list">Last</a>
+                <div class="pagi-goto"><span>Go to</span>
+                <input type="text" class="goto-field" value="" id="pg-pin-saved-list-goto" onchange="pinListPaginationGoTo();"/>
+                </div>
+              </div>
+              <!-- Pagination Start -->  
+            </div>
+          </div>
+        </div>
+      </li>
+      <!-- -->
+      <li class="panel">
+        <div class="head-wrap" data-toggle="collapse" data-target="#content-wrap3" data-parent="#innerpage-accordion">
+          <h4 class="title">Your WorkBooks Lists</h4>
+        </div>
+        <div class="content-wrap collapse" id="content-wrap3">
+	  <div id="workbookList" class="saved-workbook-List"></div>
+          <div class="pagi-wrap">
+            <div class="pull-right"> 
+              <!-- Pagination Start -->
+              <div class="gigantic pagination-workbooksavedlist" id="pg3"> 
+		<a href="#" class="first" data-action="first">First</a> 
+		<a href="#" class="previous" data-action="previous"><span></span></a>
+                <input type="text" readonly="readonly" class="page-field"/>
+                <a href="#" class="next" data-action="next" id="next-page-workbook-list"><span></span></a> 
+		<a href="#" class="last" data-action="last" id="last-page-workbook-list">Last</a>
+                <div class="pagi-goto"><span>Go to</span>
+                <input type="text" class="goto-field" value="" id="pg-workbook-list-goto" onchange="workbookListPaginationGoTo();"/>
+                </div>
+              </div>
+              <!-- Pagination Start -->  
+            </div>
+          </div>
+        </div>
+      </li>
+      <!-- -->
+    </ul>
+  </div>
+</div>
+<!-- Footer Section -->
+<!-- -->
+{% include "footer.html" %}  
+<!-- -->
+<!-- -->
+<!-- JavaScript -->
+        {% compress js %}
+	    <script src="/static/pinry/vendor/jquery/2.0.3/jquery-dateFormat.min.js"></script>
+            <script src="/static/pinry/vendor/fineuploader/3.1.1/jquery.fineuploader.js"></script>
+            <script src="/static/pinry/vendor/bootstrap/3.0.0/js/bootstrap.js"></script>
+            <script src="/static/pinry/vendor/handlebars/1.0.0/handlebars.js"></script>
+	    <script src="/static/pinry/vendor/jquery/2.0.3/moment.min.js"></script>
+            <script src="/static/pinry/js/helpers.js"></script>
+            <script src="/static/pinry/js/messages.js"></script>
+            <script src="/static/pinry/js/lightbox.js"></script>
+            <script src="/static/pinry/js/pinry.js"></script>
+            <script src="/static/pinry/js/pin-form.js"></script>
+            <script src="/static/pinry/js/jquery.cookie.js"></script>
+        {% endcompress %}
+	    <script type="text/javascript">
+		Handlebars.registerHelper('dateFormat', function(context, block) {
+	 	  if (window.moment) {
+	   	     var f = block.hash.format || "YYYY-MM-DD";
+	   	     return moment(context).fromNow();
+		  }else{
+		    return context;   //  moment plugin not available. return data as is.
+		  };
+		});
+	    </script>
+        {% compress js inline %}
+            {% block extra_js %}{% endblock %}
+        {% endcompress %}
+        <!-- End JavaScript -->
+</body>
+</html>

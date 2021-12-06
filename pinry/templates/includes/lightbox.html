@@ -1,0 +1,72 @@
+
+{% verbatim %}
+<script id="lightbox-template" type="text/x-handlebars-template">
+
+
+<div class="lightbox-background" style="position: absolute; top: 10px; right: -450px;" >
+    <div id="feed-ul" class="masonry" style="position: relative;">
+	<button type="button" class="close" data-dismiss="modal" id="lightbox-close" style="position: absolute; top: 0px; right: -460px; z-index:10"><span aria-hidden="false"></span><span class="sr-only">Close</span></button>
+        <div class="feed-item feed-inner-item masonry-brick" itemtype="http://schema.org/CreativeWork" itemscope=""  style="position: absolute; top: 10px; right: -450px;" >
+	
+            <div class="feed-inner">
+                <div style="padding-top:10px; width: {{image.standard.width}}px; margin: 0 auto">
+                    <img class="lightbox-image" src="{{image.standard.image}}" />
+                </div>
+            </div>
+            <div class="feed-item-bottom">
+		{{#if description}}
+                    <div class="description">
+                        {{description}}
+                    </div>
+                {{/if}}
+	    </div>
+	    <!--<div class="row-fluid">
+		{{#if comments }}
+		    {{#each comments}}
+		        <div style="padding-left:10px;">
+			  <b>{{ this.user_name }}</b>  <font style="color: rgb(153, 153, 153); font-size: 13px;">{{dateFormat this.submit_date}}</font>
+			</div>
+			<div style="padding-left:10px;">{{ this.comment }}</div>
+			<hr>
+		    {{/each}}
+                {{/if}}
+	    </div>-->
+	    {% endverbatim %}
+            {% if user.is_authenticated %}
+            <div class="row-fluid">
+	     {% verbatim %}
+		<!--<form action="/pin_cmt_post/" method="post" name="pin_cmt">
+			<table width="98%">
+			  <tr>
+			    <td><textarea width="10%" name="pin-comment" id="pinCommentId" class="form-control" placeholder="Add a comment..."></textarea>
+				<input type="hidden" name ="pin-id" id="pinId" value="{{ id }}">
+			    </td>
+			  </tr>
+			  <tr>
+			    <td align="center">
+	                        <input type="submit" class="btn btn-primary btn-red" id="pin-form-submit" value="Comment">
+				<input type="button" class="btn btn-primary btn-gray" id="lightbox-close1" value="Cancel"/> &nbsp;
+			    </td>
+			  </tr>
+			<table>
+		    </form>--->
+		    <table width="100%">
+			<tr><td align="center"><input type="button" class="btn btn-primary btn-gray" id="lightbox-close1" value="Cancel"/></td></tr>
+		    </table>
+	    </div>
+	    {% endverbatim %}
+	    {% else %}
+		<table width="98%">
+			  <tr>
+			    <td align="center">
+				<input type="button" class="btn btn-primary btn-gray" id="lightbox-close" value="Cancel"/> &nbsp;
+			    </td>
+			  </tr>
+		<table>
+	    {% endif %}
+        </div>
+    </div>
+</div>
+
+</script>
+

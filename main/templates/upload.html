@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Scisphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/simple-excel.js"></script>
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script> 
+<script src="/static/js/bootbox.js"></script>
+<script type="text/javascript" src="/static/js/d3.v3.min.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$('.user-menu').slideUp(0);
+	$('#drop-icon').click( function(event){
+		event.stopPropagation();
+		$('.user-menu').slideToggle(200);
+	});
+	$(document).click( function(){
+		$('.user-menu').slideUp(100);
+	});
+	/*-- Accordian --*/
+	/*$('.item-panel-list2 .panel .acc-head').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$('.item-panel-list2 .panel .acc-head').removeClass('acc-listact');
+			$(this).addClass('acc-listact');
+		}
+	});
+	
+	$('.item-panel-list2 .collapse-sublist li a').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$('.item-panel-list2 .collapse-sublist li a').removeClass('acc-listact');
+			$(this).addClass('acc-listact');
+		}
+	});*/
+	/*-- File Upload --*/
+	$('.file_input_button').mouseover(function(){
+		$(this).addClass('file_input_button_hover');
+	});
+	$('.file_input_button').mouseout(function(){
+		$(this).removeClass('file_input_button_hover');
+	});
+	$('.file_input_hidden').change(function(){
+		var fileInputVal = $(this).val();
+		fileInputVal = fileInputVal.replace(/C:\\fakepath\\/i, '');
+		$(this).parent().prev().val(fileInputVal);
+	});
+
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+});
+
+var myTemplateList;
+var sub_list;
+window.onload = function(){
+	d3.json("/app/subscription_list",function(data){
+		sub_list = data;
+		if(sub_list['plus_plans'].length==0){
+			bootbox.dialog({
+			  message: "You currently have no access to this page. To access them you will have to upgrade your plan. Upgrade now?",
+			  buttons: {
+			    no: {
+			      label: "No Thank You.",
+			      callback: function() {
+				window.location="/app/region_explorer";
+			      }
+			    },
+			    yes: {
+			      label: "Yes Please.",
+			      callback: function() {
+				window.location="/app/upgrade_account";
+			      }
+			    }
+			  }
+			});
+		}
+	});
+
+	// mytemplate list
+	myTemplateList = '{{myTemplateList}}';
+	if(myTemplateList){
+		myTemplateList = myTemplateList.replace(/&#39;/g,'"');
+		myTemplateList = myTemplateList.replace(/u"/g,'"');
+		myTemplateList = myTemplateList.replace(/None/g,'""');
+		myTemplateList = JSON.parse(myTemplateList);
+
+		// mytemplate load
+		var myTemplateId = document.getElementById('mytemplate_id');
+		for(var i=0;i<myTemplateList.length;i++){
+			var content;
+			if(myTemplateList[i].mytemplate_name.length > 25){
+				content = myTemplateList[i].mytemplate_name.substring(0, 25)+"...";
+			}else{
+				content = myTemplateList[i].mytemplate_name;
+			}
+			
+			var optlevel0 = document.createElement('option');
+			optlevel0.innerHTML = content;
+			optlevel0.value = myTemplateList[i]['id'];
+			optlevel0.setAttribute("rel","popover");
+			optlevel0.setAttribute("title","Template : "+myTemplateList[i].mytemplate_name);
+			//optlevel0.setAttribute("data-content","Dataset : ");
+			myTemplateId.appendChild(optlevel0);
+		}
+
+
+		$("#mytemplate_id").data("selectBox-selectBoxIt").add();
+		document.getElementById('mytemplate_id').value = myTemplateList[0]['id'];
+		$("#mytemplate_id").data("selectBox-selectBoxIt").add();
+	}
+	// dataset list
+	var customerDatasetList = '{{customerDatasetList}}';
+	if(customerDatasetList){
+		customerDatasetList = customerDatasetList.replace(/&#39;/g,'"');
+		customerDatasetList = customerDatasetList.replace(/u"/g,'"');
+		customerDatasetList = customerDatasetList.replace(/None/g,'""');
+		customerDatasetList = JSON.parse(customerDatasetList);
+
+		var dataSetId = document.getElementById('id_customerdataset');
+		for(var i=0;i<customerDatasetList.length;i++){
+			var content;
+			if(customerDatasetList[i].file_name.length > 25){
+				content = customerDatasetList[i].file_name.substring(0, 25)+"...";
+			}else{
+				content = customerDatasetList[i].file_name;
+			}
+			
+			var optlevel0 = document.createElement('option');
+			optlevel0.innerHTML = content;
+			optlevel0.value = customerDatasetList[i]['id'];
+			optlevel0.setAttribute("rel","popover");
+			optlevel0.setAttribute("title","Dataset : "+customerDatasetList[i].file_name);
+			optlevel0.setAttribute("data-content","Date : "+customerDatasetList[i].uploaded_date);
+			dataSetId.appendChild(optlevel0);
+		}
+		$("#id_customerdataset").data("selectBox-selectBoxIt").add();
+	}
+
+	/*POP up on mouse over on select option*/
+	$("[rel='popover']").popover({ trigger: "hover", container: "body" });
+}
+
+function templateClick(){
+	$('#loading').html('');
+	if(sub_list['plus_plans'].length==0){
+		bootbox.dialog({
+		  message: "You currently have no access to this page. To access them you will have to upgrade your plan. Upgrade now?",
+		  buttons: {
+		    no: {
+		      label: "No Thank You.",
+		      callback: function() {
+			window.location="/app/region_explorer";
+		      }
+		    },
+		    yes: {
+		      label: "Yes Please.",
+		      callback: function() {
+			window.location="/app/upgrade_account";
+		      }
+		    }
+		  }
+		});
+	}else{
+		window.location="/app/template";
+	}
+}
+
+function onUploadDataset(){
+
+	if(document.getElementById("mytemplate_id").value==0){
+		bootbox.alert("Template is required. Please select Template.");
+		return false;
+	}
+	if(document.getElementById("upload_file_field").value==""){
+		bootbox.alert("Dataset is required. Please choose your dataset.");
+		return false;
+	}
+	
+	if(document.getElementById("upload_file_field").value.toLowerCase().lastIndexOf(".xlsx")==-1) {
+		bootbox.alert("Please upload only .xlsx extention file");
+		document.getElementById("upload_file_field").focus();
+		return false;
+	}
+	$('#loading').html('Uploading data...');
+	document.getElementById("dataset-form").submit();
+}
+
+
+</script>
+</head>
+
+<body>
+  <!-- Primary Header  -->
+  <header class="navbar header">
+    <div class="container">
+      <div class="navbar-header"> <a href="/index.html" class="" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+      <nav class="collapse navbar-collapse">
+        <ul class="nav navbar-nav menu" id="menu">
+          <li class="current"><a href="/app/upload" title="Upload"><span class="menu-icon" id="menu-up"></span>Upload</a></li>
+          <li><a href="/app/region_explorer" title="Explore"><span class="menu-icon" id="menu-exp"></span>Explore</a></li>
+          <li><a href="/app/analyze" title="Analyze"><span class="menu-icon" id="menu-ana"></span>Analyze</a></li>
+          <li><a href="/app/mysphere" title="MySphere"><span class="menu-icon" id="menu-mys"></span>MySphere</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right account-sec">
+          <li><a href="#" id="settings" title="Settings"></a></li>
+	   <li>{% if user %}<div id="fullname" style="margin-top:23px;">{{user}}</div>{% endif %}</li>
+          <!--<li><a href="#" id="user-image" title="User"><img src="/static/images/user-icon.jpg" /></a></li>-->
+          <li class="dropdown" > <span class="menu-icon" id="drop-icon"></span>
+            <div class="user-menu"> <span class="menu-arrow"></span>
+              <ul>
+                <li><a href="/app/upgrade_account" title="Change Plan"><span class="usermenu-icon" id="change-plan"></span>Change Plan</a></li>
+                <!--<li><a href="#" title="Profile Setting"><span class="usermenu-icon" id="pro-setting"></span>Profile Setting</a></li>-->
+                <li><a href="/accounts/password/change/" title="Change Password"><span class="usermenu-icon" id="change-pwd"></span>Change Password</a></li>
+                <!--<li><a href="#" title="Help Center"><span class="usermenu-icon" id="helpcenter"></span>Help Center</a></li>-->
+                <li><a href="{% url 'auth_logout' %}" title="Logout" class="logout">Log Out</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<!-- Secondary Header -->
+<header class="navbar sub-header">
+  <div class="container"> </div>
+</header>
+
+<!-- Body Section -->
+<form method="post" id="dataset-form" action="/app/upload" enctype="multipart/form-data">
+<div class="body-sec innerpage-body">
+  <div class="container" id="upload-container">
+    <!--Main body left panel -->
+
+    <div class="col-md-2-5 left-panel">
+      <!-- Added for select option in templates -->
+      <div class="item-panel" id="uploader-items">
+	<!--<h5 class="left-con-head">Uploader</h5>-->
+	<!-- Added for select option in templates -->
+	<div id="menu-div" style="display:block">
+	  <h5 class="left-con-head">My Templates</h5>
+          <select class="custom_selectbox" name="template" id="mytemplate_id">
+            <option value="0">My Templates</option>
+          </select>
+	  <h5 class="left-con-head">My Datasets</h5>
+	  <!-- Added for select option in Customer data set -->
+          <select id="id_customerdataset" name="customerdataset" class="custom_selectbox" >
+            <option value="0" >My Datasets</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!--Main body right panel -->
+    <div class="col-md-7-5 right-panel">
+    	<div class="breadcrumb-wrap">
+            <ul>
+            	<a onclick="templateClick();"><li class="temp"><span>Create your Template</span></li></a>
+                <li class="upload active"><span>Upload</span></li>
+                <li class="verify"><span>Verify</span></li>
+            </ul>
+        </div>
+        <div class="content-wrap">
+            <p class="desc"><span class="title">Select a File</span>Select your data file and then check the upload button. If any errors encountered, you will receive a list of items that need to de corrected. You will be able to verify your data.
+            </p>
+	    <!-- -->           
+            <div class="upload-sec">
+              <input type="text" class="file_input_textbox1" value="Choose a File" readonly="readonly" >
+              <div class="file_input_div">
+                <input type="button" value="Browse" class="file_input_button1" id="attach_button"/>
+                <input type="file" name="uploaded_file" class="file_input_hidden" id="upload_file_field"/>
+              </div>
+              <input type="button" value="Upload" class="link-button link-button-red upload-button" id="file_input_gobutton1" onclick="onUploadDataset();"/>
+              <span class="error-msg">Upload Excel file</span> 
+	      <div id="loading"></div>
+            </div>
+            <!-- -->
+        </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- Footer Section-->
+{% include "footer.html" %}
+<!-- -->
+
+</body>
+</html>

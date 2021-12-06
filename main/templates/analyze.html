@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Scisphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script> <!-- Main Library js-->
+<script type="text/javascript" src="http://malsup.github.com/min/jquery.form.min.js"></script> <!-- for ajax form submission--> 
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script> <!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script> <!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.easing.min.js"></script> <!-- Easing -->
+<script type="text/javascript" src="/static/js/jquery.easing.1.3.js"></script>  <!-- Easing 1.3 -->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script> 
+<script type="text/javascript" src="/static/js/jquery.bxslider.js"></script> <!-- Bx Slider -->
+<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script> <!-- Mouse Wheel -->
+<script type="text/javascript" src="/static/js/jquery.jscrollpane.min.js"></script> <!-- Scroll pane-->
+<script type='text/javascript' src="/static/js/jquery.jqpagination.js"></script><!-- Pagination -->
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.carousel').carousel({interval: 0});
+	$('.submenu-sec').bxSlider({slideWidth: 130,minSlides: 3,maxSlides: 3,moveSlides: 1,pager: false});
+	$('#help').tooltip();
+	$('.help').popover({
+		trigger: 'hover',
+		placement:'left'
+	    });
+	$('.scroll-pane').jScrollPane();
+	
+	/*--Acc --*/
+	$('.popup-accordian li a').click(function(e) {
+		if($(this).hasClass('acc-act')){
+			$(this).removeClass('acc-act');
+		}
+		else{
+			$('.popup-accordian li a').removeClass('acc-act');
+			$(this).addClass('acc-act');
+		}
+    });
+	
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $('.user-menu').slideUp(0);
+    $('#drop-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+});
+</script>
+</head>
+
+<body>
+<!-- -->
+<div class="main">
+   <header class="navbar header">
+    <div class="container">
+      <div class="navbar-header"> <a href="/index.html" class="" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a>{% if user %}{% endif %} </div>
+      <nav class="collapse navbar-collapse">
+        <ul class="nav navbar-nav menu" id="menu">
+          <li><a href="/app/upload" title="Upload" ><span class="menu-icon" id="menu-up"></span>Upload</a></li>
+          <li><a href="/app/region_explorer" title="Explore"><span class="menu-icon" id="menu-exp"></span>Explore</a></li>
+          <li  class="current"><a href="/app/analyze" title="Analyze"><span class="menu-icon" id="menu-ana"></span>Analyze</a></li>
+          <li><a href="/app/mysphere" title="MySphere"><span class="menu-icon" id="menu-mys"></span>MySphere</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right account-sec">
+          <li><a href="#" id="settings" title="Settings"></a></li>
+          <li>{% if user %}<div id="fullname" style="margin-top:23px;">{{user}}</div>{% endif %}</li>
+          <!--<li><a href="#" id="user-image" title="User"><img src="/static/images/user-icon.jpg" /></a></li>-->
+          <li class="dropdown" > <span class="menu-icon" id="drop-icon"></span>
+            <div class="user-menu"> <span class="menu-arrow"></span>
+              <ul>
+                <li><a href="/app/upgrade_account" title="Change Plan"><span class="usermenu-icon" id="change-plan"></span>Change Plan</a></li>
+                <!--<li><a href="#" title="Profile Setting"><span class="usermenu-icon" id="pro-setting"></span>Profile Setting</a></li>-->
+                <li><a href="/accounts/password/change/" title="Change Password"><span class="usermenu-icon" id="change-pwd"></span>Change Password</a></li>
+                <!--<li><a href="#" title="Help Center"><span class="usermenu-icon" id="helpcenter"></span>Help Center</a></li>-->
+                <li><a href="{% url 'auth_logout' %}" title="Logout" class="logout">Log Out</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<!-- Secondary Header -->
+<header class="navbar sub-header">
+  <div class="container"></div>
+</header>
+<div class="inner-body">
+  <div class="container inner-page-title-section">
+  	 <div class="col-md-9">
+     	<p class="title">Our Location Analytics features provide automated outputs of powerful analytics <br />at the click of a button.</p>
+        <div class="col-md-8">
+            <p class="content">These features are currently in beta and are not yet accessible to all on the platform.  </p>
+            <p class="content">See how you can take advantage of them right now!</p>
+        </div>
+        <div class="col-md-4" >
+            <a href="/app/contact" class="link-button link-button-blue" title="Get Started">Get Started</a>
+        </div>
+     </div>
+     <div class="col-md-3 button-sec">
+     	<!--<a href="#" class="link-button link-button-blue" title="Get Started">Get Started</a>-->
+     </div>
+  </div>
+  <div class="container">
+    <div class="col-md-4">
+      <h4 class="home-heading">Location Selection</h4>
+      <img src="/static/images/analyze_image_1.jpg" class="body-sec-image" alt="Location Selection"/>
+      <div class="content-box">
+        <p class="home-content">Find locations that predict high potential for various performance metrics such as deposits, advances and productivity with our automated algorithms.</p>
+      </div>
+      <!--<a href="analyze-location.html" class="read-more" title="Learnmore">Learn More</a>--> 
+    </div>
+    <div class="col-md-4">
+      <h4 class="home-heading">Spatial Optimization</h4>
+      <img src="/static/images/analyze_image_2.jpg" class="body-sec-image" alt="Spatial Optimization"/>
+      <div class="content-box">
+        <p class="home-content">Regions are often based on government boundaries.  Organize your branches based on distance to gain significant benefits in operational efficiency.</p>
+      </div>
+      <!--<a href="#" class="read-more" title="Learnmore">Learn More</a> -->
+    </div>
+    <div class="col-md-4">
+      <h4 class="home-heading">Location Based Planning</h4>
+      <img src="/static/images/analyze_image_3.jpg" class="body-sec-image" alt="Location Based Planning" />
+      <div class="content-box">
+        <p class="home-content">We often set targets and incentives uniformly across geographies even though location potential varies widely.  Plan in more targeted ways using location intelligence.</p>
+      </div>
+      <!--<a href="#" class="read-more" title="Learnmore">Learn More</a>--> </div>
+  </div>
+</div>
+{% include "footer.html" %}
+
+<!-- -->
+
+</body>
+</html>

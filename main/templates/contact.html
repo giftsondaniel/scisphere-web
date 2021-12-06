@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+	$('#logo-wrap').floatScroll({positionTop:0});
+});
+</script>
+<style>
+.selectify focus{
+	max-width:250px;
+}
+
+</style>
+</head>
+
+<body>
+<!-- -->
+{% include "home-header.html" %}  
+<!-- -->
+<div class="body-sec innerpage-body" >
+  <div class="container" >
+    <div class="col-lg-15" id="contact-body">
+         <h3 class="signup-heading">Contact</h3>
+     	   <div class="contact-text">
+        	 <span>Questions about our service? Comments, criticisms or suggestions?</span>
+        	 <h5 class="contact-subhead">We value your feedback to help us improve our service. </h5>
+           </div>
+       <p class="form-head"> <span class="color-red"><font color="red"> *</font></span> Required Field</p> 
+      <!-- -->
+
+      <form action="/app/contact" method="post">{% csrf_token %}
+        <table cellpadding="0" cellspacing="0" border="0" class="signup-table" width="100%">
+          <tr><td>{{ form.yourname.errors }}<input type="text" name="yourname" placeholder="Your Name" class="text-field"/><font color="red"> *</font></td></tr>
+          <tr><td>{{ form.email.errors }}<input type="text" name="email" placeholder="Your Email Address" class="text-field"/><font color="red"> *</font></td></tr>
+          <tr><td colspan="2">{{ form.phonenum.errors }}<input type="text" name="phonenum"  placeholder="Phone Number" class="text-field" />  <span class="form-td-note">If you would like us to contact you by phone.</span></td></tr>
+          <tr><td>{{ form.companyname.errors }}<input  type="text" name="companyname"  placeholder="Company Name" class="text-field"/></td></tr>
+          <tr><td>{{ form.sector.errors }}
+              <div class="select-wrap1" style="width:250px;"  >
+        	<select class="custom_selectbox" name="sector"  >
+                    <option value="Sector" selected="selected">Sector</option>
+                    <option value="Non-profit"> Non-profit</option>
+                    <option value="Government"> Government</option>
+                    <option value="Media and Publishing">Media and Publishing</option>
+                    <option value="Financial Services">Financial Services</option>
+                    <option value="Agriculture">Agriculture</option>
+                    <option value="FMCG">FMCG</option>
+                    <option value="Telecom">Telecom</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Other">Other</option>
+                </select>
+              </div>
+              </td>
+          </tr>
+          <tr><td colspan="2">{{ form.message.errors }}<textarea class="textarea-field" name="message" placeholder="Message"></textarea><font color="red"> *</font></td></tr>
+          <tr>
+          	  <td class="form-td">
+          	  <div class="form-button-wrap">
+		<input type="submit" class="btn btn-primary btn-red"  style=" width:100px; margin-right:15px;" value="submit" id="id_submit" />
+                <button type="reset" id="id_reset" class="btn btn-primary btn-gray"  style="width:100px;">reset</button>
+              </div>
+              </td>
+          </tr>
+
+        </table>
+      </form>
+      <!-- --> 
+    </div>
+  </div>
+</div>
+<!-- -->
+{% include "footer.html" %}  
+<!-- -->
+
+</body>
+</html>

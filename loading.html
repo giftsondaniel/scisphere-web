@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+	html {
+	    /* font-family: sans-serif; */
+	    -ms-text-size-adjust: 100%;
+	    -webkit-text-size-adjust: 100%;
+	    font-family: 'Open Sans', sans-serif;
+	    display: block;
+	    font-size: 2.5em;
+	    -webkit-margin-before: 0.3em;
+	    -webkit-margin-after: 0.3em;
+	    -webkit-margin-start: 0px;
+	    -webkit-margin-end: 0px;
+	    font-weight: bold;
+	}
+
+</style>
+<script type="text/javascript">
+function iterateDots(){
+    var el = document.getElementById('iframe-loading2');
+    var dotsStr = el.innerHTML;
+    var dotsLen = dotsStr.length;
+
+    var maxDots = 3;
+    el.innerHTML = (dotsLen < maxDots ? dotsStr + '.' : '');
+}
+
+function startLoading(){
+    var intervalMs = 300;
+
+    var interval = setInterval("iterateDots()", intervalMs);
+}
+
+startLoading();
+</script>
+</head>
+
+<body>
+	<div id="iframe-loading">Loading<div id="iframe-loading2"></div></div>
+</body>
+</html>

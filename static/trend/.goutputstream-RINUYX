@@ -1,0 +1,76 @@
+var trendData = [];
+var normalizedTrendData = [];
+var newDemoData =  [];
+var chart1 ='';
+var chart2 ='';
+
+chart1 = new tauCharts.Chart({
+		    data: trendData,
+		    //"size": null,
+		    //padding: {l: 70, t: 10, b: 70, r: 10},	
+		    dimensions: {
+		      place_name: { type: 'category' },
+		      date: { type: 'category' },
+		      value: { type: 'measure' }	
+		    },
+		    type: 'line',           
+		    y: ['value'],
+		    x: ['date'],
+		    color: 'Name',
+		    guide: {
+		      x: {label: 'date'},
+		      y: {label: 'Value' , tickMin: 0, tickMax: 200, autoScale:false}
+		    },
+		    showGridLines:'xy',
+		    plugins: [
+			    tauCharts.api.plugins.get('tooltip')({fields:['value','date','place_name']}),
+			    //tauCharts.api.plugins.get('trendline')({fields:['value','date','place_name']}),
+			    tauCharts.api.plugins.get('legend')({fields:['place_name']}),
+			]
+		});
+
+	chart1.renderTo('#line');
+
+
+
+
+
+function stackedChart(){	
+
+	     chart2 = new tauCharts.Chart({
+		    data: trendData,
+		    "size": null,
+		    dimensions: {
+	 	      name_3: { type: 'category' },
+		      date: { type: 'category' },
+		      value: { type: 'measure' }	
+		    },
+		    type: 'line',           
+		    y: ['value'],
+		    x: ['date'],
+		    color: 'name_3',
+		    guide: {
+		      x: {label: 'date'},
+		      y: {label: 'Value' , tickMin: 0, tickMax: 200, autoScale:false}
+		    },
+		    showGridLines:'xy',
+		    plugins: [
+			    tauCharts.api.plugins.get('tooltip')({fields:['value','date','name_3']}),
+		            tauCharts.api.plugins.get('trendline')({fields:['value','date','name_3']}),
+			    tauCharts.api.plugins.get('legend')(),
+
+			]
+		});
+	     chart2.renderTo('#sales-perfomance1');
+	}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+

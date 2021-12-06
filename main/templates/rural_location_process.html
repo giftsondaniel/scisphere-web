@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere | Predict</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.easing.min.js"></script><!-- Easing -->
+<script type="text/javascript" src="/static/js/jquery.easing.1.3.js"></script><!-- Easing 1.3 -->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script>
+<script type="text/javascript" src="/static/js/jquery.bxslider.js"></script><!-- Bx Slider -->
+<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script><!-- Mouse Wheel -->
+<script type='text/javascript' src="/static/js/jquery.offset.js"></script><!-- Menu Position -->
+<script type='text/javascript' src="/static/js/bootstrap-slider.js"></script>
+<script type="text/javascript" src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  /*-- Menu Carousel --*/
+  $('.submenu-sec').bxSlider({
+    slideWidth: 130,
+    minSlides: 3,
+    maxSlides: 3,
+    moveSlides: 1,
+    pager: false
+  });
+  /*-- UI Slider with Legends --*/
+ 
+  /*-- Custom SelectBox --*/
+  $('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+});
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(e) {
+	$('.user-menu').slideUp(0);
+    $('.menu-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+	/*-- --*/
+	$('.sub-menu-list-sec').slideUp(0);
+    $('.submenu-dropdown').click( function(){
+		var id = $(this).parent('div').attr('id');
+		var st =id.substr(9, 3);
+		if($(this).parent('div').hasClass('submenu-act')){
+			$(this).parent('div').removeClass('submenu-act')
+			$(this).parent('div').siblings('div').removeClass('submenu-act');
+			$('.sub-menu-list-sec').slideUp(200);
+			$('.link-arrow').css({'display':'none'});
+		}
+		else{
+			$(this).parent('div').addClass('submenu-act');
+			$(this).parent('div').siblings('div').removeClass('submenu-act');
+			$('.sub-menu-list-sec').slideUp(0);
+			$('.link-arrow').css({'display':'none'});
+			current_parent = $(this).parent('.sub-menu.submenu-act');
+			position_menu = current_parent.offsetRelative("div.bx-viewport");
+			$('#submenu-list'+st).css('left',position_menu.left + 20);
+			$('#submenu-list'+st).slideDown(200);
+			$(this).siblings('.link-arrow').css({'display':'block'});
+		}
+    });
+	$('.sub-menu').click( function(event){
+        event.stopPropagation();
+    });
+    $(document).click( function(){
+        $('.sub-menu-list-sec').slideUp(100);
+		$('.link-arrow').css({'display':'none'});
+		$('.submenu-dropdown').parent('div').removeClass('submenu-act');
+    });
+
+});
+</script>
+
+<script type="text/javascript">
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+        
+        if (--timer < 0) {
+            timer = duration;
+            display.textContent = "00:00";
+            clickOnRefresh();
+        }
+    }, 1000);
+}
+
+var modelMasterList,modelId;
+window.onload = function(){
+	modelMasterList = '{{modelMasterList|escapejs}}';
+	modelId = '{{modelId}}';
+	if(modelMasterList){
+		modelMasterList = JSON.parse(modelMasterList);
+	}
+	if(modelMasterList.length>0){
+		var content="";
+		document.getElementById("breadcrumb_id").innerHTML='<span>'+modelMasterList[0].model_name+'</span>';
+		for(var i=0;i<modelMasterList.length;i++){
+			if(modelId == modelMasterList[i].id){
+				content +='<li id="model_id_'+modelMasterList[i].id+'" class="active"><a title="'+modelMasterList[i].model_name+'" onclick="modelMasterClick('+"'"+modelMasterList[i].id+"','"+modelMasterList[i].model_name+"'"+')">'+modelMasterList[i].model_name+'</a></li>';
+				document.getElementById("breadcrumb_id").innerHTML='<span>'+modelMasterList[i].model_name+'</span>';
+			}else{
+				content +='<li id="model_id_'+modelMasterList[i].id+'" class=""><a title="'+modelMasterList[i].model_name+'" onclick="modelMasterClick('+"'"+modelMasterList[i].id+"','"+modelMasterList[i].model_name+"'"+')">'+modelMasterList[i].model_name+'</a></li>';
+			}
+		}
+		if(content){
+			document.getElementById("model_list_id").innerHTML=content;
+		}
+	}
+
+	var totalCount = '{{totalCount}}';
+	console.log(totalCount);
+	if(totalCount < 100){
+		document.getElementById('idPanelBody').innerHTML='<p class="desc"> Insufficient data for predictive model generation. You need at least 100 records.\nOutcome variable doesnot have enough range.</p>';
+	}else{
+		document.getElementById('idPanelBody').innerHTML='<p class="desc">Please <a onclick="clickOnRefresh()"> Click </a> after 2 Minutes.</p>';
+	}
+
+	var modelScoreStatus = '{{modelScoreStatus}}';
+	/*if(modelScoreStatus == 0){
+	var fiveMinutes = 60 * 2,
+	display = document.querySelector('#time');
+	startTimer(fiveMinutes, display);  
+	}else{
+	clickOnRefresh();
+	}*/
+	if(modelScoreStatus == 1){
+		clickOnRefresh();
+	}
+  
+}
+
+function modelMasterClick(modelId,modelName){
+	for(var i=0;i<modelMasterList.length;i++){
+		$("#model_id_"+modelMasterList[i].id).removeClass('active');
+	}
+	$("#model_id_"+modelId).addClass('active');
+        document.getElementById("breadcrumb_id").innerHTML='<span>'+modelName+'</span>';
+}
+
+//setInterval(function(){
+//  clickOnRefresh();
+//},120000);
+//3600000); //after 5 mins i.e. 5 * 60 * 1000
+
+function clickOnRefresh(){
+  	window.location="/app/rural_location_result?performancemerticname={{perMerticName}}&level1name={{level1Name}}&permerticid={{perMerticId}}&level1id={{level1Id}}&modelid={{modelId}}&modelname={{modelName}}&httpcookie={{httpcookie}}&projectid={{projectId}}&usermodelid={{userModelId}}&modelJobId={{modelJobId}}&modelExecutionStatus={{modelExecutionStatus}}";
+}
+</script>
+</head>
+<body>
+<!-- -->
+<div class="main"> 
+  <!-- Primary Header  -->
+      {% include "header-primary-analyze.html" %} 
+  <!-- Secondary Header -->
+  <header class="navbar sub-header">
+    <div class="container pos-rel">
+      <div class="submenu-sec" >
+        <div class="sub-menu" id="sub-menu-1"> <a href="/app/rural_location" title="Predict" class="active" > 
+          <span class="submenu-icon" id="submenu-predict"></span> 
+          <span class="submneu-con">Predict</span> </a> <span class="submenu-dropdown"></span> <span class="link-arrow"></span> </div>
+        <div class="sub-menu" id="sub-menu-2"> <a href="#" title="Plan"> 
+          <span class="submenu-icon" id="submenu-plan"></span> 
+          <span class="submneu-con">Plan</span> </a> </span> 
+          <!--<span class="submenu-dropdown"></span>
+                    <span class="link-arrow"></span>--> 
+        </div>
+        <div class="sub-menu" id="sub-menu-3"> <a href="#" title="Optimize"> 
+          <span class="submenu-icon" id="submenu-optimize"></span> 
+          <span class="submneu-con">Optimize</span> </a> </span> 
+          <!--<span class="submenu-dropdown"></span>
+              <span class="link-arrow"></span>--> 
+        </div>
+      </div>
+      <div class="sub-menu-list-sec" id="submenu-list1">
+        <ul class="sub-menu-list" id="model_list_id">
+          <!--<li><a href="/app/rural_location" title="Rural Location Potential">Rural Location Potential</a></li>
+          <li class="link_dis"><a href="#" title="Rural Customer Potential">Rural Customer Potential</a></li>
+          <li class="link_dis"><a href="#" title="Urban Location Potential">Urban Location Potential</a></li>
+          <li class="link_dis"><a href="#" title="Urban Customer Potential">Urban Customer Potential</a></li>-->
+        </ul>
+      </div>
+      <!--<div class="sub-menu-list-sec" id="submenu-list2">
+            <ul class="sub-menu-list">
+                <li><a href="#" title="Build Location Selection Model">Build Location </a></li>
+                <li><a href="#" title="Optimally organize location clusters">Optimally organize</a></li>
+            </ul>
+        </div>
+        <div class="sub-menu-list-sec" id="submenu-list3">
+            <ul class="sub-menu-list">
+                <li><a href="#" title="Build Location Selection Model"> Selection Model</a></li>
+                <li><a href="#" title="Optimally organize location clusters">location clusters</a></li>
+            </ul>
+        </div>--> 
+    </div>
+  </header>
+  <div class="body-sec">
+    <div class="container"> 
+      
+      <!--Main body main panel -->
+      <div class="col-md-12 main-panel">
+        <div class="title-wrap">
+          <ol class="breadcrumb">
+            <li><a>Predict</a></li>
+            <li class="active" id="breadcrumb_id"><!--<span>Rural Location</span>--></li>
+          </ol>
+        </div>
+        <div class="right-content-panel"><!-- Right Panel Body -->
+          <div class="col-lg-12" id="idPanelBody">
+            <!--<p class="desc">Please <a onclick="clickOnRefresh()"> Refresh </a> after <span id="time">02:00</span> Minutes.</p>-->
+            <!--<p class="desc">Please <a onclick="clickOnRefresh()"> Click </a> after 2 Minutes.</p>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer Section -->
+   {% include "footer.html" %}
+</div>
+<!-- -->
+</body>
+</html>
+
+<!-- -->
+<!-- -->

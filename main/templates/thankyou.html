@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Scisphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+	$('#logo-wrap').floatScroll({positionTop:0});
+});
+</script>
+</head>
+<body>
+<!-- -->
+{% include "home-header.html" %}  
+<!-- -->
+<div class="body-sec innerpage-body" >
+  <div class="container" >
+    <div class="col-lg-15" id="contact-body">
+      <h3  style="padding-left: 343px;">Thank you for contacting us!</h3>
+      <div style="height:300px;" ></div>
+    </div>
+  </div>
+</div>
+<!-- -->
+{% include "footer.html" %}  
+<!-- -->
+</body>
+</html>

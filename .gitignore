@@ -1,0 +1,17 @@
+# Created by https://www.gitignore.io
+
+### Django ###
+*.log
+*.pot
+*.pyc
+*.pyo
+*.py~
+*.html~
+*.js~
+*.txt~
+__pycache__/
+js_tests/
+media/
+media1/
+analytics-media/
+embed/

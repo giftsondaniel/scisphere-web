@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom-new.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#slides').slidesjs({ width: 990, height: 140});
+	$('#logo-wrap').floatScroll({positionTop:0});
+	$('.slider-title-wrap').click(function(){
+		$('html, body').animate({scrollTop: $(this).offset().top-56}, 500);
+	});
+});
+$(document).scroll(function () {
+	var y = $(this).scrollTop();
+	var x = $("#home-slider").position();
+	if (y > (x.top - 180)) {
+		$('.slider-title-wrap').animate({top :'0px'},10);
+	}else {
+		$('.slider-title-wrap').animate({top :'-40px'},10);
+	}
+});
+</script>
+</head>
+
+<body>
+<!-- -->
+{% include "home-header.html" %}  
+<!-- -->
+<div class="inner-body">
+  <div class="container inner-page-title-section">
+  	 <div class="col-md-9">
+     	<p class="title">Our Location Analytics features provide automated outputs of powerful analytics at the click of a button.</p>
+        <p class="content">These features are currently in beta and are not yet accessible to all on the platform.  </p>
+        <p class="content">See how you can take advantage of them right now!</p>
+     </div>
+     <div class="col-md-3 button-sec">
+     	<a href="#" class="link-button link-button-blue" title="Get Started">Get Started</a>
+     </div>
+  </div>
+  <div class="container">
+    <div class="col-md-4">
+      <h4 class="home-heading">Location Selection</h4>
+      <a href="analyze-location.html"><img src="/static/images/analyze_image_1.jpg" class="body-sec-image" alt="Location Selection"/></a>
+      <div class="content-box">
+        <p class="home-content">Find locations that predict high potential for various performance metrics such as deposits, advances and productivity with our automated algorithms.</p>
+      </div>
+      <a href="analyze-location.html" class="read-more" title="Learnmore">Learn More</a> 
+    </div>
+    <div class="col-md-4">
+      <h4 class="home-heading">Spatial Optimization</h4>
+      <img src="/static/images/analyze_image_2.jpg" class="body-sec-image" alt="Spatial Optimization"/>
+      <div class="content-box">
+        <p class="home-content">Regions are often based on government boundaries.  Organize your branches based on distance to gain significant benefits in operational efficiency.</p>
+      </div>
+      <a href="#" class="read-more" title="Learnmore">Learn More</a> 
+    </div>
+    <div class="col-md-4">
+      <h4 class="home-heading">Location Based Planning</h4>
+      <img src="/static/images/analyze_image_3.jpg" class="body-sec-image" alt="Location Based Planning" />
+      <div class="content-box">
+        <p class="home-content">We often set targets and incentives uniformly across geographies even though location potential varies widely.  Plan in more targeted ways using location intelligence.</p>
+      </div>
+      <a href="#" class="read-more" title="Learnmore">Learn More</a> </div>
+  </div>
+</div>
+<!-- -->
+{% include "home-footer.html" %}  
+<!-- -->
+</body>
+</html>

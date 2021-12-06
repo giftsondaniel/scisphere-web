@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Scisphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script> 
+<script type="text/javascript" src="/static/js/underscore-min.js"></script>
+<script type="text/javascript" src="/static/common_js/FileSaver.js"></script>
+<script src="/static/js/bootbox.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$('.user-menu').slideUp(0);
+    $('#drop-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+	/*-- Accordian --*/
+	$('.item-panel-list2 .panel .acc-head').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$('.item-panel-list2 .panel .acc-head').removeClass('acc-listact');
+			$(this).addClass('acc-listact');
+		}
+    });
+	
+	$('.item-panel-list2 .collapse-sublist li a').click(function(e) {
+		if($(this).hasClass('acc-listact')){
+			$(this).removeClass('acc-listact');
+		}else{
+			$('.item-panel-list2 .collapse-sublist li a').removeClass('acc-listact');
+			$(this).addClass('acc-listact');
+		}
+	});
+
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+	
+});
+
+var JSONData=[];
+window.onload = function(){
+	// mytemplate list
+	myTemplateList = '{{myTemplateList}}';
+	if(myTemplateList){
+		myTemplateList = myTemplateList.replace(/&#39;/g,'"');
+		myTemplateList = myTemplateList.replace(/u"/g,'"');
+		myTemplateList = myTemplateList.replace(/None/g,'""');
+		myTemplateList = JSON.parse(myTemplateList);
+
+		// mytemplate load
+		var myTemplateId = document.getElementById('id_template');
+		for(var i=0;i<myTemplateList.length;i++){
+			var content;
+			if(myTemplateList[i].mytemplate_name.length > 25){
+				content = myTemplateList[i].mytemplate_name.substring(0, 25)+"...";
+			}else{
+				content = myTemplateList[i].mytemplate_name;
+			}
+			
+			var optlevel0 = document.createElement('option');
+			optlevel0.innerHTML = content;
+			optlevel0.value = myTemplateList[i]['id'];
+			optlevel0.setAttribute("rel","popover");
+			optlevel0.setAttribute("title","Template : "+myTemplateList[i].mytemplate_name);
+			//optlevel0.setAttribute("data-content","Dataset : ");
+			myTemplateId.appendChild(optlevel0);
+		}
+		$("#id_template").data("selectBox-selectBoxIt").add();
+	}
+	// dataset list
+	var customerDatasetList = '{{customerDatasetList}}';
+
+	if(customerDatasetList){
+		customerDatasetList = customerDatasetList.replace(/&#39;/g,'"');
+		customerDatasetList = customerDatasetList.replace(/u"/g,'"');
+		customerDatasetList = customerDatasetList.replace(/None/g,'""');
+		customerDatasetList = JSON.parse(customerDatasetList);
+
+		var dataSetId = document.getElementById('id_customerdataset');
+		for(var i=0;i<customerDatasetList.length;i++){
+			var content;
+			if(customerDatasetList[i].file_name.length > 25){
+				content = customerDatasetList[i].file_name.substring(0, 25)+"...";
+			}else{
+				content = customerDatasetList[i].file_name;
+			}
+			
+			var optlevel0 = document.createElement('option');
+			optlevel0.innerHTML = content;
+			optlevel0.value = customerDatasetList[i]['id'];
+			optlevel0.setAttribute("rel","popover");
+			optlevel0.setAttribute("title","Dataset : "+customerDatasetList[i].file_name);
+			optlevel0.setAttribute("data-content","Date : "+customerDatasetList[i].uploaded_date);
+			dataSetId.appendChild(optlevel0);
+		}
+		$("#id_customerdataset").data("selectBox-selectBoxIt").add();
+	}
+
+
+	var critical = '{{critical}}';
+	var datasetExist ='{{datasetExist}}';
+	if(critical == "yes"){
+		$("#confirm-button").css('display','none');
+		$("#confirm-status-sec").css('display','none');
+		$("#error-message").html('Please correct following critical errors.');
+	}
+	if(datasetExist == "no"){
+		$("#confirm-status-sec").css('display','none');
+	}
+
+	var myTemplateId = '{{mytemplateid}}';
+	var data = '{{dataError}}';
+	var record = '{{recordCount}}';
+	var errorContent="";
+	var recordContent="";
+	if(myTemplateId){
+		document.getElementById("id_template").value=myTemplateId;
+		$("#id_template").data("selectBox-selectBoxIt").add();
+	}
+	if(record){
+		record = JSON.parse(record.replace(/&quot;/g,'"'));
+		var totalRecord = record.Total;
+		if(totalRecord==0){
+			$("#confirm-button").css('display','none');
+			$("#confirm-status-sec").css('display','none');
+		}
+		var errorRecord = _.uniq(record.ErrorRow);
+		errorRecord = errorRecord.length;
+		var verifiedRecord = totalRecord-errorRecord;
+		recordContent+="<ul class='status-list'>"+
+			"<li><span class='text1'>"+totalRecord+"</span><span class='text2'>Total</span></li>"+
+			"<li><span class='text1'>"+verifiedRecord+"</span><span class='text2'>Verified</span></li>"+
+			"<li><span class='text1'>0</span><span class='text2'>Pending</span></li>"+
+			"<li><span class='text1'>"+errorRecord+"</span><span class='text2'>Errors</span></li>"+
+			"</ul>";
+		document.getElementById("record-status-id").innerHTML=recordContent;
+	}else{
+		document.getElementById("record-status-id").innerHTML="";
+	}
+
+	if(data){
+		data = JSON.parse(data.replace(/&quot;/g,'"'));
+		errorContent+="<table width='100%' border='0' class='result-table'>";
+                errorContent+="<tr>"+
+                    "<th width='5%'>SNo</th>"+
+                    "<th width='20%'>Table</th>"+
+                    "<th width='43%'>Description</th>"+
+                    "<th width='20%'>Date and Time</th>"+
+                    "<th width='12%'>Status</th>"+
+                  "</tr>";
+		var sNo=0;
+		for(var report in data){
+			if(data[report].length>0){
+			for(var i=0;i<data[report].length;i++){
+				sNo=sNo+1;
+				errorContent+="<tr>"+
+					"<td>"+sNo+"</td>"+
+					"<td>"+data[report][i].table+"</td>"+
+					"<td>"+data[report][i].description+"</td>"+
+					"<td>"+data[report][i].datetime+"</td>"+
+					"<td><span class='error'>"+data[report][i].status+"</span></td>"+
+					"</tr>";
+				var obj={};
+				obj['SNo']=sNo;
+				obj['Table']=data[report][i].table;
+				obj['Description']=data[report][i].description;
+				obj['Date and Time']=data[report][i].datetime;
+				obj['Status']=data[report][i].status;
+				JSONData.push(obj);
+			}
+			}
+		}
+		errorContent+="</table>"
+		document.getElementById("errorReportId").innerHTML=errorContent;
+	}else{
+		document.getElementById("errorReportId").innerHTML="";
+		
+	}
+
+	/*POP up on mouse over on select option*/
+	$("[rel='popover']").popover({ trigger: "hover", container: "body" });
+
+}
+
+function logDownlaod(){
+	if(JSONData){
+		var myTemplage = document.getElementById('id_template');
+		var myTemplageText = myTemplage.options[myTemplage.selectedIndex].innerHTML;
+		JSONToTSVConvertor(JSONData, "", true, myTemplageText+"_log");
+	}
+}
+
+function JSONToTSVConvertor(JSONData, ReportTitle, ShowLabel, myTemplateName){
+
+    //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
+    var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+    var TSV = '';    
+    //Set Report title in first row or line
+    //TSV += ReportTitle + '\r\n\n';
+    //This condition will generate the Label/Header
+    if (ShowLabel) {
+        var row = "";
+        //This loop will extract the label from 1st index of on array
+        for (var index in arrData[0]) {
+            //Now convert each value to string and tab-seprated
+            row += index + '	';
+        }
+        row = row.slice(0, -1);
+        //append Label row with line break
+        TSV += row + '\r\n';
+    }
+    
+    //1st loop is to extract each row
+    for (var i = 0; i < arrData.length; i++) {
+        var row = "";
+        //2nd loop will extract each column and convert it in string tab-seprated
+        for (var index in arrData[i]) {
+            row += '"' + arrData[i][index] + '"	';
+        }
+        row.slice(0, row.length - 1);
+        //add a line break after each row
+        TSV += row + '\r\n';
+    }
+
+    if (TSV == '') {        
+        alert("Invalid data");
+        return;
+    }   
+    var blob = new Blob([TSV], {type: "data:text/tsv;charset=utf-8"});
+    //Generate a file name
+    
+    var fileName = myTemplateName;
+    //this will remove the blank-spaces from the title and replace it with an underscore
+    fileName += ReportTitle.replace(/ /g,"_"); 
+    saveAs(blob, ""+fileName+".tsv");
+}
+
+
+function onUploadVerify(){
+
+	var dataprms = '{{verifyConfirm}}';
+	dataprms = JSON.parse(dataprms.replace(/&quot;/g,'"'));
+
+	
+	dataprms["confirm_status"]="Replace";
+	if(document.getElementById("confirm_status_1")){
+		if(document.getElementById("confirm_status_1").checked){
+			dataprms["confirm_status"]=document.getElementById("confirm_status_1").value;
+		}
+	}
+
+	$('#loading').html('<img src="/static/images/Filling_broken_ring.gif"> Saving data...');
+	$.ajax({
+		url: '/app/uploadverify',
+		type: 'post',
+		dataType: 'json',
+		success: function (data) {
+			//bootbox.alert(data.result);
+			$('#loading').html("");
+			bootbox.dialog({
+				message: data.result,
+				buttons: {
+				yes: {
+					label: "Ok",
+					callback: function() {
+						window.location="/app/upload";
+					}
+				}
+				}
+			});
+
+		},
+		error: function (err) {
+			bootbox.alert(data.result);
+			$('#loading').html("Error");
+		},
+		data: dataprms
+	});
+}
+
+</script>
+<style>
+#confirm-button{
+	margin: 20px 10px;
+}
+</style>
+</head>
+
+<body>
+<header class="navbar header">
+  <div class="container">
+    <div class="navbar-header"> <a href="home.html" class="logo-inner" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+    <nav class="collapse navbar-collapse">
+      <ul class="nav navbar-nav menu" id="menu">
+        <li class="current"><a href="/app/upload" title="Upload" ><span class="menu-icon" id="menu-up"></span>Upload</a></li>
+        <li><a href="/app/region_explorer" title="Explore"><span class="menu-icon" id="menu-exp"></span>Explore</a></li>
+        <li><a href="/app/analyze" title="Analyze"><span class="menu-icon" id="menu-ana"></span>Analyze</a></li>
+        <li><a href="/app/mysphere" title="MySphere"><span class="menu-icon" id="menu-mys"></span>MySphere</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right account-sec">
+        <li>{% if user %}<div id="fullname" style="margin-top:23px;">{{user}}</div>{% endif %}</li>
+        <li class="dropdown" > <span class="menu-icon" id="drop-icon"></span>
+          <div class="user-menu"> <span class="menu-arrow"></span>
+            <ul>
+              <li><a href="/app/upgrade_account" title="Change Plan"><span class="usermenu-icon" id="change-plan"></span>Change Plan</a></li>
+              <!--<li><a href="#" title="Profile Setting"><span class="usermenu-icon" id="pro-setting"></span>Profile Setting</a></li>-->
+              <li><a href="/accounts/password/change/" title="Change Password"><span class="usermenu-icon" id="change-pwd"></span>Change Password</a></li>
+              <!--<li><a href="#" title="Help Center"><span class="usermenu-icon" id="helpcenter"></span>Help Center</a></li>-->
+              <li><a href="{% url 'auth_logout' %}" title="Logout" class="logout">Log Out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- Secondary Header -->
+<header class="navbar sub-header">
+  <div class="container "> </div>
+</header>
+
+<!-- Body Section -->
+<div class="body-sec innerpage-body">
+  <div class="container" id="verify-container">
+    <!--Main body left panel -->
+    <div class="col-md-2-5 left-panel">
+      <!-- Added for select option in templates -->
+      <div class="item-panel" id="uploader-items">
+	<h5 class="left-con-head">Uploader</h5>
+	<!-- Added for select option in templates -->
+	<div id="menu-div" style="display:block">
+          <select class="custom_selectbox" name="template" id="id_template">
+            <option value="0">My Templates</option>
+          </select>
+
+	  <!-- Added for select option in Customer data set -->
+          <select id="id_customerdataset" name="customerdataset" class="custom_selectbox" >
+            <option value="0" >My Datasets</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!--Main body right panel -->
+    <div class="col-md-7-5 right-panel">
+    	<div class="breadcrumb-wrap">
+        	<ul>
+            	<a href="/app/template"><li class="temp"><span>Create your Template</span></li></a>
+                <a href="/app/upload"><li class="upload"><span>Upload</span></li></a>
+                <li class="verify active"><span>Verify</span></li>
+            </ul>
+        </div>
+        <div class="content-wrap">
+        	<div class="status-wrap">
+            	<div class="left-sec" id="record-status-id"></div>
+		<div id="confirm-status-sec">
+		      <input type="radio" name="confirm_status" id="confirm_status_1" value="Append"> <label for="confirm_status_1">Append</label>
+		      <input type="radio" name="confirm_status" id="confirm_status_2" value="Replace"> <label for="confirm_status_2">Replace</label>
+		</div>
+		<div>
+		      <input type="button" value="Confirm" class="link-button link-button-red" id="confirm-button" onclick="onUploadVerify();" />
+		</div>
+            </div>
+            <div class="result-wrap">
+		<div id="loading"></div>
+            	<span class="table-title">Log</span>
+	        <!--<div id="log-download"><input type="button" value="Download" class="link-button link-button-red" onclick="logDownlaod();"></div>-->
+		<div id="error-message" style="color:red"></div>
+	        <div id="errorReportId"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Footer Section-->
+{% include "footer.html" %}
+<!-- -->
+</body>
+</html>

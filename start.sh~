@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+DJANGODIR=/home/analyzer/scisphere/scisphere-web
+DJANGO_SETTINGS_MODULE=scisphere-web.settings
+
+LOGFILE=/var/log/supervisor/rqworker.log
+LOGDIR=$(dirname $LOGFILE)
+#NUM_WORKERS=2
+# user/group to run as
+USER=ubuntu
+GROUP=ubuntu
+cd /home/analyzer/scisphere/scisphere-web
+source /home/analyzer/scisphere/virtual_environments/scisphere/bin/activate
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+test -d $LOGDIR || mkdir -p $LOGDIR
+#exec /home/scimergent/scisphere/virtual_environments/scisphere-v2/bin/gunicorn_django -w $NUM_WORKERS \
+#  --user=$USER --group=$GROUP --log-level=debug \
+#  --log-file=$LOGFILE -b 0.0.0.0:8000 2>>$LOGFILE
+exec python manage.py rqworker low  \
+#   --user=$USER --group=$GROUP --log-level=debug \
+   --log-file=$LOGFILE 2>>$LOGFILE
+
+

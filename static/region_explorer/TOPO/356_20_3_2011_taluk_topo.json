@@ -1,0 +1,2128 @@
+{
+	"type": "Topology",
+	"objects": {
+		"levels": {
+			"type": "GeometryCollection",
+			"geometries": [{
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2745,
+						"name_3": "Majhgaon"
+					},
+					"id": 2745,
+					"arcs": [[-1]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2736,
+						"name_3": "Noamundi"
+					},
+					"id": 2736,
+					"arcs": [[-2]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2589,
+						"name_3": "Chandrapura"
+					},
+					"id": 2589,
+					"arcs": [[-3]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2590,
+						"name_3": "Bermo"
+					},
+					"id": 2590,
+					"arcs": [[-4, -5]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2595,
+						"name_3": "Chas"
+					},
+					"id": 2595,
+					"arcs": [[-6]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2582,
+						"name_3": "Baghmara-Cum-Katras"
+					},
+					"id": 2582,
+					"arcs": [[-7]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2596,
+						"name_3": "Chandankiyari"
+					},
+					"id": 2596,
+					"arcs": [[-8]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2586,
+						"name_3": "Jharia-Cum-Jorapokhar-Cum-Sindri"
+					},
+					"id": 2586,
+					"arcs": [[-9]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2584,
+						"name_3": "Dhanbad-Cum-Kenduadih-Cum-Jagata"
+					},
+					"id": 2584,
+					"arcs": [[-10]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2581,
+						"name_3": "Topchanchi"
+					},
+					"id": 2581,
+					"arcs": [[-11]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2652,
+						"name_3": "Bishungarh"
+					},
+					"id": 2652,
+					"arcs": [[-12]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2648,
+						"name_3": "Tati Jhariya"
+					},
+					"id": 2648,
+					"arcs": [[-13]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2649,
+						"name_3": "Daru"
+					},
+					"id": 2649,
+					"arcs": [[-14]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2647,
+						"name_3": "Ichak"
+					},
+					"id": 2647,
+					"arcs": [[-15]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2653,
+						"name_3": "Hazaribag"
+					},
+					"id": 2653,
+					"arcs": [[-16]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2658,
+						"name_3": "Churchu"
+					},
+					"id": 2658,
+					"arcs": [[-17]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2659,
+						"name_3": "Dadi"
+					},
+					"id": 2659,
+					"arcs": [[-18]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2661,
+						"name_3": "Mandu"
+					},
+					"id": 2661,
+					"arcs": [[-19]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2662,
+						"name_3": "Ramgarh"
+					},
+					"id": 2662,
+					"arcs": [[-20]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2663,
+						"name_3": "Dulmi"
+					},
+					"id": 2663,
+					"arcs": [[-21]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2664,
+						"name_3": "Chitarpur"
+					},
+					"id": 2664,
+					"arcs": [[-22]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2685,
+						"name_3": "Ormanjhi"
+					},
+					"id": 2685,
+					"arcs": [[-23]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2686,
+						"name_3": "Angara"
+					},
+					"id": 2686,
+					"arcs": [[-24, -25]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2689,
+						"name_3": "Sonahatu"
+					},
+					"id": 2689,
+					"arcs": [[-26]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2688,
+						"name_3": "Silli"
+					},
+					"id": 2688,
+					"arcs": [[-27]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2699,
+						"name_3": "Tamar I"
+					},
+					"id": 2699,
+					"arcs": [[-28]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2705,
+						"name_3": "Erki(Tamar II)"
+					},
+					"id": 2705,
+					"arcs": [[-29]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2730,
+						"name_3": "Bandgaon"
+					},
+					"id": 2730,
+					"arcs": [[-30]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2702,
+						"name_3": "Rania"
+					},
+					"id": 2702,
+					"arcs": [[-31]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2727,
+						"name_3": "Bano"
+					},
+					"id": 2727,
+					"arcs": [[-32]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2734,
+						"name_3": "Anandpur"
+					},
+					"id": 2734,
+					"arcs": [[-33]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2735,
+						"name_3": "Manoharpur"
+					},
+					"id": 2735,
+					"arcs": [[-34, -35]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2729,
+						"name_3": "Gudri"
+					},
+					"id": 2729,
+					"arcs": [[-36]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2701,
+						"name_3": "Torpa"
+					},
+					"id": 2701,
+					"arcs": [[-37]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2731,
+						"name_3": "Chakradharpur"
+					},
+					"id": 2731,
+					"arcs": [[-38]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2710,
+						"name_3": "Kamdara"
+					},
+					"id": 2710,
+					"arcs": [[-39]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2746,
+						"name_3": "Kuchai"
+					},
+					"id": 2746,
+					"arcs": [[-40]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2703,
+						"name_3": "Murhu"
+					},
+					"id": 2703,
+					"arcs": [[-41]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2747,
+						"name_3": "Kharsawan"
+					},
+					"id": 2747,
+					"arcs": [[-42]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2748,
+						"name_3": "Chandil"
+					},
+					"id": 2748,
+					"arcs": [[-43]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2751,
+						"name_3": "Nimdih"
+					},
+					"id": 2751,
+					"arcs": [[-44]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2750,
+						"name_3": "Kukru"
+					},
+					"id": 2750,
+					"arcs": [[-45]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2749,
+						"name_3": "Ichagarh"
+					},
+					"id": 2749,
+					"arcs": [[-46]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2752,
+						"name_3": "Adityapur(Gamharia)"
+					},
+					"id": 2752,
+					"arcs": [[-47]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2754,
+						"name_3": "Gobindpur(Rajnagar)"
+					},
+					"id": 2754,
+					"arcs": [[-48]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2608,
+						"name_3": "Potka"
+					},
+					"id": 2608,
+					"arcs": [[-49]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2606,
+						"name_3": "Golmuri-Cum-Jugsalai"
+					},
+					"id": 2606,
+					"arcs": [[-50]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2605,
+						"name_3": "Boram"
+					},
+					"id": 2605,
+					"arcs": [[-51]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2604,
+						"name_3": "Patamda"
+					},
+					"id": 2604,
+					"arcs": [[-52]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2700,
+						"name_3": "Karra"
+					},
+					"id": 2700,
+					"arcs": [[-53]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2697,
+						"name_3": "Lapung"
+					},
+					"id": 2697,
+					"arcs": [[-54]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2709,
+						"name_3": "Verno"
+					},
+					"id": 2709,
+					"arcs": [[-55]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2695,
+						"name_3": "Bero"
+					},
+					"id": 2695,
+					"arcs": [[-56, -57]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2602,
+						"name_3": "Senha"
+					},
+					"id": 2602,
+					"arcs": [[-58]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2597,
+						"name_3": "Kisko"
+					},
+					"id": 2597,
+					"arcs": [[-59]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2598,
+						"name_3": "Peshrar"
+					},
+					"id": 2598,
+					"arcs": [[-60]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2708,
+						"name_3": "Sisai"
+					},
+					"id": 2708,
+					"arcs": [[-61]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2603,
+						"name_3": "Bhandra"
+					},
+					"id": 2603,
+					"arcs": [[-62]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2600,
+						"name_3": "Kairo"
+					},
+					"id": 2600,
+					"arcs": [[-63, -64]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2601,
+						"name_3": "Lohardaga"
+					},
+					"id": 2601,
+					"arcs": [[-65]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2707,
+						"name_3": "Ghaghra"
+					},
+					"id": 2707,
+					"arcs": [[-66]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2706,
+						"name_3": "Bishunpur"
+					},
+					"id": 2706,
+					"arcs": [[-67]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2637,
+						"name_3": "Mahuadanr"
+					},
+					"id": 2637,
+					"arcs": [[-68]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2714,
+						"name_3": "Dumri"
+					},
+					"id": 2714,
+					"arcs": [[-69]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2715,
+						"name_3": "Albert Ekka(Jari)"
+					},
+					"id": 2715,
+					"arcs": [[-70]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2713,
+						"name_3": "Chainpur"
+					},
+					"id": 2713,
+					"arcs": [[-71]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2694,
+						"name_3": "Chanho"
+					},
+					"id": 2694,
+					"arcs": [[-72]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2665,
+						"name_3": "Gola"
+					},
+					"id": 2665,
+					"arcs": [[-73]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2593,
+						"name_3": "Kasmar"
+					},
+					"id": 2593,
+					"arcs": [[-74]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2638,
+						"name_3": "Garu"
+					},
+					"id": 2638,
+					"arcs": [[-75]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2592,
+						"name_3": "Peterwar"
+					},
+					"id": 2592,
+					"arcs": [[-76]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2643,
+						"name_3": "Chandwa"
+					},
+					"id": 2643,
+					"arcs": [[-77]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2660,
+						"name_3": "Patratu"
+					},
+					"id": 2660,
+					"arcs": [[-78]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2682,
+						"name_3": "Burmu"
+					},
+					"id": 2682,
+					"arcs": [[-79]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2683,
+						"name_3": "Khelari"
+					},
+					"id": 2683,
+					"arcs": [[-80]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2684,
+						"name_3": "Kanke"
+					},
+					"id": 2684,
+					"arcs": [[-81]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2591,
+						"name_3": "Gumia"
+					},
+					"id": 2591,
+					"arcs": [[-82]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2513,
+						"name_3": "Bhandaria"
+					},
+					"id": 2513,
+					"arcs": [[-83]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2639,
+						"name_3": "Latehar"
+					},
+					"id": 2639,
+					"arcs": [[-84]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2656,
+						"name_3": "Keredari"
+					},
+					"id": 2656,
+					"arcs": [[-85]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2525,
+						"name_3": "Tandwa"
+					},
+					"id": 2525,
+					"arcs": [[-86]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2636,
+						"name_3": "Barwadih"
+					},
+					"id": 2636,
+					"arcs": [[-87]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2631,
+						"name_3": "Satbarwa"
+					},
+					"id": 2631,
+					"arcs": [[-88, -89]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2635,
+						"name_3": "Manika"
+					},
+					"id": 2635,
+					"arcs": [[-90]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2630,
+						"name_3": "Panki"
+					},
+					"id": 2630,
+					"arcs": [[-91]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2642,
+						"name_3": "Herhanj"
+					},
+					"id": 2642,
+					"arcs": [[-92]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2640,
+						"name_3": "Balumath"
+					},
+					"id": 2640,
+					"arcs": [[-93, -94]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2657,
+						"name_3": "Barkagaon"
+					},
+					"id": 2657,
+					"arcs": [[-95]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2512,
+						"name_3": "Ramkanda"
+					},
+					"id": 2512,
+					"arcs": [[-96]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2543,
+						"name_3": "Dumri"
+					},
+					"id": 2543,
+					"arcs": [[-97]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2544,
+						"name_3": "Pirtanr"
+					},
+					"id": 2544,
+					"arcs": [[-98]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2541,
+						"name_3": "Bagodar"
+					},
+					"id": 2541,
+					"arcs": [[-99]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2542,
+						"name_3": "Sariya"
+					},
+					"id": 2542,
+					"arcs": [[-100]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2579,
+						"name_3": "Tundi"
+					},
+					"id": 2579,
+					"arcs": [[-101]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2580,
+						"name_3": "Purbi Tundi*"
+					},
+					"id": 2580,
+					"arcs": [[-102]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2587,
+						"name_3": "Nirsa-Cum-Chirkunda"
+					},
+					"id": 2587,
+					"arcs": [[-103]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2678,
+						"name_3": "Jamtara"
+					},
+					"id": 2678,
+					"arcs": [[-104]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2524,
+						"name_3": "Simaria"
+					},
+					"id": 2524,
+					"arcs": [[-105]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2676,
+						"name_3": "Narayanpur"
+					},
+					"id": 2676,
+					"arcs": [[-106]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2677,
+						"name_3": "Karma Tanr Vidyasagar*"
+					},
+					"id": 2677,
+					"arcs": [[-107]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2511,
+						"name_3": "Ranka"
+					},
+					"id": 2511,
+					"arcs": [[-108]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2655,
+						"name_3": "Katamdag"
+					},
+					"id": 2655,
+					"arcs": [[-109]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2654,
+						"name_3": "Katkamsandi"
+					},
+					"id": 2654,
+					"arcs": [[-110]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2517,
+						"name_3": "Lawalaung"
+					},
+					"id": 2517,
+					"arcs": [[-111]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2538,
+						"name_3": "Gande"
+					},
+					"id": 2538,
+					"arcs": [[-112]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2510,
+						"name_3": "Danda"
+					},
+					"id": 2510,
+					"arcs": [[-113]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2509,
+						"name_3": "Garhwa"
+					},
+					"id": 2509,
+					"arcs": [[-114]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2539,
+						"name_3": "Giridih"
+					},
+					"id": 2539,
+					"arcs": [[-115]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2553,
+						"name_3": "Sarath"
+					},
+					"id": 2553,
+					"arcs": [[-116]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2516,
+						"name_3": "Kunda"
+					},
+					"id": 2516,
+					"arcs": [[-117]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2651,
+						"name_3": "Chalkusa"
+					},
+					"id": 2651,
+					"arcs": [[-118]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2529,
+						"name_3": "Jainagar"
+					},
+					"id": 2529,
+					"arcs": [[-119]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2530,
+						"name_3": "Chandwara"
+					},
+					"id": 2530,
+					"arcs": [[-120]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2528,
+						"name_3": "Domchanch"
+					},
+					"id": 2528,
+					"arcs": [[-121, -122]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2531,
+						"name_3": "Markacho"
+					},
+					"id": 2531,
+					"arcs": [[-123]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2650,
+						"name_3": "Barkatha"
+					},
+					"id": 2650,
+					"arcs": [[-124, -125]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2644,
+						"name_3": "Chauparan"
+					},
+					"id": 2644,
+					"arcs": [[-126]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2523,
+						"name_3": "Pathalgora"
+					},
+					"id": 2523,
+					"arcs": [[-127]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2522,
+						"name_3": "Gidhaur"
+					},
+					"id": 2522,
+					"arcs": [[-128]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2552,
+						"name_3": "Karon"
+					},
+					"id": 2552,
+					"arcs": [[-129, -130]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2550,
+						"name_3": "Madhupur"
+					},
+					"id": 2550,
+					"arcs": [[-131]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2629,
+						"name_3": "Tarhasi"
+					},
+					"id": 2629,
+					"arcs": [[-132, -133]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2629,
+						"name_3": "Tarhasi"
+					},
+					"id": 2629,
+					"arcs": [[-134]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2624,
+						"name_3": "Bishrampur"
+					},
+					"id": 2624,
+					"arcs": [[-135]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2622,
+						"name_3": "Pandu"
+					},
+					"id": 2622,
+					"arcs": [[-136]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2625,
+						"name_3": "Nawa Bazar"
+					},
+					"id": 2625,
+					"arcs": [[-137]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2623,
+						"name_3": "Untari Road"
+					},
+					"id": 2623,
+					"arcs": [[-138]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2515,
+						"name_3": "Pratappur"
+					},
+					"id": 2515,
+					"arcs": [[-139]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2521,
+						"name_3": "Mayur Hand"
+					},
+					"id": 2521,
+					"arcs": [[-140]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2520,
+						"name_3": "Itkhori"
+					},
+					"id": 2520,
+					"arcs": [[-141]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2646,
+						"name_3": "Padma"
+					},
+					"id": 2646,
+					"arcs": [[-142]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2540,
+						"name_3": "Birni"
+					},
+					"id": 2540,
+					"arcs": [[-143]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2537,
+						"name_3": "Bengabad"
+					},
+					"id": 2537,
+					"arcs": [[-144]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2508,
+						"name_3": "Meral (Pipra Kalan)"
+					},
+					"id": 2508,
+					"arcs": [[-145]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2535,
+						"name_3": "Dhanwar"
+					},
+					"id": 2535,
+					"arcs": [[-146]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2499,
+						"name_3": "Majhiaon"
+					},
+					"id": 2499,
+					"arcs": [[-147]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2500,
+						"name_3": "Bardiha"
+					},
+					"id": 2500,
+					"arcs": [[-148]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2549,
+						"name_3": "Devipur"
+					},
+					"id": 2549,
+					"arcs": [[-149]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2519,
+						"name_3": "Kanha Chatti"
+					},
+					"id": 2519,
+					"arcs": [[-150]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2518,
+						"name_3": "Chatra"
+					},
+					"id": 2518,
+					"arcs": [[-151]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2617,
+						"name_3": "Mohammad Ganj"
+					},
+					"id": 2617,
+					"arcs": [[-152]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2616,
+						"name_3": "Haidernagar"
+					},
+					"id": 2616,
+					"arcs": [[-153]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2615,
+						"name_3": "Hussainabad"
+					},
+					"id": 2615,
+					"arcs": [[-154]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2498,
+						"name_3": "Kandi"
+					},
+					"id": 2498,
+					"arcs": [[-155]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2533,
+						"name_3": "Tisri"
+					},
+					"id": 2533,
+					"arcs": [[-156]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2532,
+						"name_3": "Gawan"
+					},
+					"id": 2532,
+					"arcs": [[-157]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2526,
+						"name_3": "Satgawan"
+					},
+					"id": 2526,
+					"arcs": [[-158]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2742,
+						"name_3": "Jhinkpani"
+					},
+					"id": 2742,
+					"arcs": [[-159, -160, -161, -162]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2738,
+						"name_3": "Hat Gamharia"
+					},
+					"id": 2738,
+					"arcs": [[-163]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2737,
+						"name_3": "Tonto"
+					},
+					"id": 2737,
+					"arcs": [[-164]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2740,
+						"name_3": "Tantnagar"
+					},
+					"id": 2740,
+					"arcs": [[-165]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2613,
+						"name_3": "Chakulia"
+					},
+					"id": 2613,
+					"arcs": [[-166]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2614,
+						"name_3": "Baharagora"
+					},
+					"id": 2614,
+					"arcs": [[-167]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2612,
+						"name_3": "Gurbandha"
+					},
+					"id": 2612,
+					"arcs": [[-168]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2611,
+						"name_3": "Dhalbhumgarh"
+					},
+					"id": 2611,
+					"arcs": [[-169]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2741,
+						"name_3": "Manjhari"
+					},
+					"id": 2741,
+					"arcs": [[-170]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2610,
+						"name_3": "Dumaria"
+					},
+					"id": 2610,
+					"arcs": [[-171]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2722,
+						"name_3": "Bolba"
+					},
+					"id": 2722,
+					"arcs": [[-172]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2723,
+						"name_3": "Thethaitangar"
+					},
+					"id": 2723,
+					"arcs": [[-173]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2609,
+						"name_3": "Musabani"
+					},
+					"id": 2609,
+					"arcs": [[-174]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2721,
+						"name_3": "Kersai"
+					},
+					"id": 2721,
+					"arcs": [[-175]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2720,
+						"name_3": "Kurdeg"
+					},
+					"id": 2720,
+					"arcs": [[-176]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2726,
+						"name_3": "Bansjor"
+					},
+					"id": 2726,
+					"arcs": [[-177, -178]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2607,
+						"name_3": "Ghatshila"
+					},
+					"id": 2607,
+					"arcs": [[-179]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2718,
+						"name_3": "Simdega"
+					},
+					"id": 2718,
+					"arcs": [[-180]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2719,
+						"name_3": "Pakar Tanr"
+					},
+					"id": 2719,
+					"arcs": [[-181]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2724,
+						"name_3": "Kolebira"
+					},
+					"id": 2724,
+					"arcs": [[-182]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2711,
+						"name_3": "Basia"
+					},
+					"id": 2711,
+					"arcs": [[-183]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2717,
+						"name_3": "Palkot"
+					},
+					"id": 2717,
+					"arcs": [[-184]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2716,
+						"name_3": "Raidih"
+					},
+					"id": 2716,
+					"arcs": [[-185]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2712,
+						"name_3": "Gumla"
+					},
+					"id": 2712,
+					"arcs": [[-186]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2594,
+						"name_3": "Jaridih"
+					},
+					"id": 2594,
+					"arcs": [[-187]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2589,
+						"name_3": "Chandrapura"
+					},
+					"id": 2589,
+					"arcs": [[-188]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2595,
+						"name_3": "Chas"
+					},
+					"id": 2595,
+					"arcs": [[-189]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2586,
+						"name_3": "Baliapur"
+					},
+					"id": 2586,
+					"arcs": [[-190]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2565,
+						"name_3": "Mandro"
+					},
+					"id": 2565,
+					"arcs": [[-191]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2556,
+						"name_3": "Thakurgangti"
+					},
+					"id": 2556,
+					"arcs": [[-192]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2557,
+						"name_3": "Boarijor"
+					},
+					"id": 2557,
+					"arcs": [[-193]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2563,
+						"name_3": "Sundarpahari"
+					},
+					"id": 2563,
+					"arcs": [[-194]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2669,
+						"name_3": "Gopikandar"
+					},
+					"id": 2669,
+					"arcs": [[-195]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2670,
+						"name_3": "Kathikund"
+					},
+					"id": 2670,
+					"arcs": [[-196]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2578,
+						"name_3": "Pakuria"
+					},
+					"id": 2578,
+					"arcs": [[-197]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2671,
+						"name_3": "Shikaripara"
+					},
+					"id": 2671,
+					"arcs": [[-198]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2577,
+						"name_3": "Maheshpur"
+					},
+					"id": 2577,
+					"arcs": [[-199]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2574,
+						"name_3": "Amrapara"
+					},
+					"id": 2574,
+					"arcs": [[-200]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2562,
+						"name_3": "Poreyahat"
+					},
+					"id": 2562,
+					"arcs": [[-201]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2668,
+						"name_3": "Ramgarh"
+					},
+					"id": 2668,
+					"arcs": [[-202]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2666,
+						"name_3": "Saraiyahat"
+					},
+					"id": 2666,
+					"arcs": [[-203]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2546,
+						"name_3": "Mohanpur"
+					},
+					"id": 2546,
+					"arcs": [[-204]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2667,
+						"name_3": "Jarmundi"
+					},
+					"id": 2667,
+					"arcs": [[-205]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2548,
+						"name_3": "Sona Rai Tharhi"
+					},
+					"id": 2548,
+					"arcs": [[-206]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2547,
+						"name_3": "Sarwan"
+					},
+					"id": 2547,
+					"arcs": [[-207]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2554,
+						"name_3": "Palojori"
+					},
+					"id": 2554,
+					"arcs": [[-208]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2680,
+						"name_3": "Fatehpur"
+					},
+					"id": 2680,
+					"arcs": [[-209]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2679,
+						"name_3": "Nala"
+					},
+					"id": 2679,
+					"arcs": [[-210]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2681,
+						"name_3": "Kundhit"
+					},
+					"id": 2681,
+					"arcs": [[-211]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2675,
+						"name_3": "Masalia"
+					},
+					"id": 2675,
+					"arcs": [[-212]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2674,
+						"name_3": "Jama"
+					},
+					"id": 2674,
+					"arcs": [[-213]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2573,
+						"name_3": "Litipara"
+					},
+					"id": 2573,
+					"arcs": [[-214]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2571,
+						"name_3": "Pathna"
+					},
+					"id": 2571,
+					"arcs": [[-215]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2575,
+						"name_3": "Hiranpur"
+					},
+					"id": 2575,
+					"arcs": [[-216]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2576,
+						"name_3": "Pakaur"
+					},
+					"id": 2576,
+					"arcs": [[-217]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2572,
+						"name_3": "Barharwa"
+					},
+					"id": 2572,
+					"arcs": [[-218]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2567,
+						"name_3": "Barhait"
+					},
+					"id": 2567,
+					"arcs": [[-219]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2566,
+						"name_3": "Borio"
+					},
+					"id": 2566,
+					"arcs": [[-220]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2633,
+						"name_3": "Medininagar(Daltonganj)"
+					},
+					"id": 2633,
+					"arcs": [[-221]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2507,
+						"name_3": "Chinia"
+					},
+					"id": 2507,
+					"arcs": [[-222]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2672,
+						"name_3": "Ranishwar"
+					},
+					"id": 2672,
+					"arcs": [[-223]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2632,
+						"name_3": "Nilambar-Pitambarpur(Lesliganj)"
+					},
+					"id": 2632,
+					"arcs": [[-224]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2504,
+						"name_3": "Dhurki"
+					},
+					"id": 2504,
+					"arcs": [[-225]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2505,
+						"name_3": "Sagma"
+					},
+					"id": 2505,
+					"arcs": [[-226]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2673,
+						"name_3": "Dumka"
+					},
+					"id": 2673,
+					"arcs": [[-227]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2506,
+						"name_3": "Dandai"
+					},
+					"id": 2506,
+					"arcs": [[-228]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2626,
+						"name_3": "Patan"
+					},
+					"id": 2626,
+					"arcs": [[-229]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2627,
+						"name_3": "Padwa"
+					},
+					"id": 2627,
+					"arcs": [[-230]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2502,
+						"name_3": "Bishunpura"
+					},
+					"id": 2502,
+					"arcs": [[-231]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2501,
+						"name_3": "Ramna"
+					},
+					"id": 2501,
+					"arcs": [[-232]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2503,
+						"name_3": "Nagaruntari"
+					},
+					"id": 2503,
+					"arcs": [[-233]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2621,
+						"name_3": "Nawadiha Bazar/Nawadiha*"
+					},
+					"id": 2621,
+					"arcs": [[-234]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2620,
+						"name_3": "Chhatarpur"
+					},
+					"id": 2620,
+					"arcs": [[-235]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2536,
+						"name_3": "Jamua"
+					},
+					"id": 2536,
+					"arcs": [[-236]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2514,
+						"name_3": "Shaligram Ram Narayanpur(Hunterganj)"
+					},
+					"id": 2514,
+					"arcs": [[-237]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2545,
+						"name_3": "Deoghar"
+					},
+					"id": 2545,
+					"arcs": [[-238]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2561,
+						"name_3": "Godda"
+					},
+					"id": 2561,
+					"arcs": [[-239]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2559,
+						"name_3": "Pathargama"
+					},
+					"id": 2559,
+					"arcs": [[-240]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2560,
+						"name_3": "Bashant Rai*"
+					},
+					"id": 2560,
+					"arcs": [[-241]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2570,
+						"name_3": "Udhwa"
+					},
+					"id": 2570,
+					"arcs": [[-242]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2568,
+						"name_3": "Taljhari"
+					},
+					"id": 2568,
+					"arcs": [[-243]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2569,
+						"name_3": "Rajmahal"
+					},
+					"id": 2569,
+					"arcs": [[-244]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2558,
+						"name_3": "Mahagama"
+					},
+					"id": 2558,
+					"arcs": [[-245]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2555,
+						"name_3": "Meherma"
+					},
+					"id": 2555,
+					"arcs": [[-246]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2564,
+						"name_3": "Sahibganj"
+					},
+					"id": 2564,
+					"arcs": [[-247]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2534,
+						"name_3": "Deori"
+					},
+					"id": 2534,
+					"arcs": [[-248]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2496,
+						"name_3": "Bhawnathpur"
+					},
+					"id": 2496,
+					"arcs": [[-249, -250]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2495,
+						"name_3": "Kharaundhi"
+					},
+					"id": 2495,
+					"arcs": [[-251]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2618,
+						"name_3": "Hariharganj"
+					},
+					"id": 2618,
+					"arcs": [[-252]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2619,
+						"name_3": "Pipra"
+					},
+					"id": 2619,
+					"arcs": [[-253]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2583,
+						"name_3": "Gobindpur"
+					},
+					"id": 2583,
+					"arcs": [[-254]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2732,
+						"name_3": "Khuntpani"
+					},
+					"id": 2732,
+					"arcs": [[-255]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2739,
+						"name_3": "Chaibasa"
+					},
+					"id": 2739,
+					"arcs": [[-256]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2753,
+						"name_3": "Saraikela"
+					},
+					"id": 2753,
+					"arcs": [[-257]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2704,
+						"name_3": "Khunti"
+					},
+					"id": 2704,
+					"arcs": [[-258]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2698,
+						"name_3": "Bundu"
+					},
+					"id": 2698,
+					"arcs": [[-259]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2690,
+						"name_3": "Namkum"
+					},
+					"id": 2690,
+					"arcs": [[-260]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2692,
+						"name_3": "Nagri"
+					},
+					"id": 2692,
+					"arcs": [[-261]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2691,
+						"name_3": "Ratu"
+					},
+					"id": 2691,
+					"arcs": [[-262]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2693,
+						"name_3": "Mandar"
+					},
+					"id": 2693,
+					"arcs": [[-263]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2530,
+						"name_3": "Chandwara"
+					},
+					"id": 2530,
+					"arcs": [[-264]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2588,
+						"name_3": "Nawadih"
+					},
+					"id": 2588,
+					"arcs": [[-265, 4]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2497,
+						"name_3": "Ketar*"
+					},
+					"id": 2497,
+					"arcs": [[-266, 249]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2641,
+						"name_3": "Bariyatu"
+					},
+					"id": 2641,
+					"arcs": [[-267, 93]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2599,
+						"name_3": "Kuru"
+					},
+					"id": 2599,
+					"arcs": [[-268, 63]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2527,
+						"name_3": "Kodarma"
+					},
+					"id": 2527,
+					"arcs": [[-269, 121]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2551,
+						"name_3": "Margo Munda"
+					},
+					"id": 2551,
+					"arcs": [[-270, 129]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2634,
+						"name_3": "Chainpur"
+					},
+					"id": 2634,
+					"arcs": [[-271, 88]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2628,
+						"name_3": "Manatu"
+					},
+					"id": 2628,
+					"arcs": [[-272, 132]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2645,
+						"name_3": "Barhi"
+					},
+					"id": 2645,
+					"arcs": [[-273, 124]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2696,
+						"name_3": "Itki"
+					},
+					"id": 2696,
+					"arcs": [[-274, 56]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2687,
+						"name_3": "Rahe"
+					},
+					"id": 2687,
+					"arcs": [[-275, 24]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2728,
+						"name_3": "Sonua"
+					},
+					"id": 2728,
+					"arcs": [[-276, -277]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2725,
+						"name_3": "Jaldega"
+					},
+					"id": 2725,
+					"arcs": [[-278, 177]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2744,
+						"name_3": "Kumardungi"
+					},
+					"id": 2744,
+					"arcs": [[-279, 161]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2743,
+						"name_3": "Jagannathpur"
+					},
+					"id": 2743,
+					"arcs": [[-280, 159]]
+				}, {
+					"type": "Polygon",
+					"properties": {
+						"id_3": 2733,
+						"name_3": "Goilkera"
+					},
+					"id": 2733,
+					"arcs": [[-281, 34, -282, 276]]
+				}
+			]
+		}
+	},
+	"arcs": [[[5734, 291], [-17, -83], [-47, -46], [-29, -24], [-50, -55], [-109, -77], [-26, -6], [-52, 6], [-102, 28], [-66, 46], [-17, 61], [17, 21], [45, 15], [31, 52], [0, 1], [-55, 46], [-50, -28], [-2, 9], [-10, 52], [0, 92], [38, 113], [17, 25], [66, -144], [50, -16], [111, -33], [38, -31], [76, -40], [72, 9], [30, 4], [41, 3]], [[4910, 214], [-18, 3], [-171, 46], [-190, 208], [-102, -6], [-50, -55], [-78, -85], [-55, -40], [-16, -22], [-19, -36], [0, -1], [-24, -61], [-17, -36], [-92, 0], [-76, 36], [10, 25], [11, 43], [15, 88], [45, 95], [68, 55], [81, 74], [38, 70], [10, 107], [7, 74], [19, 27], [71, 37], [-17, 31], [119, -19], [85, 3], [52, 28], [53, 40], [23, -9], [10, -37], [16, -19], [34, 19], [42, 76], [36, 13], [85, -13], [1, 0], [-3, -6], [3, 6], [63, -39], [12, -28], [7, -24], [7, -62], [-4, -6], [-48, -110], [-59, -61], [-22, -138], [15, -187], [9, -55], [5, -24], [9, -25]], [[5989, 5256], [5, -11], [-9, 0], [-54, 24], [-36, 28], [-26, -7], [-12, -18], [-5, -9], [-2, 9], [-9, 21], [0, 1], [-60, 21], [5, 37], [12, 49], [9, 33], [12, 19], [10, 15], [7, 21], [-7, 16], [7, 15], [38, 37], [31, 27], [26, 0], [23, 25], [29, 6], [14, 0], [43, 11], [0, -14], [21, -61], [24, -65], [0, -3], [28, -110], [3, -3], [-3, -18], [-5, -31], [0, -31], [-37, -27], [-17, -4], [0, 3], [-3, 3], [-9, 15], [-17, 25], [-28, -22], [-8, -27]], [[5807, 5433], [-9, -32], [-12, -49], [-5, -37], [-7, 3], [-47, 3], [-76, 9], [-55, 13], [-23, 3], [0, 18], [-1, 0], [-28, 24], [-38, 28], [-50, 37], [-40, 36], [-14, 52], [29, 44]], [[5431, 5585], [35, -13], [56, -37], [41, -37], [47, 0], [76, -6], [36, -6], [38, -19], [47, -34]], [[6113, 5351], [14, -21], [5, -30], [0, -1], [24, -18], [83, 0], [26, 3], [33, 3], [26, 3], [55, 0], [50, -12], [4, 0], [0, -110], [-16, -95], [-55, -129], [-21, -55], [14, -43], [43, -64], [-26, -101], [-45, -79], [-45, -111], [-53, -85], [-21, -59], [-2, -3], [-50, 37], [-19, 175], [-12, 73], [-92, 116], [0, 1], [-67, 27], [-66, 6], [-24, 19], [-33, 27], [-38, 58], [-17, 61], [10, 98], [33, 55], [36, 83], [-3, 28], [-12, 55], [5, 9], [12, 18], [26, 6], [36, -27], [54, -25], [9, 1], [3, -5], [26, -21], [12, 0], [23, 9], [0, 6], [-4, 24], [17, 5], [38, 27], [0, 31], [4, 30]], [[6434, 5278], [-5, 0], [-50, 12], [-55, 0], [-26, -3], [-33, -3], [-26, -3], [-83, 0], [-24, 19], [-4, 30], [-15, 22], [3, 18], [-3, 3], [-28, 110], [9, 6], [38, 25], [76, 27], [74, 16], [38, 6], [59, 33], [33, 74], [15, 40], [23, 79], [10, 31], [7, 30], [19, -30], [49, -141], [27, -92], [14, -12], [-17, -52], [-50, -64], [-38, -52], [-2, -46], [14, -28], [5, -24], [-26, -31], [-7, -6], [-21, 6]], [[6434, 5278], [21, -6], [40, -9], [64, -19], [31, -9], [10, -18], [11, -25], [10, -15], [38, -46], [28, -34], [43, -64], [17, -52], [-5, -70], [-33, -6], [-38, -49], [-79, -83], [-19, -61], [3, -52], [-10, -117], [3, -98], [-29, -76], [-19, -40], [-66, -83], [-40, -9], [-60, 9], [-47, 10], [-74, 64], [-28, 24], [2, 3], [22, 58], [52, 86], [45, 110], [45, 80], [26, 101], [-43, 64], [-14, 43], [21, 55], [55, 129], [17, 95], [0, 110]], [[6742, 4911], [5, 70], [-17, 52], [-43, 65], [-28, 33], [-38, 46], [-9, 15], [-12, 25], [2, 6], [24, 37], [31, 58], [35, 43], [31, 12], [2, -31], [10, -21], [47, -55], [86, -61], [59, -34], [57, -113], [12, -34], [7, -34], [-14, -9], [-100, -49], [-147, -21]], [[6600, 5217], [-10, 18], [-31, 10], [-64, 18], [-40, 9], [7, 6], [26, 31], [-5, 24], [-14, 28], [3, 46], [38, 52], [49, 64], [17, 52], [28, -25], [62, 13], [52, 27], [48, 13], [64, -98], [-15, -49], [-11, -22], [-50, -49], [-31, -12], [-31, -12], [-36, -43], [-30, -58], [-24, -37], [-2, -6]], [[6085, 5483], [0, 3], [-24, 65], [-21, 61], [0, 14], [5, 1], [-1, 0], [-4, -1], [-3, 200], [3, 9], [19, 77], [5, 9], [42, 34], [88, 3], [81, -13], [59, 3], [40, -27], [52, -40], [31, -15], [7, -12], [3, -3], [-7, -31], [-10, -31], [-24, -79], [-14, -40], [-33, -73], [-59, -34], [-38, -6], [-74, -15], [-76, -28], [-38, -25], [-9, -6]], [[5568, 5946], [-3, -3], [-47, -56], [-31, -73], [-24, -95], [-14, -110], [-17, -22], [-30, -45], [-45, -10], [-7, 98], [-31, 95], [-22, 89], [-42, 64], [-43, 43], [-55, -6], [-49, 58], [-1, 0], [-40, 31], [-28, -3], [-3, -3], [-38, 21], [-5, 4], [29, 30], [0, 18], [5, 15], [24, 28], [9, 31], [-2, 27], [-10, 31], [-12, 21], [-4, 25], [14, 36], [13, 39], [1, -2], [9, -3], [0, -9], [38, -55], [83, 21], [38, -15], [38, -52], [34, -40], [40, 9], [45, 25], [17, -43], [54, -34], [19, -15], [10, -58], [42, -25], [22, -61], [19, -21]], [[5059, 6324], [-13, -39], [-15, -36], [5, -25], [12, -21], [10, -31], [2, -27], [-10, -31], [-23, -28], [-5, -15], [0, -18], [-29, -30], [-9, 5], [-1, -1], [-4, 4], [3, -4], [-24, -20], [-45, -58], [-36, -98], [-7, -39], [-14, 17], [-17, 19], [-11, 12], [7, 33], [28, 46], [-7, 56], [0, 27], [33, 49], [-7, 61], [-40, 7], [-22, 0], [-16, 24], [5, 64], [0, 28], [16, 52], [0, 12], [10, 15], [0, 1], [-12, 0], [-10, 9], [5, 30], [-9, 16], [-41, -16], [-5, -3], [-14, 19], [-12, -6], [-4, 15], [-20, 8], [5, 4], [10, 21], [2, 25], [0, 27], [34, 22], [18, 12], [1, 0], [25, 27], [36, -33], [62, -55], [45, -25], [14, -12], [24, -18], [26, -19], [44, -59]], [[4713, 6407], [20, -8], [4, -16], [12, 6], [14, -18], [1, 0], [4, 3], [40, 15], [10, -15], [-5, -30], [0, -1], [10, -9], [11, 0], [-9, -15], [0, -12], [-17, -52], [0, -28], [-4, -64], [16, -25], [22, 0], [40, -6], [7, -61], [-33, -49], [0, -27], [7, -56], [-28, -45], [-7, -34], [-3, 3], [-12, -9], [-5, -3], [-4, -9], [-14, -3], [-12, -10], [-12, 6], [-5, 13], [0, 21], [-12, 18], [0, 16], [-4, 21], [-8, 12], [-7, 13], [-7, 12], [-1, 3], [1, 2], [-1, -1], [-8, 20], [0, 40], [-7, 15], [2, 19], [12, 21], [-10, 22], [-4, 24], [0, 25], [-3, 6], [3, 0], [-5, 0], [2, 15], [-19, 28], [-2, 24], [-24, 40], [-2, 61], [5, 28], [11, 21], [40, 33]], [[4808, 6546], [-26, -28], [-19, -12], [-33, -21], [0, -1], [0, -27], [-2, -25], [-10, -21], [-5, -4], [-1, 0], [1, 0], [-40, -33], [-12, -21], [-4, -28], [2, -61], [24, -40], [2, -24], [19, -28], [-2, -15], [-26, 0], [-48, 9], [-33, 3], [-36, 0], [-30, 6], [-26, 9], [-29, 13], [-28, 6], [-36, 15], [-23, 3], [-1, 3], [-4, 16], [-43, 52], [-64, 70], [-45, 95], [28, 79], [55, 52], [12, 19], [12, 24], [0, 3], [47, -30], [64, 6], [109, 30], [69, 34], [14, 9], [12, 22], [2, 6], [0, 6], [12, -6], [29, -55], [33, -40], [54, -46], [26, -24]], [[4387, 6221], [23, -3], [36, -15], [28, -7], [28, -12], [27, -9], [30, -6], [36, 0], [33, -3], [48, -9], [28, 0], [2, -6], [0, -25], [5, -24], [10, -22], [-12, -21], [-3, -19], [8, -15], [0, -40], [8, -21], [-25, -40], [-38, -40], [-38, -46], [-59, -61], [-48, -21], [-19, -9], [-18, -17], [0, 1], [-1, 0], [-35, -15], [-55, 18], [-28, 13], [-2, 6], [14, 52], [9, 64], [19, 98], [-9, 52], [-7, 80], [3, 15], [1, 0], [0, -1], [0, 1], [-1, 1], [8, 42], [3, 24], [-9, 40]], [[4477, 5729], [18, 17], [19, 10], [48, 21], [59, 61], [38, 46], [38, 40], [25, 40], [1, -3], [7, -12], [7, -13], [7, -12], [5, -21], [0, -16], [12, -18], [0, -21], [5, -13], [12, -6], [12, 9], [14, 3], [5, 10], [4, 3], [12, 9], [2, -3], [1, 0], [11, -13], [17, -18], [14, -18], [-12, -58], [-33, -74], [-38, -49], [-78, -70], [-90, -74], [-50, -39], [0, -1], [8, -12], [-70, -12], [-21, 31], [-31, 18], [22, 64], [2, 104], [-2, 90]], [[4455, 5471], [31, -18], [21, -31], [70, 12], [32, -46], [24, -36], [-50, -83], [-17, -18], [-4, -68], [0, -58], [-50, -12], [-33, -34], [-33, 22], [-57, 24], [-57, 34], [-12, 9], [0, 34], [14, 21], [14, 43], [24, 82], [31, 65], [52, 58]], [[5036, 5998], [-26, -40], [-28, -55], [-17, -68], [-45, -150], [-47, -70], [-1, 0], [-14, -119], [0, -1], [64, -33], [67, -9], [-5, -46], [-40, -46], [-12, -28], [-10, -43], [-12, -49], [-9, -64], [-10, -46], [-16, -70], [-19, 6], [-62, 34], [-35, 24], [-71, 22], [-60, -22], [-59, 3], [-7, -3], [0, 58], [5, 67], [16, 19], [50, 83], [-24, 36], [-31, 46], [1, 0], [-1, 0], [-9, 12], [50, 40], [90, 74], [78, 70], [38, 49], [33, 74], [12, 58], [7, 40], [36, 98], [45, 58], [25, 20], [6, -8], [4, 4], [5, -4], [38, -21]], [[4875, 5061], [-12, -49], [24, -98], [13, 0], [-13, -37], [7, -55], [0, -15], [-19, -28], [38, -64], [-31, -12], [-38, 12], [-21, -43], [-5, -18], [-40, 9], [-41, 55], [-52, 18], [0, 12], [-4, 28], [-27, 61], [-40, 71], [-52, 85], [-55, 65], [-28, 21], [33, 34], [50, 12], [7, 3], [59, -3], [60, 21], [71, -21], [35, -25], [62, -33], [19, -6]], [[4894, 4806], [0, -2], [0, -1], [5, -6], [14, 0], [40, -39], [52, -43], [10, -19], [59, 19], [5, 0], [0, -1], [-12, -14], [-14, -34], [-22, -107], [-11, -98], [-9, -54], [-24, 14], [-48, 52], [-28, 25], [-17, 12], [-40, 79], [-22, 62], [-14, 3], [5, 18], [21, 43], [38, -13], [31, 13], [-38, 64], [19, 27]], [[5079, 4714], [0, 1], [-5, 0], [-59, -18], [-9, 18], [-1, 0], [-52, 43], [-40, 40], [-14, 0], [-5, 6], [0, 18], [-7, 55], [13, 37], [56, 3], [52, 43], [57, 21], [66, 24], [-2, -51], [-3, -71], [-4, -49], [-15, -85], [-28, -35]], [[4685, 4736], [52, -18], [41, -55], [40, -9], [0, -1], [0, 1], [14, -4], [22, -61], [40, -79], [16, -13], [-19, -39], [-23, -40], [-52, -55], [-69, -43], [-64, -15], [-62, -3], [-45, -3], [-5, -3], [3, 12], [-29, 43], [-45, 49], [-35, 33], [-83, 77], [-62, 101], [-2, 76], [9, 77], [2, 21], [71, -46], [1, 0], [87, 12], [64, 31], [50, -21], [62, -19], [21, -6]], [[4751, 3891], [-18, 31], [-53, 49], [-56, 37], [-36, 58], [14, 21], [43, 34], [-48, 43], [-45, 40], [-16, 6], [2, 3], [31, 49], [2, 33], [5, 3], [45, 3], [62, 3], [64, 16], [69, 43], [52, 55], [24, 40], [19, 39], [28, -24], [47, -52], [25, -15], [0, -1], [2, 0], [52, -27], [59, -31], [21, 13], [2, 0], [3, -34], [17, -15], [14, -74], [0, -40], [-21, -64], [-41, -67], [-10, -12], [-1, 1], [-1, 0], [1, 0], [1, -1], [-49, -56], [-26, -36], [-50, -16], [-26, -30], [-64, -3], [-29, -6], [-59, 0], [-54, -16]], [[4752, 3891], [-1, 0]], [[4984, 3677], [59, 40], [27, 27], [14, 0], [21, 40], [26, 31], [31, 51], [0, -8], [0, -1], [47, -6], [36, 0], [43, -24], [69, -6], [37, -28], [1, 0], [61, 9], [2, -30], [36, -141], [47, -80], [1, 0], [7, -3], [-3, -3], [-47, -49], [-20, -24], [-3, 3], [3, -3], [-42, -49], [-50, -46], [-28, -34], [-10, 6], [-16, 16], [-24, 39], [-14, 46], [-48, 46], [-57, 16], [-68, -6], [-29, -3], [-42, -4], [-19, 10], [-12, 76], [-36, 92]], [[5455, 3802], [-60, -9], [-38, 28], [-69, 6], [-43, 25], [-36, 0], [-45, 5], [12, 0], [0, 1], [-14, 0], [0, 9], [0, 70], [-12, 58], [-5, 3], [-9, 25], [-27, 31], [10, 12], [41, 67], [21, 64], [0, 40], [-14, 74], [-17, 15], [-3, 35], [48, 26], [33, 6], [29, -15], [83, -28], [76, -21], [73, -12], [29, -6], [9, -4], [5, -45], [-2, -71], [-34, -131], [-30, -92], [-17, -114], [5, -33], [1, -19]], [[5359, 3343], [-19, -21], [-5, -123], [7, -67], [62, -113], [24, -49], [28, -101], [33, -150], [-16, -110], [-14, 3], [-27, 3], [-47, 3], [-33, 43], [-71, 42], [-100, 52], [-83, 95], [-40, -27], [-43, 6], [-40, -28], [-38, -42], [-57, 30], [-50, -43], [-5, -20], [0, 5], [-2, 55], [0, 73], [33, 135], [33, 43], [36, 27], [26, 34], [-19, 89], [-26, 77], [9, 39], [19, 43], [10, 37], [33, -6], [43, 27], [50, 37], [9, 34], [14, 27], [29, 3], [68, 6], [57, -15], [48, -46], [14, -46], [24, -39], [0, -1], [16, -15], [10, -6]], [[4825, 2725], [-14, -71], [5, -95], [-60, -15], [-45, 19], [-38, -65], [12, -21], [21, -34], [-75, -37], [-15, -12], [-61, 15], [-69, 40], [-52, 37], [-69, 43], [-28, 39], [2, 0], [0, 1], [14, 36], [26, 77], [43, 98], [14, 119], [22, 55], [54, 16], [40, 33], [45, 37], [3, 28], [-14, 18], [45, 3], [45, 3], [42, 28], [17, 58], [-9, 67], [-57, 52], [-19, 37], [-5, 30], [12, -3], [50, 28], [30, 24], [57, -61], [81, 19], [66, 12], [3, 0], [-10, -37], [-19, -43], [-9, -39], [26, -77], [19, -89], [-26, -33], [-36, -28], [-33, -43], [-33, -135], [0, -73], [2, -55], [0, -6]], [[4336, 2568], [29, -39], [69, -43], [52, -37], [69, -40], [61, -15], [15, 12], [4, -9], [12, -9], [43, -19], [83, -36], [43, -58], [2, -55], [-24, -89], [-31, -110], [0, -3], [-33, -28], [-57, 34], [-57, 18], [-106, 9], [-74, 9], [-45, 120], [-26, 46], [-81, 15], [-80, -49], [-26, -9], [-1, 0], [1, 0], [-8, -3], [-30, 30], [-57, 62], [-62, 30], [-76, -36], [-57, -34], [-104, 0], [7, 61], [2, 92], [14, 18], [29, 37], [17, 12], [64, -9], [90, 27], [2, 0], [64, 40], [41, 65], [206, 15], [16, -22]], [[3807, 2403], [-14, -18], [-2, -92], [-7, -61], [-5, -64], [-40, -144], [-29, -92], [-17, -46], [-4, -70], [0, -1], [0, -3], [-24, -82], [-2, 0], [-14, 15], [-43, 126], [9, 119], [19, 150], [7, 122], [-16, 83], [-33, 52], [-67, 43], [-33, 22], [-21, 82], [57, 12], [42, 37], [67, 86], [54, 79], [41, 43], [35, 9], [28, -21], [8, -92], [-62, -70], [21, -52], [29, -31], [14, -37], [-14, -52], [4, -30], [8, -19], [4, -3]], [[3525, 2440], [66, -43], [34, -52], [16, -83], [-7, -122], [-19, -150], [-9, -119], [0, -1], [42, -125], [15, -15], [16, 0], [3, -10], [9, -39], [-19, -89], [-14, -52], [-14, -58], [-105, -3], [-61, -16], [-17, 25], [-19, 34], [-31, 70], [-31, 52], [-35, 52], [-57, 58], [-36, 31], [-2, 12], [-12, 37], [-2, 40], [14, 70], [7, 116], [-5, 111], [-21, 55], [-12, 18], [31, 15], [14, -24], [14, -9], [43, 18], [76, 70], [104, 83], [24, 43]], [[3644, 1482], [14, 58], [14, 52], [19, 89], [-9, 40], [-3, 9], [-14, 0], [24, 82], [0, 3], [59, 3], [81, -9], [38, 0], [159, -61], [33, 0], [-33, -27], [-17, -13], [-7, -15], [-7, -28], [-5, -3], [-9, -91], [0, -1], [18, -30], [12, -43], [19, -58], [-23, -28], [-31, -39], [-45, -28], [0, -18], [-24, -19], [-24, -36], [0, -1], [14, -27], [-30, -18], [-43, -10], [-36, -39], [-40, -22], [0, 141], [-42, 193], [-1, 0], [-61, -6]], [[4415, 1044], [21, -43], [19, -49], [2, -52], [-35, -15], [-62, 6], [17, -31], [-71, -36], [-19, -28], [-8, -74], [-9, -107], [-38, -70], [-81, -74], [-68, -55], [-46, -95], [-14, -88], [-12, -43], [-9, -25], [-66, 31], [-287, 76], [-57, 101], [102, 355], [38, 77], [14, 52], [2, 172], [0, 125], [40, 21], [1, 0], [35, 40], [43, 9], [31, 19], [-15, 27], [24, 37], [24, 18], [0, 1], [0, 18], [45, 27], [31, 40], [23, 28], [1, 0], [-19, 58], [49, -31], [24, -64], [66, -95], [-12, -76], [-14, -58], [-26, -56], [-9, -52], [38, -24], [49, 0], [38, -28], [38, -58], [43, 58], [55, 43], [64, -12]], [[4415, 1044], [0, 0]], [[4178, 2182], [18, -27], [0, -46], [-16, -9], [16, -40], [0, -45], [-9, -7], [26, -49], [12, -36], [-59, -43], [0, -68], [-3, -21], [26, -15], [0, -25], [-73, -64], [-67, 9], [-54, -30], [5, 15], [-1, 0], [-3, -12], [6, 24], [7, 15], [17, 12], [33, 28], [-33, 0], [-159, 61], [-38, 0], [-81, 10], [-59, -3], [5, 70], [16, 46], [29, 92], [40, 143], [5, 65], [104, 0], [57, 33], [76, 37], [62, -31], [56, -61], [31, -30], [8, 2]], [[4009, 2471], [-2, 0], [-90, -28], [-64, 9], [-1, 0], [-16, -12], [-29, -37], [-4, 3], [-7, 19], [-5, 30], [14, 52], [-14, 37], [-29, 31], [-21, 52], [62, 70], [-7, 92], [-29, 22], [-36, -10], [-40, -43], [-54, -79], [-67, -86], [-43, -37], [-56, -12], [-3, 12], [-2, 150], [24, 160], [-12, 58], [61, 46], [29, 24], [64, 28], [54, 9], [34, 15], [31, 34], [66, 15], [74, 49], [30, 37], [31, -19], [45, -42], [26, -25], [-26, -18], [-38, -18], [0, -1], [14, -27], [15, -43], [23, -70], [48, -74], [-17, -119], [-14, -120], [-17, -79], [-2, -34], [0, -21]], [[4631, 2406], [76, 37], [37, -3], [60, -3], [57, 3], [61, 9], [57, 6], [48, -9], [52, -49], [43, -55], [2, -9], [-10, -12], [-28, -46], [-12, -40], [0, -113], [0, -10], [-24, -79], [-23, -77], [33, -73], [-43, -37], [-33, -34], [-50, -61], [-35, -98], [-19, -27], [-3, -6], [-2, 0], [-55, 39], [-35, 43], [-31, 15], [33, 31], [-20, -19], [23, 22], [21, 162], [-33, 77], [-14, 31], [30, 110], [24, 89], [-2, 55], [-43, 58], [-83, 37], [-43, 18], [-12, 9], [-4, 9]], [[3470, 2544], [22, -83], [33, -21], [-24, -43], [-104, -82], [-76, -71], [-43, -18], [-14, 9], [-14, 24], [-9, 22], [-22, 21], [-14, 13], [7, 30], [26, 28], [31, 18], [2, 28], [-21, 30], [-43, 43], [-9, 77], [2, 94], [17, 111], [35, 116], [-4, 55], [-15, 77], [-9, 46], [5, 52], [40, 18], [14, 15], [7, 6], [26, -52], [34, -15], [26, -34], [4, -3], [31, -27], [57, -40], [10, -64], [11, -58], [-23, -160], [2, -150], [2, -12]], [[4707, 2443], [-22, 34], [-12, 21], [38, 64], [45, -18], [60, 15], [-5, 95], [14, 71], [5, 21], [50, 43], [57, -31], [38, 43], [40, 28], [43, -6], [40, 27], [83, -95], [100, -52], [71, -43], [33, -43], [47, -3], [-7, -39], [-31, -46], [-59, -31], [-14, -30], [0, -1], [31, -76], [-5, -43], [-47, -18], [-36, -31], [-45, -46], [-45, 13], [-33, 33], [-17, 34], [-2, 9], [-43, 55], [-52, 49], [-48, 9], [-57, -6], [-61, -9], [-57, -3], [-60, 3], [-37, 3]], [[4336, 2569], [-16, 21], [-207, -15], [-40, -64], [-64, -40], [0, 21], [3, 34], [16, 79], [14, 120], [17, 119], [-47, 74], [-24, 70], [-14, 43], [-15, 27], [38, 19], [26, 18], [-26, 25], [-45, 43], [-31, 18], [29, 33], [43, 37], [21, 12], [0, 1], [7, 30], [-2, 3], [30, 6], [55, -33], [40, -34], [41, -49], [35, -70], [19, -40], [7, -19], [38, -12], [33, 12], [1, 0], [11, 43], [17, 52], [59, 49], [55, 25], [40, -6], [0, -43], [26, -74], [48, -18], [11, 0], [15, -18], [-3, -28], [-45, -37], [-40, -33], [-55, -16], [-21, -55], [-14, -119], [-43, -98], [-26, -77], [-14, -36], [-3, 0]], [[5433, 2614], [25, -3], [12, -21], [53, -31], [42, -9], [0, -12], [-5, -49], [-11, -67], [-3, -40], [-31, -67], [-49, -65], [-34, -18], [0, -15], [-40, -10], [-54, 7], [-93, -40], [-76, -40], [-69, -9], [-26, -3], [0, 113], [12, 40], [29, 46], [9, 12], [17, -34], [33, -34], [45, -12], [45, 46], [36, 31], [47, 18], [5, 43], [-31, 77], [14, 30], [60, 31], [30, 46], [8, 39]], [[5459, 2611], [14, -3], [16, 111], [-33, 150], [-28, 101], [26, 15], [2, 3], [29, 18], [52, -12], [52, 0], [36, 6], [16, 6], [64, 13], [38, 24], [29, 9], [12, 34], [7, 0], [16, -3], [55, -12], [59, -31], [-24, -76], [0, -1], [24, -58], [67, -37], [73, -24], [64, -70], [55, -86], [9, -9], [-5, -43], [-19, -89], [-42, -55], [-10, 9], [-7, 49], [-14, 52], [-62, 46], [-50, 16], [-68, 21], [-76, -9], [-83, -61], [-53, -40], [-7, -3], [-35, -9], [-74, -19], [-19, 6], [-42, 10], [-53, 30], [-11, 21]], [[5792, 3086], [3, 0], [1, 0], [-8, 95], [-11, 46], [-1, 0], [-5, -7], [13, 19], [26, 21], [57, -30], [64, 21], [40, 43], [23, 51], [79, -63], [88, -123], [173, -73], [-7, -9], [-67, -64], [-35, -25], [-26, -67], [7, -132], [-17, -110], [-9, 9], [-55, 86], [-64, 70], [-73, 25], [-67, 36], [-23, 59], [23, 76], [-59, 31], [-55, 12], [-15, 3]], [[5994, 3345], [-23, -51], [-40, -43], [-64, -21], [-57, 31], [-27, -22], [-14, -21], [-52, 15], [-38, 77], [-92, 24], [2, 49], [-45, 28], [-17, 27], [-9, 0], [-39, 34], [20, 24], [47, 49], [3, 3], [71, -34], [83, 19], [109, -46], [26, -34], [31, -40], [116, -61], [9, -7]], [[5479, 3472], [39, -34], [9, 0], [17, -28], [45, -27], [-2, -49], [92, -25], [38, -76], [52, -15], [7, 9], [12, -46], [7, -95], [-11, 0], [-1, 0], [-11, -34], [-29, -9], [-38, -24], [-64, -12], [-16, -7], [-36, -6], [-52, 0], [-52, 13], [-29, -19], [-2, -3], [-26, -15], [-24, 49], [-62, 113], [-7, 67], [5, 123], [19, 21], [28, 34], [50, 46], [42, 49]], [[6123, 2492], [-12, -12], [-40, -77], [-1, 0], [-11, -89], [0, -101], [-10, -91], [0, -6], [-19, 21], [-54, 61], [-43, 37], [-59, 0], [-38, -31], [-74, -61], [-21, -3], [-31, 55], [-7, 70], [12, 74], [26, 43], [57, 40], [12, 12], [-31, 28], [-45, 36], [-38, 65], [-2, 9], [7, 3], [52, 39], [83, 62], [76, 9], [68, -22], [50, -15], [62, -46], [14, -52], [7, -49], [10, -9]], [[6049, 2115], [0, -55], [-9, -55], [-3, -15], [-26, -83], [-33, -70], [-57, -83], [-38, -43], [-33, -39], [-12, -16], [-2, 0], [-7, 0], [-5, -18], [-67, -52], [-40, -34], [-43, -55], [-9, 6], [-31, 22], [-52, 55], [-7, 9], [-43, 73], [-7, 117], [19, 61], [12, 33], [54, -3], [67, 22], [9, 58], [12, 119], [38, 49], [5, 22], [21, 3], [74, 61], [38, 31], [59, 0], [43, -37], [54, -61], [19, -22]], [[5838, 1656], [12, 16], [33, 39], [38, 43], [57, 83], [33, 70], [26, 83], [3, 15], [23, -15], [1, 0], [97, 33], [0, 1], [64, 52], [76, 55], [45, 39], [35, 46], [74, 28], [66, -49], [55, -18], [0, -37], [14, -98], [-17, -76], [-4, -4], [-26, -18], [-22, -86], [10, -101], [7, -67], [-14, -58], [-7, -25], [-76, -52], [-50, -58], [-22, -76], [0, -1], [-9, -101], [-10, -39], [-9, -58], [-43, 52], [-92, 76], [-97, 77], [-57, 21], [-64, 9], [-74, 114], [-59, 82], [-17, 3]], [[6040, 2005], [9, 55], [0, 62], [10, 91], [0, 101], [12, 89], [40, 77], [12, 12], [43, 55], [19, 89], [37, -46], [57, -43], [71, -49], [57, -26], [0, -2], [0, 2], [17, -8], [64, -24], [36, -9], [47, -13], [52, -21], [57, -21], [33, -7], [17, -3], [14, -6], [26, -43], [0, -2], [-38, -46], [-75, -71], [-67, -27], [-14, 6], [-55, 18], [-66, 49], [-74, -27], [-35, -46], [-45, -40], [-76, -55], [-64, -52], [-98, -34], [-23, 15]], [[6185, 2636], [4, 43], [17, 110], [-7, 132], [26, 67], [35, 24], [67, 65], [7, 9], [5, -3], [28, 0], [67, -3], [102, -6], [80, -16], [-21, -39], [2, -40], [-2, -12], [-38, -13], [0, -30], [12, -58], [-17, -58], [-54, -7], [9, -76], [21, -64], [-54, -7], [-36, -39], [-16, -43], [-15, -100], [-56, 26], [-72, 49], [-57, 43], [-37, 46]], [[6407, 2472], [15, 100], [16, 42], [36, 40], [54, 6], [1, 0], [-22, 65], [-9, 76], [54, 6], [17, 59], [-12, 58], [0, 30], [38, 12], [0, 1], [2, 12], [-2, 40], [21, 39], [43, -9], [95, 6], [61, -6], [83, -18], [24, -34], [-92, -70], [-64, -101], [42, -110], [-76, -108], [-38, -168], [50, -79], [-14, 6], [-17, 3], [-33, 6], [-57, 21], [-52, 22], [-47, 12], [-36, 9], [-64, 25], [-17, 7]], [[3478, 2924], [-10, 64], [-57, 40], [-31, 27], [-4, 3], [33, 16], [21, 9], [31, 15], [43, 31], [38, 64], [24, 74], [19, 70], [28, 52], [40, 58], [19, 61], [0, 129], [12, 40], [21, 30], [41, 43], [2, 0], [38, -3], [64, 12], [43, 28], [16, 24], [31, -27], [33, -15], [41, 0], [2, -31], [7, -52], [41, -83], [4, -9], [7, -46], [-23, -73], [-36, -46], [-12, -58], [14, -74], [3, -3], [-7, -30], [-22, -13], [-42, -36], [-29, -34], [-31, -37], [-73, -49], [-67, -15], [-30, -34], [-34, -15], [-54, -9], [-64, -28], [-29, -24], [-61, -46]], [[3376, 3059], [-26, 33], [-34, 16], [-26, 52], [-9, 15], [-5, 119], [17, 138], [23, 52], [31, 92], [12, 76], [-5, 34], [29, 6], [54, -12], [76, 21], [55, 77], [54, 79], [19, 22], [41, -43], [33, -49], [31, -37], [-41, -42], [-21, -31], [-12, -40], [0, -128], [-19, -62], [-40, -58], [-29, -52], [-19, -70], [-23, -74], [-38, -64], [-43, -31], [-31, -15], [-21, -9], [-33, -15]], [[3354, 3686], [5, -34], [-12, -76], [-31, -92], [-23, -52], [-17, -138], [5, -119], [9, -15], [-7, -7], [-14, -15], [-40, -18], [-55, -25], [-38, 19], [-24, 67], [3, 12], [2, 80], [17, 156], [-3, 95], [-4, 107], [-3, 107], [3, 95], [21, 52], [-5, 15], [17, 6], [66, 28], [3, -3], [42, -15], [38, 42], [17, -137], [19, -77], [9, -58]], [[3682, 3836], [-41, 43], [-19, -21], [-54, -80], [-55, -77], [-76, -21], [-54, 12], [-29, -6], [-9, 58], [-19, 77], [-17, 138], [31, 39], [7, 120], [6, 59], [1, 5], [3, 34], [-3, 18], [34, 0], [38, 6], [23, 22], [50, -19], [33, -24], [52, -40], [60, -15], [52, -28], [10, 0], [-15, -37], [0, -42], [0, -1], [12, -27], [-12, -21], [-9, -31], [11, -22], [0, -21], [-9, -31], [0, -24], [2, -34]], [[3686, 3845], [-4, -9]], [[3228, 3931], [-2, 3], [-66, -27], [-17, -6], [-54, -22], [-50, 9], [-36, 37], [-38, 37], [-54, 9], [-60, -25], [-76, -24], [-61, 12], [-12, 3], [-59, 12], [-62, 68], [-43, 27], [-40, 43], [-24, 15], [17, 10], [16, 21], [27, 0], [-17, 19], [-38, 88], [14, 28], [78, 3], [1, 0], [32, 30], [31, -49], [36, -30], [33, 0], [64, 107], [38, 43], [3, -6], [21, -83], [64, -40], [48, -17], [-1, -1], [1, 0], [0, 1], [21, -7], [64, -25], [31, -6], [35, -9], [69, -28], [50, -33], [14, -52], [-2, -98], [4, -37]], [[2806, 4372], [-38, -43], [-64, -107], [-33, 0], [-35, 31], [-32, 49], [3, 2], [0, 1], [0, 24], [-28, 28], [-5, 21], [21, 12], [21, -18], [1, 0], [42, 3], [7, 43], [-35, 46], [-26, 46], [0, 58], [26, 55], [5, 49], [-29, 141], [19, 30], [5, 43], [57, 55], [2, 150], [-2, -2], [47, 67], [12, 12], [17, 15], [42, -18], [57, -49], [-7, -61], [-2, -25], [23, -294], [-16, -98], [-50, -251], [-7, -9], [2, -6]], [[2685, 5085], [0, -3], [0, 3], [5, 6], [-2, -150], [-57, -55], [-5, -43], [-19, -30], [28, -141], [-4, -49], [-26, -55], [0, -58], [26, -46], [35, -46], [-7, -43], [-42, -3], [-22, 18], [-21, -12], [4, -21], [1, -1], [28, -27], [0, -24], [-3, -3], [-1, 2], [0, -1], [1, -1], [-33, -31], [-78, -3], [-14, -28], [38, -89], [16, -18], [-26, 0], [-16, -21], [-17, -9], [-9, 6], [-41, -28], [-30, 3], [-38, 52], [-7, 28], [-15, 55], [5, 76], [10, 37], [23, 49], [10, 95], [5, 101], [-3, 9], [-12, 68], [-31, 91], [-45, 59], [-54, 52], [-48, 64], [-7, 73], [24, -15], [64, 55], [5, 3], [102, 37], [57, 34], [31, 58], [30, 12], [43, -21], [126, -89], [16, 18]], [[2714, 3934], [61, -12], [1, 0], [75, 24], [60, 25], [54, -10], [38, -36], [36, -37], [50, -9], [54, 21], [5, -15], [-22, -52], [-2, -95], [2, -107], [5, -107], [3, -95], [-17, -156], [-2, -80], [-3, -3], [-59, -3], [-43, -34], [-21, -55], [0, -6], [-19, -18], [-19, 18], [-31, 68], [-33, 91], [-55, 98], [-54, 98], [-7, 19], [2, 3], [41, 82], [23, 175], [-19, 24], [-47, 28], [-57, 156]], [[3309, 3959], [-38, -43], [-42, 15], [-5, 37], [2, 98], [-14, 52], [-50, 34], [-69, 27], [-34, 9], [1, 0], [-2, 0], [5, 31], [11, 6], [3, 0], [47, 6], [10, 0], [23, 24], [1, 0], [2, 7], [9, 3], [12, 21], [7, 6], [19, 15], [47, 0], [-28, -27], [2, -18], [-14, -19], [-2, -33], [0, -1], [57, -45], [33, -4], [0, 1], [51, 20], [0, -4], [-1, -4], [1, 2], [-6, -57], [-7, -120], [-31, -39]], [[3409, 4534], [23, -67], [-45, -107], [-42, -40], [0, -3], [2, -43], [7, -40], [3, -18], [-4, -34], [-51, -21], [-33, 3], [-57, 46], [2, 33], [15, 19], [-3, 18], [29, 27], [0, 1], [-48, 0], [-19, -16], [-7, -6], [-12, -21], [-9, -3], [-3, -6], [-23, -25], [-10, 0], [-47, -6], [-3, 0], [-12, -6], [-4, -31], [-31, 6], [-64, 25], [-21, 7], [21, 36], [-5, 24], [-16, 19], [-29, 58], [5, 15], [12, 12], [28, 3], [7, 6], [76, 0], [26, 40], [-2, 40], [52, 21], [62, -55], [47, 31], [33, -3], [15, -15], [0, -1], [0, 1], [0, 33], [14, 22], [28, -28], [50, -3], [43, 49], [0, 3]], [[3409, 4534], [0, 0]], [[3065, 4479], [2, -40], [-26, -39], [-76, 0], [-7, -7], [-28, -3], [-12, -12], [-5, -15], [28, -59], [17, -18], [5, -24], [-21, -36], [-48, 17], [-64, 40], [-21, 83], [-5, 12], [7, 9], [50, 251], [57, 6], [47, -15], [41, -40], [59, -101], [0, -9]], [[2348, 4163], [7, -27], [1, 0], [37, -52], [1, 0], [30, -3], [41, 27], [33, -21], [40, -43], [43, -27], [62, -68], [59, -12], [12, -3], [57, -156], [47, -28], [19, -24], [-24, -175], [-40, -82], [-2, -3], [-50, -28], [-57, 28], [-59, 33], [-83, 49], [-64, 55], [-15, 52], [15, 37], [-24, 13], [-74, 3], [-38, -6], [-28, 0], [0, 2], [0, 1], [-17, 18], [-35, -12], [-45, -25], [-74, -27], [-50, 0], [-57, 52], [-38, 76], [-4, 46], [2, 18], [45, 0], [62, 9], [52, 13], [43, 21], [35, 89], [36, 83], [57, 67], [42, 30]], [[2384, 4586], [2, -9], [-4, -101], [-10, -95], [-24, -49], [-9, -37], [-5, -76], [14, -55], [-42, -31], [-57, -67], [-36, -83], [-35, -89], [-43, -21], [-52, -12], [-62, -9], [-71, 0], [-45, 12], [-26, -3], [-7, 46], [2, 39], [-31, 65], [-23, 76], [-19, 49], [33, 0], [40, 18], [40, 56], [10, 140], [14, 86], [21, 49], [10, 15], [107, 141], [-5, 92], [33, 31], [10, 64], [12, 58], [9, 40], [33, 49], [19, 18], [7, -73], [48, -64], [54, -53], [45, -58], [31, -91], [12, -68]], [[1969, 4500], [-10, -15], [-21, -49], [-14, -86], [-10, -140], [-40, -55], [-40, -19], [-34, 0], [-56, 6], [-69, 7], [-199, -16], [-12, 46], [-17, 31], [-36, 15], [-33, -28], [-31, -48], [-7, 45], [-14, 71], [-16, 156], [0, 122], [26, 110], [54, 59], [14, 85], [-7, 68], [5, 24], [28, -6], [34, -6], [54, 6], [67, 3], [28, -9], [55, -61], [28, -52], [24, -19], [52, 31], [66, 37], [48, -37], [38, -74], [12, -97], [23, -71], [10, -34]], [[1476, 4133], [199, 15], [68, -6], [0, -46], [12, -36], [43, -95], [26, -89], [2, -49], [-2, -52], [-33, -80], [-43, -27], [-26, -6], [31, -108], [19, -82], [0, -49], [-7, -3], [-24, -77], [-35, -3], [-27, -46], [-21, 9], [-62, -70], [-4, 40], [-55, 58], [-47, 28], [-24, 49], [-26, 113], [-7, 131], [-3, 108], [17, 76], [29, 123], [2, 27], [5, 116], [-7, 31]], [[1597, 3231], [2, -10], [-2, 12], [61, 70], [21, -9], [1, 0], [26, 46], [35, 3], [24, 77], [7, 3], [0, -3], [0, 2], [31, -57], [0, -1], [69, -58], [71, -70], [35, -67], [3, -22], [4, -33], [0, -53], [5, -30], [0, -18], [-31, -6], [-90, 39], [-40, 0], [-24, -9], [-21, 22], [-10, 42], [-47, 37], [-24, -21], [-33, -55], [-45, -22], [-21, 132], [-7, 59]], [[1744, 4142], [56, -6], [19, -49], [24, -76], [31, -65], [-2, -39], [0, -1], [7, -45], [0, -1], [26, 4], [45, -13], [26, 0], [-2, -18], [4, -46], [38, -77], [57, -52], [50, 0], [74, 28], [45, 24], [35, 13], [17, -19], [0, -3], [-3, -79], [8, -55], [-3, -62], [41, -67], [18, -104], [-2, -67], [2, -89], [0, -15], [-92, 49], [-40, 30], [-43, 13], [-38, 3], [-45, 15], [-33, -12], [-10, -80], [-35, -21], [-34, -13], [-4, 0], [-3, 22], [-35, 67], [-71, 71], [-69, 58], [-31, 58], [0, 49], [-19, 82], [-31, 107], [26, 7], [43, 27], [33, 80], [3, 52], [-3, 49], [-26, 89], [-43, 95], [-11, 36], [0, 46]], [[3354, 4234], [-7, 40], [-2, 43], [0, 3], [43, 40], [45, 107], [-45, 131], [0, 1], [-53, 39], [-28, 49], [-31, 52], [45, 34], [40, 15], [1, 0], [35, 46], [5, 46], [28, -37], [36, -40], [50, 80], [23, 55], [29, 37], [26, 3], [1, -2], [-3, -1], [-1, 0], [0, -9], [1, 0], [0, 9], [3, 1], [23, -68], [7, -123], [12, -82], [0, -1], [61, -46], [45, -24], [69, -12], [36, -6], [7, -40], [-5, -113], [9, -16], [-23, -33], [-26, -22], [-74, -27], [-69, -43], [-45, 0], [-52, 43], [-35, 6], [-43, -58], [-36, -43], [-7, -6], [-24, -22], [-37, -6], [-34, 0]], [[5527, 4308], [-9, 3], [-29, 6], [-73, 12], [-76, 22], [-83, 27], [-29, 15], [-33, -6], [-48, -26], [0, 2], [-5, -3], [0, -1], [5, 3], [0, -1], [-2, -1], [-21, -12], [-59, 30], [-52, 28], [-2, 0], [9, 55], [12, 98], [21, 107], [14, 33], [12, 15], [0, -2], [0, 2], [29, 34], [14, 86], [5, 49], [2, 71], [2, 52], [10, 3], [35, 104], [43, 67], [14, 12], [2, -3], [31, -33], [10, -92], [-5, -141], [43, -67], [19, -62], [19, -76], [4, -92], [46, -64], [61, -89], [71, -77], [19, -15], [-28, -37], [2, -36]], [[5553, 4381], [-18, 15], [-72, 77], [-61, 89], [-45, 64], [-5, 92], [33, 15], [40, 15], [34, 46], [59, 111], [43, 116], [49, 76], [26, 16], [24, 0], [2, -22], [10, -98], [19, -128], [14, -107], [-19, -104], [-43, -95], [-35, -101], [-10, -28], [-19, -37], [-18, -3], [-1, 0], [-7, -9]], [[2187, 4993], [-19, -18], [-33, -49], [-10, -40], [-11, -58], [-10, -64], [-33, -31], [5, -92], [-107, -140], [-9, 33], [-24, 71], [-12, 98], [-38, 73], [-48, 37], [-66, -37], [-52, -30], [-24, 18], [-28, 52], [-55, 61], [-28, 9], [-67, -3], [-54, -6], [-34, 6], [-28, 6], [7, 52], [-21, 31], [-13, 6], [6, 12], [33, 37], [50, 70], [21, 65], [12, 6], [43, 6], [75, -18], [81, -7], [97, 13], [69, 43], [50, 39], [28, 6], [43, -27], [71, -22], [69, 34], [48, 28], [21, 12], [9, 6], [34, -6], [7, 0], [-3, -61], [7, -40], [22, -77], [9, -42], [3, -19], [-5, -3], [-64, -55], [-24, 15], [0, 1], [0, -1]], [[5352, 4718], [-19, 76], [-19, 62], [-43, 67], [5, 141], [-10, 92], [-30, 33], [-3, 3], [79, 71], [40, 18], [78, 34], [40, 0], [102, 30], [24, -3], [55, -12], [76, -9], [47, -3], [7, -3], [0, -3], [0, 3], [59, -22], [10, -21], [2, -9], [-7, -12], [-43, -52], [-40, -49], [-45, -31], [-57, -6], [-24, 0], [-26, -15], [-50, -77], [-42, -116], [-60, -111], [-33, -45], [-40, -16], [-33, -15]], [[3276, 4739], [-21, -15], [-31, 37], [-135, 9], [-5, 40], [-102, 205], [-119, 101], [-57, 49], [-42, 18], [-17, -15], [-2, 31], [4, 36], [8, 28], [-15, 58], [3, 21], [9, 40], [29, 43], [0, 34], [23, -6], [31, -31], [10, -9], [35, -6], [31, 3], [29, 6], [64, -9], [42, -19], [55, -21], [57, -3], [54, -6], [57, -10], [38, -21], [7, -27], [-7, -49], [0, -1], [33, -36], [31, -22], [5, -3], [7, -58], [5, -125], [12, -104], [0, -22], [-5, -46], [-36, -46], [-40, -15], [-45, -34]], [[4685, 4736], [-21, 6], [-62, 19], [-50, 21], [-64, -30], [-87, -13], [-72, 46], [-7, 6], [-42, 16], [-79, 9], [-38, 21], [-7, 6], [-33, 49], [-26, 101], [-40, 83], [21, 116], [73, -40], [95, 0], [74, 16], [12, -9], [57, -34], [57, -25], [33, -21], [28, -21], [55, -65], [52, -85], [40, -71], [26, -61], [5, -28], [0, -12]], [[4078, 5192], [-22, -116], [41, -83], [26, -101], [33, -49], [-14, -12], [-14, -12], [-38, 12], [-43, -33], [0, -1], [-17, -76], [0, -104], [-9, -104], [-52, -34], [-31, 6], [-17, 3], [-59, -49], [-2, 6], [-10, 16], [5, 113], [-7, 40], [-36, 6], [-69, 12], [-45, 25], [-61, 46], [-12, 82], [-7, 123], [-23, 68], [27, 5], [31, 3], [24, 25], [43, 3], [54, 18], [29, 25], [42, 18], [17, 24], [2, 7], [24, 65], [17, 5], [90, 46], [35, 9], [48, -37]], [[3887, 5169], [-23, -65], [-2, -6], [-17, -25], [-42, -18], [-29, -25], [-54, -18], [-43, -3], [-24, -25], [-31, -3], [-27, -5], [-1, 2], [-26, -3], [-29, -37], [-23, -55], [-50, -79], [-36, 39], [-28, 37], [0, 22], [-12, 104], [-5, 125], [-7, 58], [0, 13], [31, 39], [19, 16], [28, 3], [5, 9], [12, -12], [47, -22], [112, -21], [59, 49], [0, 24], [45, -33], [29, -71], [26, -17], [-7, -7], [7, 6], [24, -16], [72, 20]], [[4156, 4843], [7, -6], [38, -21], [78, -10], [43, -15], [7, -6], [-2, -21], [-10, -77], [3, -76], [61, -101], [83, -77], [36, -34], [45, -49], [29, -42], [-3, -13], [-2, -33], [-31, -49], [-2, -3], [-41, -37], [-40, -28], [-57, -27], [-83, -22], [-28, 0], [-60, -3], [-64, 3], [-64, 28], [-10, 27], [1, 0], [0, 1], [-1, -1], [-25, 65], [14, 58], [14, 67], [-9, 80], [-45, 58], [-17, 34], [10, 104], [0, 104], [16, 76], [43, 34], [38, -12], [14, 12], [14, 12]], [[5131, 5006], [-66, -25], [-57, -21], [-52, -43], [-56, -2], [1, 2], [-1, -2], [-13, -1], [-24, 98], [12, 49], [17, 70], [9, 46], [10, 64], [11, 49], [1, 0], [9, 43], [12, 28], [40, 46], [5, 46], [-67, 9], [-64, 34], [15, 119], [47, 70], [45, 150], [17, 68], [28, 55], [26, 40], [3, 3], [28, 3], [40, -31], [50, -58], [55, 6], [42, -43], [43, -64], [21, -89], [31, -95], [7, -98], [1, 0], [45, 9], [14, -52], [40, -36], [50, -37], [38, -28], [28, -24], [0, -18], [-102, -31], [-40, 0], [-78, -34], [-41, -18], [-78, -70], [-2, 6], [-12, -19], [-43, -67], [-35, -104], [-10, -3]], [[1485, 5162], [-21, -64], [-50, -71], [-33, -37], [-1, 0], [-5, -12], [-2, 0], [-45, 28], [-57, -19], [-104, -113], [-73, -3], [-86, 37], [-57, 15], [-57, 25], [-45, 125], [-40, 116], [-36, 68], [7, 70], [19, 31], [0, 36], [12, 3], [10, 0], [42, 3], [43, 13], [45, 12], [71, 28], [50, 24], [48, 12], [45, 37], [47, 55], [52, 67], [3, 3], [42, -45], [36, -28], [17, -58], [23, -49], [3, -55], [-2, -17], [-5, -4], [-1, 0], [0, -1], [1, 0], [5, 4], [-6, -53], [38, -67], [38, -58], [29, -58]], [[2747, 5168], [-12, -12], [-50, -71], [-16, -18], [-126, 89], [-43, 21], [-31, -12], [-30, -58], [-57, -34], [-102, -37], [-3, 19], [-9, 43], [-21, 76], [-8, 40], [3, 61], [-7, 0], [16, 9], [29, 25], [45, 49], [-7, 52], [2, 46], [62, 85], [66, 74], [59, 55], [10, 15], [59, -3], [64, 12], [57, -82], [50, -65], [36, -70], [0, -18], [0, -34], [-29, -43], [-9, -40], [-3, -21], [14, -58], [-7, -28], [-4, -36], [0, -1], [2, -30]], [[4030, 5229], [-35, -9], [-90, -46], [-17, -4], [0, 1], [-1, -2], [-72, -19], [-24, 16], [24, 23], [2, 34], [2, 21], [-7, 28], [-2, 9], [-10, 16], [-19, 12], [-14, 15], [-12, 28], [3, 27], [23, 9], [22, -9], [28, -9], [24, 3], [12, 15], [16, 16], [17, 39], [7, 34], [-26, 16], [-12, 6], [-28, 12], [-29, 12], [-14, 12], [-21, 10], [-22, 15], [-12, -6], [-14, 15], [-35, -3], [-7, 52], [0, 49], [-8, 55], [5, 31], [14, 42], [0, 1], [-4, 79], [0, 37], [-3, 30], [0, 1], [-12, 39], [0, 28], [8, 18], [13, 22], [1, 0], [14, 0], [38, -13], [54, -30], [81, -28], [48, -9], [61, 21], [45, 22], [-7, -21], [0, -1], [-7, -45], [-5, -80], [-9, -73], [-45, -92], [-29, -74], [12, -79], [0, -1], [50, -82], [43, -104], [2, -31], [-12, -40], [-2, -36], [-3, -25]], [[3694, 5566], [35, 3], [14, -15], [12, 6], [22, -16], [21, -9], [14, -12], [29, -12], [28, -13], [12, -6], [26, -15], [-7, -34], [-17, -39], [-16, -16], [-12, -15], [-24, -3], [-28, 9], [-22, 9], [-23, -9], [-3, -27], [12, -28], [14, -15], [19, -13], [10, -15], [2, -9], [7, -28], [-2, -21], [-3, -34], [-23, -23], [-26, 17], [-29, 71], [-45, 33], [0, -24], [-59, -49], [-112, 21], [-47, 22], [-12, 12], [3, 9], [-62, 52], [-29, 40], [-28, 76], [19, 40], [59, 43], [5, 64], [-19, 117], [9, 85], [24, 68], [-16, 61], [-38, 31], [38, 27], [42, 15], [33, 16], [41, 27], [57, 16], [61, 3], [40, -9], [-14, -22], [-7, -18], [0, -28], [12, -40], [2, -30], [0, -37], [5, -79], [-14, -43], [-5, -31], [7, -55], [0, -49], [7, -52], [-4, 0], [4, 0], [1, 0]], [[1485, 5162], [-28, 58], [-38, 58], [-38, 68], [5, 52], [56, 42], [41, 62], [35, 33], [62, 104], [26, 89], [21, 52], [41, 61], [31, 40], [35, 71], [74, -31], [35, -9], [31, 0], [62, 21], [30, 34], [5, -28], [-9, -91], [9, -86], [5, -43], [17, -52], [4, 6], [3, -9], [23, -98], [50, -55], [24, -25], [24, -55], [9, -40], [19, -55], [29, -40], [28, -15], [-5, 0], [-9, -6], [-21, -12], [-48, -28], [-69, -33], [-71, 21], [-43, 28], [-28, -6], [-50, -40], [-69, -43], [-97, -12], [-81, 6], [-75, 18], [-43, -6], [-12, -6]], [[1734, 5953], [17, -1], [45, -7], [7, 3], [28, 7], [17, 30], [21, 40], [0, 28], [29, 0], [28, 3], [52, 0], [55, -10], [57, -12], [31, -9], [21, 0], [6, -6], [-1, 0], [0, -58], [-5, -55], [-9, -80], [-34, -12], [-19, 6], [-21, -18], [-14, -40], [-22, -43], [-26, -45], [-2, 4], [2, -4], [-4, -7], [-17, 52], [-5, 43], [-9, 86], [9, 91], [-4, 28], [-1, 0], [-30, -34], [-62, -21], [-31, 0], [-35, 9], [-74, 31]], [[1734, 5952], [0, 1]], [[1997, 5674], [27, 45], [21, 43], [14, 40], [21, 18], [19, -6], [34, 12], [9, 80], [5, 55], [0, 58], [2, -1], [7, -8], [-2, -9], [2, 9], [-7, 8], [64, -33], [48, -12], [45, 0], [47, -6], [40, -40], [1, 0], [56, -15], [36, -12], [57, -28], [33, 15], [0, -15], [-12, -83], [-23, -70], [-24, -34], [-10, -15], [-59, -55], [-66, -73], [-62, -86], [-2, -46], [7, -52], [-45, -49], [-29, -25], [-16, -9], [-32, 6], [3, 0], [-28, 16], [-29, 39], [-19, 55], [-9, 40], [-24, 55], [-24, 25], [-49, 55], [-24, 98], [-3, 10]], [[2576, 5887], [-33, -15], [-57, 28], [-35, 12], [-57, 15], [-41, 40], [-47, 6], [-45, 0], [-48, 12], [-64, 33], [-7, 7], [7, 31], [-19, 43], [-19, 76], [-12, 68], [-4, 39], [-10, 43], [57, 28], [67, 36], [51, 53], [1, 0], [-3, -3], [0, -1], [3, 3], [0, 1], [2, 2], [45, -3], [57, -67], [52, -58], [55, -25], [73, 59], [46, 88], [40, 52], [2, -88], [5, -98], [0, -9], [-5, -77], [0, -119], [12, -31], [28, -15], [5, -3], [-12, -83], [-35, -34], [-26, -33], [-29, -13], [0, 3], [0, -3]], [[2576, 5887], [29, 13], [26, 33], [35, 34], [12, 83], [62, 12], [21, 18], [48, 3], [59, 31], [17, -61], [45, 3], [23, -16], [-9, -48], [-5, -25], [24, -40], [35, -21], [1, 0], [30, 21], [10, -21], [19, -28], [0, -52], [-26, -33], [-24, 0], [0, -1], [-7, -39], [31, -62], [11, -18], [5, -46], [-4, 0], [-1, 0], [1, 0], [4, 0], [3, -30], [-12, -25], [-29, 6], [-38, 25], [-38, 24], [-28, -67], [-19, -34], [-17, -27], [-19, -52], [-14, -25], [-31, 31], [-23, 6], [0, 18], [-36, 71], [-50, 64], [-57, 83], [-64, -13], [-59, 3], [24, 34], [23, 70], [12, 83], [0, 15]], [[3421, 5634], [7, -41], [-5, -64], [-59, -43], [-19, -39], [0, -1], [28, -76], [29, -40], [61, -52], [-2, -9], [-5, -9], [-28, -3], [-19, -16], [-31, -39], [0, -12], [-5, 3], [-30, 21], [-34, 37], [7, 49], [-7, 27], [-38, 22], [-57, 9], [-54, 6], [-57, 3], [-55, 21], [-42, 19], [-64, 9], [-29, -6], [-31, -3], [-35, 6], [-10, 9], [14, 24], [19, 52], [17, 28], [19, 34], [28, 67], [38, -24], [38, -25], [29, -6], [12, 24], [0, 1], [-3, 30], [41, -3], [28, -28], [52, 13], [33, 27], [22, -21], [12, -28], [40, 25], [38, 0], [0, -37], [38, -15], [33, 15], [36, 58]], [[3421, 5633], [0, 1]], [[4078, 5193], [-47, 36], [2, 25], [2, 36], [12, 40], [-2, 31], [-43, 104], [-50, 83], [-12, 79], [29, 74], [45, 91], [9, 74], [5, 80], [7, 45], [7, 22], [5, 3], [26, 12], [29, -27], [35, -49], [55, -4], [28, -48], [19, -49], [24, -59], [35, -49], [41, -46], [0, 1], [16, 54], [3, -6], [28, -12], [55, -18], [35, 15], [0, -1], [-4, -5], [4, 4], [3, -90], [-3, -104], [-21, -64], [-52, -58], [-31, -64], [-24, -83], [-14, -43], [-14, -21], [0, -34], [-74, -15], [-95, 0], [-73, 40]], [[1060, 5991], [53, 25], [45, 15], [42, -15], [19, -18], [24, -77], [12, -98], [-5, -89], [7, -73], [10, -9], [-3, -3], [-52, -68], [-47, -55], [-45, -37], [-48, -12], [-50, -24], [-71, -28], [-45, -12], [-43, -12], [-42, -3], [0, 6], [12, 21], [14, 34], [7, 43], [14, 55], [14, 98], [31, 64], [48, 12], [45, 34], [38, 46], [26, 40], [12, 42], [2, 28], [29, 18], [0, 1], [-15, 12], [-30, 24], [-8, 15]], [[6040, 5836], [-5, 3], [-31, 3], [-50, 18], [-90, -3], [-85, -6], [-71, -6], [-43, 39], [-21, 46], [26, 40], [14, 24], [43, 52], [31, 43], [45, 59], [47, 55], [18, 76], [8, -6], [-8, 6], [3, 16], [-11, 113], [7, 141], [19, 82], [16, 43], [62, 3], [33, 9], [12, 13], [24, -25], [47, -52], [31, -40], [66, -125], [29, -19], [-5, -30], [-28, -86], [-79, -27], [-52, -9], [0, -1], [-21, -67], [16, -83], [12, -49], [-9, -49], [-7, -70], [11, -34], [15, -21], [-19, -76]], [[6334, 5949], [-59, -3], [-81, 12], [-88, -3], [-43, -34], [-4, -9], [-14, 21], [-12, 34], [7, 70], [9, 49], [-12, 49], [-16, 83], [21, 67], [52, 9], [79, 28], [28, 86], [5, 30], [31, -18], [68, -34], [53, -82], [33, -62], [66, -39], [50, -28], [14, -12], [12, -6], [-33, -6], [-24, -28], [-2, -37], [-7, -42], [-12, -28], [-26, -18], [-31, -22], [-64, -27]], [[5644, 5930], [-3, 6], [-21, 4], [-52, 6], [-19, 21], [-22, 61], [-42, 25], [-10, 58], [-19, 15], [-54, 34], [-17, 43], [-45, -25], [-40, -9], [-34, 40], [-37, 52], [-1, 0], [-37, 15], [-1, 0], [-83, -21], [-37, 55], [0, 9], [14, 74], [22, 127], [61, -30], [114, -70], [87, 0], [48, -43], [80, -24], [107, 0], [38, -62], [62, -18], [47, 12], [45, 6], [48, 7], [25, -19], [-18, -76], [-48, -55], [-45, -58], [-30, -43], [-43, -52], [-14, -25], [-26, -40]], [[5868, 6279], [-25, 19], [-48, -6], [-45, -6], [-47, -13], [-62, 19], [-38, 61], [-106, 0], [-81, 24], [-48, 43], [-87, 0], [-114, 71], [-61, 29], [2, 7], [-24, 83], [35, 46], [14, 6], [0, -3], [1, 0], [-1, 3], [46, 21], [80, 37], [98, 15], [59, -9], [31, 15], [0, 1], [4, 15], [36, -22], [59, -6], [67, 25], [59, -22], [64, -36], [78, -25], [62, 0], [26, 3], [-17, -43], [-19, -82], [-7, -141], [12, -113], [-3, -16]], [[6334, 5949], [64, 27], [31, 21], [26, 19], [12, 27], [7, 43], [2, 37], [24, 28], [33, 6], [24, 6], [16, -6], [98, -43], [45, -19], [52, -6], [36, 25], [4, 3], [43, -34], [36, -30], [-8, -9], [0, -1], [8, -39], [-5, -15], [-29, -13], [-4, -18], [11, -22], [-21, -21], [12, -22], [11, -30], [-39, 21], [-79, -30], [-71, 6], [-52, 55], [-52, 31], [-52, -6], [-27, -43], [-21, -37], [-5, -6], [-7, 12], [-31, 15], [-52, 40], [-40, 28]], [[6863, 5863], [-12, 31], [-12, 21], [22, 21], [-12, 22], [5, 18], [28, 12], [5, 16], [-7, 39], [7, 10], [11, -10], [83, -70], [1, 0], [189, 0], [-2, -43], [-3, -15], [-14, -37], [-9, -33], [-48, -74], [-66, -37], [-62, 19], [-71, 92], [-33, 18]], [[7169, 5930], [19, -46], [26, -43], [33, -39], [38, -43], [29, -43], [28, -43], [2, -3], [145, -113], [52, -43], [48, -37], [-10, -3], [-45, -43], [0, -73], [12, -49], [-36, -55], [-56, -80], [-41, -40], [-54, -15], [-124, -3], [-95, -25], [-18, -15], [-5, 12], [-12, 25], [-21, 70], [-31, 74], [-36, 64], [-7, 52], [7, 21], [50, -3], [66, 6], [36, 16], [24, 43], [-12, 95], [26, 150], [-9, 110], [-34, 58], [-12, 9], [15, 37], [2, 15]], [[7589, 5477], [-48, 37], [-52, 43], [-144, 113], [-3, 3], [-28, 43], [-29, 43], [-38, 43], [-33, 40], [-26, 42], [-19, 46], [2, 43], [10, 37], [-2, 55], [0, 33], [56, -6], [41, -46], [49, -27], [1, 0], [61, 24], [29, 40], [-7, 52], [-29, 19], [-47, 43], [-38, 122], [-2, 7], [2, 2], [-2, -2], [-31, 109], [-5, 135], [5, 18], [21, 0], [0, -27], [14, -31], [24, -12], [40, -9], [47, -22], [3, -18], [38, 0], [5, -37], [16, -24], [7, -52], [24, -49], [47, -31], [12, -12], [105, 0], [-5, -52], [-5, -34], [12, -79], [2, -5], [-1, 1], [0, -1], [1, 0], [27, -72], [26, -49], [45, -141], [9, -95], [3, -46], [0, -42], [-43, -16], [-17, -79], [-66, -46], [-64, -31]], [[3388, 5955], [-24, 21], [-69, 19], [-78, 24], [-48, 25], [-114, 27], [-11, 15], [14, 9], [31, 16], [64, 24], [54, 28], [22, 61], [7, 37], [54, -83], [62, -52], [28, -6], [1, 0], [16, 52], [-2, 31], [-19, 76], [-36, 95], [-2, 40], [31, 3], [45, 21], [64, 19], [49, 6], [8, -6], [33, -46], [59, -58], [74, -34], [85, -18], [64, -62], [38, -49], [50, 10], [14, 33], [17, 86], [50, 18], [33, -9], [9, 52], [10, 12], [12, -27], [54, -101], [1, -10], [-1, 1], [1, -1], [11, -79], [-36, -128], [-23, -13], [-17, -6], [-26, -12], [-5, -3], [-45, -21], [-61, -22], [-48, 9], [-81, 28], [-54, 31], [-38, 12], [-14, 0], [0, 1], [-1, -1], [-40, 9], [-61, -3], [-57, -15], [-41, -28], [-33, -15], [-43, -16], [-37, -27]], [[7171, 5973], [-189, 0], [-83, 71], [-12, 9], [2, 2], [0, 1], [1, 0], [-1, 0], [-2, -3], [-36, 30], [-42, 34], [16, 34], [40, 88], [41, 83], [26, 58], [59, 126], [31, 64], [12, 21], [68, 0], [-16, -18], [-17, -36], [-12, -25], [15, -49], [38, -15], [19, -19], [0, -110], [28, 6], [7, 15], [26, -24], [3, -46], [12, 0], [23, 6], [19, 12], [19, 13], [27, 25], [2, -7], [38, -122], [0, -1], [47, -42], [28, -19], [8, -52], [-29, -39], [-61, -25], [-50, 28], [-41, 46], [-57, 6], [0, -34], [3, -55], [-10, -37]], [[7293, 6326], [-27, -25], [-19, -12], [-19, -13], [-23, -6], [-12, 0], [-3, 46], [-26, 25], [-7, -16], [-28, -6], [0, 110], [-19, 19], [-38, 15], [-14, 49], [11, 24], [17, 37], [16, 18], [41, 0], [18, 0], [-1, -2], [2, 2], [85, -3], [14, 0], [-4, -18], [4, -135], [32, -109]], [[1077, 6157], [-10, -37], [-35, -43], [-17, -30], [19, -43], [22, -16], [4, 3], [7, -15], [31, -24], [14, -13], [-28, -18], [-2, -27], [-12, -43], [-26, -40], [-38, -46], [-45, -34], [-48, -12], [-31, -64], [-14, -98], [-14, -55], [-7, -43], [-15, -34], [-11, -21], [0, -6], [-10, 0], [-12, -3], [0, 9], [-40, 85], [-52, 46], [-24, 46], [-40, 37], [-74, 46], [-23, 67], [-45, 22], [-27, 73], [-23, 37], [-38, 64], [-12, 61], [-5, 22], [62, 9], [35, 27], [17, 4], [81, 3], [-29, 18], [-31, 3], [-14, 16], [-2, 18], [35, 9], [102, 3], [52, 6], [1, 0], [18, 12], [1, 0], [21, 34], [19, 55], [9, 31], [24, 0], [64, 6], [62, 30], [14, 0], [14, 3], [24, -24], [19, -21], [71, -83], [12, -12]], [[4073, 6028], [17, 6], [23, 12], [1, 0], [0, 1], [35, 128], [-10, 79], [22, -9], [24, -33], [40, -9], [-5, -22], [14, -3], [34, 22], [16, -28], [-7, -21], [50, -22], [31, 0], [27, -15], [-4, -15], [8, -80], [9, -52], [-19, -98], [-9, -64], [-15, -52], [-16, -55], [-40, 46], [-36, 49], [-24, 58], [-19, 49], [-28, 49], [-55, 3], [-35, 49], [-29, 27]], [[4385, 6115], [-27, 14], [-31, 0], [-50, 22], [7, 21], [-16, 28], [-34, -22], [-14, 3], [5, 22], [-40, 9], [-24, 34], [-22, 8], [-2, 10], [-54, 101], [-12, 28], [-10, 21], [-19, 37], [-38, 144], [8, 73], [37, 61], [31, 12], [22, 10], [8, -1], [1, -2], [0, 1], [62, -8], [52, -18], [47, 18], [3, -39], [26, -43], [35, -25], [0, -3], [-11, -24], [-12, -18], [-55, -52], [0, -1], [-28, -79], [45, -95], [64, -71], [42, -52], [5, -15], [1, -3], [-1, 0], [1, 0], [9, -40], [-3, -24], [-8, -42]], [[3044, 6087], [-19, 27], [-60, 12], [-61, 0], [-35, -12], [-1, 4], [-1, 0], [1, -4], [-59, -31], [-48, -3], [-21, -18], [-62, -12], [0, 3], [0, -3], [-4, 3], [-29, 15], [-12, 31], [0, 119], [5, 77], [0, 9], [31, -3], [52, 27], [40, 110], [26, 52], [62, 65], [50, 67], [66, 46], [19, 9], [55, 22], [5, 3], [37, -31], [60, -43], [64, -70], [47, -83], [55, -61], [31, 0], [2, -40], [36, -95], [19, -76], [2, -31], [-17, -52], [-28, 6], [-62, 52], [-54, 83], [-8, -37], [-21, -61], [-54, -28], [-64, -24], [-31, -15], [-14, -9]], [[7034, 6591], [-12, -21], [-31, -64], [-59, -126], [-26, -58], [-41, -82], [-40, -89], [-17, -34], [-4, -3], [-36, -24], [-52, 6], [-45, 18], [-97, 43], [2, 6], [0, 80], [7, 101], [31, 150], [-14, 88], [-24, 86], [17, 55], [33, 0], [16, 31], [36, 15], [109, 34], [83, 15], [0, -168], [-2, -40], [45, 0], [31, 9], [40, -18], [0, -9], [0, -1], [50, 0]], [[1276, 6607], [38, -43], [0, -64], [-28, -104], [-48, -58], [-29, -26], [1, 1], [-2, 34], [14, 30], [-7, 129], [9, 24], [-21, 107], [11, 26], [55, -47], [7, -9]], [[1214, 6663], [-11, -25], [0, -1], [21, -107], [-10, -24], [8, -129], [-15, -30], [3, -34], [-2, -2], [-67, -59], [-48, -55], [-16, -40], [-12, 12], [-71, 83], [-19, 21], [-24, 25], [-14, -3], [-7, 36], [-2, 19], [-3, 58], [-9, 76], [-24, 62], [-45, 64], [-36, 43], [-9, 33], [21, 13], [55, 21], [61, 37], [43, 33], [31, 40], [21, 31], [5, -9], [40, -43], [36, -43], [12, -9], [47, -49], [38, -43], [2, -2]], [[6573, 6157], [-16, 6], [-24, -6], [-12, 6], [-14, 12], [-50, 28], [-66, 40], [-33, 61], [-52, 83], [-1, 0], [-68, 33], [-31, 19], [-29, 18], [-66, 125], [-31, 40], [-47, 52], [-24, 25], [31, 36], [35, 74], [12, 30], [31, -3], [36, 0], [90, -18], [66, 6], [41, 18], [0, 1], [2, 3], [12, 3], [40, -13], [-19, -42], [7, -28], [50, -3], [40, -6], [72, -22], [37, -12], [-16, -55], [24, -86], [14, -88], [-31, -150], [-7, -101], [0, -80], [-3, -6]], [[7665, 6264], [-105, 0], [-11, 12], [-48, 31], [-24, 49], [-7, 52], [-16, 24], [-5, 37], [-2, 6], [-17, 123], [-38, 107], [-21, 49], [4, 18], [4, 15], [1, 0], [0, 5], [5, 20], [-5, 61], [5, 37], [31, -9], [7, 30], [54, -43], [83, 7], [12, 18], [0, -3], [0, 3], [50, 76], [36, 10], [21, -52], [14, -58], [-2, -77], [-26, -61], [4, -83], [-4, -49], [-17, -110], [0, -132], [17, -98], [0, -15]], [[2638, 6304], [-5, 98], [-2, 89], [-2, 30], [23, 58], [-7, 46], [-43, 43], [15, 9], [26, 19], [40, 36], [43, 52], [47, -15], [36, 0], [57, 34], [30, -10], [34, 13], [52, 33], [9, 19], [26, -37], [46, 12], [40, 28], [24, 9], [2, -18], [-5, -37], [-12, -30], [-33, -49], [-35, -34], [-5, -3], [-55, -22], [-19, -9], [-66, -46], [-50, -67], [-62, -64], [-26, -52], [-40, -111], [-52, -27], [-31, 3]], [[5451, 6757], [-4, -15], [-31, -16], [-59, 10], [-98, -16], [-80, -36], [-46, -22], [-4, 34], [-14, 15], [0, 43], [-15, 12], [-2, 40], [-33, -9], [-17, 9], [-5, 21], [-16, 3], [0, 49], [45, 0], [17, 9], [4, 13], [48, 36], [78, 0], [21, -6], [1, 3], [66, -36], [52, -10], [28, -9], [45, -6], [36, 15], [-5, -42], [0, -55], [-12, -34]], [[5240, 6934], [0, -2], [-21, 6], [-107, 0], [-35, 3], [-26, 3], [-36, 6], [-14, 21], [0, -3], [-52, 77], [-100, 21], [-45, 117], [-31, 55], [5, 67], [2, 3], [14, 6], [50, -9], [97, -19], [98, 3], [76, 22], [0, 21], [26, -46], [16, -3], [40, -82], [17, -74], [31, -144], [-5, -49], [0, 1], [0, -1]], [[4780, 7308], [-2, -3], [-5, -67], [0, -1], [31, -55], [45, -116], [-74, -55], [-28, -30], [-62, 0], [-33, 30], [-19, 9], [-52, 55], [-24, -27], [-43, -92], [-40, 28], [-31, 119], [-66, 95], [14, 36], [0, 1], [-5, 76], [-45, 25], [-21, 45], [0, 89], [-29, 49], [-55, 91], [1, -2], [-1, 2], [1, 1], [47, 28], [67, 6], [41, -8], [27, -47], [-2, -80], [33, -55], [52, 3], [15, -15], [-3, -68], [57, -85], [0, -1], [86, -3], [12, -3], [45, 10], [47, 12], [12, 0], [7, 3]], [[4721, 7631], [7, -5], [31, 19], [26, 43], [31, 88], [26, 49], [54, 22], [76, 9], [52, 24], [53, -21], [30, -18], [67, -19], [21, -6], [10, 0], [-3, -12], [86, -40], [23, -18], [-68, -95], [-17, -12], [31, -126], [-22, -64], [0, -31], [-21, -67], [12, -150], [-11, -67], [2, 12], [-1, 0], [-2, -18], [-16, 73], [-41, 83], [-16, 3], [-26, 46], [-1, 0], [0, -1], [0, -21], [-75, -21], [-98, -3], [-97, 18], [-50, 9], [-21, -9], [-12, 0], [-47, -12], [7, 15], [-3, -5], [5, 11], [-19, 71], [0, 45], [24, 74], [-19, 64], [12, 61], [0, 1]], [[4721, 7630], [0, 1]], [[5241, 6934], [4, 49], [-31, 144], [12, 74], [-12, 150], [22, 67], [0, 31], [21, 64], [-31, 126], [17, 12], [68, 95], [36, -28], [19, -40], [38, -33], [26, -25], [45, -37], [14, -6], [10, -9], [-12, -46], [-17, -125], [-12, -83], [8, -110], [-10, -153], [7, -104], [10, -43], [2, -12], [-7, -3], [-36, -16], [-45, 6], [-28, 10], [-52, 9], [-66, 36]], [[4998, 6971], [3, -3], [0, 3], [14, -21], [35, -6], [27, -4], [35, -3], [28, 0], [-47, -36], [-5, -12], [-16, -10], [-45, 0], [0, -49], [16, -3], [5, -21], [17, -9], [33, 9], [2, -40], [14, -12], [0, -43], [15, -15], [4, -34], [-14, -6], [-35, -46], [23, -83], [-1, -7], [-15, 7], [15, -7], [-22, -127], [-15, -74], [-9, 3], [-1, 2], [1, 2], [-1, 0], [0, -2], [-44, 59], [-26, 19], [-24, 18], [-14, 12], [-45, 25], [-62, 55], [-35, 34], [-1, 0], [-26, 24], [-54, 46], [-33, 40], [-29, 55], [64, 3], [52, 24], [34, 16], [38, 33], [26, 25], [42, 37], [15, 30], [40, 55], [21, 37]], [[4998, 6971], [0, 0]], [[4514, 6956], [-2, -6], [-57, -28], [-52, -15], [-35, 40], [-10, 70], [-33, 19], [-38, -7], [-57, -12], [-24, 22], [-57, 76], [-59, -58], [-2, 0], [-1, 3], [1, -3], [-74, 15], [-64, 19], [-43, -28], [-38, -15], [-26, 43], [-26, 42], [10, 77], [16, 52], [2, 12], [50, -18], [29, 15], [47, 55], [12, 71], [0, 39], [19, 10], [38, 18], [73, 28], [1, 0], [64, 55], [57, 62], [56, -90], [29, -49], [0, -89], [21, -46], [45, -24], [5, -76], [-14, -37], [66, -95], [31, -120], [40, -27]], [[4061, 6414], [10, -21], [-10, -13], [-9, -52], [-33, 10], [-50, -19], [-17, -86], [-14, -33], [-50, -9], [-38, 49], [-64, 61], [-85, 18], [-74, 34], [-59, 58], [-33, 46], [-7, 6], [11, 0], [48, 61], [26, 67], [0, 1], [-14, 39], [19, 3], [52, -3], [57, -24], [66, -52], [62, -46], [43, -16], [66, -15], [36, -24], [33, -28], [16, -9], [12, -3]], [[4080, 6742], [-31, -13], [-38, -61], [-7, -73], [38, -144], [19, -37], [-12, 3], [-16, 9], [-33, 28], [-36, 24], [-66, 16], [-43, 15], [-62, 46], [-66, 52], [-57, 24], [-52, 4], [-19, -4], [-7, 19], [2, 67], [21, 55], [9, 8], [3, -11], [-3, 12], [20, 19], [28, 15], [5, -15], [73, 3], [1, 0], [54, 9], [33, 6], [31, -6], [7, -31], [-5, -36], [17, -28], [38, -3], [66, 52], [50, -9], [33, -12], [5, -3]], [[7102, 6816], [3, 2], [76, 21], [78, -24], [19, -3], [71, -25], [30, 0], [-4, -15], [-4, -18], [21, -49], [38, -107], [16, -123], [3, -6], [-38, 0], [-2, 18], [0, 1], [-48, 21], [-40, 9], [-24, 12], [-14, 31], [0, 27], [0, 1], [-22, 0], [-14, 0], [-85, 2], [0, 1], [17, 30], [9, 31], [-40, 24], [-7, 22], [16, 30], [-5, 31], [-49, 55], [-1, 0]], [[7102, 6815], [0, 1]], [[7379, 6788], [-30, 0], [-71, 24], [-19, 3], [-78, 25], [-76, -22], [-62, -43], [-85, 0], [-10, 10], [-28, 0], [-22, -22], [-28, -9], [0, 64], [0, 25], [-5, 0], [-23, 39], [-22, 74], [-23, 18], [-34, 22], [-9, 3], [0, 33], [21, 16], [19, 43], [14, 55], [36, 79], [28, 0], [76, -37], [90, -104], [93, -110], [57, 12], [81, 0], [85, -64], [31, -12], [-5, -37], [5, -61], [-5, -19], [0, 1], [0, -2], [-1, -4]], [[2614, 6656], [31, -31], [7, -46], [-24, -58], [3, -30], [-41, -52], [-45, -89], [-73, -58], [-55, 24], [-52, 58], [-15, 18]], [[2350, 6392], [10, 31], [81, 22], [59, 27], [43, 52], [33, 46], [-2, 71], [40, 15]], [[2085, 6643], [50, -39], [17, 3], [21, -9], [2, -19], [12, -18], [48, 0], [11, -37], [3, -67], [11, -15], [-52, -52], [-66, -37], [-57, -28], [-2, 12], [0, 1], [-43, 3], [-57, 39], [-35, 59], [-10, 12], [7, 6], [60, 98], [49, 58], [31, 30]], [[1276, 6607], [-7, 9], [-55, 48], [1, 1], [-3, 3], [2, -3], [0, -1], [-2, 1], [-38, 43], [-47, 49], [-12, 9], [-36, 43], [-40, 43], [-5, 9], [-23, 43], [-9, 59], [28, 11], [33, 22], [12, 30], [2, 25], [0, 21], [54, -52], [5, -40], [17, -52], [14, -15], [74, -40], [47, 40], [26, 40], [14, 40], [24, 36], [52, 52], [19, 57], [5, -32], [-10, -15], [-2, -28], [17, -18], [38, -10], [9, -9], [-9, -46], [-12, -3], [-55, -6], [-28, -18], [-5, -22], [47, -55], [1, 0], [18, -6], [3, -15], [-24, -21], [-24, 6], [-35, 0], [-19, -34], [-7, -9], [-19, -19], [-5, -39], [0, -1], [17, -27], [28, -15], [12, -16], [3, 0], [-51, -27], [-28, -31], [-12, -15]], [[1423, 7139], [-19, -58], [-52, -52], [-24, -36], [-14, -40], [-26, -40], [-47, -40], [-74, 40], [-14, 15], [-17, 52], [-4, 40], [-55, 52], [9, 15], [27, 16], [26, 15], [31, 43], [0, 15], [-3, 34], [-16, 22], [-1, 0], [-26, 9], [-11, -3], [-12, 33], [19, 6], [49, 6], [31, 6], [48, 4], [45, 0], [54, 3], [57, 3], [50, 0], [29, 6], [16, 15], [14, -18], [-14, -31], [6, -2], [-25, -74], [-35, -37], [-17, -6], [-5, -12], [0, -1]], [[1368, 6680], [-4, 0], [-12, 16], [-28, 15], [-17, 28], [5, 39], [19, 19], [7, 9], [19, 33], [35, 0], [24, -6], [24, 22], [-2, 15], [-19, 6], [-48, 55], [5, 22], [28, 18], [55, 6], [12, 3], [9, 46], [-9, 10], [-38, 9], [-17, 18], [3, 28], [9, 15], [-5, 33], [3, 7], [2, 6], [17, 6], [35, 37], [26, 74], [0, -1], [0, 1], [48, -16], [-17, -86], [-2, -64], [12, -77], [35, -37], [93, -73], [31, -37], [16, -43], [5, -12], [-164, -85], [-31, -22], [-38, -12], [-4, 0], [-41, 3], [-76, -24], [-5, -4]], [[1100, 7271], [12, -34], [1, 0], [11, 3], [26, -9], [17, -21], [2, -34], [0, -15], [-30, -43], [-27, -15], [-26, -15], [-9, -16], [0, -21], [-3, -25], [-11, -30], [-34, -22], [-27, -10], [-1, 7], [-5, 34], [5, 40], [10, 101], [30, 61], [22, 58], [4, 9], [12, -3], [21, 0]], [[2602, 6668], [-14, 15], [-31, 46], [-42, 10], [-50, 6], [-31, 43], [-26, 33], [-19, 31], [50, 61], [47, 37], [38, 27], [14, 25], [64, -22], [22, 68], [4, 104], [31, 52], [38, 27], [24, 49], [36, 16], [73, 24], [26, -43], [29, -43], [37, -52], [46, -101], [26, -73], [11, -55], [-7, -80], [-7, -15], [-9, -18], [-52, -34], [-34, -12], [-30, 9], [-57, -34], [-36, 0], [-47, 16], [-43, -53], [-40, -36], [-27, -19], [-14, -9]], [[4272, 6742], [-47, -19], [-52, 19], [-63, 8], [-34, 90], [-19, 33], [0, 25], [35, 6], [10, 27], [-19, 46], [4, 31], [5, 34], [-4, 15], [2, 0], [59, 58], [57, -77], [24, -21], [57, 12], [38, 6], [33, -18], [10, -70], [-2, 3], [2, -3], [6, -40], [0, -6], [-2, -55], [-5, -9], [-24, -43], [-52, -49], [-19, -3]], [[4088, 7057], [4, -15], [-5, -34], [-4, -31], [18, -46], [-9, -27], [-35, -6], [-1, 0], [0, -25], [19, -34], [35, -89], [-8, 1], [-22, -9], [-4, 3], [-34, 12], [-50, 9], [-66, -52], [-38, 3], [-16, 28], [4, 36], [-7, 31], [-31, 6], [-33, -6], [-55, -9], [-73, -3], [-5, 15], [10, 6], [121, 104], [16, 68], [22, 79], [2, 18], [26, -42], [38, 15], [43, 27], [64, -18], [74, -15]], [[4273, 6741], [18, 4], [53, 49], [23, 42], [31, -6], [40, -30], [41, -22], [66, -9], [57, 0], [40, -28], [12, -24], [0, -6], [-2, -6], [-12, -22], [-14, -9], [-69, -33], [-109, -31], [-64, -6], [-48, 31], [-35, 24], [-26, 43], [-2, 39]], [[5452, 6757], [11, 34], [0, 55], [5, 42], [7, 3], [0, 1], [-2, 12], [83, 18], [59, 34], [45, 46], [48, -6], [59, -65], [52, -21], [5, 9], [9, -3], [88, -40], [50, -21], [57, -9], [59, -7], [-12, -30], [-35, -73], [-31, -37], [-12, -12], [-33, -10], [-62, -3], [-26, -3], [-62, 0], [-78, 25], [-64, 37], [-59, 21], [-67, -25], [-59, 7], [-35, 21]], [[6754, 7032], [0, -33], [9, -3], [33, -22], [24, -18], [21, -74], [1, 0], [23, -39], [0, -1], [5, 0], [0, -24], [-83, -15], [-109, -34], [-36, -15], [-16, -31], [-33, 0], [-38, 13], [-72, 21], [-40, 6], [-50, 3], [-7, 28], [19, 42], [0, 1], [-40, 12], [-12, -3], [12, 39], [7, 101], [2, 108], [34, 64], [61, 61], [22, 71], [4, 55], [0, 3], [10, -3], [54, -3], [50, -49], [71, -59], [36, -12], [38, -3], [0, -187]], [[1001, 6971], [1, -8], [-3, -1], [3, 1], [8, -59], [24, -43], [-21, -31], [-31, -39], [-43, -34], [-61, -37], [-55, -21], [-21, -12], [0, -1], [9, -33], [36, -43], [45, -64], [24, -62], [9, -76], [2, -58], [3, -19], [7, -36], [-14, 0], [-62, -31], [-64, -6], [-24, 0], [-7, 0], [-19, -3], [-14, 64], [-7, 77], [5, 186], [-117, 4], [-7, 24], [-2, 67], [5, 9], [9, -3], [19, 25], [5, 49], [0, 49], [10, 33], [2, 0], [0, 1], [-2, -1], [21, 68], [9, 40], [14, 36], [3, 15], [14, -30], [19, -52], [16, -58], [9, -26], [0, -1], [3, -10], [15, -18], [16, -6], [33, 6], [1, 0], [42, 40], [41, 48], [0, 1], [35, 61], [21, 9], [17, 6], [19, 3]], [[5473, 6904], [-10, 43], [-7, 104], [10, 153], [-7, 110], [12, 83], [16, 125], [12, 46], [-9, 9], [44, 22], [48, 21], [21, -3], [26, -40], [38, -52], [17, -15], [16, -9], [1, 0], [2, 15], [16, -9], [43, -37], [40, 40], [8, -73], [9, -62], [17, -64], [33, -104], [-14, -123], [-17, -137], [-14, -28], [-5, -9], [-52, 22], [-59, 64], [-48, 6], [-45, -46], [-59, -34], [-83, -18]], [[1001, 7045], [-5, -40], [5, -34], [-19, -3], [-17, -6], [-21, -9], [-36, -61], [-40, -49], [-43, -40], [-33, -6], [-16, 6], [-15, 18], [-3, 11], [13, 44], [0, 37], [21, 104], [34, 46], [0, 21], [42, 98], [31, 16], [0, 73], [26, -12], [24, -9], [35, -6], [12, 24], [3, 28], [7, 46], [31, 24], [49, 9], [17, 0], [-10, -30], [-26, -71], [-4, -9], [-22, -58], [-31, -61], [-9, -101]], [[899, 7271], [0, -73], [-31, -15], [-43, -98], [0, -1], [0, -21], [-33, -46], [-21, -104], [0, -37], [-13, -44], [-8, 26], [-17, 58], [-19, 52], [-14, 31], [-19, 37], [-43, 113], [-12, 21], [33, 18], [43, 34], [41, 52], [4, 37], [-4, 34], [4, 27], [12, 0], [38, 3], [38, -18], [28, -46], [36, -40]], [[6754, 7033], [0, 186], [26, 0], [12, 64], [14, 59], [14, 55], [19, 67], [3, 0], [71, -6], [54, 12], [50, -21], [26, -40], [5, -55], [-29, -49], [31, -52], [76, -43], [52, -31], [41, -6], [50, 31], [28, -40], [45, -95], [52, -80], [31, -55], [-2, -3], [-7, -30], [-31, 9], [-31, 12], [-85, 65], [-81, 0], [-57, -13], [-92, 111], [-91, 104], [-76, 36], [-28, 0], [-36, -79], [-14, -55], [-19, -43], [-21, -15]], [[3845, 7274], [-2, -12], [-17, -52], [-9, -77], [26, -42], [-2, -19], [-22, -79], [-16, -68], [-121, -104], [-10, -6], [-28, -15], [-20, -19], [-11, 40], [21, 52], [-26, 13], [-45, -28], [-5, 46], [-45, 15], [5, 31], [-19, 36], [17, 13], [16, 52], [5, 116], [7, 46], [3, 9], [9, 3], [24, 37], [52, 43], [81, 6], [35, 3], [83, -37], [14, -3]], [[3499, 6986], [19, -36], [-5, -31], [45, -15], [5, -46], [45, 27], [26, -12], [-21, -52], [11, -40], [-9, -9], [-21, -55], [-3, -67], [8, -19], [14, -39], [-26, -68], [-48, -61], [-12, 0], [-49, -6], [-64, -18], [-45, -22], [-31, -3], [-31, 0], [-55, 61], [-47, 83], [-64, 70], [-59, 43], [-38, 31], [35, 33], [33, 49], [12, 31], [5, 37], [-2, 18], [19, 6], [59, 19], [71, 21], [90, 15], [64, 19], [57, 27], [12, 9]], [[1068, 7274], [26, 71], [9, 30], [7, 25], [10, 73], [-5, 83], [-26, 92], [1, 67], [1, 0], [17, 3], [80, 22], [54, 30], [6, -27], [-12, -40], [-22, -28], [12, -15], [27, 15], [4, 9], [26, -3], [-7, -36], [0, -16], [-9, -27], [-26, -34], [-34, 0], [-4, -9], [-22, 0], [-7, -40], [5, -12], [5, -25], [14, -15], [-3, -24], [34, -25], [-10, -52], [0, -6], [5, -12], [28, -13], [17, -15], [5, -27], [-26, 0], [-48, -3], [-31, -6], [-49, -7], [-19, -6], [-3, 6], [2, -6], [-21, 0], [-11, 3]], [[1251, 7336], [-27, 12], [-5, 12], [0, 6], [10, 52], [-33, 25], [2, 24], [-14, 16], [-5, 24], [-5, 12], [7, 40], [22, 0], [4, 9], [34, 0], [26, 34], [9, 27], [0, 16], [7, 36], [0, 1], [-26, 3], [-5, -10], [-26, -15], [-11, 15], [21, 28], [12, 40], [-5, 27], [5, 3], [52, 40], [52, 75], [24, -32], [31, -67], [16, -22], [24, -12], [0, -18], [-19, -31], [31, -70], [19, -46], [-76, -68], [-12, -18], [-52, -67], [-17, -49], [-40, -22], [-33, -27], [0, -1], [3, -2]], [[1274, 7293], [-5, 27], [-16, 16], [-5, 3], [33, 27], [40, 21], [0, 1], [17, 48], [52, 68], [12, 18], [76, 68], [-19, 46], [-31, 70], [19, 31], [0, 18], [-24, 12], [-16, 22], [-31, 67], [-24, 32], [10, 14], [42, 76], [34, 86], [40, 25], [61, -56], [57, -88], [57, -132], [71, -187], [0, -3], [-18, -15], [-15, -12], [-12, -15], [-9, -19], [-2, -40], [2, -3], [-10, -36], [-30, -3], [-34, 9], [-30, -16], [-22, -39], [-12, -56], [-23, -45], [-10, -13], [-16, -15], [-29, -6], [-50, 0], [-57, -3], [-54, -3], [-19, 0]], [[1090, 7715], [-1, -67], [26, -92], [5, -83], [-10, -73], [-7, -25], [-17, 0], [-49, -9], [-31, -24], [-7, -46], [-3, -28], [-12, -24], [-35, 6], [-24, 9], [-26, 12], [-36, 40], [-28, 46], [-38, 18], [-38, -3], [-12, 0], [0, 3], [14, 31], [41, 24], [21, 25], [3, 58], [0, 37], [-3, 64], [-9, 34], [0, 3], [21, 3], [76, 27], [52, 13], [127, 21]], [[5489, 7578], [-14, 6], [55, 55], [35, 55], [43, 58], [31, 46], [19, 43], [45, 52], [-36, 73], [-21, 92], [12, 70], [0, 1], [-14, 36], [-45, 37], [-24, 37], [-5, 43], [0, 8], [7, -12], [19, -12], [21, -6], [1, 0], [78, 25], [52, 45], [43, 25], [38, -3], [64, -64], [45, -40], [49, -25], [27, -61], [21, -49], [5, -64], [9, -98], [10, -89], [2, -3], [-5, -6], [-7, -61], [-26, -83], [-43, -52], [-59, -9], [-64, 24], [-92, 16], [-24, -9], [0, -1], [-26, -55], [-7, -88], [-5, -19], [-3, -15], [-16, 9], [-17, 15], [-38, 52], [-26, 40], [-21, 3], [-48, -21], [-45, -21]], [[5475, 7584], [-45, 36], [-26, 25], [-38, 34], [-19, 39], [-59, 46], [-86, 40], [3, 12], [19, 64], [47, 114], [62, 52], [59, 40], [-5, 110], [62, 46], [71, 6], [38, 21], [12, 21], [0, -8], [5, -43], [23, -37], [46, -37], [14, -37], [-12, -70], [21, -92], [36, -73], [-45, -52], [-19, -43], [-31, -46], [-43, -58], [-35, -55], [-55, -55]], [[5570, 8291], [-12, -22], [-38, -21], [-71, -6], [-62, -46], [5, -110], [-59, -40], [-62, -52], [-47, -113], [-19, -65], [-10, 0], [-21, 6], [-67, 19], [-30, 18], [-52, 22], [23, 70], [-2, 83], [-12, 73], [12, 70], [40, 37], [10, 34], [42, 70], [17, 52], [7, 19], [10, 49], [21, 39], [78, 3], [76, -30], [26, 12], [90, -58], [62, -43], [45, -70]], [[5001, 815], [5, 5], [-8, 62], [-7, 24], [-12, 28], [-63, 39], [11, 22], [36, 37], [14, -4], [24, 25], [21, 43], [12, 6], [43, 0], [35, -34], [15, 40], [18, 25], [36, 24], [52, -56], [0, -2], [0, 2], [17, -17], [38, -40], [0, -2], [-5, -10], [12, -68], [42, -95], [36, -33], [14, -7], [-12, -51], [0, -1], [19, -79], [3, -43], [16, -28], [-28, -76], [-26, -64], [0, -46], [-17, -52]], [[5003, 814], [-2, 1]], [[5342, 387], [-26, 8], [-66, 144], [-10, 24], [-14, 153], [-5, 43], [-19, 0], [-47, 6], [-78, 25], [-74, 24]], [[5342, 389], [0, -2]], [[5288, 1043], [0, 1], [-38, 40], [-16, 17], [9, 87], [-22, 113], [-2, 214], [52, 3], [48, 6], [66, -3], [57, -12], [12, 0], [0, -40], [-19, -85], [-24, -86], [-12, -70], [-7, -10], [-26, -27], [-43, -80], [-35, -68]], [[5219, 1515], [2, -214], [22, -113], [-10, -87], [-52, 56], [-36, -24], [-19, -25], [-14, -39], [-35, 33], [-43, 0], [-12, -6], [-21, -43], [-24, -24], [-14, 3], [-36, -37], [-11, -22], [-1, 1], [-85, 12], [-36, -12], [-42, -77], [-34, -18], [-16, 18], [-10, 37], [-23, 9], [-53, -40], [-52, -27], [-85, -3], [-114, 17], [57, -5], [35, 15], [1, 0], [-3, 52], [-19, 49], [-24, 49], [50, 64], [38, 40], [60, 101], [0, 98], [-22, 92], [10, 55], [42, 37], [79, 27], [59, 9], [33, 10], [21, -52], [55, -52], [59, -19], [60, 12], [92, 34], [62, 40], [2, 3], [83, -34], [17, 0], [7, 0]], [[5398, 1220], [-4, -23], [1, 0], [4, 31], [12, 70], [24, 86], [19, 85], [0, 40], [61, 6], [1, 0], [37, 28], [1, 0], [28, 37], [52, -56], [31, -21], [9, -6], [-19, -24], [0, -1], [7, -64], [43, -79], [48, -221], [4, -36], [-26, 6], [-26, 6], [-66, 116], [-50, -27], [-59, -71], [-90, 6], [-50, 68], [8, 44]], [[7503, 1017], [-7, 3], [-33, 15], [-62, 9], [-66, 18], [-38, -6], [-40, -15], [-43, -18], [-45, -31], [2, 3], [-2, -3], [0, -6], [0, -19], [-45, 37], [-52, 52], [-22, 55], [22, 156], [16, 120], [-11, 82], [2, 98], [45, 126], [31, 58], [7, 12], [61, -24], [95, -34], [55, -73], [62, -107], [7, -52], [-45, -31], [-3, -107], [26, -65], [60, -122], [23, -131]], [[7169, 992], [45, 30], [43, 19], [40, 15], [38, 6], [66, -18], [62, -9], [33, -16], [7, -3], [10, -40], [35, -42], [79, -40], [26, -67], [-64, -37], [-95, -34], [-19, -46], [-109, -85], [-7, -3], [-45, 3], [-17, -16], [-35, -9], [-74, 95], [2, 0], [-2, 0], [0, 132], [-19, 91], [0, 48], [0, 1], [0, 19], [0, 6]], [[7169, 967], [0, -49], [19, -92], [0, -131], [-14, 18], [-83, 62], [-79, 49], [-49, 21], [-43, 18], [-50, 22], [-59, 40], [5, 12], [19, 49], [16, 101], [-2, 180], [-12, 37], [5, -3], [59, 58], [7, 31], [31, -28], [78, -107], [43, -73], [-10, -71], [22, -55], [52, -52], [45, -37]], [[7060, 1182], [-43, 73], [-78, 107], [-31, 28], [5, 21], [-33, 55], [-26, 101], [-5, 65], [5, 39], [47, 3], [73, 25], [81, 34], [38, 30], [31, 34], [35, -34], [3, 0], [-7, -12], [-31, -58], [-45, -126], [-3, -98], [12, -82], [-16, -120], [-12, -85]], [[5724, 824], [-12, 0], [-26, 3], [-45, 3], [-78, -9], [-59, -10], [-81, 10], [-35, 8], [2, 0], [0, 1], [-3, 0], [-14, 6], [-35, 33], [-43, 95], [-12, 68], [5, 10], [7, -13], [0, -1], [0, 1], [-6, 13], [34, 69], [43, 80], [26, 27], [7, 9], [-9, -51], [0, -1], [49, -67], [1, 0], [90, -6], [59, 70], [50, 28], [66, -116], [26, -7], [26, -6], [5, -52], [19, -73], [10, -55], [-43, -28], [-24, -39]], [[6837, 1304], [12, -37], [2, -180], [-17, -101], [-19, -49], [-4, -12], [-14, 6], [-65, 6], [-30, -22], [-86, -6], [-97, 49], [-90, 110], [-52, 114], [-36, 40], [10, 58], [9, 39], [10, 101], [21, 77], [50, 58], [76, 52], [7, 24], [19, -48], [33, -46], [45, -13], [40, -27], [38, -74], [33, -45], [0, -1], [55, -42], [31, -16], [19, -15]], [[2289, 1194], [-2, -6], [-171, -138], [-88, 9], [-180, 107], [-90, 65], [-69, 88], [12, 6], [35, 16], [65, 52], [40, 107], [35, 40], [79, -9], [14, 21], [24, -21], [33, -31], [47, -70], [29, -92], [16, -28], [24, -9], [38, 9], [40, -27], [34, -31], [26, -46], [9, -12]], [[2289, 1194], [-9, 12], [-26, 46], [-34, 31], [-40, 27], [-38, -9], [-24, 9], [-16, 28], [-29, 92], [-47, 70], [-33, 31], [-24, 21], [2, 6], [-2, 46], [5, 98], [28, 58], [29, 58], [54, -12], [48, -15], [90, -34], [69, 28], [52, 15], [66, -6], [67, -34], [56, -18], [60, -15], [47, 18], [34, 46], [14, 55], [12, 46], [-3, 27], [33, -42], [12, -22], [14, -37], [8, -42], [-12, -40], [-17, -31], [-12, -27], [-26, -46], [-12, -58], [5, -62], [5, -36], [16, -59], [15, -36], [2, -34], [-90, -9], [-135, -21], [-112, -19], [-102, -104]], [[6853, 1671], [-4, -39], [4, -65], [26, -101], [34, -55], [-12, -52], [-59, -58], [-5, 3], [-19, 16], [-31, 15], [-54, 43], [-34, 46], [-38, 73], [-40, 28], [-45, 12], [-33, 46], [-19, 49], [14, 58], [-7, 67], [-10, 101], [22, 86], [26, 18], [26, -30], [47, -59], [55, -64], [50, -55], [42, -49], [34, -24], [23, -10], [7, 0]], [[1969, 1552], [-14, -21], [-79, 9], [-35, -40], [-41, -107], [-64, -52], [-35, -15], [-12, -6], [-95, 119], [43, 61], [12, 61], [0, 55], [26, 0], [52, -33], [26, 39], [0, 1], [2, 70], [-26, 61], [0, 71], [81, 67], [-38, 58], [-33, 25], [14, 58], [-26, 9], [-36, -21], [-21, -37], [-38, 18], [-38, 80], [1, 1], [70, 35], [62, 31], [33, -40], [59, 3], [64, 3], [72, -91], [38, -83], [42, -74], [3, -36], [-7, -12], [-29, -59], [-28, -58], [-5, -98], [2, -46], [-2, -6]], [[1595, 2083], [-1, -1], [38, -80], [38, -18], [21, 36], [36, 22], [26, -9], [-14, -58], [33, -25], [38, -58], [-81, -67], [0, -71], [26, -61], [-2, -70], [-26, -40], [-52, 34], [-26, 0], [0, -1], [0, -55], [-12, -61], [-43, -61], [-244, 309], [2, 9], [12, 80], [45, 113], [71, 80], [52, 21], [63, 32]], [[3164, 1382], [-213, -23], [-135, -3], [-88, -9], [-2, 34], [-14, 36], [-17, 59], [-5, 36], [-5, 62], [2, 5]], [[2687, 1579], [1, 1], [31, 12], [64, -31], [59, 62], [71, -40], [26, 3], [83, 21], [69, -9], [95, -37], [26, 13], [-12, -40], [40, -31], [-4, -27], [-48, -22], [-23, -70], [-1, -2]], [[6853, 1672], [-7, 0], [-23, 9], [-34, 24], [-42, 49], [-50, 55], [-55, 65], [-47, 58], [-26, 30], [5, 3], [16, 77], [-14, 98], [0, 37], [14, -7], [67, 28], [76, 70], [37, 46], [1, 0], [0, 3], [6, -12], [41, -49], [61, -33], [57, -126], [62, -3], [33, -49], [36, -67], [-3, -92], [31, -65], [29, -24], [-31, -34], [-38, -30], [-81, -34], [-73, -24], [-48, -3]], [[2697, 1920], [2, -28], [-11, -46], [-15, -55], [-33, -46], [-47, -18], [-59, 15], [-57, 18], [-67, 34], [-66, 6], [-52, -15], [-69, -28], [-90, 34], [-48, 15], [-54, 13], [7, 12], [-3, 36], [0, 1], [-42, 73], [-38, 83], [-71, 92], [-1, 0], [-64, -3], [-59, -4], [-33, 40], [45, 21], [0, 1], [26, 94], [69, 104], [26, 43], [9, 6], [27, -18], [30, -27], [69, -46], [45, -7], [3, -12], [-24, -33], [-17, -40], [7, -74], [15, -24], [68, -68], [83, -15], [27, -40], [35, -58], [31, 0], [36, 46], [26, 92], [71, 46], [19, -3], [12, 40], [35, 15], [43, 73], [28, -12], [57, -21], [24, 0], [0, -49], [5, -52], [16, -117], [24, -79], [0, -15]], [[2543, 2265], [-43, -73], [-35, -15], [-12, -40], [-19, 3], [-71, -46], [-26, -92], [-36, -46], [-31, 0], [-35, 59], [-26, 39], [-83, 16], [-69, 67], [-14, 24], [-8, 74], [17, 40], [24, 33], [-3, 12], [22, -3], [149, 40], [48, 28], [38, 30], [28, 19], [2, 33], [57, -36], [38, -28], [33, -52], [5, -27], [19, -46], [31, -13]], [[3250, 1797], [-12, -3], [-19, 3], [-52, 0], [-64, 3], [-55, -30], [-14, -16], [-83, 0], [-50, 16], [-69, 3], [-28, 0], [-40, 3], [-7, 43], [-15, 36], [-12, 22], [-33, 43], [0, 15], [-23, 79], [-17, 117], [-5, 52], [0, 49], [38, -3], [62, 15], [73, 43], [60, 58], [14, 43], [35, -6], [53, -3], [28, -6], [19, -22], [12, -18], [38, -16], [19, -15], [7, -52], [14, -43], [26, -3], [24, 12], [14, 19], [22, 6], [9, 3], [12, -18], [21, -55], [5, -111], [-7, -116], [-14, -70], [2, -40], [12, -37]], [[3219, 2244], [-9, -3], [-22, -6], [-14, -18], [-24, -13], [-26, 3], [-14, 43], [-7, 52], [-19, 16], [-38, 15], [-12, 18], [-19, 22], [-28, 6], [-53, 3], [-35, 6], [78, 230], [-14, 119], [-2, 132], [-5, 46], [-5, 42], [24, 34], [9, 49], [3, 40], [2, 12], [0, 6], [21, 55], [43, 34], [59, 3], [3, 3], [-3, -12], [24, -68], [38, -18], [54, 24], [-4, -51], [9, -46], [14, -77], [5, -55], [-35, -116], [-17, -110], [0, -1], [-2, -94], [9, -77], [43, -43], [21, -30], [-2, -28], [-31, -18], [-26, -28], [-7, -30], [0, -1], [14, -12], [21, -21], [10, -22], [-31, -15]], [[2899, 2388], [-14, -43], [-60, -58], [-73, -43], [-62, -15], [-38, 3], [-24, 0], [-57, 21], [-28, 12], [0, 1], [0, -1], [-31, 13], [-19, 46], [-4, 27], [-34, 52], [-38, 28], [-57, 37], [19, 159], [43, 70], [64, 21], [45, 13], [-2, 119], [-14, 80], [4, 67], [3, 18], [2, -6], [57, -18], [66, 18], [45, 31], [26, -52], [1, 0], [73, 6], [66, -21], [48, -28], [33, -9], [12, 21], [5, -42], [4, -46], [3, -132], [14, -119], [-78, -230]], [[2360, 2468], [-2, -34], [-29, -18], [-38, -31], [-47, -28], [-149, -39], [-21, 2], [2, 0], [0, 1], [-3, 0], [-45, 6], [-69, 46], [-30, 27], [-26, 19], [56, 48], [48, 77], [71, 119], [55, 126], [19, 126], [-36, 61], [-59, 46], [-41, -9], [-26, 0], [0, 18], [-4, 31], [0, 52], [-5, 33], [5, 0], [33, 12], [35, 22], [10, 79], [33, 13], [45, -16], [38, -3], [43, -12], [40, -31], [93, -49], [0, 1], [0, 15], [18, -19], [17, -73], [62, -15], [40, -19], [21, -18], [8, -18], [-3, -19], [-5, -67], [15, -80], [2, -119], [-45, -12], [-64, -22], [-43, -70], [-19, -159]], [[2951, 2957], [-12, -21], [-33, 9], [-47, 28], [-67, 21], [-73, -6], [-26, 52], [-1, 0], [-45, -30], [-66, -19], [-57, 19], [-2, 6], [-7, 18], [-22, 18], [-40, 19], [-62, 15], [-16, 74], [-19, 18], [-3, 89], [3, 67], [-19, 104], [-41, 67], [3, 62], [-7, 55], [2, 79], [28, 0], [38, 6], [74, -3], [23, -12], [-14, -36], [0, -1], [15, -52], [64, -55], [83, -49], [59, -33], [57, -28], [50, 27], [7, -18], [54, -98], [55, -98], [33, -92], [31, -67], [19, -18], [19, 18], [-2, -12], [-3, -40], [-9, -49], [-24, -34]], [[5580, 4393], [19, 37], [9, 28], [36, 101], [42, 94], [0, 1], [19, 104], [-14, 107], [-19, 128], [-9, 98], [-3, 22], [57, 6], [45, 30], [41, 49], [42, 52], [7, 13], [12, -55], [2, -28], [-35, -82], [-33, -56], [-10, -98], [17, -61], [38, -58], [33, -28], [23, -18], [-4, 0], [-47, -73], [-1, 0], [1, 0], [18, -77], [-7, -147], [-61, -67], [-150, -12], [-68, -10]], [[6042, 5280], [9, -15], [3, -3], [0, -3], [-19, -5], [-14, -6], [-27, -3], [-4, 11], [7, 27], [28, 22], [17, -25]], [[5995, 5245], [26, 2], [14, 6], [19, 5], [4, -24], [0, -6], [-23, -9], [-12, 0], [-26, 21], [-2, 5]], [[7003, 4991], [-7, 33], [-12, 34], [-57, 113], [-59, 34], [-86, 61], [-47, 55], [-10, 21], [-2, 31], [31, 12], [50, 49], [12, 22], [14, 48], [47, -36], [71, -43], [64, -31], [5, 0], [-7, -21], [7, -52], [36, -64], [30, -74], [22, -70], [12, -25], [4, -12], [-49, -37], [-69, -48]], [[9356, 9751], [-7, -6], [-17, -24], [-38, -68], [-21, -113], [-12, -107], [-40, -22], [-40, -110], [-53, -24], [-35, -19], [2, 28], [-9, 46], [-3, 70], [-4, 43], [-5, 55], [-9, 43], [-3, 12], [-9, 31], [-7, 18], [-17, 49], [-14, 25], [19, 6], [0, 33], [-7, 40], [0, 52], [7, 31], [26, 27], [42, 16], [17, -6], [16, -59], [12, -36], [79, -13], [73, -9], [57, -9]], [[9015, 9678], [14, -25], [16, -49], [7, -18], [10, -31], [2, -12], [-9, -12], [-21, -15], [0, -1], [-60, -64], [-38, -40], [-38, -15], [-49, 6], [-45, 43], [-31, 37], [9, 12], [33, 70], [22, 43], [19, 55], [16, 34], [5, 6], [38, -28], [40, 0], [55, 4], [5, 0]], [[9064, 9543], [10, -43], [5, -55], [4, -43], [3, -70], [9, -46], [-2, -28], [-7, -70], [-24, -110], [-21, -120], [-3, -9], [-14, -98], [-7, -107], [14, -80], [0, -24], [-185, 0], [-104, -6], [-64, 9], [-5, 34], [-14, 70], [-5, 104], [-2, 83], [-10, 46], [14, 12], [15, 67], [-7, 245], [0, 46], [40, 49], [28, 31], [41, 52], [30, -37], [45, -43], [1, 0], [49, -6], [38, 15], [38, 40], [60, 64], [21, 16], [9, 12]], [[9031, 8640], [0, -68], [10, -21], [14, -28], [52, 3], [-5, -9], [-12, -43], [-4, -12], [9, -18], [-33, -70], [-31, 9], [-47, 0], [-7, -111], [16, -73], [31, -80], [0, -49], [43, -21], [-5, -15], [-36, -111], [-33, -101], [-21, -61], [-38, -52], [-59, -21], [-50, -31], [-12, -9], [-40, 3], [-12, 6], [-10, 3], [3, 18], [12, 56], [7, 55], [7, 39], [7, 80], [-17, 126], [-9, 85], [-14, 65], [-12, 64], [-29, 129], [-16, 131], [-7, 86], [-5, 49], [64, -9], [104, 6], [185, 0]], [[8761, 7657], [12, -6], [40, -3], [12, 9], [-3, -24], [0, -1], [46, -6], [66, -6], [71, -12], [76, -9], [69, -9], [43, -7], [9, 0], [35, -6], [-7, -95], [-7, -94], [0, -3], [-7, -80], [-9, -107], [-7, -92], [-19, 34], [-88, 88], [-78, 62], [-45, 33], [-22, 74], [-54, 107], [-62, 34], [-57, -31], [-38, -15], [12, 76], [5, 68], [7, 21]], [[9200, 7106], [-3, -31], [7, -40], [12, -27], [17, -37], [19, -49], [23, -34], [19, -30], [23, -12], [-25, 6], [-66, -18], [-43, 24], [-33, 25], [-38, 64], [-43, -15], [-66, -22], [-90, -24], [-60, -7], [-37, -3], [4, 6], [-12, 40], [-45, 68], [-50, 46], [-19, 76], [31, 129], [22, 101], [-7, 92], [-8, 51], [5, 3], [0, 1], [0, 3], [38, 15], [57, 30], [62, -33], [54, -107], [21, -74], [46, -34], [78, -61], [88, -89], [19, -33]], [[9318, 6846], [-23, 12], [-19, 31], [-24, 33], [-19, 49], [-17, 37], [-12, 28], [-7, 39], [3, 31], [7, 92], [9, 107], [7, 79], [57, -3], [67, -43], [54, -79], [45, -28], [71, -39], [93, -95], [62, -62], [21, -15], [2, 0], [-14, -33], [-14, -28], [-38, -46], [-31, -55], [-54, -40], [-60, -18], [-38, -25], [-31, -67], [7, -9], [-23, 6], [-52, 52], [-26, 21], [-3, 68]], [[9318, 6846], [3, -68], [26, -21], [52, -52], [24, -6], [28, -37], [24, -70], [-14, -62], [-79, 0], [-61, -9], [-19, -49], [-5, -110], [-36, -80], [-92, 28], [-26, -6], [-38, 49], [-50, 141], [-21, 156], [-38, 76], [-67, 22], [-85, -22], [-36, -30], [-2, -19], [-7, 3], [-17, 7], [-45, 12], [-66, 6], [-36, 61], [40, 31], [105, 42], [35, 37], [38, 3], [60, 6], [90, 25], [66, 21], [43, 16], [38, -65], [33, -24], [43, -25], [66, 19], [26, -6]], [[9223, 7385], [0, 3], [8, 94], [7, 95], [0, 1], [-36, 6], [-9, 0], [21, 21], [38, 49], [69, 76], [66, 52], [29, 59], [21, 0], [0, -3], [38, -7], [95, -9], [49, 0], [5, -27], [57, -31], [38, -34], [-7, -85], [57, -135], [-38, -61], [5, -132], [4, -95], [-16, -134], [-29, -68], [-2, 0], [-21, 16], [-62, 61], [-92, 95], [-72, 40], [-45, 27], [-54, 80], [-67, 43], [-57, 3]], [[9192, 7584], [-42, 6], [-69, 9], [-76, 9], [-71, 12], [-66, 7], [-45, 6], [2, 24], [50, 30], [59, 22], [38, 52], [21, 61], [34, 101], [35, 110], [7, -6], [69, -64], [71, 15], [81, 49], [61, -9], [15, -98], [33, -76], [16, -3], [-28, -58], [-66, -52], [-69, -77], [-38, -49], [-22, -21]], [[8751, 7660], [-9, 3], [-33, 25], [-50, 88], [-38, 56], [-62, 27], [-64, 6], [-111, 6], [-95, 19], [-69, 33], [-81, 46], [-47, 34], [-10, 6], [-11, 58], [4, 12], [26, 65], [22, 85], [14, 49], [17, 86], [11, 83], [8, 55], [80, -15], [83, -46], [71, -77], [55, -61], [88, -64], [26, -74], [21, -89], [38, -70], [38, -80], [45, -79], [36, -40], [19, -18], [-8, -55], [-11, -56], [-3, -18]], [[8092, 8003], [47, -34], [81, -46], [69, -33], [95, -19], [111, -6], [64, -6], [62, -28], [38, -55], [49, -88], [1, 0], [33, -25], [9, -3], [10, -3], [-7, -21], [-5, -68], [-12, -76], [0, -3], [-5, -3], [-28, -28], [-67, -34], [-73, -58], [-31, -12], [-50, -21], [-104, 27], [-45, -12], [-69, -9], [-21, -6], [2, 12], [-24, 24], [-30, 65], [0, 107], [-17, 73], [31, 34], [-14, 55], [-1, 0], [-37, 67], [-41, 114], [-19, 82], [-2, 37]], [[8070, 8067], [12, -58], [10, -6], [2, -37], [19, -82], [40, -114], [38, -67], [15, -55], [-31, -34], [-5, -6], [-76, -18], [-76, -37], [-64, -18], [-69, 24], [-38, 6], [-87, -3], [0, 52], [2, 95], [0, 52], [-7, 3], [28, 43], [5, 49], [5, 89], [7, 36], [17, 16], [59, -13], [59, -15], [59, -18], [1, 0], [42, 43], [33, 73]], [[7755, 7764], [7, -3], [0, -52], [-2, -95], [0, -52], [0, -55], [9, -15], [0, -40], [-33, 0], [0, -52], [23, -15], [-33, 0], [-73, -22], [-83, 18], [7, 0], [0, 1], [-7, 0], [0, -1], [-5, 1], [-57, 36], [-47, 10], [0, -1], [-55, -49], [-45, -36], [-21, 0], [5, 104], [-5, 79], [2, 49], [-24, 10], [-23, 88], [-24, 86], [-7, 34], [71, 18], [55, 24], [45, 31], [71, 0], [28, -21], [52, -71], [53, -21], [26, 9], [38, 12], [16, -3], [19, -6], [15, -6], [2, 6]], [[7760, 7385], [-24, 15], [0, 52], [33, 0], [0, 40], [-9, 15], [0, 55], [87, 3], [38, -6], [69, -25], [64, 19], [76, 37], [76, 18], [5, 6], [16, -73], [0, -108], [31, -64], [24, -24], [-2, -13], [-10, -36], [-36, -49], [-47, -104], [-43, -123], [-38, -21], [-83, 12], [-28, -15], [0, 64], [-26, 58], [-71, 49], [-14, 61], [-1, 0], [-9, 7], [-38, 15], [-7, 49], [-24, 21], [-9, 0], [0, 65]], [[7760, 7384], [0, -64], [9, 0], [24, -21], [7, -49], [38, -16], [9, -6], [15, -61], [71, -49], [26, -58], [0, -64], [0, -37], [-95, 0], [-85, 15], [-81, 34], [-40, -9], [-36, -9], [-50, -77], [0, 178], [34, 45], [0, 1], [-8, 73], [-40, 18], [19, 74], [-14, 21], [7, 57], [83, -17], [73, 21], [34, 0]], [[7570, 7380], [-7, -57], [14, -21], [-19, -74], [40, -18], [7, -73], [-33, -46], [0, -178], [-12, -18], [-83, -6], [-54, 42], [2, 3], [0, 1], [-31, 55], [-52, 79], [-45, 95], [-28, 40], [14, 9], [47, 86], [10, 33], [0, 10], [21, 0], [45, 36], [55, 49], [47, -9], [57, -37], [5, -1]], [[7959, 6959], [0, -28], [17, 0], [45, -49], [42, -24], [0, -80], [-2, -36], [-2, 0], [-79, -19], [-16, -52], [-22, -40], [0, -36], [-2, -92], [0, -65], [24, -21], [9, -80], [-9, -39], [-31, 0], [7, -22], [-14, -21], [-5, 6], [-2, 0], [-45, 0], [-1, 0], [-11, -24], [-62, -13], [-95, 0], [-24, 40], [-16, 0], [0, 15], [-17, 98], [0, 132], [17, 110], [5, 49], [-5, 83], [26, 61], [2, 77], [-14, 58], [-21, 52], [40, 9], [81, -34], [85, -15], [95, 0]], [[7665, 6264], [16, 0], [24, -40], [95, 0], [62, 12], [12, 25], [45, 0], [23, -89], [88, -46], [33, -2], [-5, -44], [-11, -24], [-17, -31], [-16, 3], [-41, 37], [-35, 0], [-31, -31], [-64, 22], [-19, 18], [-3, 37], [-16, -6], [-24, -28], [-38, -33], [-33, 30], [-41, 20], [-2, 5], [-12, 79], [5, 34], [5, 52]], [[7669, 6094], [41, -20], [33, -31], [38, 34], [24, 28], [16, 6], [3, -37], [19, -18], [64, -22], [31, 31], [35, 0], [40, -37], [17, -3], [17, 31], [12, 24], [5, 44], [28, -1], [66, -9], [40, -25], [-9, -42], [21, -68], [31, -67], [24, -123], [19, -104], [7, -73], [-50, 3], [7, -71], [60, -61], [-26, -52], [-98, -9], [-71, 12], [-64, 40], [-40, 83], [-55, 21], [-40, -6], [-128, 77], [-7, 0], [0, 42], [-3, 46], [-9, 95], [-45, 141], [-26, 49], [-27, 72]], [[7919, 6261], [2, 0], [5, -6], [14, 21], [-7, 22], [31, 0], [9, 39], [-9, 80], [-24, 22], [0, 64], [14, 9], [69, 30], [57, -76], [64, -22], [64, -131], [62, -123], [59, -36], [81, -34], [49, -3], [60, -3], [16, 6], [3, -3], [16, -15], [-12, -28], [46, -52], [7, -34], [7, -79], [4, -89], [-59, -73], [-14, -46], [7, -101], [-145, -16], [-87, 25], [-17, 3], [-7, 73], [-19, 104], [-24, 123], [-31, 67], [-21, 68], [10, 42], [0, 1], [-41, 24], [-66, 9], [-28, 2], [0, 2], [-1, -2], [-33, 1], [-88, 46], [-23, 89]], [[7940, 6503], [2, 92], [0, 36], [22, 40], [16, 52], [79, 18], [2, 0], [0, 1], [2, 36], [60, 3], [64, -6], [73, -21], [62, -46], [57, -9], [47, 6], [7, 12], [57, -34], [67, -64], [47, -104], [33, -92], [12, -58], [-33, -34], [-147, 4], [0, -1], [14, -101], [36, -85], [16, -28], [-16, -6], [-60, 3], [-49, 3], [-81, 34], [-59, 37], [-62, 122], [-64, 132], [-64, 21], [-57, 77], [-69, -31], [-14, -9]], [[8063, 6778], [0, 80], [-42, 25], [-45, 48], [0, 1], [-17, 0], [0, 27], [0, 37], [28, 15], [83, -12], [38, 21], [43, 123], [48, 104], [35, 49], [10, 36], [21, 6], [69, 10], [45, 12], [104, -28], [50, 22], [7, -58], [31, -107], [-7, -77], [-48, 9], [-42, 22], [-74, -212], [-7, -79], [33, -58], [24, -55], [-17, -22], [-7, -12], [-47, -6], [-57, 9], [-62, 46], [-73, 21], [-64, 6], [-60, -3]], [[9062, 8034], [5, 15], [-43, 21], [0, 49], [-31, 80], [-16, 73], [7, 110], [47, 0], [31, -9], [33, 71], [-9, 18], [5, 12], [11, 43], [5, 9], [102, 0], [48, -15], [30, -43], [31, -24], [45, -25], [5, -3], [62, -61], [59, -43], [38, 6], [7, 0], [-2, -6], [-5, -24], [-33, -68], [-22, -18], [3, -104], [-5, -101], [-38, -123], [5, -33], [-21, 0], [-17, 3], [-33, 76], [-14, 98], [-1, 0], [-61, 10], [-81, -49], [-71, -16], [-69, 65], [-7, 6]], [[9534, 8318], [-7, 0], [-38, -6], [-59, 43], [-62, 61], [-5, 3], [0, 16], [5, 79], [45, 117], [29, 42], [47, 95], [10, 52], [2, -3], [47, -6], [45, 3], [46, 15], [23, 4], [22, 0], [12, 15], [9, 3], [9, -52], [3, -3], [-45, -67], [-45, -104], [-36, -114], [0, -92], [45, -88], [-47, 0], [-55, -13]], [[9534, 8318], [55, 12], [47, 0], [14, 3], [50, -48], [17, -13], [0, -52], [-10, -46], [-21, -76], [-52, -101], [-26, -123], [11, -52], [-49, 0], [-95, 10], [-38, 6], [0, 3], [-5, 33], [38, 123], [5, 101], [-2, 104], [21, 18], [33, 68], [5, 24], [2, 6]], [[9717, 8272], [21, -15], [38, 18], [74, 31], [23, 9], [-4, -21], [19, -46], [26, -31], [45, -58], [40, -156], [0, -129], [-9, -58], [-29, -95], [-50, -24], [-130, 49], [-62, -15], [-38, 33], [-57, 31], [-4, 27], [-12, 52], [26, 123], [52, 101], [21, 76], [10, 46], [0, 52]], [[9873, 8315], [-23, -9], [-74, -30], [-38, -19], [-21, 15], [-17, 13], [-50, 49], [-14, -3], [-45, 88], [0, 92], [36, 113], [45, 104], [45, 68], [52, -68], [74, -33], [52, 0], [28, 3], [2, -12], [31, -43], [34, -19], [-10, -67], [-52, -55], [-33, -73], [-22, -114]], [[9363, 8420], [-45, 24], [-31, 24], [-30, 43], [-48, 16], [-102, 0], [-52, -3], [-14, 27], [-10, 21], [0, 68], [0, 24], [-14, 80], [7, 107], [14, 98], [38, -3], [69, 37], [67, 49], [42, 30], [17, 9], [33, -30], [31, -22], [59, 34], [17, 33], [7, -39], [-19, -37], [-50, -58], [-21, -55], [9, -64], [12, -16], [36, 55], [28, 37], [45, -37], [40, -52], [-9, -52], [-47, -94], [-29, -43], [-45, -117], [-5, -79], [0, -15]], [[9038, 8949], [3, 9], [21, 120], [24, 110], [7, 70], [36, 18], [52, 25], [40, 110], [40, 22], [12, 107], [22, 113], [38, 67], [16, 25], [7, 6], [17, -3], [78, -3], [24, 0], [-3, -92], [-4, -119], [-12, -120], [-48, -58], [-19, -46], [41, -110], [-3, -76], [-16, -37], [-17, -34], [-59, -33], [-31, 21], [-33, 31], [-17, -10], [-43, -30], [-66, -49], [-69, -37], [-38, 3]], [[1803, 5949], [-7, -3], [-45, 6], [-33, 3], [7, 12], [-7, 43], [-1, 0], [-30, 28], [-38, 30], [-50, 37], [-38, 58], [-21, 76], [0, 132], [4, 55], [12, 80], [38, -34], [10, -20], [-1, -1], [1, 0], [0, 1], [23, -44], [62, -34], [55, 15], [7, 3], [-17, -128], [-7, -92], [47, -46], [48, 3], [47, -18], [40, -34], [-11, -24], [-29, 0], [0, -28], [-21, -40], [-17, -30], [-28, -6]], [[396, 6010], [-19, 73], [-16, 62], [-5, 6], [12, 18], [14, 46], [33, 73], [12, 49], [7, -6], [43, -12], [59, 3], [47, -12], [34, -40], [28, -25], [36, -12], [28, 12], [38, 10], [19, 3], [7, 0], [-9, -31], [-19, -55], [-22, -33], [-19, -13], [-52, -6], [-102, -3], [-35, -9], [2, -19], [14, -15], [31, -3], [28, -18], [-80, -3], [-17, -3], [-35, -28], [-62, -9]], [[9143, 6304], [-67, -15], [0, -1], [12, -76], [-40, -144], [-45, -24], [-41, -16], [-42, -3], [-114, 40], [-121, 25], [-59, 21], [-60, 15], [-12, -24], [-16, 15], [-3, 3], [-16, 28], [-36, 85], [-14, 101], [147, -3], [31, -61], [69, -40], [42, 9], [48, 68], [17, 128], [-19, 181], [2, 61], [2, 19], [36, 30], [85, 22], [67, -22], [37, -76], [22, -156], [50, -141], [38, -49]], [[2142, 6025], [-21, 0], [-31, 9], [-57, 13], [-55, 9], [-52, 0], [-28, -3], [12, 24], [-41, 34], [-47, 18], [-48, -3], [-47, 46], [7, 92], [17, 128], [33, 10], [26, 12], [55, 3], [35, 0], [38, 34], [9, -13], [36, -58], [57, -40], [43, -3], [2, -12], [10, -43], [4, -39], [0, -1], [12, -67], [19, -76], [19, -43], [-7, -31]], [[356, 6151], [-19, 12], [-57, 0], [-62, 25], [-28, 21], [-12, 73], [12, 138], [-17, 40], [-26, -12], [-64, -28], [-40, 6], [-20, 17], [-6, 8], [4, 3], [7, 43], [-16, 46], [-12, 82], [5, 58], [11, -3], [1, 0], [52, 3], [26, 3], [9, -3], [43, 0], [38, -6], [14, -9], [41, 0], [14, 15], [35, 19], [38, 18], [0, -3], [41, -3], [54, 9], [26, 0], [31, -15], [-5, -58], [-12, -52], [-14, -89], [-12, -129], [-9, -43], [-12, -48], [-33, -74], [-14, -46], [-12, -18]], [[327, 6720], [-38, -18], [-35, -18], [0, -1], [-15, -15], [-40, 0], [-14, 9], [-38, 7], [-43, 0], [-9, 3], [-26, -3], [-52, -4], [-12, 3], [2, 25], [26, 52], [26, 46], [24, 37], [14, 24], [26, -9], [55, -31], [59, -21], [40, -19], [31, -9], [17, 3], [0, -24], [2, -37]], [[8806, 6677], [-3, -61], [19, -181], [-16, -128], [-48, -67], [-42, -10], [-69, 40], [-31, 61], [33, 34], [-11, 58], [-1, 0], [-33, 92], [-47, 104], [-67, 65], [-56, 33], [16, 21], [0, 1], [-24, 55], [-33, 58], [7, 79], [74, 211], [42, -21], [48, -9], [7, 77], [-31, 107], [-7, 58], [31, 12], [73, 58], [67, 34], [28, 27], [7, -52], [7, -91], [-21, -101], [-31, -129], [19, -77], [50, -46], [45, -67], [12, -40], [-5, -6], [-35, -36], [-105, -43], [-40, -31], [36, -61], [66, -6], [45, -13], [17, -6], [7, -3]], [[747, 6255], [-38, -9], [-28, -13], [-36, 13], [-28, 24], [-33, 40], [-48, 12], [-59, -3], [-43, 12], [-7, 6], [10, 43], [11, 129], [15, 89], [11, 52], [5, 58], [21, 3], [46, 12], [40, -34], [23, -3], [-4, -9], [2, -67], [7, -25], [116, -3], [-4, -186], [7, -77], [14, -64]], [[1751, 6393], [-7, -3], [-55, -16], [-62, 34], [-23, 44], [14, 29], [-2, 22], [2, 12], [12, 6], [9, 12], [14, 9], [12, 13], [0, 12], [10, 24], [0, 1], [0, 12], [24, 18], [18, 6], [22, 19], [16, 12], [12, 12], [7, 25], [0, 27], [5, 19], [0, 12], [-9, 18], [-2, 33], [35, -2], [64, 18], [54, 18], [34, 17], [2, -1], [-2, 1], [4, 2], [62, 33], [45, 16], [26, -3], [10, -19], [21, -21], [2, -73], [17, -77], [-24, -37], [-33, -33], [-2, 0], [0, -1], [2, 0], [-31, -30], [-50, -58], [-59, -98], [-7, -6], [-38, -34], [-35, 0], [-55, -3], [-26, -12], [-33, -9]], [[1767, 6805], [3, -33], [9, -18], [0, -12], [-5, -19], [0, -27], [-7, -25], [-12, -12], [-16, -12], [-22, -19], [-19, -6], [-23, -18], [0, -12], [-10, -25], [0, -12], [-12, -12], [-14, -10], [-9, -12], [-12, -6], [-3, -12], [3, -22], [-14, -28], [-10, 19], [-38, 34], [5, 27], [-12, 31], [-19, 46], [-26, 58], [-14, 37], [4, 0], [38, 12], [31, 21], [164, 86], [-5, 12], [36, -30], [9, -1]], [[700, 6999], [-3, -16], [-14, -36], [-9, -40], [-21, -68], [-17, -2], [-12, -22], [-14, 12], [-5, 7], [-17, -13], [-12, -9], [-7, 12], [3, 9], [0, 1], [-24, -7], [-2, 25], [-22, 0], [-6, 3], [-8, 15], [-17, 25], [-7, 61], [3, 43], [26, 168], [50, -3], [37, 0], [22, 6], [2, 0], [12, -21], [43, -114], [19, -36]], [[518, 6854], [6, -2], [21, 0], [3, -25], [23, 6], [-2, -9], [7, -12], [12, 9], [17, 12], [5, -6], [14, -12], [12, 21], [17, 3], [-10, -33], [0, -49], [-5, -49], [-19, -24], [-9, 3], [-24, 3], [-40, 33], [-46, -12], [-21, -3], [-31, 15], [-26, 0], [-54, -9], [-41, 3], [0, 3], [7, 3], [-7, -3], [-2, 37], [0, 24], [21, 0], [22, 19], [28, 24], [29, 18], [42, 7], [55, -3], [-4, 8]], [[325, 6781], [-17, -3], [-31, 10], [-40, 18], [-59, 21], [-55, 31], [-26, 9], [7, 15], [-9, 59], [-14, 58], [-10, 98], [12, 79], [52, 58], [12, 22], [7, 0], [24, 3], [16, 3], [17, -21], [38, -25], [21, -9], [17, -3], [43, -3], [40, -16], [50, -6], [31, -3], [61, -9], [3, 0], [-27, -168], [-2, -43], [7, -61], [17, -25], [7, -15], [5, -9], [-55, 3], [-42, -6], [-29, -19], [-28, -24], [-22, -19], [-21, 0]], [[2092, 6904], [-26, 3], [-45, -15], [-62, -34], [-4, -2], [-90, 45], [9, 33], [12, 46], [35, 19], [1, 0], [14, 24], [-5, 19], [-54, 24], [7, 37], [7, 12], [0, 28], [33, 49], [0, 15], [-14, 46], [28, 21], [24, 3], [16, 22], [3, 24], [0, 25], [-45, 0], [-31, -12], [-7, 33], [28, 43], [7, 12], [26, 0], [1, 0], [-5, 48], [47, 10], [55, -55], [40, -30], [28, -3], [22, 3], [16, 0], [45, -13], [5, -33], [43, -86], [62, -67], [40, -22], [16, -27], [-21, -34], [-38, -73], [-95, -132], [-102, -9], [-26, 3]], [[1955, 7472], [4, -48], [-26, 0], [-7, -12], [-28, -43], [7, -34], [31, 13], [45, 0], [0, -25], [-3, -24], [-16, -22], [-24, -3], [-28, -21], [-1, 0], [1, 0], [14, -46], [0, -15], [-33, -49], [0, -28], [-8, -12], [-7, -37], [55, -24], [5, -19], [-15, -24], [-35, -19], [-12, -46], [-10, -33], [91, -45], [-34, -16], [-54, -19], [-64, -18], [-35, 2], [-1, 4], [0, -4], [-9, 1], [-36, 31], [-16, 42], [-31, 37], [-93, 74], [-35, 36], [-12, 77], [2, 64], [17, 86], [-48, 16], [0, 2], [0, -2], [-7, 2], [15, 31], [-1, 0], [-14, 18], [10, 12], [23, 46], [12, 55], [22, 40], [30, 15], [34, -9], [31, 3], [9, 37], [17, -37], [40, -27], [24, 0], [47, 18], [52, -15], [38, -12], [57, 24], [10, 2]], [[6353, 6846], [-3, -3], [-40, -19], [-66, -6], [-90, 19], [-36, 0], [-31, 3], [-59, 6], [-57, 9], [-50, 21], [-88, 40], [-9, 3], [14, 28], [17, 137], [14, 123], [-33, 104], [-17, 64], [-9, 62], [-7, 72], [18, -54], [41, -6], [73, -10], [83, -21], [53, -21], [68, -31], [67, -37], [61, -21], [1, 0], [49, 27], [43, 37], [31, 43], [5, 3], [40, -46], [59, -24], [0, -3], [-5, -55], [-21, -71], [-62, -61], [-33, -64], [-2, -107], [-7, -102], [-12, -39]], [[3127, 6870], [-24, -9], [-41, -27], [-45, -13], [-26, 37], [8, 15], [7, 80], [-12, 55], [-26, 73], [-45, 102], [-38, 52], [-29, 42], [-26, 43], [17, 6], [66, -12], [26, 3], [38, 71], [24, 73], [66, 52], [55, 46], [26, 31], [43, 36], [47, 12], [57, -58], [33, -76], [26, -31], [24, -52], [28, -107], [15, -49], [57, -52], [68, 9], [-2, -9], [-7, -46], [-5, -116], [-16, -52], [-17, -13], [-2, 4], [0, -1], [1, -3], [-11, -9], [-57, -27], [-64, -18], [-90, -16], [-71, -21], [-59, -19], [-19, -6]], [[7269, 7204], [-50, -31], [-41, 7], [-52, 30], [-76, 43], [-30, 52], [28, 49], [-5, 55], [-26, 40], [-50, 21], [-54, -12], [-71, 6], [-3, 0], [22, 70], [30, 80], [36, 70], [45, 59], [78, 67], [22, 12], [35, 3], [33, -3], [36, -15], [38, -31], [36, 9], [14, 7], [7, -34], [24, -86], [23, -89], [24, -9], [-2, -49], [4, -79], [-4, -104], [0, -10], [-10, -33], [-47, -86], [-14, -9]], [[8773, 7789], [-19, 18], [-36, 40], [-45, 79], [-38, 80], [-38, 70], [-21, 89], [-26, 74], [-88, 64], [-55, 61], [-71, 77], [-83, 46], [-80, 15], [0, 6], [11, 61], [29, 58], [19, 25], [52, 64], [2, 3], [52, -21], [1, 0], [47, 9], [36, 37], [23, 12], [43, -52], [69, -46], [83, -12], [38, -3], [4, -49], [8, -86], [16, -132], [29, -128], [11, -64], [15, -65], [9, -85], [17, -126], [-7, -80], [-7, -39]], [[8678, 8643], [-38, 3], [-83, 12], [-69, 46], [-43, 52], [-24, -12], [-35, -37], [-47, -9], [-53, 21], [24, 34], [0, 40], [-5, 67], [-2, 12], [40, -21], [24, 40], [52, -40], [3, 6], [30, -37], [3, 0], [7, 52], [0, 1], [-7, 21], [0, 40], [24, 27], [0, 46], [66, -49], [69, -3], [28, 24], [10, -45], [2, -83], [5, -104], [14, -71], [5, -33]], [[8478, 9007], [0, -46], [-23, -27], [0, -40], [7, -22], [-7, -51], [-3, 0], [-30, 36], [-1, 0], [-2, -6], [-52, 40], [-24, -40], [-40, 22], [-14, 67], [-7, 64], [9, 64], [29, 95], [35, 67], [2, -2], [15, -43], [52, -101], [50, -74], [4, -3]], [[9923, 8698], [-28, -3], [-52, 0], [-74, 34], [-52, 67], [-2, 3], [-10, 52], [-5, 21], [22, 34], [-36, 19], [-40, 6], [-29, 24], [-16, 15], [47, 55], [24, 13], [52, -13], [71, 7], [67, 52], [21, 27], [12, 18], [26, -36], [26, -55], [-14, -83], [-12, -64], [2, -138], [0, -55]], [[9705, 8851], [-10, -3], [-11, -15], [-22, 0], [-23, -3], [-1, 0], [-45, -16], [-45, -3], [-47, 6], [-2, 4], [-41, 52], [-45, 36], [-28, -36], [-36, -55], [-12, 15], [-9, 64], [21, 55], [50, 58], [19, 37], [-7, 40], [16, 36], [0, 1], [3, 76], [-40, 110], [18, 46], [48, 58], [12, 120], [5, 119], [2, 92], [45, -3], [45, 3], [-2, -107], [-3, -74], [0, -85], [-12, -114], [-16, -143], [0, -1], [-3, -119], [3, -83], [16, -49], [19, -21], [34, 21], [16, -15], [29, -24], [40, -7], [35, -18], [-21, -33], [0, -1], [5, -21]], [[9601, 8971], [-34, -22], [-19, 22], [-16, 48], [-3, 83], [3, 119], [16, 144], [12, 114], [0, 85], [3, 74], [2, 107], [17, 0], [47, 15], [36, 16], [9, 9], [45, -28], [17, -12], [-29, -18], [-24, -129], [10, -101], [26, -119], [19, -101], [0, -1], [57, -61], [62, -30], [38, -55], [-12, -19], [-22, -27], [-66, -52], [-71, -6], [-52, 12], [-24, -12], [-47, -55]], [[8642, 8980], [-28, -25], [-69, 3], [-66, 49], [4, -3], [-4, 3], [-1, 0], [-4, 3], [-50, 74], [-52, 101], [-14, 43], [-3, 3], [12, 18], [33, 37], [33, 33], [34, 22], [40, 18], [2, 3], [5, -36], [0, -1], [33, -33], [52, 6], [1, 0], [42, 31], [21, 21], [0, -46], [8, -245], [-15, -67], [-14, -12]], [[8663, 9350], [-21, -21], [-43, -31], [-52, -6], [-33, 34], [-5, 36], [64, 31], [31, 52], [22, 15], [0, 114], [11, 52], [41, 55], [52, 12], [14, -3], [48, -3], [38, 9], [38, 12], [9, -6], [-5, -6], [-16, -34], [-19, -55], [-22, -43], [-33, -70], [-9, -12], [-41, -52], [-28, -31], [-41, -49]], [[9631, 9821], [43, -36], [-9, -9], [-36, -16], [-47, -15], [-17, 0], [-45, -3], [-45, 3], [-24, 0], [-78, 3], [-17, 3], [-57, 9], [-73, 10], [-78, 12], [-12, 37], [-17, 57], [50, -21], [5, 37], [16, 46], [41, 61], [82, -9], [79, -34], [71, -40], [52, -33], [76, -37], [40, -25]], [[6395, 7418], [-4, -3], [-31, -43], [-43, -36], [-50, -28], [-61, 22], [-67, 36], [-68, 31], [-53, 21], [-83, 22], [-73, 9], [-40, 6], [-19, 55], [-1, 0], [-40, -40], [-42, 37], [-17, 9], [5, 18], [0, 1], [7, 88], [26, 55], [24, 9], [92, -15], [64, -24], [59, 9], [1, 0], [42, 52], [26, 83], [7, 61], [5, 6], [57, -64], [36, -3], [57, 46], [42, 18], [74, -31], [33, 9], [50, -30], [14, -86], [0, -70], [-12, -64], [-12, -71], [-26, -73], [21, -22]], [[726, 7648], [43, -3], [45, 6], [0, -3], [9, -34], [2, -64], [0, -37], [-2, -58], [-21, -24], [-41, -25], [-14, -31], [0, -3], [-5, -27], [5, -34], [-5, -37], [-40, -52], [-43, -33], [-33, -19], [-2, 0], [-22, -6], [-37, 0], [-50, 3], [-3, 0], [-61, 9], [-31, 4], [-50, 6], [-40, 15], [-43, 3], [-17, 3], [-21, 9], [-38, 25], [-16, 21], [28, 3], [9, 37], [8, 43], [11, 15], [53, -15], [28, -7], [0, 1], [12, 45], [5, 15], [26, -8], [31, 6], [19, 9], [26, 3], [28, -22], [29, -6], [21, -6], [33, -6], [17, 28], [19, 3], [19, -28], [19, 19], [23, 27], [8, 22], [21, 24], [14, 21], [0, 1], [0, 12], [7, 36], [0, 1], [-2, 9], [0, 30], [14, 34], [5, 40]], [[726, 7648], [0, 0]], [[194, 7262], [-16, -3], [-24, -3], [-7, 0], [7, 12], [3, 22], [0, 24], [-8, 52], [-9, 43], [-12, 61], [-16, 49], [28, 74], [36, 55], [42, 52], [6, 5], [1, 1], [1, -2], [1, -2], [1, -3], [1, -3], [1, -3], [2, -3], [1, -3], [2, -3], [1, -3], [2, -4], [1, -3], [1, -3], [2, -3], [1, -3], [1, -3], [1, -3], [1, -2], [1, -3], [1, -2], [1, -1], [28, -28], [29, -40], [16, -52], [1, 0], [35, -15], [19, 3], [17, -18], [4, -28], [-21, -21], [-24, -40], [-4, -13], [-3, 1], [3, -1], [-5, -14], [-12, -46], [-28, 6], [-53, 15], [-12, -15], [-7, -43], [-9, -37], [-29, -3]], [[2208, 7385], [-45, 12], [-16, 0], [-22, -3], [-28, 3], [-40, 30], [-55, 56], [-47, -11], [0, 1], [2, 0], [-5, 19], [-42, 24], [4, 12], [24, 9], [0, 1], [0, 36], [-33, 34], [21, 27], [0, 1], [10, 21], [-21, 42], [28, 16], [28, 0], [24, 6], [17, 0], [38, -6], [56, 21], [27, -39], [45, -37], [9, -67], [7, -80], [7, -80], [7, -48]], [[1957, 7473], [-2, 0], [0, -1], [-10, -2], [-57, -24], [-38, 12], [-52, 15], [-47, -18], [-24, 0], [-40, 28], [-17, 36], [-2, 3], [2, 40], [10, 18], [11, 16], [15, 12], [19, 15], [16, -58], [24, -18], [21, 27], [36, 52], [45, 55], [28, 6], [20, 12], [21, -42], [-10, -21], [-21, -28], [33, -34], [0, -36], [-24, -9], [0, -1], [-4, -12], [42, -24], [5, -19]], [[7152, 5878], [12, -9], [33, -58], [10, -110], [-26, -150], [12, -95], [-24, -43], [-36, -15], [-66, -6], [-50, 3], [-5, 0], [-64, 30], [-71, 43], [-47, 37], [-64, 98], [-48, -12], [-52, -28], [-62, -12], [-28, 24], [-14, 12], [-26, 92], [-50, 141], [-19, 31], [-2, 3], [4, 6], [22, 36], [26, 43], [52, 6], [52, -30], [52, -55], [71, -6], [79, 30], [40, -21], [0, -1], [33, -18], [71, -91], [62, -19], [66, 37], [48, 73], [9, 34]], [[5112, 1549], [-2, -3], [-62, -40], [-92, -33], [-60, -13], [-59, 19], [-54, 52], [-22, 52], [52, 12], [62, 24], [2, 0], [3, 7], [19, 27], [35, 98], [50, 61], [33, 34], [43, 37], [-33, 73], [24, 77], [23, 79], [0, 9], [26, 4], [69, 9], [76, 40], [93, 39], [54, -6], [40, 9], [1, 0], [0, 15], [18, -54], [3, -120], [28, -128], [33, -43], [-33, 0], [-50, 12], [-54, -6], [-90, -24], [-74, -49], [-62, -98], [-33, -95], [-7, -77]], [[5454, 1509], [-12, 0], [-57, 13], [-66, 3], [-48, -6], [-52, -3], [-7, 0], [-17, 0], [-83, 33], [7, 77], [34, 94], [61, 98], [74, 49], [90, 25], [54, 6], [50, -12], [33, 0], [38, -13], [3, 0], [-12, -33], [-19, -61], [7, -117], [43, -73], [7, -9], [-29, -37], [-38, -27], [-61, -7]], [[5741, 2140], [-5, -21], [-38, -49], [-12, -120], [-9, -58], [-67, -21], [-54, 3], [-3, 0], [-37, 12], [-34, 43], [-28, 128], [-2, 120], [-19, 55], [33, 18], [50, 64], [30, 68], [3, 40], [12, 67], [4, 49], [0, 12], [19, -6], [74, 18], [35, 9], [3, -9], [38, -64], [45, -37], [30, -27], [-11, -12], [-57, -40], [-26, -43], [-12, -73], [0, -1], [7, -70], [31, -55]], [[4586, 3086], [-12, 0], [-48, 18], [-26, 74], [0, 43], [-40, 6], [-55, -25], [-59, -49], [-17, -52], [-12, -42], [-33, -13], [-38, 13], [-7, 18], [-19, 40], [-35, 70], [-41, 49], [-40, 34], [-55, 33], [-30, -6], [-15, 74], [12, 58], [36, 46], [24, 73], [-8, 46], [-4, 9], [33, 19], [26, 9], [69, -83], [76, -3], [104, 9], [95, -24], [47, -6], [36, 12], [9, 15], [24, -107], [19, -70], [43, -10], [4, -30], [1, 0], [18, -37], [1, 0], [56, -52], [10, -67], [-17, -58], [-42, -28], [-45, -3], [-45, -3]], [[4944, 3383], [-3, 0], [-66, -12], [-81, -19], [-57, 62], [-31, -25], [-49, -27], [-12, 3], [-43, 9], [-19, 70], [-23, 107], [30, 52], [31, 68], [17, 39], [45, 7], [73, 21], [53, 12], [19, 9], [26, 7], [11, 0], [34, 12], [7, -9], [9, -10], [67, -76], [38, -98], [11, -77], [19, -9], [1, 0], [42, 3], [-14, -27], [-10, -34], [-49, -36], [-43, -28], [-33, 6]], [[4559, 3551], [-9, -15], [-36, -12], [-47, 6], [-95, 25], [-104, -10], [-76, 3], [-69, 83], [-26, -9], [-33, -18], [-41, 82], [-7, 52], [-2, 31], [7, 0], [36, 64], [30, 98], [26, 15], [27, -6], [40, 49], [64, 61], [36, 37], [7, 9], [28, 0], [83, 22], [57, 27], [40, 28], [41, 36], [16, -6], [45, -39], [48, -43], [-43, -34], [-14, -21], [35, -59], [57, -36], [53, -49], [26, -43], [23, -55], [22, -31], [49, -27], [-26, -6], [-18, -10], [-53, -12], [-73, -21], [-45, -6], [-17, -40], [-31, -68], [-31, -52]], [[4286, 4096], [-7, -9], [-35, -36], [-64, -62], [-40, -49], [-27, 6], [-26, -15], [-31, -98], [-35, -64], [-47, 0], [-34, 15], [-30, 28], [4, 9], [-23, 82], [-3, 71], [7, 89], [-2, 64], [-2, 6], [63, 3], [15, -24], [-3, -13], [5, -6], [17, 0], [16, 12], [38, -3], [7, 28], [40, 21], [10, -27], [64, -28], [64, -3], [59, 3]], [[4089, 4151], [-40, -21], [-7, -27], [-38, 3], [-16, -13], [-17, 0], [-5, 6], [3, 13], [-14, 24], [-64, -3], [-8, 28], [-16, 21], [2, 3], [19, 61], [26, 52], [17, 80], [0, 77], [7, 30], [31, -6], [52, 34], [16, -34], [46, -58], [9, -80], [-14, -67], [-14, -58], [25, -65]], [[3867, 4182], [-38, -37], [-76, -9], [-46, 0], [1, 3], [-2, -3], [-10, 0], [-52, 28], [-60, 15], [-52, 40], [-33, 24], [-50, 19], [7, 6], [36, 43], [43, 58], [35, -6], [52, -43], [45, 0], [1, 0], [68, 43], [74, 27], [26, 22], [24, 33], [2, -6], [59, 49], [17, -3], [-7, -30], [0, -77], [-17, -80], [-26, -52], [-19, -61], [-2, -3]], [[4247, 7331], [0, 15], [6, 14], [29, 21], [16, -24], [12, -18], [7, -28], [-2, -6], [-24, -9], [-14, 0], [-24, 21], [-6, 14]], [[5431, 5585], [2, 2], [16, 22], [14, 110], [24, 95], [31, 73], [47, 55], [3, 3], [52, -6], [21, -3], [2, -6], [22, -46], [43, -40], [71, 7], [85, 6], [90, 3], [50, -19], [31, -3], [5, -3], [-3, -9], [2, -200], [-42, -11], [-14, 0], [-29, -6], [-23, -25], [-26, 0], [-1, 0], [-30, -27], [-38, -37], [-7, -15], [7, -16], [-7, -21], [-10, -15], [-12, -19], [0, -1]], [[726, 7648], [-5, -40], [-14, -34], [0, -30], [2, -9], [-7, -37], [0, -12], [-14, -22], [-22, -24], [-7, -22], [-23, -27], [-19, -19], [-19, 28], [-19, -3], [-17, -28], [-33, 6], [-21, 7], [-29, 6], [-28, 21], [-26, -3], [-19, -9], [-31, -6], [-26, 8], [4, 13], [24, 40], [22, 21], [-5, 28], [-17, 18], [-19, -3], [-35, 16], [-17, 52], [-28, 39], [-29, 28], [-1, 2], [0, 2], [-1, 2], [-1, 2], [-2, 3], [-1, 3], [-1, 3], [-1, 3], [-2, 3], [-1, 3], [-2, 4], [-1, 3], [-2, 3], [-1, 3], [-1, 3], [-2, 3], [-1, 3], [-1, 3], [-1, 2], [-1, 2], [41, 40], [28, 15], [10, -3], [30, -12], [60, -31], [114, -37], [73, -9], [78, -15], [67, -6]], [[3421, 5633], [-36, -58], [-33, -15], [-38, 15], [0, 37], [-38, 0], [-40, -24], [-12, 27], [-21, 21], [-1, 0], [-33, -27], [-52, -12], [-28, 27], [-41, 3], [-4, 46], [-12, 19], [-31, 61], [7, 39], [24, 0], [26, 34], [0, 52], [-19, 28], [-10, 21], [-31, -21], [-35, 21], [-24, 40], [5, 24], [10, 49], [-1, 1], [-23, 15], [-45, -3], [-16, 61], [35, 12], [61, 0], [60, -12], [18, -28], [12, -15], [114, -28], [48, -24], [78, -25], [69, -18], [23, -21], [38, -31], [17, -61], [-24, -67], [-9, -86], [12, -76]], [[3409, 4534], [0, -3], [-43, -49], [-50, 3], [-28, 28], [-14, -22], [0, -33], [-15, 15], [-33, 3], [-47, -30], [-62, 55], [-51, -21], [4, 2], [-5, -3], [0, 9], [-59, 101], [-41, 40], [-47, 15], [-57, -6], [17, 98], [-24, 294], [2, 25], [7, 61], [119, -101], [102, -205], [5, -40], [135, -9], [31, -37], [21, 15], [31, -52], [28, -49], [52, -40], [22, -64]], [[4721, 7630], [0, -1], [-12, -61], [19, -64], [-24, -74], [0, -45], [0, -1], [19, -70], [-9, -21], [-45, -9], [-12, 3], [-86, 3], [-57, 85], [3, 68], [-14, 15], [-53, -3], [-33, 55], [3, 80], [-28, 47], [6, -2], [59, 22], [24, 12], [36, 12], [47, 0], [48, -3], [66, -18], [43, -29]], [[7102, 6815], [50, -55], [5, -31], [-17, -30], [8, -22], [40, -24], [-10, -31], [-17, -31], [-18, 1], [-41, 0], [3, 3], [-3, -3], [-68, 0], [-50, 0], [0, 9], [-40, 18], [-31, -9], [-45, 0], [2, 40], [0, 104], [29, 9], [21, 21], [28, 0], [10, -9], [85, 0], [59, 41]], [[1734, 5952], [-36, -71], [-30, -39], [-41, -62], [-21, -52], [-26, -89], [-62, -104], [-35, -33], [-41, -62], [-56, -41], [2, 17], [-3, 55], [-23, 49], [-17, 58], [-36, 28], [-42, 46], [-10, 9], [-7, 73], [5, 89], [-12, 98], [-24, 77], [-19, 18], [-42, 15], [-46, -15], [-52, -24], [-4, -3], [-22, 15], [-19, 43], [17, 30], [36, 43], [9, 37], [17, 40], [47, 55], [66, 58], [1, 1], [30, 26], [48, 59], [28, 104], [0, 64], [-38, 43], [12, 15], [29, 31], [51, 27], [1, 0], [-1, 0], [5, 3], [76, 25], [41, -3], [14, -37], [26, -58], [19, -46], [12, -31], [-5, -27], [-12, -80], [-5, -55], [0, -132], [22, -76], [38, -58], [50, -37], [38, -31], [30, -27], [7, -43], [-7, -12], [17, -2]], [[2350, 6392], [-42, 50], [-45, 3], [-3, -3], [-11, 15], [-2, 67], [-12, 37], [-48, 0], [-12, 18], [-2, 19], [-21, 9], [-17, -3], [-50, 40], [33, 33], [24, 37], [-16, 77], [-3, 73], [-21, 22], [-10, 18], [26, -3], [102, 9], [95, 132], [38, 73], [22, 34], [40, -68], [52, -61], [71, -18], [-14, -25], [-38, -27], [-47, -37], [-50, -61], [19, -31], [26, -34], [31, -42], [50, -7], [42, -9], [31, -46], [14, -15], [12, -12]], [[4998, 6971], [-21, -36], [-40, -56], [-15, -30], [-42, -37], [-26, -24], [-38, -34], [-34, -15], [-52, -25], [-64, -3], [-12, 6], [-11, 25], [-41, 27], [-57, 0], [-66, 9], [-40, 22], [-41, 30], [-31, 7], [5, 9], [3, 55], [0, 6], [-6, 40], [34, -40], [52, 15], [57, 28], [2, 6], [43, 92], [24, 27], [52, -55], [19, -9], [33, -31], [62, 0], [28, 31], [74, 55], [7, -3], [-6, 3], [98, -21], [50, -74]], [[3686, 3845], [1, 0], [-3, 34], [0, 24], [10, 31], [0, 21], [0, 1], [-12, 21], [9, 30], [12, 22], [-12, 28], [0, 42], [16, 37], [46, 0], [76, 9], [38, 37], [16, -21], [8, -28], [-1, 0], [1, 0], [2, -6], [2, -64], [-7, -89], [2, -71], [24, -82], [-5, -9], [-16, -25], [-43, -27], [-64, -13], [-38, 3], [-2, 0], [-31, 37], [-33, 49]], [[4752, 3891], [54, 15], [59, 0], [29, 7], [64, 3], [26, 30], [50, 15], [0, 1], [26, 36], [49, 56], [27, -31], [9, -25], [5, -3], [12, -58], [0, -70], [-31, -52], [-26, -31], [-21, -40], [-15, 0], [-26, -27], [-59, -40], [-2, 6], [-67, 77], [-9, 9], [-7, 9], [-34, -12], [-11, 0], [-50, 27], [-21, 31], [-24, 55], [-8, 12]], [[4222, 1932], [-9, 27], [-26, 49], [10, 6], [0, 46], [-17, 40], [17, 9], [0, 46], [-19, 27], [26, 10], [80, 49], [81, -15], [26, -46], [45, -120], [74, -9], [106, -9], [57, -19], [57, -33], [34, 27], [0, 3], [14, -30], [33, -77], [-22, -162], [-35, -33], [0, -1], [7, -6], [3, 0], [-72, -12], [-54, -24], [-86, -68], [-68, -27], [-45, 18], [-53, 67], [-23, 59], [-57, 107], [-31, 58], [-36, 31], [-16, 12], [-1, 0]], [[4222, 1932], [0, 0]], [[2687, 1579], [10, 53], [26, 46], [12, 27], [17, 31], [12, 39], [40, -3], [28, 0], [69, -3], [50, -15], [83, 0], [14, 15], [55, 31], [64, -3], [52, 0], [19, -3], [12, 3], [2, -12], [36, -31], [57, -58], [35, -52], [31, -52], [31, -71], [19, -33], [16, -25], [-298, -79], [-15, -2]], [[5342, 389], [17, 52], [0, 46], [26, 64], [29, 76], [0, 1], [-17, 27], [-2, 43], [-19, 80], [11, 51], [36, -9], [81, -9], [59, 9], [78, 9], [45, -3], [26, -3], [12, 0], [-9, -12], [14, -76], [69, -166], [-36, -134], [-28, -144], [-41, -3], [-30, -3], [-72, -9], [-75, 39], [-38, 31], [-112, 34], [-24, 7]], [[5003, 814], [74, -24], [78, -25], [47, -6], [19, 0], [5, -43], [14, -153], [10, -24], [-7, -9], [0, -1], [5, 7], [-15, -22], [-38, -113], [0, -92], [10, -52], [2, -9], [-21, -12], [-36, -19], [-66, -18], [-50, -9], [-123, 24], [-10, 25], [-5, 24], [-9, 55], [-14, 187], [21, 138], [59, 61], [48, 110], [0, 1]], [[4415, 1044], [-64, 12], [-55, -43], [-43, -58], [-37, 58], [-38, 28], [-50, 0], [-38, 24], [9, 52], [26, 55], [15, 59], [12, 76], [-1, 0], [-66, 95], [-24, 64], [0, 1], [-49, 30], [0, 3], [-1, 0], [0, -2], [-11, 42], [-19, 31], [9, 91], [5, 3], [54, 31], [67, -9], [73, 64], [0, 25], [-26, 15], [3, 21], [0, 68], [59, 42], [0, 1], [-3, 9]], [[4222, 1932], [1, 0], [16, -13], [36, -30], [31, -58], [56, -107], [24, -59], [52, -67], [46, -18], [68, 27], [86, 67], [54, 25], [74, 12], [19, -9], [35, -43], [55, -39], [-62, -25], [-52, -12], [-33, -9], [-59, -10], [-79, -27], [-42, -37], [-1, 0], [-9, -55], [21, -92], [0, -98], [-59, -101], [-38, -40], [-50, -64], [3, -6]]],
+	"transform": {
+		"scale": [0.0004650245297967368, 0.00033821379116672],
+		"translate": [83.32356262207028, 21.966590881347592]
+	},
+	"bbox": [83.32356262207028, 21.966590881347592, 87.97334289550786, 25.348390579223626]
+}

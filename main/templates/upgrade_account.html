@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/multi-select.js" ></script>
+<script type="text/javascript" src="/static/js/fancyfields-1.2.min.js" ></script>
+
+<script src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript" src="/static/js/underscore-min.js"></script>
+<!-- bootbox alert -->
+<script src="/static/js/bootbox.js"></script>
+<!-- bootbox alert -->
+
+<script type="text/javascript">
+$(document).ready(function () {
+	/*$('.multiselect').multiSelect({
+		selectableHeader : '<div class=selected_list>Available States</div>',
+		selectedHeader : '<div class=selected_list>Selected States</div>'
+	});*/
+	$(".check-fields").fancyfields();
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$('.user-menu').slideUp(0);
+    $('.menu-icon').click( function(event){
+        event.stopPropagation();
+        $('.user-menu').slideToggle(200);
+    });
+    $(document).click( function(){
+        $('.user-menu').slideUp(100);
+    });
+});
+
+var level1Data;
+window.onload=function(){
+	/*D3 fetching data*/
+	d3.selectAll("#data-fetching").remove();
+	var dataFetching = d3.select("#selectbox-wrap").append("svg").attr("class", "data-fetching").attr("id", "data-fetching").attr("width", 420)
+				.attr("height", 100).attr("transform", "translate(100, 120 )scale(0.8)");
+	dataFetching.append("text").attr("x", 88).attr("y", 53) 
+	.text("Fetching Data...");
+
+	/*Subscription list*/
+	var sub_list;
+	var url="/app/subscription_list";
+	d3.json(url,function(data){
+		sub_list = data;
+
+	level0_Id = 356;
+	d3.json("/app/scisphere/places/countrydetail?level0="+level0_Id+"" , function(data) {
+		d3.selectAll("#data-fetching").remove();
+		level1Data = data.level1;
+		var statesSelected_Li ="";
+		var level1_Id = document.getElementById('level1_Id');
+		for(var key in level1Data) {
+			if(key == level0_Id){
+				//sorting
+				var level1list = level1Data[key];
+				var sortable = [];
+				for (var state in level1list)
+				      sortable.push([state, level1list[state]])
+				sortable.sort(function(a,b) { return d3.ascending(a[1],b[1]); });
+				//sorting
+				for(var i=0;i<sortable.length;i++){
+					var optlevel1 = document.createElement('option');
+					var valCh = sortable[i][1];
+					var valCam = valCh.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+					optlevel1.innerHTML = valCam;
+					optlevel1.value = sortable[i][0];
+					if(( $.inArray(sortable[i][0], sub_list['plus_plans']) != -1)){console.log("sss");
+						statesSelected_Li +="<li><a >"+valCam+"</a></li>"
+					}else{
+						level1_Id.appendChild(optlevel1);
+					}
+				}
+			break;
+	
+			}
+		}
+
+		$('.multiselect').multiSelect({
+			selectableHeader : '<div class=selected_list>Available States</div>',
+			selectedHeader : '<div class=selected_list>Selected States</div>'
+		});
+		document.getElementById('selectedStates').innerHTML = statesSelected_Li;
+	});
+	});
+
+}
+
+// this function calling from multi-select.js
+function selectAndDeselect(){
+	var stateCount = 0;
+	var currency = 0;
+	if($("#level1_Id").val()){
+		stateCount = $(".ms-selection ul").children().length;	
+        }
+	
+	currency = (stateCount *25000);	
+	
+	document.getElementById('selected-state-count').innerHTML=stateCount;
+	document.getElementById('selected-state-currency').innerHTML="Rs. "+currency;
+}
+
+function subscription(){
+	var level1Array = $("#level1_Id").val();
+
+	console.log($("#level1_Id").val());
+	console.log(document.getElementById("level1_Id").value);
+
+ 	var url="/app/upgrade_payment?level0id="+level0_Id+"&level1id="+level1Array+"";
+
+	console.log("url");
+	console.log(url);
+
+	window.location.href = "/app/upgrade_payment?level0id="+level0_Id+"&level1id="+level1Array+"";
+
+	/*d3.json(url,function(data){
+		//bootbox.alert("Your plan has been successfully saved and will be activated when your payment has been processed.");
+	});*/
+
+}
+</script>
+</head>
+
+<body>
+<header class="navbar header">
+  <div class="container">
+    <div class="navbar-header"> <a href="/index.html" class="" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+    <nav class="collapse navbar-collapse">
+      <ul class="nav navbar-nav menu" id="menu">
+        <li><a href="/app/upload" title="Upload"><span class="menu-icon" id="menu-up"></span>Upload</a></li>
+        <li><a href="/app/region_explorer" title="Explore"><span class="menu-icon" id="menu-exp"></span>Explore</a></li>
+        <li><a href="/app/analyze" title="Analyze"><span class="menu-icon" id="menu-ana"></span>Analyze</a></li>
+        <li class="current"><a href="#" title="MySphere"><span class="menu-icon" id="menu-mys"></span>MySphere</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right account-sec">
+        <li><a href="#" id="settings" title="Settings"></a></li>
+        <li>{% if user %}<div id="fullname" style="margin-top:23px;">{{user}}</div>{% endif %}</li>
+        <!--<li><a href="#" id="user-image" title="User"><img src="/static/images/user-icon.jpg" /></a></li>-->
+        <li class="dropdown" > <span class="menu-icon" id="drop-icon"></span>
+          <div class="user-menu"> <span class="menu-arrow"></span>
+            <ul>
+              <li><a href="/app/upgrade_account" title="Change Plan"><span class="usermenu-icon" id="change-plan"></span>Change Plan</a></li>
+              <!--<li><a href="#" title="Profile Setting"><span class="usermenu-icon" id="pro-setting"></span>Profile Setting</a></li>-->
+              <li><a href="/accounts/password/change/" title="Change Password"><span class="usermenu-icon" id="change-pwd"></span>Change Password</a></li>
+              <!--<li><a href="#" title="Help Center"><span class="usermenu-icon" id="helpcenter"></span>Help Center</a></li>-->
+              <li><a href="{% url 'auth_logout' %}" title="Logout" class="logout">Log Out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- Secondary Header -->
+<header class="navbar sub-header">
+  <div class="container "> </div>
+</header>
+<div class="body-sec innerpage-body" >
+  <div class="container">
+    <div class="col-lg-7">
+      <h2 class="inner-page-title">Upgrade your Account</h2>
+      <p class="inner-page-subcontent">Get access to over 150 demographic, economic and geospatial variables. </p>
+      <table border="0" class="info-table">
+	<tr>
+	   <td>Annual Subscription per State:  Rs. 25,000 per year per user</td>
+	</tr>
+        <!--<tr class="caption">
+          <td colspan="2">Annual subscription (per State)</td>
+        </tr>
+        <tr>
+          <td class="title" width="130px">Up to 5 States </td>
+          <td class="desc">Rs. 30,000 </td>
+        </tr>
+        <tr>
+          <td class="title">More than 5 States </td>
+          <td class="desc">Rs. 25,000</td>
+        </tr>-->
+      </table>
+	 <h3 class="selectbox-caption">Selected States are:</h3>
+	 <div class="selectbox-wrap">
+             <ul class="nav navbar-nav item-panel-list2" id="selectedStates">
+	</ul>
+      </div>
+      <h3 class="selectbox-caption">Select your States</h3>
+      <div class="selectbox-wrap"  id="selectbox-wrap" >
+        <select class='multiselect' name="level1[]" multiple="multiple" id="level1_Id"></select>
+      </div>
+      <div class="total-wrap">
+        <table border="0" class="info-table pull-right" style="margin:0;">
+          <tr>
+            <td class="title text-right" width="160px">No. of States Selected</td>
+            <td class="desc"><font id="selected-state-count"></font></td>
+          </tr>
+          <tr>
+            <td class="title text-right">Total</td>
+            <td class="desc"><font id="selected-state-currency"></font></td>
+          </tr>
+        </table>
+      </div>
+      <!--<h3 class="selectbox-caption">Add premium datasets from third parties</h3>
+      <div class="checkbox-wrap clearfix">
+        <table border="0" class="premium-table" style="margin:0;" width="100%" >
+          <tr>
+            <td width="350px"><div class="check-fields">
+                <input type="checkbox" name="ch[]" class="selectradio" id="ch1" value="Message" checked="checked" >
+                <label>Indicus Analytics</label>
+              </div></td>
+            <td><div class="check-total-val"> <span class="desc">Rs. 45,000</span> </div></td>
+          </tr>
+          <tr>
+            <td width="350px"><div class="check-fields">
+                <input type="checkbox" name="ch[]" class="selectradio" id="ch2" value="Query">
+                <label>Credit Bureaus</label>
+              </div></td>
+            <td><div class="check-total-val"> <span class="desc">Rs. 45,000</span> </div></td>
+          </tr>
+        </table>
+      </div>
+      <div class="check-fields">
+                <input type="checkbox" name="ch[]" class="selectradio" id="ch1" value="Message" checked="checked" ><label>Indicus Analytics</label><br />
+                <input type="checkbox" name="ch[]" class="selectradio" id="ch2" value="Query"><label>Credit Bureaus</label>
+      </div>
+      <hr class="h-line" />
+      <div class="final-wrap">
+        <table border="0" class="info-table pull-right" style="margin:0;">
+          <tr>
+            <td class="title text-right">Total</td>
+            <td class="desc">Rs. 90,000</td>
+          </tr>
+        </table>
+      </div>-->
+      <div class="form-button-wrap" id="upgrade-button-wrap">
+        <button type="button" class="btn btn-primary btn-red" data-toggle="button" style="width:170px;" onclick="subscription();">Continue to Payment</button>
+      </div>
+      
+     <!-- <h5 class="left-con-head">Payment <a class="add" data-toggle="modal" data-target=".Payment" title="Payment" ></a></h5>
+
+	
+	<div class="modal fade Payment" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button><!-- Close ->
+                            <div class="clearfix">
+                            	<div class="popup-body"><!-- Popup Panel Body ->
+                                	<ul class="nav navbar-nav popup-accordian" id="accordion">
+                                       
+					<li class="panel">
+                                            <a data-toggle="collapse" data-target="#pop-contextual" data-parent="#accordion" class="pop-acc-title acc-act">Check Details<span class="acc-arrow"></span> </a>
+                                            <div id="pop-contextual" class="collapse in pop-acc-content clearfix" >
+                                                <div class="popup-title-wrap">
+                                                	<div class="pop-right-title-section">
+                                                        
+                                                        <div class="modal fade total-select" tabindex="2" role="dialog" aria-labelledby="" aria-hidden="true">
+                                                             <div class="modal-dialog modal-md">
+                                                                <div class="modal-content modal-conatiner-small">
+                                                                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button><!-- Close ->
+                                                                  <div class="popup-small-sec">
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            	<div class="popup-content-wrap clearfix">
+							dfsdfsdfsdfsdfsdfsdfsdf
+                                                 
+                                                </div>
+                                            </div>
+                                        </li>
+                                       
+                                    </ul>
+                                     <div class="button-wrap" style="text-align:left;">
+                                        <button type="button" class="btn btn-primary btn-red" data-toggle="button" data-dismiss="modal" onclick="applySelectedVariable()">Apply</button>
+                                        <button type="button" class="btn btn-primary btn-gray" data-toggle="button" data-dismiss="modal" onclick="cancelSelectedVariable();">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>>
+                        </div>
+                      </div>
+                    </div>
+	<!-- -->
+	
+	
+    </div>
+    <div class="col-lg-5">
+      <div class="upgrade-right-panel pull-right">
+        <p class="content">Would you like to know what demographic, economic and geospatial factors influence your company performance? </p>
+        <p class="content"><a href="#"> Contact us</a> to find out more about our Analytics beta offering.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -->
+{% include "footer.html" %}
+<!-- -->
+
+</body>
+</html>

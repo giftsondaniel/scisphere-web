@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load i18n %}
+{% block content %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom-new.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery-selectify.js"></script>
+<script type="text/javascript" src="/static/js/jquery.passstrength.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script src="/static/js/bootbox.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$(".selectbox").selectify();
+	var strength = $('#id_password1').passStrengthify();
+	//$('#logo-wrap').floatScroll({positionTop:0});
+
+});
+
+function createAccount(){
+	
+	if(document.getElementById('id_first_name').value == ""){
+		bootbox.alert("First name is required.");
+		document.getElementById('id_first_name').focus();
+		return false;
+	}
+	if(document.getElementById('id_last_name').value == ""){
+		bootbox.alert("Last name is required.");
+		return false;
+	}
+	if(document.getElementById('id_email').value == ""){
+		bootbox.alert("Email is required.");
+		return false;
+	}
+	if(document.getElementById('id_password1').value == ""){
+		bootbox.alert("Password is required.");
+		return false;
+	}
+	if(document.getElementById('id_password2').value == ""){
+		bootbox.alert("Reenter Password is required.");
+		return false;
+	}
+	if(document.getElementById('id_password1').value.length < 6){
+		bootbox.alert("Password should atleast have 6 characters.");
+		return false;
+	}
+	
+	if(document.getElementById('id_password1').value != document.getElementById('id_password2').value){
+		bootbox.alert("You must type the same password each time.");
+		return false;
+	}
+
+	if(document.getElementById('id_checkbox').checked == true){
+		//document.getElementById('id_username').value = document.getElementById('id_email').value;
+		document.getElementById('id_submit').click();
+	}else{
+		bootbox.alert("You must agree to the terms to register.");
+		return false;
+	}
+}
+
+function resetValue(){
+	document.getElementById('id_first_name').value="";
+	document.getElementById('id_last_name').value="";
+	document.getElementById('id_job_title').value="";
+	document.getElementById('id_company').value="";
+	document.getElementById('id_industry').value="";
+	document.getElementById('id_email').value="";
+	document.getElementById('id_password1').value="";
+	document.getElementById('id_password2').value="";
+}
+
+</script>
+</head>
+
+<body>
+<!-- -->
+{% include "home-header.html" %}  
+<!-- -->
+<div class="body-sec innerpage-body" >
+  <div class="container" id="signup-body">
+    <div class="col-lg-6" >
+      <h3 class="signup-heading">Sign up</h3>
+      <h5 class="signup-subheading">Create a scisphere account</h5>
+      <span class="form-head">All fields are required</span> 
+      <!-- -->
+      <form method="post" action=".">
+        <table cellpadding="0" cellspacing="0" border="0" class="signup-table" width="100%">
+	<!--{% for field in form %}
+        	{% if not field.name == "recaptcha_challenge_field" and not field.name == "recaptcha_response_field" %}
+            <tr>
+                <td style="padding-top:8px;">
+                    {{ field.errors }}
+                    {{ field }}
+                    {% if field.field.required %}*{% endif %}
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}-->
+
+          <tr>
+            <td>{{ form.first_name.errors }}{{ form.first_name }}<font color="red"> *</font><!--<input type="text" name="first_name" id="id_first_name" placeholder="First name" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td>{{ form.last_name.errors }}{{ form.last_name}}<font color="red"> *</font><!--<input type="text" name="last_name" id="id_last_name" placeholder="Last name" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td>{{ form.job_title.errors }}{{ form.job_title}}<!--<input type="text" name="job_title" id="id_job_title" placeholder="Job title" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td>{{ form.company.errors }}{{ form.company}}<!--<input type="text" name="company" id="id_company" placeholder="Company" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td>{{ form.industry.errors }}{{ form.industry}}</td>
+          </tr>
+          <tr>
+            <td>{{ form.email.errors }}{{ form.email}}<font color="red"> *</font><!--<input type="text" name="email" id="id_email" placeholder="Email" class="text-field"/>--></td>
+          </tr>
+          <tr>
+            <td colspan="2">{{ form.password1.errors }}{{ form.password1}}<font color="red"> *</font></td>
+          </tr>
+          <tr>
+            <td>{{ form.password2.errors }}{{ form.password2}}<font color="red"> *</font><!--<input  type="password" name="password2" id="id_password2" class="text-field"  placeholder="Reenter password"/>--></td>
+          </tr>
+	  <tr>
+           <td><p class="pull-left terms-content"> Individual &nbsp;</p>{{ form.is_individual.errors }}{{ form.is_individual}} </td>
+          </tr>
+          <tr>
+            <td><input  type="hidden" name="username" id="id_username"/></td>
+          </tr>
+          <tr>
+            <td class="terms-td"><input type="checkbox" name="checkbox" id="id_checkbox" class="pull-left"/>
+              <p class="pull-left terms-content">&nbsp; I agree to the <a href="#" class="terms-content-link"> Master  Terms and Conditions </a>of subscrition</p></td>
+          </tr>
+          <tr>
+            <td class="form-td"><div class="form-button-wrap">
+		<input type="button" class="btn btn-primary btn-red" value="Create account" onclick="createAccount();"/>
+		<input type="submit" class="btn btn-primary btn-red" value="Create account" id="id_submit" style="display:none"/>
+		<button type="button" value="Reset" class="btn btn-primary btn-gray" onclick="resetValue();" style="width:100px;">Reset</button>
+              </div></td>
+          </tr>
+        </table>
+      </form>
+      <!-- --> 
+      <!--<form method="post" action=".">
+        {% csrf_token %}
+        <p>{% trans "Fields marked wth an asterisk (*) are required." %}</p>
+        <table cellpadding="0" cellspacing="0" border="0" class="signup-table" width="100%">
+        {% for field in form %}
+        	{% if not field.name == "recaptcha_challenge_field" and not field.name == "recaptcha_response_field" %}
+            <tr>
+                <td style="padding-top:0px;">
+                    {{ field.label_tag }}
+                </td>
+                <td style="padding-top:8px;">
+                    {{ field.errors }}
+                    {{ field }}
+                    {% if field.field.required %}*{% endif %}
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+          <tr>
+            <td colspan="2" class="terms-td"><input type="checkbox" name="checkbox" class="pull-left"/>
+              <p class="pull-left terms-content">&nbsp; I agree to the <a href="#" class="terms-content-link"> Master  Terms and Conditions </a>of subscrition</p></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="form-td"><div class="form-button-wrap">
+	        <input type="submit" class="btn large btn-primary" value="{% trans 'Register' %}" />
+                <button type="button" class="btn btn-primary btn-gray" data-toggle="button" style="width:100px;">reset</button>
+              </div></td>
+          </tr>
+
+        </table>
+      </form>-->
+      <!-- -->
+    </div>
+    <div class="col-lg-1">
+      <h4 class="or-text">Or</h4>
+    </div>
+    <div class="col-lg-5" >
+      <h5 class="account-text">Use your preferred account</h5>
+      <a href="#" title="Linkedin" target="_blank"><img src="/static/images/linkedin-icon.jpg" /></a><br />
+      <br />
+      <a href="#" title="Google Plus" target="_blank"><img src="/static/images/g-icon.jpg" /></a> </div>
+  </div>
+</div>
+<!-- -->
+{% include "footer.html" %}  
+<!-- -->
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!-- add -->
+
+<link rel="stylesheet" type="text/css" href="/static/listmenu_js/jquery.sidr.light.css"/>
+<!--<link rel="stylesheet" type="text/css" href="/static/listmenu_js/app.css"/>-->
+<script type="text/javascript" src="/static/listmenu_js/custom.modernizr.js"></script>
+<script type="text/javascript" src="/static/listmenu_js/jquery.sidr.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#simple-menu').sidr();
+  $('#simple-menu-close').sidr();
+});
+</script>
+
+<div id="sidr" style="display:none">
+  <ul>
+    <li><a id="simple-menu-close" href="#sidr" onclick="slide()"><img src="/static/images/icon-png2x_black.png" height="10" width="15"></a></li>
+    <li><a href="/map70">Map70</a></li>
+    <li><a href="/xp70">Explore70</a></li>
+    <li><a href="/insight70">Insight70</a></li>
+    <li><a href="/savedimage">Saved Image</a></li>
+  </ul>
+</div>
+ 
+<!-- add -->

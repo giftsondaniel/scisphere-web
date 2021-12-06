@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere | Predict</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="/static/css/jquery.selectBoxIt.css" rel="stylesheet" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.easing.min.js"></script><!-- Easing -->
+<script type="text/javascript" src="/static/js/jquery.easing.1.3.js"></script><!-- Easing 1.3 -->
+<script type="text/javascript" src="/static/js/jquery.selectBoxIt.js"></script>
+<script type="text/javascript" src="/static/js/jquery.bxslider.js"></script><!-- Bx Slider -->
+<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script><!-- Mouse Wheel -->
+<script type="text/javascript" src="/static/js/jquery.jscrollpane.min.js"></script><!-- Scroll pane-->
+<script type='text/javascript' src="/static/js/jquery.jqpagination.js"></script><!-- Pagination -->
+<script type='text/javascript' src="/static/js/jquery.offset.js"></script><!-- Menu Position -->
+<script type='text/javascript' src="/static/js/bootstrap-slider.js"></script>
+<script type="text/javascript" src="/static/js/d3.v2.min.js"></script>
+<script type="text/javascript" src="/static/js/bootbox.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.submenu-sec').bxSlider({
+		slideWidth: 130,
+		minSlides: 3,
+		maxSlides: 3,
+		moveSlides: 1,
+		pager: false
+	});
+	$('.scroll-pane').jScrollPane();
+	$('#help').tooltip();
+	$(".range").slider({});
+	/*--Acc --*/
+	$('.popup-accordian li a').click(function(e) {
+		if($(this).hasClass('acc-act')){
+			$(this).removeClass('acc-act');
+		}
+		else{
+			$('.popup-accordian li a').removeClass('acc-act');
+			$(this).addClass('acc-act');
+		}
+    });
+	/*s--*/
+	/*-- Pagination start --*/
+	$('.pagination').jqPagination({
+		link_string	: '/?page={page_number}',
+		max_page	: 1000,
+		paged		: function(page) {
+			$('.log').prepend('<li>Requested page ' + page + '</li>');
+		}
+	});
+	/*-- Pagination end--*/
+	$('.custom_selectbox').selectBoxIt({ defaultText: '', autoWidth: false });
+	
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$('.user-menu').slideUp(0);
+	$('.menu-icon').click( function(event){
+		event.stopPropagation();
+		$('.user-menu').slideToggle(200);
+	});
+	$(document).click( function(){
+		$('.user-menu').slideUp(100);
+	});
+	/*-- --*/
+
+	$('.sub-menu-list-sec').slideUp(0);
+	$('.submenu-dropdown').click( function(){
+		var id = $(this).parent('div').attr('id');
+		var st =id.substr(9, 3);
+
+		if($(this).parent('div').hasClass('submenu-act')){
+			$(this).parent('div').removeClass('submenu-act')
+			$(this).parent('div').siblings('div').removeClass('submenu-act');
+			$('.sub-menu-list-sec').slideUp(200);
+			$('.link-arrow').css({'display':'none'});
+		}
+		else{
+			$(this).parent('div').addClass('submenu-act');
+			$(this).parent('div').siblings('div').removeClass('submenu-act');
+			$('.sub-menu-list-sec').slideUp(0);
+			$('.link-arrow').css({'display':'none'});
+			current_parent = $(this).parent('.sub-menu.submenu-act');
+			position_menu = current_parent.offsetRelative("div.bx-viewport");
+			$('#submenu-list'+st).css('left',position_menu.left + 20);
+			$('#submenu-list'+st).slideDown(200);
+			$(this).siblings('.link-arrow').css({'display':'block'});
+		}
+	});
+
+	$('.sub-menu').click( function(event){
+		event.stopPropagation();
+	});
+
+	$(document).click( function(){
+		$('.sub-menu-list-sec').slideUp(100);
+		$('.link-arrow').css({'display':'none'});
+		$('.submenu-dropdown').parent('div').removeClass('submenu-act');
+	});
+
+	/*-- --*/
+	$('.range').on('slide',function(slideEvt){
+		var p = $(this).attr('id');
+		var s =p.substr(5, 3)
+		$("#range-val"+s +" .min-val").text(slideEvt.value[0]);
+		$("#range-val"+s +" .max-val").text(slideEvt.value[1]);
+	});
+	$('.range').on('click',function(slideEvt){
+		var p = $(this).attr('id');
+		var s =p.substr(5, 3)
+		$("#range-val"+s +" .min-val").text(slideEvt.value[0]);
+		$("#range-val"+s +" .max-val").text(slideEvt.value[1]);
+	});
+});
+</script>
+<script type="text/javascript">
+
+var modelId = '{{modelId}}';
+
+function modelMasterClick(modelId,modelName){
+	for(var i=0;i<modelMasterList.length;i++){
+		$("#model_id_"+modelMasterList[i].id).removeClass('active');
+	}
+	$("#model_id_"+modelId).addClass('active');
+        document.getElementById("breadcrumb_id").innerHTML='<span>'+modelName+'</span>';
+}
+
+var sub_list;
+var modelMasterList;
+window.onload = function(){
+	/*d3.json("/app/model_master_list", function(data){
+		modelMasterList=data;
+		var content="";
+		for(var i=0;i<data.length;i++){
+			if(modelId == data[i].id){
+				content +='<li id="model_id_'+data[i].id+'" class="active"><a title="'+data[i].model_name+'" onclick="modelMasterClick('+"'"+data[i].id+"','"+data[i].model_name+"'"+')">'+data[i].model_name+'</a></li>';
+				document.getElementById("breadcrumb_id").innerHTML='<span>'+data[i].model_name+'</span>';
+			}else{
+				content +='<li id="model_id_'+data[i].id+'" class=""><a title="'+data[i].model_name+'" onclick="modelMasterClick('+"'"+data[i].id+"','"+data[i].model_name+"'"+')">'+data[i].model_name+'</a></li>';
+			}
+		}
+
+		if(content){
+			document.getElementById("model_list_id").innerHTML=content;
+		}
+	});*/
+	modelMasterList = '{{modelMasterList|escapejs}}';
+	if(modelMasterList){
+	    	modelMasterList = JSON.parse(modelMasterList);
+	}
+	if(modelMasterList.length>0){
+		var content="";
+		modelId = modelMasterList[0].id;
+		document.getElementById("breadcrumb_id").innerHTML='<span>'+modelMasterList[0].model_name+'</span>';
+		for(var i=0;i<modelMasterList.length;i++){
+			if(modelId == modelMasterList[i].id){
+				content +='<li id="model_id_'+modelMasterList[i].id+'" class="active"><a title="'+modelMasterList[i].model_name+'" onclick="modelMasterClick('+"'"+modelMasterList[i].id+"','"+modelMasterList[i].model_name+"'"+')">'+modelMasterList[i].model_name+'</a></li>';
+			}else{
+				content +='<li id="model_id_'+modelMasterList[i].id+'" class=""><a title="'+modelMasterList[i].model_name+'" onclick="modelMasterClick('+"'"+modelMasterList[i].id+"','"+modelMasterList[i].model_name+"'"+')">'+modelMasterList[i].model_name+'</a></li>';
+			}
+		}
+		if(content){
+			document.getElementById("model_list_id").innerHTML=content;
+		}
+	}
+
+	
+
+	var templateJson = '{{templateJson|escapejs}}';
+	if(templateJson){
+	    	/*templateJson = templateJson.replace(/&quot;/g,'"');
+	    	templateJson = templateJson.replace(/&#39;/g,'"');
+	    	templateJson = templateJson.replace(/None/g,'""');
+	    	templateJson = templateJson.replace(/u"/g,'"');*/
+	    	templateJson = JSON.parse(templateJson);
+	}
+
+
+	var perMetric = document.getElementById("performance-metric-id");
+	if(templateJson.length>0){
+		for(var i=0;i<templateJson.length;i++){
+			if(templateJson[i]['performance_variable']){
+				for(var key in templateJson[i]['performance_variable']){
+					var content;
+					var keyName=templateJson[i]['performance_variable'][key].name;
+					if(keyName.length > 35){
+						content = keyName.substring(0, 35)+"...";
+					}else{
+						content = keyName;
+					}
+					var optval = document.createElement('option');
+					optval.innerHTML = content;
+					optval.value = templateJson[i]['performance_variable'][key].id;
+					optval.setAttribute("rel","popover");
+					optval.setAttribute("title","Template : "+templateJson[i]['myTemplate']);
+					optval.setAttribute("data-content","Key : "+templateJson[i]['performance_variable'][key].name);
+					perMetric.appendChild(optval);
+				}
+			}
+		}
+	}
+
+	$("#performance-metric-id").data("selectBox-selectBoxIt").add();
+	$("[rel='popover']").popover({ trigger: "hover", container: "body" });
+
+
+	var level1Id = document.getElementById("level1Id");
+	d3.json("/app/subscription_list",function(subscriptionData){
+		sub_list = subscriptionData;
+		d3.json("/app/scisphere/places/countrydetail?level0=356" , function(data) {
+			for(var key in data['level1']){
+				if(key == 356){
+					var level1List = data['level1'][key];
+					var sortable = [];
+					for (var level1 in level1List)
+					      sortable.push([level1, level1List[level1]]);
+					sortable.sort(function(a,b) { return d3.ascending(a[1],b[1]); });
+					if(sub_list['plus_plans'].length > 0){
+						for(var i=0;i<sortable.length;i++){
+							if(( $.inArray(sortable[i][0], sub_list['plus_plans']) != -1)){
+								var optlevel1 = document.createElement('option');
+								var valCh = sortable[i][1];
+								var valCam = valCh.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+								optlevel1.innerHTML = valCam;
+								optlevel1.value = sortable[i][0];
+								level1Id.appendChild(optlevel1);
+							}
+						}
+					}else{
+						for(var i=0;i<sortable.length;i++){
+							if( sortable[i][0]=== sub_list['free_plans']['state'][0]){
+								var optlevel1 = document.createElement('option');
+								var valCh = sortable[i][1];
+								var valCam = valCh.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+								optlevel1.innerHTML = valCam;
+								optlevel1.value = sortable[i][0];
+								level1Id.appendChild(optlevel1);
+							}
+						}
+					}
+				break;
+				}
+			}
+			$("#level1Id").data("selectBox-selectBoxIt").add();
+		});
+	});
+
+
+
+/**/
+
+function stopInterval(){
+	clearInterval(interval);
+}
+
+var interval = setInterval(function () {
+	console.log("time inter");
+
+
+}, 20000);
+
+/**/
+
+
+
+
+}
+
+
+function runModelFunction(){
+
+	var yourElement = document.getElementById("performance-metric-id");
+	//var dataVal = yourElement.getAttribute("data-content");
+	var dataVal = yourElement.getAttribute[yourElement.selectedIndex];
+	var perMetricValue = document.getElementById("performance-metric-id").value;
+	var level1Id = document.getElementById("level1Id").value;
+
+	var modelId,modelName;
+	for(var i=0;i<modelMasterList.length;i++){
+		if($("#model_id_"+modelMasterList[i].id).hasClass("active") == true){
+			modelId=modelMasterList[i].id;
+			modelName=modelMasterList[i].model_name;
+		}
+	}
+
+	var perMetricName="";
+	if(perMetricValue!=0){
+		var content = $("#performance-metric-id option:selected")[0]['dataset']['content'].split("Key : ");
+		perMetricName = content[1];
+	}
+
+	if(perMetricValue == 0){
+		bootbox.alert("Performance Metric is required.");
+		return false;
+	}
+	if(level1Id == 0){
+		bootbox.alert("Geography is required.");
+		return false;
+	}
+
+	var perMetric = document.getElementById("performance-metric-id");
+    	//var perMetricName = perMetric.options[perMetric.selectedIndex].innerHTML;
+	var level1Text = document.getElementById("level1Id");
+    	var level1Name = level1Text.options[level1Text.selectedIndex].innerHTML;
+    	window.location="/app/rural_location_process?performancemerticname="+perMetricName+"&level1name="+level1Name+"&permerticid="+perMetricValue+"&level1id="+level1Id+"&modelid="+modelId+"&modelname="+modelName;
+		//window.location="/app/rural_location_result?performancemertic="+perMetricName+"&level1="+level1Name+"&permerticvalue="+perMetricValue+"&level1value="+level1Value+"&modelid="+modelId+"&modelname="+modelName;
+}
+
+</script>
+</head>
+<body>
+<!-- -->
+<div class="main"> 
+  <!-- Primary Header  -->
+     {% include "header-primary-analyze.html" %} 
+  <!-- Secondary Header -->
+  <header class="navbar sub-header">
+    <div class="container pos-rel">
+      <div class="submenu-sec submenu-sec-block" >
+        <div class="sub-menu" id="sub-menu-1"> 
+          <a href="/app/rural_location" title="Predict" class="active" > 
+            <span class="submenu-icon" id="submenu-predict"></span>
+            <span class="submneu-con">Predict</span> 
+          </a> 
+          <span class="submenu-dropdown"></span> 
+          <span class="link-arrow"></span> 
+        </div>
+        <div class="sub-menu" id="sub-menu-2"> 
+          <a href="#" title="Plan"> 
+            <span class="submenu-icon" id="submenu-plan"></span> 
+            <span class="submneu-con">Plan</span> 
+          </a>
+          <!--<span class="submenu-dropdown"></span>
+          <span class="link-arrow"></span>--> 
+        </div>
+        <div class="sub-menu" id="sub-menu-3"> 
+          <a href="#" title="Optimize"> 
+            <span class="submenu-icon" id="submenu-optimize"></span> 
+            <span class="submneu-con">Optimize</span> 
+          </a>
+          <!--<span class="submenu-dropdown"></span>
+          <span class="link-arrow"></span>--> 
+        </div>
+      </div>
+      <div class="sub-menu-list-sec" id="submenu-list1">
+        <ul class="sub-menu-list" id="model_list_id">
+          <!--<li><a href="/app/rural_location" title="Rural Location Potential">Rural Location Potential</a></li>
+          <li class="link_dis"><a href="#" title="Rural Customer Potential">Rural Customer Potential</a></li>
+          <li class="link_dis"><a href="#" title="Urban Location Potential">Urban Location Potential</a></li>
+          <li class="link_dis"><a href="#" title="Urban Customer Potential">Urban Customer Potential</a></li>-->
+        </ul>
+      </div>
+      <!--<div class="sub-menu-list-sec" id="submenu-list2">
+            <ul class="sub-menu-list">
+                <li><a href="#" title="Build Location Selection Model">Build Location </a></li>
+                <li><a href="#" title="Optimally organize location clusters">Optimally organize</a></li>
+            </ul>
+        </div>
+        <div class="sub-menu-list-sec" id="submenu-list3">
+            <ul class="sub-menu-list">
+                <li><a href="#" title="Build Location Selection Model"> Selection Model</a></li>
+                <li><a href="#" title="Optimally organize location clusters">location clusters</a></li>
+            </ul>
+        </div>--> 
+    </div>
+  </header>
+  <div class="body-sec">
+    <div class="container"> 
+      
+      <!--Main body main panel -->
+      <div class="col-md-12 main-panel">
+        <div class="title-wrap">
+          <ol class="breadcrumb">
+            <li><a href="#">Predict</a></li>
+            <li class="active" id="breadcrumb_id"><!--<span>Rural Location</span>--></li>
+          </ol>
+        </div>
+        <div class="right-content-panel"><!-- Right Panel Body -->
+          <div class="col-lg-12">
+            <p class="desc">This feature predicts the potential of a location for your product/performance along a particular performance metric. The model uses contextual data within SciSphere’s database as input and is trained and tested on your selected outcome metric for different subsets of your existing branches and uses</p>
+            <br />
+            <div class="col-md-3">
+              <h3 class="block-title">INPUT</h3>
+              <div class="block-row"> <span class="block-subtitle">Train Model to Predict Performance Metric</span>
+                <div class="select-wrap1">
+                  <select id="performance-metric-id" class="custom_selectbox">
+                    <option value="0">[SELECT]</option>
+                  </select>
+                </div>
+              </div>
+              <!-- -->
+              <div class="block-row"> <span class="block-subtitle">Limit Model Training by Geography</span>
+                <div class="select-wrap1">
+                  <select class="custom_selectbox" name="" id="level1Id">
+                    <option value="0">State</option>
+                  </select>
+                </div>
+              </div>
+              <!-- -->
+              <div class="block-row"> <span class="block-subtitle">Limit Model to Population Range</span>
+                <div class="range-sec">
+                  <p class="range-val" id="range-val1"><span class="min-val">0.5</span><span class="max-val">1</span></p>
+                  <input id="range1" type="text" class="range" value="" data-slider-min="0.5" data-slider-max="1" data-slider-step="0.05" data-slider-value="[0.6,0.8]"/>
+                </div>
+              </div>
+              <!-- -->
+              <div class="block-row">
+                <button type="button" class="btn btn-primary btn-red" style="width:70px;" onclick="runModelFunction()">Run</button>
+              </div>
+              <!-- --> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer Section -->
+  {% include "footer.html" %}
+</div>
+<!-- -->
+</body>
+</html>
+
+<!-- -->
+<!-- -->

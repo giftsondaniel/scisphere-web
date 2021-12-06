@@ -1,0 +1,17 @@
+{% load i18n %}
+{% url 'registration_activate' activation_key as register_url %}
+{% blocktrans with site_name=site.name site_domain=site.domain expiration_days=expiration_days expiration_days_p=expiration_days|pluralize %}
+
+Hi {{ username }},
+
+We've created a new SciSphere account for you using this email address:
+
+{{ email }}
+
+Please click below to comfirm your account
+
+http://{{ site_domain }}{{ register_url }}
+
+
+{% endblocktrans %}
+

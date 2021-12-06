@@ -1,0 +1,38 @@
+{% verbatim %}
+    <script id="pin-form-template" type="text/x-handlebars-template">
+        <div class="pinry-modal pinry-fade" id="pin-form">
+            <div class="pinry-modal-dialog">
+                <div class="pinry-modal-content">
+                    <div class="pinry-modal-header">
+                        <h3 class="pinry-modal-title">New Pin</h3>
+                    </div>
+                    <div class="pinry-modal-body">
+                        <div class="col-sm-6" id="pin-form-image-preview"></div>
+                        <div class="col-sm-6">
+                            <div class="pinry-form-group">
+                                <label class="pinry-control-label" for="pin-form-image-url">Image URL</label>
+                                <input type="text" name="pin-form-image-url" id="pin-form-image-url" class="pinry-form-control"/>
+                            </div>
+                            <div class="pinry-form-group">
+                                <label for="pin-form-image-upload">Image Upload</label>
+                                <div id="pin-form-image-upload"></div>
+                            </div>
+                            <div class="pinry-form-group">
+                                <label for="pin-form-description">Description</label>
+                                <textarea name="pin-form-description" id="pin-form-description" class="pinry-form-control" maxlength="256"></textarea>
+                            </div>
+                            <div class="pinry-form-group">
+                                <label for="pin-form-tags">Tags</label>
+                                <input type="text" name="pin-form-tags" id="pin-form-tags" class="pinry-form-control" maxlength="50"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pinry-modal-footer">
+                        <button class="pinry-btn pinry-btn-default" id="pin-form-close">Cancel</a>
+                        <button type="submit" class="pinry-btn pinry-btn-primary" id="pin-form-submit">Post Pin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+{% endverbatim %}

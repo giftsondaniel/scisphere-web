@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SciSphere</title>
+<link rel="shortcut icon" type="image/x-icon" href="/static/images/top_logo.png">
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom-new.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#slides').slidesjs({ width: 990, height: 140});
+	$('#logo-wrap').floatScroll({positionTop:0});
+	$('.slider-title-wrap').click(function(){
+		$('html, body').animate({scrollTop: $(this).offset().top-56}, 500);
+	});
+});
+$(document).scroll(function () {
+	var y = $(this).scrollTop();
+	var x = $("#home-slider").position();
+	if (y > (x.top - 180)) {
+		$('.slider-title-wrap').animate({top :'0px'},10);
+	}else {
+		$('.slider-title-wrap').animate({top :'-40px'},10);
+	}
+});
+</script>
+</head>
+
+<body>
+<!-- -->
+{% include "home-header.html" %}  
+<!-- -->
+<div class="about-inner-body">
+  <div class="container  inner-page-content-section">
+  	 <div class="col-md-12">
+     	<h3 class="signup-heading">About</h3>
+        <p class="content">We are committed to the idea that if we could all understand the larger forces of the world around us, and their influence on our outcomes, we would all make better decisions and build a better world. Yet today, it is only the very large companies that have the ability to garner the disparate sources of data and analytic expertise required to make truly informed decisions. And oftentimes, even in these large companies, access to these resources and their potential insights is limited to small groups.  We don’t think it should<br /> be that way.
+ </p><br />
+ <p class="content">Our goal is to enable every individual within every organization, no matter how small or large, with easily accessible, affordable and actionable insights that aid in effective location selection and location based planning, more targeted marketing and product delivery and other kinds of decisions.  We are also particularly interested in bringing these insights to bear on more data dark parts of the world to enable a more inclusive world.</p><br />
+ <p  class="content">We do this by bringing together large disaggregated datasets that describe the world, using a science based approach to understand their interrelationships to derive meaning, and building automated analytics that blend your location, customer and product data with these datasets.</p><br />
+ <p  class="content">Founded in 2014, we are at the very beginning of this journey and are actively seeking new use cases and feedback that will help us build a better, more impactful product. 
+ If you have ideas you would like to share, are interested in a pilot partnership for something you don’t see in our service yet,
+  or are interested in joining our team, we would love to <br />hear from you.  So please do <a href="/contact" class="footer-link" title="Contact us">contact us!</a></p>
+     </div> 
+  </div>
+  </div>
+<!-- -->
+{% include "home-footer.html" %}  
+<!-- -->
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Scisphere</title>
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="icon" type="image/png" href="/static/images/favicon.ico" >
+<!-- Styles -->
+<link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet"  />
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css" />
+<!-- Scripts -->
+<script type="text/javascript" src="/static/js/1.9.1-jquery.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script><!-- Main Library js-->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script><!-- Bootstrap js-->
+<script type="text/javascript" src="/static/js/jquery.slides.js"></script>
+<script type="text/javascript" src="/static/js/jquery.floatScroll.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#slides').slidesjs({ width: 990, height: 140});
+	$('#logo-wrap').floatScroll({positionTop:0});
+	$('.slider-title-wrap').click(function(){
+		$('html, body').animate({scrollTop: $(this).offset().top-56}, 500);
+	});
+});
+$(document).scroll(function () {
+	var y = $(this).scrollTop();
+	var x = $("#home-slider").position();
+	if (y > (x.top - 180)) {
+		$('.slider-title-wrap').animate({top :'0px'},10);
+	}else {
+		$('.slider-title-wrap').animate({top :'-40px'},10);
+	}
+});
+</script>
+</head>
+
+<body>
+<header class="home-header" id="logo-wrap">
+  <div class="logo-wrap" >
+    <div class="container pos-rel">
+      <div class="pull-left"> <a href="/index.html" class="logo" title="logo"><img src="/static/images/logo.png"  alt="logo"/></a> </div>
+      <div class="pull-right">
+        <div class="logo-wrap-top">
+          <div class="link-sec pull-right"> 
+          	<p class="pull-left sec-1">
+                <span class="cus-text">Customer Support</span> 
+                <span class="cus-no">+91 44 42148631</span> 
+            	<a href="/accounts/login/" class="link-button link-button-gray" title="Log In">Log In</a>
+            </p>
+            <p class="pull-left">
+                <a href="https://www.facebook.com/pages/SciSphere-India/1480618278894388" target="_blank" title="Facebook" class="sm" id="fb"></a> 
+                <a href="https://twitter.com/SciSphere_India" target="_blank" title="Twitter" class="sm" id="tw"></a> 
+                <a href="http://www.linkedin.com/company/scisphere" target="_blank" title="Linked In" class="sm" id="li"></a> 
+                <a href="https://plus.google.com/u/0/b/105169011525829533656/105169011525829533656/about" target="_blank" title="Google+" class="sm" id="gplus"></a> 
+                <a href="https://www.youtube.com/channel/UCKaH6d6dVZ_HSFKn8jEwYQA" target="_blank" title="Youtube" class="sm" id="youtube"></a>
+                <!--<a href="#" target="_blank" title="Youtube" class="sm" id="rss"></a>-->
+            </p>
+            
+          </div>
+        </div>
+        <div class="logo-wrap-bottom">
+          <ul class="nav navbar-nav homemenu pull-right" role="tablist">
+			<li><a href="/index.html?tag=1" name="analytics" title="Products" >Products</a></li>
+            <li><a href="/pricing.html" title="Pricing">Pricing</a></li>
+            <li><a href="/demos.html" title="Demos">Demos</a></li>
+            <li><a href="/labs.html" title="Labs">Labs</a></li>
+            <li><a href="#" title="Blog">Blog</a></li>
+            <li><a href="/app/contact" title="Contact">Contact</a></li>
+		  </ul>
+        </div>
+      </div>
+      <a href="/app/signup/" class="link-button link-button-red signup-button" title="Free Sign Up">Free Sign Up</a>
+    </div>
+  </div>  
+</header>
+<div class="about-inner-body">
+  <div class="container  inner-page-content-section">
+  	 <div class="col-md-12" id="about-sec">
+     	<h3 class="signup-heading">About</h3>
+        <div class="col-md-8">
+        	<p class="content">We are committed to the idea that if we could all understand the larger external forces that influence our outcomes, we would all make better decisions and build a better world. Yet today, it is only the very large companies that have the ability to garner the data resources and analytic expertise required to make truly informed decisions. And oftentimes, even in these large companies, access to these potential insights is limited to small groups.  We don’t think it should be that way.</p>
+ 
+<p class="content">Our goal is to enable every individual within every organization, no matter how small or large, with easily accessible, affordable and actionable insights that aid in effective location selection and location based planning, more targeted marketing and product delivery and other kinds of decisions.  We are also particularly interested in bringing these insights to bear on more data dark parts of the world.</p>
+ 
+<p class="content">We do this by bringing together large disaggregated ‘contextual’ datasets that describe the world, using a science based approach to understanding their interrelationships and derive meaning, and building automated analytics that blend your location, customer and product data with these datasets.</p>
+ 
+<p class="content">Founded in 2014, we are at the very beginning of this journey and are actively seeking new use cases and feedback that will help us build a better, more impactful product.  If you have ideas you would like to share, are interested in a pilot partnership for something you don’t see in our service yet, or are interested in joining our team, we would love to hear from you.  So please do <a href="/app/contact" class="link" title="Contact us">contact us!</a>
+</p>
+        </div>
+        <div class="col-md-4">
+        </div>
+  <!-- -->
+  
+  
+     </div> 
+  </div>
+</div>
+<div class="home-footersec">
+  <div class="container">
+    <div class="col-lg-12">
+    	<p class="footer-content pull-left">
+        	<a href="/dataset.html?tag=1" title="Datasets">Datasets</a>  &nbsp; | &nbsp;
+            <a href="/pricing.html" title="Pricing">Pricing</a>  &nbsp; | &nbsp;
+            <a href="/demos.html" title="Demos">Demos</a>  &nbsp; | &nbsp;
+            <a href="/labs.html" title="Labs">Labs</a>  &nbsp; | &nbsp;
+            <a href="#" title="Blog">Blog</a>  &nbsp; | &nbsp;
+            <a href="/app/contact" title="Contact">Contact</a>  &nbsp; | &nbsp;
+            <a href="/about.html" title="About">About</a>
+        </p>
+        <p class="footer-content pull-right">
+        	<span class="copyright-text">&copy; Copyright 2014 Scisphere, inc. All rights reserved.</span>
+        </p>
+      </div>
+  </div>
+</div>
+<!-- -->
+
+</body>
+</html>
