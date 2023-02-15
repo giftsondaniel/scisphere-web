@@ -12,18 +12,18 @@ from django.conf.urls.defaults import patterns, include, url
 #from django.views.generic.simple import direct_to_template
 from django.contrib.auth import views as auth_views
 
-from registration.views import activate,resend_activatekey
-from registration.views import register
+#from registration.views import activate,resend_activatekey
+#from registration.views import register
 
 from main.forms import RegistrationFormUserProfile
 
 urlpatterns = patterns('',
-                       url(r'^activate/(?P<activation_key>\w+)/$',
-                           activate,
-                           name='registration_activate'),
-                       url(r'^resend_activatekey/(?P<activation_key>\w+)$',
-                           resend_activatekey,
-                           name='resend_activatekey'),
+                                                     #url(r'^activate/(?P<activation_key>\w+)/$',
+                                                     #    activate,
+                                                     #    name='registration_activate'),
+                                                     #url(r'^resend_activatekey/(?P<activation_key>\w+)$',
+                                                     #    resend_activatekey,
+                                                     #    name='resend_activatekey'),'''
 
 #**************************************Dani changes  made*********************************
 		       #url(r'^login/$',
@@ -64,13 +64,13 @@ urlpatterns = patterns('',
                        url(r'^password/reset/done/$',
                            auth_views.password_reset_done,
                            name='auth_password_reset_done'),
-                       url(r'^register/$',
-                           register,
-                           {'form_class': RegistrationFormUserProfile},
-                           name='registration_register'),
+                                                 #url(r'^register/$',
+                                                 #   register,
+                                                 #    {'form_class': RegistrationFormUserProfile},
+                                                 #name='registration_register'),
                        url(r'^register/complete/$',
                            #direct_to_template,
-			   auth_views.first_login,
+			                  auth_views.first_login,
                            {'template_name': 'registration/welcome.html'},
                            name='registration_complete'),
                        )

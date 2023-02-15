@@ -26,9 +26,9 @@ CURRENT_FILE = os.path.abspath(__file__)
 PROJECT_ROOT = os.path.dirname(CURRENT_FILE)
 PRINT_EXCEPTION = False
 
-API_IP="159.89.167.167:8000"
+API_IP="172.31.13.12:2500"
 #API_IP="104.131.100.225:8000" #stg server
-UPLOAD_PAI_IP="159.89.167.167:2600"
+UPLOAD_PAI_IP="172.31.13.12:2600"
 OAUTH_IP=API_IP
 API_KEY="8eEZTFRvGNRLStAt"
 OAUTH_REDIRECT_IP="www.scisphere.in"
@@ -49,7 +49,7 @@ TEMPLATE_DEBUG = DEBUG
 TEMPLATED_EMAIL_TEMPLATE_DIR = 'templated_email/'
 
 ADMINS = (
-     ('Admin', 'admin@scisphere.com'),
+     ('Admin', 'elango.sakthivel@scisphere.com'),
 )
 
 
@@ -70,16 +70,16 @@ DATABASES = {
         'NAME': 'scispheredb',
         'USER': 'scibeti',
         'PASSWORD': 'betabeti789',
-        'HOST': '159.89.166.217',
+        'HOST': '172.31.4.146' #'35.154.217.4',
    }
 }
 
 MONGO_DATABASE = {
-    'HOST': '139.59.34.92',
+    'HOST': 'localhost',
     'PORT': 27017,
     'NAME': 'scispheremongo',
     'USER': 'scisphereUser',
-    'PASSWORD': 'sciProdMonDB'
+    'PASSWORD': 'sciProdMonDB2022'
 }
 
 
@@ -131,6 +131,8 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+print "STATIC_ROOT"
+print STATIC_ROOT
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -711,8 +713,8 @@ if MONGO_DATABASE.get('USER') and MONGO_DATABASE.get('PASSWORD'):
         "mongodb://%(USER)s:%(PASSWORD)s@%(HOST)s:%(PORT)s") % MONGO_DATABASE
 else:
     MONGO_CONNECTION_URL = "mongodb://%(HOST)s:%(PORT)s" % MONGO_DATABASE
-#MONGO_CONNECTION = MongoClient(MONGO_CONNECTION_URL, safe=True, j=True)
 MONGO_CONNECTION = MongoClient(MONGO_CONNECTION_URL+"/"+MONGO_DATABASE['NAME'], safe=True, j=True)
+#MONGO_CONNECTION = MongoClient(host=MONGO_DATABASE.get('HOST'), port=MONGO_DATABASE.get('PORT'), username=MONGO_DATABASE.get('USER'), password=MONGO_DATABASE.get('PASSWORD'))
 
 MONGO_DB = MONGO_CONNECTION[MONGO_DATABASE['NAME']]
 

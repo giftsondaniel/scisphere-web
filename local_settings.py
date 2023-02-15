@@ -3,33 +3,21 @@
 #GRANT ALL PRIVILEGES ON map70.* To 'map70'@'localhost' IDENTIFIED BY 'map70';
 
 
+
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'scispheredb',
         'USER': 'scibeti',
         'PASSWORD': 'betabeti789',
-        'HOST': '159.89.166.217',
+        'HOST': '172.31.4.146' #'35.154.217.4',
    }
 }
 
-
-
-# sqlite
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': 'db.sqlite3',
-#    }
-#}
-
-#TOUCHFORMS_URL = 'http://localhost:9000/'
-
 MONGO_DATABASE = {
-    'HOST': '139.59.34.92',
+    'HOST': 'localhost',
     'PORT': 27017,
     'NAME': 'scispheremongo',
     'USER': 'scisphereUser',
-    'PASSWORD': 'sciProdMonDB'
+    'PASSWORD': 'sciProdMonDB2022'
 }
-

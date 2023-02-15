@@ -655,16 +655,17 @@ def countries(request):
        return checkUserSession()
     context = RequestContext(request)
     response = ''
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     print "------------------"
     print request.session.get('access_tk')
     print request.session.get('api_key')
     print "-------------------000"
-    ##oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/places/countries?api_key='+apiKey
     print url
     request1 = urllib2.Request(url)
@@ -687,17 +688,18 @@ def countrydetail(request):
     except Exception as e:
        print e
     querystr=[]
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     for key in request.GET.iterkeys():
         valuelist = request.GET.getlist(key)
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
     query = '&'.join(querystr)
 
     # oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+
     url = 'http://'+settings.API_IP+'/scisphere/places/countrydetail?'+query+'&api_key='+apiKey+'&orgid='+str(orgID)
     print url
     request1 = urllib2.Request(url)
@@ -757,8 +759,8 @@ def trend_data(request, id):
     print "trend_data"
     context = RequestContext(request)
     response = ''
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     querystr=[]
 
     for key in request.GET.iterkeys():
@@ -766,9 +768,11 @@ def trend_data(request, id):
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
     query = '&'.join(querystr)
 
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/places/trend/'+id+'?'+query+'&api_key='+apiKey
     print url
     request1 = urllib2.Request(url)
@@ -790,8 +794,8 @@ def snapshot_data(request, stid, id):
     placeid = id
     stateid = stid
     querystr=[]
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     for key in request.GET.iterkeys():
         valuelist = request.GET.getlist(key)
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
@@ -804,9 +808,10 @@ def snapshot_data(request, stid, id):
        print e
 
     # oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/places/'+stateid+'/'+placeid+'/snapshot?'+query+'&api_key='+apiKey+'&orgid='+str(orgID)
 
     print "url"
@@ -835,14 +840,15 @@ def checkUserSession():
 
 #regionexplorer levels data call
 def region(request, id):
+    print "Enter "
     if not request.user.is_authenticated():
        return checkUserSession()
     context = RequestContext(request)
     placeid = id
     querystr=[]
     keyName=None
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     for key in request.GET.iterkeys():
         valuelist = request.GET.getlist(key)
         if key == "regionkey":
@@ -851,10 +857,11 @@ def region(request, id):
         
     query = '&'.join(querystr)
 
-    #oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
 
     # Subscription Check
     try:
@@ -876,13 +883,17 @@ def region(request, id):
 
     # User Transaction entry
     org_id = OrganizationUser.objects.get(user=request.user.id).organization_id
+    print "before user trans"
     userTransaction(url,request.body,"Region",request.user.id,org_id,placeid)
+    print "after user trans"
 
     #request1 = urllib2.Request(url)
     request1 = urllib2.Request(url,request.body, headers={'Content-Type': 'application/json'})
     request1.add_header("Authorization", "Bearer "+ accessToken)
     result1 = urllib2.urlopen(request1)
     serialized_data = result1.read()
+    print "serialized_data"
+    print serialized_data
 
     #serialized_data = urllib2.urlopen(url).read()
     response = HttpResponse(serialized_data, content_type='text/plain')
@@ -897,16 +908,17 @@ def sharemap(request,level0Id, level1Id, level, fieldId, leveltype, type, indexn
 
     context = RequestContext(request)
     keyName=None
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     randomRef = uuid().hex 
     uniquekey = randomRef
     keyName=fieldId
 
-    #oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
 
     try:
        check = subscription_check(keyName,level1Id,request.user.id)
@@ -1025,8 +1037,8 @@ def region_ec(request, id):
     placeid = id
     querystr=[]
     ec_key = ''
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     for key in request.GET.iterkeys():
         valuelist = request.GET.getlist(key)
 	if key == "ec_key":
@@ -1034,10 +1046,11 @@ def region_ec(request, id):
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
     query = '&'.join(querystr)
 
-    #oauth
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/places/'+placeid+'/region_ec?'+query+'&api_key='+apiKey
     request1 = urllib2.Request(url)
     request1.add_header("Authorization", "Bearer "+ accessToken)
@@ -1084,8 +1097,8 @@ def correlate_data_old(request,id):
     try:
        orgID = OrganizationUser.objects.get(user=request.user.id).organization_id
        querystr=[]
-       accessToken=None
-       apiKey=None
+       accessToken="None"
+       apiKey="None"
        fieldsArr = None	
        fieldNamesArr = None	
        for key in request.GET.iterkeys():
@@ -1125,10 +1138,11 @@ def correlate_data_old(request,id):
        except Exception as e:
           print "Exception inside region - subscription check : %s" %e
 
-       #oauth accesstoken
-       if request.session.get('access_tk'):
-          accessToken = request.session.get('access_tk')
-          apiKey = request.session.get('api_key')
+       # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
        url = 'http://'+settings.API_IP+'/scisphere/places/correlate/'+id+'/?api_key='+apiKey+'&orgid='+str(orgID) #'+query+'&
        print url
 
@@ -1291,8 +1305,8 @@ def correlate_data_od(request,id):
     try:
        orgID = OrganizationUser.objects.get(user=request.user.id).organization_id
        querystr=[]
-       accessToken=None
-       apiKey=None
+       accessToken="None"
+       apiKey="None"
        contextKeyIdArr=None
        contextKeyNameArr=None
        myvarKeyIdArr=None
@@ -1330,10 +1344,11 @@ def correlate_data_od(request,id):
        except Exception as e:
           print "Exception inside region - subscription check : %s" %e
 
-       #oauth accesstoken
-       if request.session.get('access_tk'):
-          accessToken = request.session.get('access_tk')
-          apiKey = request.session.get('api_key')
+       # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
        url = 'http://'+settings.API_IP+'/scisphere/places/correlate/'+id+'/?api_key='+apiKey+'&orgid='+str(orgID) #'+query+'&
        print url
 
@@ -1494,8 +1509,8 @@ def correlate_data(request,id):
     try:
        orgID = OrganizationUser.objects.get(user=request.user.id).organization_id
        querystr=[]
-       accessToken=None
-       apiKey=None
+       accessToken="None"
+       apiKey="None"
        contextKeyIdArr=None
        contextKeyNameArr=None
        myvarKeyIdArr=None
@@ -1533,10 +1548,11 @@ def correlate_data(request,id):
        except Exception as e:
           print "Exception inside region - subscription check : %s" %e
 
-       #oauth accesstoken
-       if request.session.get('access_tk'):
-          accessToken = request.session.get('access_tk')
-          apiKey = request.session.get('api_key')
+       ## oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
        url = 'http://'+settings.API_IP+'/scisphere/places/correlate/'+id+'/?api_key='+apiKey+'&orgid='+str(orgID) #'+query+'&
        print url
 
@@ -1767,17 +1783,18 @@ def keydetail(request):
     context = RequestContext(request)
     orgID = OrganizationUser.objects.get(user=request.user.id).organization_id
     querystr=[]
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     for key in request.GET.iterkeys():
         valuelist = request.GET.getlist(key)
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
     query = '&'.join(querystr)
 
-    #oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/places/keydetail?'+query+'&api_key='+apiKey+'&orgid='+str(orgID)
     print url
     request1 = urllib2.Request(url)
@@ -1949,7 +1966,9 @@ def filter_data(request, id):
 
     #url = 'http://'+settings.API_IP+'/scisphere/places/'+stateid+'?api_key='+request.session.get('api_key')+'&'+query
     #url = 'http://'+settings.API_IP+'/scisphere/places/'+stateid+'/myvarfilter?api_key='+request.session.get('api_key')+'&'+query
-    url = 'http://'+settings.API_IP+'/scisphere/places/'+stateid+'?api_key='+request.session.get('api_key')+'&'+query+'&date='+str(uploadedDate)
+
+    #url = 'http://'+settings.API_IP+'/scisphere/places/'+stateid+'?api_key='+request.session.get('api_key')+'&'+query+'&date='+str(uploadedDate)
+    url = 'http://'+settings.API_IP+'/scisphere/places/'+stateid+'?api_key=None&'+query+'&date='+str(uploadedDate)
     print url
     """body = filtersArrayQuery
     if(len(rangeArr) == 0):
@@ -1980,7 +1999,8 @@ def filter_data(request, id):
        userTransaction(url,request.body,"Filter",request.user.id,org_id,stateid)
 
        r = urllib2.Request(url, request.body, headers={'Content-Type': 'application/json'})
-       r.add_header("Authorization", "Bearer "+ request.session.get('access_tk'))
+       r.add_header("Authorization", "Bearer "+"None")
+       #r.add_header("Authorization", "Bearer "+ request.session.get('access_tk'))
        serialized_data = urllib2.urlopen(r).read()
 
        response = HttpResponse(serialized_data, content_type='text/plain')
@@ -2006,13 +2026,14 @@ def filter_data_google_api(request, id):
 
        querystr=[]
        keyName=None
-       accessToken=None
-       apiKey=None
+       accessToken="None"
+       apiKey="None"
 
-       #oauth accesstoken
-       if request.session.get('access_tk'):
-          accessToken = request.session.get('access_tk')
-          apiKey = request.session.get('api_key')
+       # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
 
        request1 = urllib2.Request( url, headers={'Content-Type': 'application/json'} )
        request1.add_header("Authorization", "Bearer"+ accessToken)
@@ -2039,8 +2060,13 @@ def layers_data(request):
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
     query = '&'.join(querystr)
 
-    accessToken = request.session.get('access_tk')
-    apiKey = request.session.get('api_key')
+    accessToken="None"
+    apiKey="None"
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/places/layers?api_key='+apiKey+'&'+query
     print url
     try:
@@ -2072,9 +2098,13 @@ def filter_listofvillages(request):
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
     query = '&'.join(querystr)
 
-    #AccessToken
-    accessToken = request.session.get('access_tk')
-    apiKey = request.session.get('api_key')
+    accessToken="None"
+    apiKey="None"
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
 
     orgID = OrganizationUser.objects.get(user=request.user.id).organization_id
 
@@ -2247,7 +2277,10 @@ def filter_data_old(request, id):
        org_id = OrganizationUser.objects.get(user=request.user.id).organization_id
        myTemplateList = MyTemplate.objects.filter(org_id=org_id,mytemplate_name=templateName)
        customerDatasetList = CustomerDatasetUpload.objects.filter(org_id=org_id,mytemplate_id=myTemplateList[0].id).order_by('-uploaded_date')[:1]
-       uploadedDate=customerDatasetList[0].uploaded_date
+       if len(customerDatasetList) > 0:
+            uploadedDate=customerDatasetList[0].uploaded_date
+       else :
+            uploadedDate=''            
     except Exception as e:
        print 'Exception inside filter_data (getting uploaded date) :: %s' % e
 
@@ -2301,17 +2334,18 @@ def level3data(request, level1Id, level2Id):
        return checkUserSession()
     context = RequestContext(request)
     querystr=[]
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     for key in request.GET.iterkeys():
         valuelist = request.GET.getlist(key)
         querystr.extend(['%s=%s' % (key, val) for val in valuelist])
     query = '&'.join(querystr)
 
-    #oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/places/'+level1Id+'/'+level2Id+'?'+query+'&api_key='+apiKey
     request1 = urllib2.Request(url)
     request1.add_header("Authorization", "Bearer "+ accessToken)
@@ -4422,8 +4456,8 @@ def region_compare_data(request):
        return checkUserSession()
     context = RequestContext(request)
     querystr=[]
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     level1Array=[]
     keyName=None
     for key in request.GET.iterkeys():
@@ -4451,10 +4485,11 @@ def region_compare_data(request):
     except Exception as e:
        print "Exception inside region_compare_data - subscription check : %s" %e
 
-    #oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
 
     #query = urllib.quote(query, '')
     query = query.replace(' ','%20')
@@ -4477,13 +4512,15 @@ def region_compare_data(request):
 def master_data(request):
     print "master_data"
     context = RequestContext(request)
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     orgId = OrganizationUser.objects.get(user=request.user.id).organization_id
     #oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     url = 'http://'+settings.API_IP+'/scisphere/master?api_key='+apiKey
     print url
     request1 = urllib2.Request(url)
@@ -4521,8 +4558,8 @@ def datasummary(request, id):
     placeid = id
     querystr=[]
     keyName=None
-    accessToken=None
-    apiKey=None
+    accessToken="None"
+    apiKey="None"
     for key in request.GET.iterkeys():
         valuelist = request.GET.getlist(key)
         if key == "summarykey":
@@ -4531,10 +4568,11 @@ def datasummary(request, id):
         
     query = '&'.join(querystr)
     #oauth accesstoken
-    if request.session.get('access_tk'):
-       accessToken = request.session.get('access_tk')
-       apiKey = request.session.get('api_key')
-
+    # oauth accesstoken
+    #if request.session.get('access_tk'):
+    #   accessToken = request.session.get('access_tk')
+    #   apiKey = request.session.get('api_key')
+    
     try:
        query = query.replace(' ','%20')
        url = 'http://'+settings.API_IP+'/scisphere/places/'+placeid+'/datasummary?'+query+'&api_key='+apiKey
@@ -4592,12 +4630,14 @@ def rural_location(request):
     return render_to_response("rural_location.html", context_instance=context)
 
 def check_datasummary(request,level1Id,perMerticId,orgId):
-    apiKey=None
-    accessToken=None
+    apiKey="None"
+    accessToken="None"
     try:
-       if request.session.get('access_tk'):
-          accessToken = request.session.get('access_tk')
-          apiKey = request.session.get('api_key')
+       # oauth accesstoken
+        #if request.session.get('access_tk'):
+          #   accessToken = request.session.get('access_tk')
+          #   apiKey = request.session.get('api_key')
+          
 
        url = 'http://'+settings.API_IP+'/scisphere/places/'+str(level1Id)+'/datasummary?api_key='+str(apiKey)+'&category=mylocation&summarykey='+str(perMerticId)+'&index='+str(orgId)+'&leveltype=village_town'
        print url
